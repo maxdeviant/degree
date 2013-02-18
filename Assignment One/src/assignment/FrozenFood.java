@@ -51,10 +51,13 @@ public class FrozenFood {
 		String name = input.nextLine().toUpperCase();
 		FrozenFood result = binarySearch(foodList, name, 0, foodList.size(), "Name");
 		
-		System.out.println("Name: " + result.getName());
-		System.out.println("Manufacturer: " + result.getManufacturer());
-		System.out.print("Nutrients: ");
-		result.getNutrients().split(", ");
+		if (result != null) {
+			System.out.println("\nName: " + result.getName());
+			System.out.println("Manufacturer: " + result.getManufacturer());
+			System.out.print("Nutrients: " + result.getNutrients());
+		} else {
+			System.out.println(name + " was not found.");
+		}
 	}
 	
 	/**
@@ -62,8 +65,23 @@ public class FrozenFood {
 	 * @param foodList
 	 */
 	public void displayFrozenFoodWManufacturer(ArrayList<FrozenFood> foodList) {
-		// TODO 
+		System.out.print("Enter the name of a frozen food manufacturer: ");
+		String manufacturer = input.nextLine().toUpperCase();
+		ArrayList<FrozenFood> results = new ArrayList<FrozenFood>();
 		
+		for (FrozenFood f : foodList) {
+			if (f.getManufacturer().equals(manufacturer))
+				results.add(f);
+		}
+		
+		if (results.size() > 0) {
+			System.out.println("\n" + manufacturer + "makes these frozen foods: ");
+			for (FrozenFood f : results) {
+				System.out.println("  " + f.getName());
+			}
+		} else {
+			System.out.println(manufacturer + " was not found.");
+		}
 	}
 
 	/**
@@ -71,8 +89,23 @@ public class FrozenFood {
 	 * @param foodList
 	 */
 	public void displayFrozenFoodWNutrient(ArrayList<FrozenFood> foodList) {
-		// TODO Auto-generated method stub
+		System.out.print("Enter the name of a frozen food nutrient: ");
+		String nutrient = input.nextLine().toUpperCase();
+		ArrayList<FrozenFood> results = new ArrayList<FrozenFood>();
 		
+		for (FrozenFood f : foodList) {
+			if (f.getNutrients().contains(nutrient))
+				results.add(f);
+		}
+		
+		if (results.size() > 0) {
+			System.out.println("\nThese frozen foods contain " + nutrient + ": ");
+			for (FrozenFood f : results) {
+				System.out.println("  " + f.getName());
+			}
+		} else {
+			System.out.println("That nutrient was not found.");
+		}
 	}
 	
 	private FrozenFood binarySearch(ArrayList<FrozenFood> foodList, String key, int min, int max, String type) {
