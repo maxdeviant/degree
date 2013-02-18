@@ -66,7 +66,7 @@ public class FrozenFood {
 	 * @param foodList
 	 */
 	public void displayFrozenFoodNames(ArrayList<FrozenFood> foodList) {
-		System.out.println("Frozen Food Products: ");
+		System.out.println("\nFrozen Food Products: ");
 		for (FrozenFood i : foodList)
 			System.out.println("  " + i.getName());
 	}
@@ -107,7 +107,7 @@ public class FrozenFood {
 
 		if (results.size() > 0) {
 			System.out.println("\n" + manufacturer
-					+ "makes these frozen foods: ");
+					+ " makes these frozen foods: ");
 			for (FrozenFood f : results) {
 				System.out.println("  " + f.getName());
 			}
