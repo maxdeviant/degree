@@ -96,6 +96,7 @@ public class Application {
 				"Quit the program" };
 
 		do {
+			System.out.println("\nMenu:");
 			for (int i = 0; i < 5; i++)
 				System.out.println((i + 1) + ") " + options[i]);
 			
@@ -122,14 +123,14 @@ public class Application {
 			FF.displayFrozenFoodWNutrient(foodList);
 			break;
 		default:
-			if (!wantsToQuit && menuChoice != 5)
-				menu();
-			else {
-				wantsToQuit = getQuit();
-				if (!wantsToQuit)
-					menu();
-			}
 			break;
+		}
+		if (!wantsToQuit && menuChoice != 5)
+			menu();
+		else {
+			wantsToQuit = getQuit();
+			if (!wantsToQuit)
+				menu();
 		}
 	}
 }
