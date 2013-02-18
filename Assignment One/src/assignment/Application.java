@@ -97,7 +97,7 @@ public class Application {
 	private static void menu() {
 		boolean wantsToQuit = false;
 		boolean validChoice = false;
-		int menuChoice;
+		char menuChoice;
 		String[] options = {
 				"Display the names of all frozen food products",
 				"Display all data for a specific frozen food product",
@@ -106,13 +106,13 @@ public class Application {
 				"Quit the program" };
 
 		do {
-			System.out.println("\nMenu:");
+			System.out.println("\n\nMenu:");
 			for (int i = 0; i < 5; i++)
 				System.out.println((i + 1) + ") " + options[i]);
 
 			System.out.print("Please select an option: ");
-			menuChoice = Integer.parseInt(input.nextLine());
-			if (menuChoice <= 5 && menuChoice >= 0)
+			menuChoice = input.nextLine().charAt(0);
+			if (menuChoice <= '5' && menuChoice >= '0')
 				validChoice = true;
 			else
 				System.out
@@ -121,22 +121,22 @@ public class Application {
 		} while (!validChoice);
 
 		switch (menuChoice) {
-		case 1:
+		case '1':
 			FF.displayFrozenFoodNames(foodList);
 			break;
-		case 2:
+		case '2':
 			FF.displaySpecificFrozenFood(foodList);
 			break;
-		case 3:
+		case '3':
 			FF.displayFrozenFoodWManufacturer(foodList);
 			break;
-		case 4:
+		case '4':
 			FF.displayFrozenFoodWNutrient(foodList);
 			break;
 		default:
 			break;
 		}
-		if (!wantsToQuit && menuChoice != 5)
+		if (!wantsToQuit && menuChoice != '5')
 			menu();
 		else {
 			wantsToQuit = getQuit();
