@@ -4,57 +4,57 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-	// Variable declaration
+	// Class variable declaration
 	private static Scanner input = new Scanner(System.in);
 	private static FrozenFood FF = new FrozenFood();
 	private static ArrayList<FrozenFood> origFoodList = new ArrayList<FrozenFood>();
 	private static ArrayList<FrozenFood> foodList;
-	private static int numFF = 0;
-	
+
 	public static void main(String[] args) {
-		// Fill origFoodList with the FrozenFood data
+		// Fill origFoodList with the FrozenFood data provided by the user
 		do {
 			System.out.print("Enter the name of the frozen food: ");
 			String name = input.nextLine();
-			
+
 			System.out.print("Enter the name of the manufacturer: ");
 			String manufacturer = input.nextLine();
-			
+
 			System.out.print("Enter the number of nutrients for this food: ");
 			int numNu = Integer.parseInt(input.nextLine());
-			
+
 			System.out.print("Enter the nutrients when prompted: \n");
 			String nutrients = "";
+
 			for (int i = 0; i < numNu; i++) {
 				System.out.print((i + 1) + ") ");
 				nutrients += input.nextLine();
 				if (i != numNu - 1)
 					nutrients += ", ";
 			}
-			
-			origFoodList.add(new FrozenFood(name.toUpperCase(), manufacturer.toUpperCase(), nutrients.toUpperCase()));
-			numFF++;
+
+			// Adds a newly created FrozenFood object to origFoodList
+			origFoodList.add(new FrozenFood(name.toUpperCase(), manufacturer
+					.toUpperCase(), nutrients.toUpperCase()));
 		} while (!getQuit());
-		
-		foodList = new ArrayList<FrozenFood>(numFF);
+
+		// Creates a new FrozenFood ArrayList equal in size to origFoodList
+		foodList = new ArrayList<FrozenFood>(origFoodList.size());
+		// Copies the data from origFoodList into foodList
 		for (FrozenFood i : origFoodList)
 			foodList.add(i);
-		
-		// Debugging code
-		System.out.println("Unsorted: ");
-		for (FrozenFood i : foodList)
-			System.out.println(i.getName());
-		
+
+		// Sorts the FrozenFood ArrayList using a Bubble Sort
 		foodList = bubbleSort(foodList);
-		
-		// Debugging code
-		System.out.println("Sorted: ");
-		for (FrozenFood i : foodList)
-			System.out.println(i.getName());
-		
+
+		// Presents a menu with options for the user
 		menu();
 	}
-	
+
+	/**
+	 * Prompts the user if he wants to quit.
+	 * 
+	 * @return false if user wants to quit, else returns true
+	 */
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
 		if (input.nextLine().toUpperCase().charAt(0) == 'N')
@@ -62,34 +62,44 @@ public class Application {
 		else
 			return true;
 	}
-	
+
+	/**
+	 * Sorts the contents of the FrozenFood ArrayList via a bubble sort.
+	 * 
+	 * @param list
+	 * @return sorted list of FrozenFood
+	 */
 	private static ArrayList<FrozenFood> bubbleSort(ArrayList<FrozenFood> list) {
 		int num = list.size();
-		boolean swapped = false;
-		
+
 		do {
+			int newNum = 0;
 			for (int i = 1; i <= num - 1; i++) {
-				String item1 = list.get(i - 1).getName();
-				String item2 = list.get(i).getName();
-				//System.out.println(item1 + " " + item2);
-				if (item1.compareTo(item2) > 0) {
+				String stringA = list.get(i - 1).getName();
+				String stringB = list.get(i).getName();
+				if (stringA.compareTo(stringB) > 0) {
 					FrozenFood temp = list.get(i);
 					list.set(i, list.get(i - 1));
 					list.set(i - 1, temp);
-					swapped = true;
+					newNum = i;
 				}
 			}
-			num -= 1;
-		} while (!swapped);
-		
+			num = newNum;
+		} while (num != 0);
+
 		return list;
 	}
-	
+
+	/**
+	 * Presents the user with a menu, prompts for input, and then executes the
+	 * user's choice
+	 */
 	private static void menu() {
 		boolean wantsToQuit = false;
 		boolean validChoice = false;
 		int menuChoice;
-		String[] options = { "Display the names of all frozen food products",
+		String[] options = {
+				"Display the names of all frozen food products",
 				"Display all data for a specific frozen food product",
 				"Display the names of all frozen food products from a given manufacturer",
 				"Display the names of all products with a given top nutrient",
@@ -99,16 +109,17 @@ public class Application {
 			System.out.println("\nMenu:");
 			for (int i = 0; i < 5; i++)
 				System.out.println((i + 1) + ") " + options[i]);
-			
+
 			System.out.print("Please select an option: ");
 			menuChoice = Integer.parseInt(input.nextLine());
 			if (menuChoice <= 5 && menuChoice >= 0)
 				validChoice = true;
 			else
-				System.out.println("Sorry, that is not a valid choice. Try again.");
-			
+				System.out
+						.println("Sorry, that is not a valid choice. Try again.");
+
 		} while (!validChoice);
-		
+
 		switch (menuChoice) {
 		case 1:
 			FF.displayFrozenFoodNames(foodList);
