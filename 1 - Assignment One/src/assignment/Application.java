@@ -115,8 +115,7 @@ public class Application {
 			if (menuChoice <= '5' && menuChoice >= '0')
 				validChoice = true;
 			else
-				System.out
-						.println("Sorry, that is not a valid choice. Try again.");
+				System.out.println("Sorry, that is not a valid choice. Try again.");
 
 		} while (!validChoice);
 
