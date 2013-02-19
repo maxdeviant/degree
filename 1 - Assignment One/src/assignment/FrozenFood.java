@@ -2,6 +2,7 @@ package assignment;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class FrozenFood {
 	// Class variable declaration
@@ -84,7 +85,11 @@ public class FrozenFood {
 		if (result != null) {
 			System.out.println("\nName: " + result.getName());
 			System.out.println("Manufacturer: " + result.getManufacturer());
-			System.out.print("Nutrients: " + result.getNutrients());
+			StringTokenizer token = new StringTokenizer(result.getNutrients().replace(',', ' '));
+			System.out.println("Nutrients: ");
+			while (token.hasMoreTokens()) {
+				System.out.println("  " + token.nextToken());
+			}
 		} else {
 			System.out.println(name + " was not found.");
 		}
@@ -112,7 +117,7 @@ public class FrozenFood {
 				System.out.println("  " + f.getName());
 			}
 		} else {
-			System.out.println(manufacturer + " was not found.");
+			System.out.println(manufacturer + " does not appear to make any frozen foods.");
 		}
 	}
 
@@ -138,7 +143,7 @@ public class FrozenFood {
 				System.out.println("  " + f.getName());
 			}
 		} else {
-			System.out.println("That nutrient was not found.");
+			System.out.println("No frozen foods contain " + nutrient);
 		}
 	}
 

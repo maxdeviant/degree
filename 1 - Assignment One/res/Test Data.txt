@@ -1,25 +1,21 @@
+Yam
+Veggie Co
+1
+Yam
+n
 Bread
-Bread Co
-2
+Carb Co
+3
 Wheat
 Water
+Yeast
 n
-Apple
-Apple Co
+Carrot
+Veggie Co
 1
-Apple
-n
-Yam
-Yam Co
-1
-Yam
-n
-Pear
-Pear Co
-1
-Pear
+Carrot
 n
 Peach
-Pear Co
+Fruit Co
 1
 Peach
