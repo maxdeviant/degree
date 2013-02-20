@@ -77,6 +77,7 @@ public class Application {
 			for (int i = 1; i <= num - 1; i++) {
 				String stringA = list.get(i - 1).getName();
 				String stringB = list.get(i).getName();
+
 				if (stringA.compareTo(stringB) > 0) {
 					FrozenFood temp = list.get(i);
 					list.set(i, list.get(i - 1));
