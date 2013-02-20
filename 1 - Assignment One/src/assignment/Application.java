@@ -33,8 +33,8 @@ public class Application {
 			}
 
 			// Adds a newly created FrozenFood object to origFoodList
-			origFoodList.add(new FrozenFood(name.toUpperCase(), manufacturer
-					.toUpperCase(), nutrients.toUpperCase()));
+			origFoodList.add(new FrozenFood(name.toUpperCase(), manufacturer.toUpperCase(),
+					nutrients.toUpperCase()));
 		} while (!getQuit());
 
 		// Creates a new FrozenFood ArrayList equal in size to origFoodList
@@ -98,12 +98,10 @@ public class Application {
 		boolean wantsToQuit = false;
 		boolean validChoice = false;
 		char menuChoice;
-		String[] options = {
-				"Display the names of all frozen food products",
+		String[] options = { "Display the names of all frozen food products",
 				"Display all data for a specific frozen food product",
 				"Display the names of all frozen food products from a given manufacturer",
-				"Display the names of all products with a given top nutrient",
-				"Quit the program" };
+				"Display the names of all products with a given top nutrient", "Quit the program" };
 
 		do {
 			System.out.println("\n\nMenu:");

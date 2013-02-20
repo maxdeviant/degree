@@ -80,7 +80,7 @@ public class FrozenFood {
 	public void displaySpecificFrozenFood(ArrayList<FrozenFood> foodList) {
 		System.out.print("Enter the name of a specific frozen food product: ");
 		String name = input.nextLine().toUpperCase();
-		FrozenFood result = binarySearch(foodList, name, 0, foodList.size());
+		FrozenFood result = binarySearch(foodList, name, 0, foodList.size() - 1);
 
 		if (result != null) {
 			System.out.println("\nName: " + result.getName());
@@ -111,8 +111,7 @@ public class FrozenFood {
 		}
 
 		if (results.size() > 0) {
-			System.out.println("\n" + manufacturer
-					+ " makes these frozen foods: ");
+			System.out.println("\n" + manufacturer + " makes these frozen foods: ");
 			for (FrozenFood f : results) {
 				System.out.println("  " + f.getName());
 			}
@@ -137,8 +136,7 @@ public class FrozenFood {
 		}
 
 		if (results.size() > 0) {
-			System.out.println("\nThese frozen foods contain " + nutrient
-					+ ": ");
+			System.out.println("\nThese frozen foods contain " + nutrient + ": ");
 			for (FrozenFood f : results) {
 				System.out.println("  " + f.getName());
 			}
@@ -157,12 +155,11 @@ public class FrozenFood {
 	 * @param max
 	 * @return the FrozenFood object being searched for
 	 */
-	private FrozenFood binarySearch(ArrayList<FrozenFood> foodList, String key,
-			int min, int max) {
+	private FrozenFood binarySearch(ArrayList<FrozenFood> foodList, String key, int min, int max) {
 		if (max < min)
 			return null;
 		else {
-			int mid = (min + max) / 2;
+			int mid = min + ((max - min) / 2);
 
 			if (foodList.get(mid).getName().compareTo(key) > 0)
 				return binarySearch(foodList, key, min, mid - 1);
