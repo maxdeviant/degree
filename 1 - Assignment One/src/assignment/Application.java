@@ -1,3 +1,11 @@
+/**
+ * CSC240
+ * Dr. Richard Epstein
+ * Assignment #1
+ * 
+ * @author Marshall Bowers
+ */
+
 package assignment;
 
 import java.util.ArrayList;
