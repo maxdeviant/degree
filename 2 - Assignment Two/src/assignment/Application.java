@@ -27,7 +27,6 @@ public class Application {
 	 * user's choice
 	 */
 	private static void menu() {
-		//boolean wantsToQuit = false;
 		boolean validChoice = false;
 		char menuChoice;
 		String[] options = { "Add a Frozen Food product",
@@ -85,10 +84,8 @@ public class Application {
 
 		if (menuChoice != '9')
 			menu();
-		else {
-			//wantsToQuit = getQuit();
+		else
 			if (!getQuit())
 				menu();
-		}
 	}
 }
