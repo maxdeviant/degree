@@ -212,6 +212,15 @@ public class ElementSet {
 				System.out.println("\n");
 			}
 		}
+	}
 
+	public boolean displayAnObject(Element anObject) {
+		// TODO code in displayAnObject
+		return false; // Temporary error fix
+	}
+
+	public boolean editAnObject(Element editedObject) {
+		// TODO code in editAnObject
+		return false; // Temporary error fix
 	}
 }
