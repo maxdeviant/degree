@@ -21,18 +21,20 @@ public abstract class FrozenFood extends Element {
 	}
 	
 	public void readIn() {
-		
+		// TODO code in readIn()
 	}
 	
 	public void display() {
-		
+		// TODO code in display()
 	}
 	
 	public boolean equals(Element dobj) {
-		return false;
+		// TODO code in equals(Element dobj)
+		return false; // Temporary error fix
 	}
 	
 	public Element clone() {
-		return null;	
+		// TODO code in clone()
+		return null; // Temporary error fix
 	}
 }
