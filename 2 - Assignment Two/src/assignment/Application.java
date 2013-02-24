@@ -5,16 +5,14 @@ import java.util.Scanner;
 public class Application {
 	private static Scanner input = new Scanner(System.in);
 
-	public static void Main(String[] args) {
-		do {
-			menu();
-		} while (!getQuit());
+	public static void main(String[] args) {
+		menu();
 	}
 
 	/**
 	 * Prompts the user if he wants to quit.
 	 * 
-	 * @return false if user wants to quit, else returns true
+	 * @return false if user does not want to quit, else returns true
 	 */
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
@@ -29,7 +27,7 @@ public class Application {
 	 * user's choice
 	 */
 	private static void menu() {
-		boolean wantsToQuit = false;
+		//boolean wantsToQuit = false;
 		boolean validChoice = false;
 		char menuChoice;
 		String[] options = { "Add a Frozen Food product",
@@ -43,12 +41,12 @@ public class Application {
 
 		do {
 			System.out.println("\nWholly Nutritious Foods Data Menu:");
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 9; i++)
 				System.out.println((i + 1) + ") " + options[i]);
 
 			System.out.print("Please select an option: ");
 			menuChoice = input.nextLine().charAt(0);
-			if (menuChoice <= '5' && menuChoice >= '0')
+			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
 			else
 				System.out
@@ -85,11 +83,11 @@ public class Application {
 			break;
 		}
 
-		if (!wantsToQuit && menuChoice != '9')
+		if (menuChoice != '9')
 			menu();
 		else {
-			wantsToQuit = getQuit();
-			if (!wantsToQuit)
+			//wantsToQuit = getQuit();
+			if (!getQuit())
 				menu();
 		}
 	}
