@@ -216,13 +216,43 @@ public class ElementSet {
 
 	public boolean displayAnObject(Element anObject) {
 		for (int i = 0; i < currentSize; i++) {
-			
+			Element e = getCurrent();
+			String className = e.getClassName();
+			if (className.equals("FrozenFood")) {
+				if (((FrozenFood)e).equals(anObject)) {
+					e.display();
+					return true;
+				}	
+			} else if (className.equals("CannedFood")) {
+				if (((CannedFood)e).equals(anObject)) {
+					e.display();
+					return true;
+				}	
+			}
 		}
-		return false; // Temporary error fix
+		return false;
 	}
 
 	public boolean editAnObject(Element editedObject) {
-		// TODO code in editAnObject
-		return false; // Temporary error fix
+		for (int i = 0; i < currentSize; i++) {
+			Element e = getCurrent();
+			String className = e.getClassName();
+			if (className.equals("FrozenFood")) {
+				if (((FrozenFood)e).equals(editedObject)) {
+					if (((FrozenFood)e).equals(editedObject)) {
+						theList[i] = editedObject;
+						return true;
+					}	
+				}	
+			} else if (className.equals("CannedFood")) {
+				if (((FrozenFood)e).equals(editedObject)) {
+					if (((CannedFood)e).equals(editedObject)) {
+						theList[i] = editedObject;
+						return true;
+					}	
+				}	
+			}
+		}
+		return false;
 	}
 }
