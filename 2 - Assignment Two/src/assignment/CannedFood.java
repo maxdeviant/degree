@@ -10,7 +10,7 @@ package assignment;
 
 import java.util.Scanner;
 
-public abstract class CannedFood extends Element {
+public class CannedFood extends Element {
 	// Class variable declaration
 	private String name;
 	private String manufacturer;
@@ -19,6 +19,7 @@ public abstract class CannedFood extends Element {
 	/**
 	 * Creates a new CannedFood object with all blank fields.
 	 */
+	
 	public CannedFood() {
 		name = "";
 		manufacturer = "";
@@ -33,12 +34,37 @@ public abstract class CannedFood extends Element {
 	 * @param manufacturer
 	 * @param nutrients
 	 */
+	
 	public CannedFood(String name, String manufacturer, String nutrients) {
 		this.name = name.toUpperCase();
 		this.manufacturer = manufacturer.toUpperCase();
 		this.nutrients = nutrients.toUpperCase();
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getNutrients() {
+		return nutrients;
+	}
+
+	public void setNutrients(String nutrients) {
+		this.nutrients = nutrients;
+	}
+
 	public void readIn() {
 		Scanner input = new Scanner(System.in);
 

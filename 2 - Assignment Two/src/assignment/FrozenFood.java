@@ -9,8 +9,9 @@
 package assignment;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public abstract class FrozenFood extends Element {
+public class FrozenFood extends Element {
 	// Class variable declaration
 	private String name;
 	private String manufacturer;
@@ -19,6 +20,7 @@ public abstract class FrozenFood extends Element {
 	/**
 	 * Creates a new FrozenFood object with all blank fields.
 	 */
+	
 	public FrozenFood() {
 		name = "";
 		manufacturer = "";
@@ -33,10 +35,35 @@ public abstract class FrozenFood extends Element {
 	 * @param manufacturer
 	 * @param nutrients
 	 */
+	
 	public FrozenFood(String name, String manufacturer, String nutrients) {
 		this.name = name.toUpperCase();
 		this.manufacturer = manufacturer.toUpperCase();
 		this.nutrients = nutrients.toUpperCase();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	public String getNutrients() {
+		return nutrients;
+	}
+
+	public void setNutrients(String nutrients) {
+		this.nutrients = nutrients;
 	}
 
 	public void readIn() {
@@ -65,7 +92,12 @@ public abstract class FrozenFood extends Element {
 	}
 
 	public void display() {
-		// TODO implement display()
+		System.out.println("Name: " + name);
+		System.out.println("Manufacturer: " + manufacturer);
+		StringTokenizer token = new StringTokenizer(nutrients.replace(',', ' '));
+		while (token.hasMoreTokens()) {
+			System.out.println("  " + token.nextToken());
+		}
 	}
 
 	public boolean equals(Element dobj) {
