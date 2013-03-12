@@ -215,7 +215,9 @@ public class ElementSet {
 	}
 
 	public boolean displayAnObject(Element anObject) {
-		// TODO code in displayAnObject
+		for (int i = 0; i < currentSize; i++) {
+			
+		}
 		return false; // Temporary error fix
 	}
 
