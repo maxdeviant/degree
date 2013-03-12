@@ -1,9 +1,12 @@
 package assignment;
 
 import java.util.Scanner;
+import assignment.*;
 
 public class Application {
 	private static Scanner input = new Scanner(System.in);
+	
+	private static ElementSet list = new ElementSet();
 
 	public static void main(String[] args) {
 		menu();
@@ -14,6 +17,7 @@ public class Application {
 	 * 
 	 * @return false if user does not want to quit, else returns true
 	 */
+	
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
 		if (input.nextLine().toUpperCase().charAt(0) == 'N')
@@ -26,6 +30,7 @@ public class Application {
 	 * Presents the user with a menu, prompts for input, and then executes the
 	 * user's choice
 	 */
+	
 	private static void menu() {
 		boolean validChoice = false;
 		char menuChoice;
@@ -55,16 +60,28 @@ public class Application {
 
 		switch (menuChoice) {
 		case '1':
-			// TODO implement menu choice 1
+			FrozenFood tempFrozen = new FrozenFood();
+			tempFrozen.readIn();
+			list.add(tempFrozen);
 			break;
 		case '2':
-			// TODO implement menu choice 2
+			CannedFood tempCanned = new CannedFood();
+			tempCanned.readIn();
+			list.add(tempCanned);
 			break;
 		case '3':
-			// TODO implement menu choice 3
+			for (int i = 0; i < list.size(); i++)
+				if (list.getCurrent().getClassName().equals("FrozenFood"))
+					((FrozenFood)list.getCurrent()).getName();
+				else if (i == list.size())
+					System.out.println("There are no FrozenFood products.");
 			break;
 		case '4':
-			// TODO implement menu choice 4
+			for (int i = 0; i < list.size(); i++)
+				if (list.getCurrent().getClassName().equals("CannedFood"))
+					((CannedFood)list.getCurrent()).getName();
+				else if (i == list.size())
+					System.out.println("There are no CannedFood products.");
 			break;
 		case '5':
 			// TODO implement menu choice 5
