@@ -27,6 +27,18 @@ public class CannedFood extends Element {
 		manufacturer = "";
 		nutrients = "";
 	}
+	
+	/**
+	 * Creates a new FrozenFood object with just a name.
+	 * 
+	 * @param name
+	 */
+	
+	public CannedFood(String name) {
+		this.name = name;
+		manufacturer = "";
+		nutrients = "";
+	}
 
 	/**
 	 * Creates a new CannedFood object whose fields are initialized to the given
