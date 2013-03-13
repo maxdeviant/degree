@@ -27,13 +27,13 @@ public class CannedFood extends Element {
 		manufacturer = "";
 		ingredients = "";
 	}
-	
+
 	/**
 	 * Creates a new FrozenFood object with just a name.
 	 * 
 	 * @param name
 	 */
-	
+
 	public CannedFood(String name) {
 		this.name = name;
 		manufacturer = "";
