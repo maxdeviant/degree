@@ -15,13 +15,13 @@ public class FrozenFood extends Element {
 	private String name;
 	private String manufacturer;
 	private String nutrients;
-	
+
 	private static Scanner input = new Scanner(System.in);
 
 	/**
 	 * Creates a new FrozenFood object with all blank fields.
 	 */
-	
+
 	public FrozenFood() {
 		name = "";
 		manufacturer = "";
@@ -36,7 +36,7 @@ public class FrozenFood extends Element {
 	 * @param manufacturer
 	 * @param nutrients
 	 */
-	
+
 	public FrozenFood(String name, String manufacturer, String nutrients) {
 		this.name = name.toUpperCase();
 		this.manufacturer = manufacturer.toUpperCase();
@@ -86,8 +86,6 @@ public class FrozenFood extends Element {
 			if (i != numNu - 1)
 				nutrients += ", ";
 		}
-
-		//input.close();
 	}
 
 	public void display() {
@@ -101,7 +99,7 @@ public class FrozenFood extends Element {
 	}
 
 	public boolean equals(Element dobj) {
-		if (getName().equals(((FrozenFood)dobj).getName()))
+		if (getName().equals(((FrozenFood) dobj).getName()))
 			return true;
 		else
 			return false;
@@ -109,11 +107,11 @@ public class FrozenFood extends Element {
 
 	public Element clone() {
 		FrozenFood clone = new FrozenFood();
-		
+
 		clone.setName(getName());
 		clone.setManufacturer(getManufacturer());
 		clone.setNutrients(getNutrients());
-		
+
 		return clone;
 	}
 }

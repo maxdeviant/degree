@@ -217,15 +217,15 @@ public class ElementSet {
 			Element e = getCurrent();
 			String className = e.getClassName();
 			if (className.equals("FrozenFood")) {
-				if (((FrozenFood)e).equals(anObject)) {
+				if (((FrozenFood) e).equals(anObject)) {
 					e.display();
 					return true;
-				}	
+				}
 			} else if (className.equals("CannedFood")) {
-				if (((CannedFood)e).equals(anObject)) {
+				if (((CannedFood) e).equals(anObject)) {
 					e.display();
 					return true;
-				}	
+				}
 			}
 		}
 		return false;
@@ -236,19 +236,19 @@ public class ElementSet {
 			Element e = getCurrent();
 			String className = e.getClassName();
 			if (className.equals("FrozenFood")) {
-				if (((FrozenFood)e).equals(editedObject)) {
-					if (((FrozenFood)e).equals(editedObject)) {
+				if (((FrozenFood) e).equals(editedObject)) {
+					if (((FrozenFood) e).equals(editedObject)) {
 						theList[i] = editedObject;
 						return true;
-					}	
-				}	
+					}
+				}
 			} else if (className.equals("CannedFood")) {
-				if (((FrozenFood)e).equals(editedObject)) {
-					if (((CannedFood)e).equals(editedObject)) {
+				if (((FrozenFood) e).equals(editedObject)) {
+					if (((CannedFood) e).equals(editedObject)) {
 						theList[i] = editedObject;
 						return true;
-					}	
-				}	
+					}
+				}
 			}
 		}
 		return false;
