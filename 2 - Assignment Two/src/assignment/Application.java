@@ -27,7 +27,7 @@ public class Application {
 
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
-		if (input.nextLine().toUpperCase().charAt(0) == 'N')
+		if (input.next().toUpperCase().charAt(0) == 'N')
 			return false;
 		else
 			return true;
@@ -103,7 +103,15 @@ public class Application {
 	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
-		list.add(temp);
+		int outcome = list.add(temp);
+
+		// Feedback
+		if (outcome == 1)
+			System.out.println("This FrozenFood was added successfully!");
+		else if (outcome == -1)
+			System.out.println("This FrozenFood is already in the list.");
+		else if (outcome == 0)
+			System.out.println("The list is full!");
 	}
 
 	/**
@@ -113,7 +121,15 @@ public class Application {
 	private static void addCannedFood() {
 		CannedFood temp = new CannedFood();
 		temp.readIn();
-		list.add(temp);
+		int outcome = list.add(temp);
+
+		// Feedback
+		if (outcome == 1)
+			System.out.println("This CannedFood was added successfully!");
+		else if (outcome == -1)
+			System.out.println("This CannedFood is already in the list.");
+		else if (outcome == 0)
+			System.out.println("The list is full!");
 	}
 	
 	/**
@@ -129,8 +145,10 @@ public class Application {
 			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
-				if (e.getClassName().equals("FrozenFood"))
+				if (e.getClassName().equals("FrozenFood")) {
 					System.out.println(((FrozenFood) e).getName());
+					c++;
+				}
 			}
 			// If the counter is still zero, no FrozenFoods were found
 			if (c == 0)
@@ -151,8 +169,10 @@ public class Application {
 			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
-				if (e.getClassName().equals("CannedFood"))
+				if (e.getClassName().equals("CannedFood")) {
 					System.out.println(((CannedFood) e).getName());
+					c++;
+				}
 			}
 			// If the counter is still zero, no CannedFoods were found
 			if (c == 0)
@@ -168,9 +188,10 @@ public class Application {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
 		FrozenFood temp = new FrozenFood(name);
-		if (list.isMemberOf(temp))
-			list.displayAnObject(temp);
-		else
+		
+		boolean result = list.displayAnObject(temp);
+		
+		if (!result)
 			System.out.println("That FrozenFood product does not exist.");
 	}
 	
@@ -182,9 +203,10 @@ public class Application {
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
 		CannedFood temp = new CannedFood(name);
-		if (list.isMemberOf(temp))
-			list.displayAnObject(temp);
-		else
+
+		boolean result = list.displayAnObject(temp);
+		
+		if (!result)
 			System.out.println("That CannedFood product does not exist.");
 	}
 	
@@ -196,8 +218,11 @@ public class Application {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
 		FrozenFood temp = new FrozenFood(name);
-		if (list.isMemberOf(temp))
-			list.editAnObject(temp);
+		
+		boolean result = list.editAnObject(temp);
+		
+		if (result)
+			System.out.println("This FrozenFood was successfully replaced.");
 		else
 			System.out.println("This FrozenFood is not in the list.");
 	}
@@ -210,9 +235,12 @@ public class Application {
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
 		CannedFood temp = new CannedFood(name);
-		if (list.isMemberOf(temp))
-			list.editAnObject(temp);
+
+		boolean result = list.editAnObject(temp);
+
+		if (result)
+			System.out.println("This FrozenFood was successfully replaced.");
 		else
-			System.out.println("This CannedFood is not in the list.");
+			System.out.println("This FrozenFood is not in the list.");
 	}
 }
