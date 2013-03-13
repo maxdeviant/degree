@@ -40,21 +40,6 @@ public class FrozenFood extends Element {
 		nutrients = "";
 	}
 
-	/**
-	 * Creates a new FrozenFood object whose fields are initialized to the given
-	 * parameters.
-	 * 
-	 * @param name
-	 * @param manufacturer
-	 * @param nutrients
-	 */
-
-	public FrozenFood(String name, String manufacturer, String nutrients) {
-		this.name = name.toUpperCase();
-		this.manufacturer = manufacturer.toUpperCase();
-		this.nutrients = nutrients.toUpperCase();
-	}
-
 	public String getName() {
 		return name;
 	}

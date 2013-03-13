@@ -8,8 +8,6 @@
 
 package assignment;
 
-import java.util.Scanner;
-
 /**
  * ElementSet is a revised version of the PersonSet class. ElementSet
  * illustrates that we can use an array whose base type is an abstract class. In
@@ -30,8 +28,6 @@ public class ElementSet {
 	private int currentSize; // Number of objects currently in the list
 	private final int MAXSETSIZE = 100; // Maximum number of objects that can be
 										// in an ElementSet.
-
-	private static Scanner input = new Scanner(System.in);
 
 	// Constructor ...
 
