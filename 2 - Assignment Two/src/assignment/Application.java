@@ -131,9 +131,10 @@ public class Application {
 		else if (outcome == 0)
 			System.out.println("The list is full!");
 	}
-	
+
 	/**
-	 * Menu 3): Display the names of all FrozenFood products in the ElementSet list.
+	 * Menu 3): Display the names of all FrozenFood products in the ElementSet
+	 * list.
 	 */
 
 	private static void displayFrozenNames() {
@@ -155,9 +156,10 @@ public class Application {
 				System.out.println("There are no FrozenFood products.");
 		}
 	}
-	
+
 	/**
-	 * Menu 4): Display the names of all CannedFood products in the ElementSet list.
+	 * Menu 4): Display the names of all CannedFood products in the ElementSet
+	 * list.
 	 */
 
 	private static void displayCannedNames() {
@@ -179,24 +181,26 @@ public class Application {
 				System.out.println("There are no CannedFood products.");
 		}
 	}
-	
+
 	/**
-	 * Menu 5): Display the data of a specified FrozenFood product in the ElementSet list.
+	 * Menu 5): Display the data of a specified FrozenFood product in the
+	 * ElementSet list.
 	 */
 
 	private static void displayFrozenData() {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
 		FrozenFood temp = new FrozenFood(name);
-		
+
 		boolean result = list.displayAnObject(temp);
-		
+
 		if (!result)
 			System.out.println("That FrozenFood product does not exist.");
 	}
-	
+
 	/**
-	 * Menu 6): Display the data of a specified CannedFood product in the ElementSet list.
+	 * Menu 6): Display the data of a specified CannedFood product in the
+	 * ElementSet list.
 	 */
 
 	private static void displayCannedData() {
@@ -205,30 +209,32 @@ public class Application {
 		CannedFood temp = new CannedFood(name);
 
 		boolean result = list.displayAnObject(temp);
-		
+
 		if (!result)
 			System.out.println("That CannedFood product does not exist.");
 	}
-	
+
 	/**
-	 * Menu 7): Edit the data of a specified FrozenFood product in the ElementSet list.
+	 * Menu 7): Edit the data of a specified FrozenFood product in the
+	 * ElementSet list.
 	 */
 
 	private static void editFrozenFood() {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
 		FrozenFood temp = new FrozenFood(name);
-		
+
 		boolean result = list.editAnObject(temp);
-		
+
 		if (result)
 			System.out.println("This FrozenFood was successfully replaced.");
 		else
 			System.out.println("This FrozenFood is not in the list.");
 	}
-	
+
 	/**
-	 * Menu 8): Edit the data of a specified CannedFood product in the ElementSet list.
+	 * Menu 8): Edit the data of a specified CannedFood product in the
+	 * ElementSet list.
 	 */
 
 	private static void editCannedFood() {

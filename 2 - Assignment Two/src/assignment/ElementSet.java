@@ -213,12 +213,14 @@ public class ElementSet {
 			}
 		}
 	}
-	
+
 	/**
-	 * Takes Element anObject as a parameter and calls the display method for that object's class.
+	 * Takes Element anObject as a parameter and calls the display method for
+	 * that object's class.
 	 * 
 	 * @param anObject
-	 * @return true if the object's display method was called, else returns false 
+	 * @return true if the object's display method was called, else returns
+	 *         false
 	 */
 
 	public boolean displayAnObject(Element anObject) {
@@ -239,18 +241,22 @@ public class ElementSet {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Takes Element editedObject as a parameter and edits it using the object's readIn() method.
+	 * Takes Element editedObject as a parameter and edits it using the object's
+	 * readIn() method.
 	 * 
 	 * @param editedObject
 	 * @return true if the object was edited, else returns false
 	 */
 
 	public boolean editAnObject(Element editedObject) {
-		if (editedObject.getClassName() == "FrozenFood")
+		if (!isMemberOf(editedObject))
+			return false;
+
+		if (editedObject.getClassName().equals("FrozenFood"))
 			((FrozenFood) editedObject).readIn();
-		if (editedObject.getClassName() == "CannedFood")
+		if (editedObject.getClassName().equals("CannedFood"))
 			((CannedFood) editedObject).readIn();
 
 		for (int i = 0; i < currentSize; i++) {
