@@ -1,11 +1,18 @@
+/**
+ * CSC240
+ * Dr. Richard Epstein
+ * Assignment #2
+ * 
+ * @author Marshall Bowers
+ */
+
 package assignment;
 
 import java.util.Scanner;
-import assignment.*;
 
 public class Application {
-	private static Scanner input = new Scanner(System.in);
-	
+	static Scanner input = new Scanner(System.in);
+
 	private static ElementSet list = new ElementSet();
 
 	public static void main(String[] args) {
@@ -17,7 +24,7 @@ public class Application {
 	 * 
 	 * @return false if user does not want to quit, else returns true
 	 */
-	
+
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
 		if (input.nextLine().toUpperCase().charAt(0) == 'N')
@@ -30,7 +37,7 @@ public class Application {
 	 * Presents the user with a menu, prompts for input, and then executes the
 	 * user's choice
 	 */
-	
+
 	private static void menu() {
 		boolean validChoice = false;
 		char menuChoice;
@@ -49,7 +56,8 @@ public class Application {
 				System.out.println((i + 1) + ") " + options[i]);
 
 			System.out.print("Please select an option: ");
-			menuChoice = input.nextLine().charAt(0);
+			menuChoice = input.next().charAt(0);
+					
 			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
 			else
@@ -60,28 +68,28 @@ public class Application {
 
 		switch (menuChoice) {
 		case '1':
-			menuOne();
+			addFrozenFood();
 			break;
 		case '2':
-			menuTwo();
+			addCannedFood();
 			break;
 		case '3':
-			menuThree();
+			displayFrozenNames();
 			break;
 		case '4':
-			menuFour();
+			displayCannedNames();
 			break;
 		case '5':
-			menuFive();
+			displayFrozenData();
 			break;
 		case '6':
-			menuSix();
+			displayCannedData();
 			break;
 		case '7':
-			menuSeven();
+			editFrozenFood();
 			break;
 		case '8':
-			menuEight();
+			editCannedFood();
 			break;
 		default:
 			break;
@@ -89,65 +97,64 @@ public class Application {
 
 		if (menuChoice != '9')
 			menu();
-		else
-			if (!getQuit())
-				menu();
+		else if (!getQuit())
+			menu();
 	}
-	
-	private static void menuOne() {
+
+	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
 		list.add(temp);
 	}
-	
-	private static void menuTwo() {
+
+	private static void addCannedFood() {
 		CannedFood temp = new CannedFood();
 		temp.readIn();
 		list.add(temp);
 	}
-	
-	private static void menuThree() {
+
+	private static void displayFrozenNames() {
 		for (int i = 0; i < list.size(); i++)
 			if (list.getCurrent().getClassName().equals("FrozenFood"))
-				((FrozenFood)list.getCurrent()).getName();
+				((FrozenFood) list.getCurrent()).getName();
 			else if (i == list.size())
 				System.out.println("There are no FrozenFood products.");
 	}
-	
-	private static void menuFour() {
+
+	private static void displayCannedNames() {
 		for (int i = 0; i < list.size(); i++) {
 			if (list.getCurrent().getClassName().equals("CannedFood"))
-				((CannedFood)list.getCurrent()).getName();
+				((CannedFood) list.getCurrent()).getName();
 			else if (i == list.size())
 				System.out.println("There are no CannedFood products.");
 		}
 	}
-	
-	private static void menuFive() {
+
+	private static void displayFrozenData() {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.nextLine();
 		FrozenFood temp = new FrozenFood(name, "", "");
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
 	}
-	
-	private static void menuSix() {
+
+	private static void displayCannedData() {
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.nextLine();
 		CannedFood temp = new CannedFood(name, "", "");
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
 	}
-	
-	private static void menuSeven() {
+
+	private static void editFrozenFood() {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.nextLine();
 		FrozenFood temp = new FrozenFood(name, "", "");
 		if (list.isMemberOf(temp))
 			list.editAnObject(temp);
 	}
-	
-	private static void menuEight() {
+
+	private static void editCannedFood() {
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.nextLine();
 		FrozenFood temp = new FrozenFood(name, "", "");
