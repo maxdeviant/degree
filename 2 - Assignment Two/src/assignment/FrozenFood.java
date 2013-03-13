@@ -101,12 +101,19 @@ public class FrozenFood extends Element {
 	}
 
 	public boolean equals(Element dobj) {
-		// TODO implement equals(Element dobj)
-		return false; // Temporary error fix
+		if (getName().equals(((FrozenFood)dobj).getName()))
+			return true;
+		else
+			return false;
 	}
 
 	public Element clone() {
-		// TODO implement clone()
-		return null; // Temporary error fix
+		FrozenFood clone = new FrozenFood();
+		
+		clone.setName(getName());
+		clone.setManufacturer(getManufacturer());
+		clone.setNutrients(getNutrients());
+		
+		return clone;
 	}
 }
