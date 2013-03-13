@@ -35,7 +35,7 @@ public class Application {
 
 	/**
 	 * Presents the user with a menu, prompts for input, and then executes the
-	 * user's choice
+	 * user's choice.
 	 */
 
 	private static void menu() {
@@ -97,7 +97,7 @@ public class Application {
 	}
 
 	/**
-	 * Menu 1): Add a new FrozenFood to the ElementSet list
+	 * Menu 1): Add a new FrozenFood to the ElementSet list.
 	 */
 
 	private static void addFrozenFood() {
@@ -107,7 +107,7 @@ public class Application {
 	}
 
 	/**
-	 * Menu 2): Add a new CannedFood to the ElementSet list
+	 * Menu 2): Add a new CannedFood to the ElementSet list.
 	 */
 
 	private static void addCannedFood() {
@@ -115,32 +115,54 @@ public class Application {
 		temp.readIn();
 		list.add(temp);
 	}
+	
+	/**
+	 * Menu 3): Display the names of all FrozenFood products in the ElementSet list.
+	 */
 
 	private static void displayFrozenNames() {
+		// If list is empty, there can be no FrozenFoods in the list
 		if (list.isEmpty())
 			System.out.println("There are no FrozenFood products.");
 		else {
+			// Counter for number of FrozenFoods in the list
+			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
-				if (list.getCurrent().getClassName().equals("FrozenFood"))
-					System.out.println(((FrozenFood) list.getCurrent()).getName());
-				if (i == list.size() - 1)
-					System.out.println("There are no FrozenFood products.");
+				Element e = list.getCurrent();
+				if (e.getClassName().equals("FrozenFood"))
+					System.out.println(((FrozenFood) e).getName());
 			}
+			// If the counter is still zero, no FrozenFoods were found
+			if (c == 0)
+				System.out.println("There are no FrozenFood products.");
 		}
 	}
+	
+	/**
+	 * Menu 4): Display the names of all CannedFood products in the ElementSet list.
+	 */
 
 	private static void displayCannedNames() {
+		// If list is empty, there can be no CannedFoods in the list
 		if (list.isEmpty())
 			System.out.println("There are no CannedFood products.");
 		else {
+			// Counter for number of CannedFoods in the list
+			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
-				if (list.getCurrent().getClassName().equals("CannedFood"))
-					System.out.println(((CannedFood) list.getCurrent()).getName());
-				if (i == list.size() - 1)
-					System.out.println("There are no CannedFood products.");
+				Element e = list.getCurrent();
+				if (e.getClassName().equals("CannedFood"))
+					System.out.println(((CannedFood) e).getName());
 			}
+			// If the counter is still zero, no CannedFoods were found
+			if (c == 0)
+				System.out.println("There are no CannedFood products.");
 		}
 	}
+	
+	/**
+	 * Menu 5): Display the data of a specified FrozenFood product in the ElementSet list.
+	 */
 
 	private static void displayFrozenData() {
 		System.out.print("Enter the name of a FrozenFood product: ");
@@ -151,6 +173,10 @@ public class Application {
 		else
 			System.out.println("That FrozenFood product does not exist.");
 	}
+	
+	/**
+	 * Menu 6): Display the data of a specified CannedFood product in the ElementSet list.
+	 */
 
 	private static void displayCannedData() {
 		System.out.print("Enter the name of a CannedFood product: ");
@@ -161,6 +187,10 @@ public class Application {
 		else
 			System.out.println("That CannedFood product does not exist.");
 	}
+	
+	/**
+	 * Menu 7): Edit the data of a specified FrozenFood product in the ElementSet list.
+	 */
 
 	private static void editFrozenFood() {
 		System.out.print("Enter the name of a FrozenFood product: ");
@@ -171,6 +201,10 @@ public class Application {
 		else
 			System.out.println("This FrozenFood is not in the list.");
 	}
+	
+	/**
+	 * Menu 8): Edit the data of a specified CannedFood product in the ElementSet list.
+	 */
 
 	private static void editCannedFood() {
 		System.out.print("Enter the name of a CannedFood product: ");

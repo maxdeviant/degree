@@ -40,21 +40,6 @@ public class CannedFood extends Element {
 		ingredients = "";
 	}
 
-	/**
-	 * Creates a new CannedFood object whose fields are initialized to the given
-	 * parameters.
-	 * 
-	 * @param name
-	 * @param manufacturer
-	 * @param ingredients
-	 */
-
-	public CannedFood(String name, String manufacturer, String ingredients) {
-		this.name = name.toUpperCase();
-		this.manufacturer = manufacturer.toUpperCase();
-		this.ingredients = ingredients.toUpperCase();
-	}
-
 	public String getName() {
 		return name;
 	}
