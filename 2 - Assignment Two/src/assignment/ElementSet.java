@@ -30,7 +30,7 @@ public class ElementSet {
 	private int currentSize; // Number of objects currently in the list
 	private final int MAXSETSIZE = 100; // Maximum number of objects that can be
 										// in an ElementSet.
-	
+
 	private static Scanner input = new Scanner(System.in);
 
 	// Constructor ...
@@ -239,33 +239,23 @@ public class ElementSet {
 
 	public boolean editAnObject(Element editedObject) {
 		editedObject.readIn();
-		
+
 		for (int i = 0; i < currentSize; i++) {
 			if (getCurrent().getClassName().equals(editedObject.getClassName())) {
 				theList[i] = editedObject;
 				return true;
 			}
 		}
-		
+
 		return false;
 		/*
-		for (int i = 0; i < currentSize; i++) {
-			Element e = getCurrent();
-			String className = e.getClassName();
-			if (className.equals("FrozenFood")) {
-				if (((FrozenFood) e).equals(editedObject)) {
-					theList[i] = editedObject;
-					return true;
-				}
-			} else if (className.equals("CannedFood")) {
-				if (((FrozenFood) e).equals(editedObject)) {
-					if (((CannedFood) e).equals(editedObject)) {
-						theList[i] = editedObject;
-						return true;
-					}
-				}
-			}
-		}
-		return false;*/
+		 * for (int i = 0; i < currentSize; i++) { Element e = getCurrent();
+		 * String className = e.getClassName(); if
+		 * (className.equals("FrozenFood")) { if (((FrozenFood)
+		 * e).equals(editedObject)) { theList[i] = editedObject; return true; }
+		 * } else if (className.equals("CannedFood")) { if (((FrozenFood)
+		 * e).equals(editedObject)) { if (((CannedFood) e).equals(editedObject))
+		 * { theList[i] = editedObject; return true; } } } } return false;
+		 */
 	}
 }

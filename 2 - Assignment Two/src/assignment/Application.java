@@ -99,13 +99,13 @@ public class Application {
 	/**
 	 * Menu 1): Add a new FrozenFood to the ElementSet list
 	 */
-	
+
 	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
 		list.add(temp);
 	}
-	
+
 	/**
 	 * Menu 2): Add a new CannedFood to the ElementSet list
 	 */
@@ -144,18 +144,22 @@ public class Application {
 
 	private static void displayFrozenData() {
 		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.next();
+		String name = input.next().toUpperCase();
 		FrozenFood temp = new FrozenFood(name);
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
+		else
+			System.out.println("That FrozenFood product does not exist.");
 	}
 
 	private static void displayCannedData() {
 		System.out.print("Enter the name of a CannedFood product: ");
-		String name = input.next();
+		String name = input.next().toUpperCase();
 		CannedFood temp = new CannedFood(name);
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
+		else
+			System.out.println("That CannedFood product does not exist.");
 	}
 
 	private static void editFrozenFood() {
