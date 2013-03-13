@@ -1,4 +1,8 @@
 /**
+ * CSC240
+ * Dr. Richard Epstein
+ * Assignment #2
+ * 
  * @author Dr. Richard Epstein
  */
 

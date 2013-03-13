@@ -1,8 +1,14 @@
 /**
- * @author Dr. Richard Epstein
+ * CSC240
+ * Dr. Richard Epstein
+ * Assignment #2
+ * 
+ * @author Dr. Richard Epstein, Marshall Bowers
  */
 
 package assignment;
+
+import java.util.Scanner;
 
 /**
  * ElementSet is a revised version of the PersonSet class. ElementSet
@@ -22,10 +28,10 @@ public class ElementSet {
 								// class, Element
 	private int currentIndex; // Index of current element in the set
 	private int currentSize; // Number of objects currently in the list
-	private final int MAXSETSIZE = 100;
-
-	// Maximum number of objects that can be
-	// in an ElementSet.
+	private final int MAXSETSIZE = 100; // Maximum number of objects that can be
+										// in an ElementSet.
+	
+	private static Scanner input = new Scanner(System.in);
 
 	// Constructor ...
 
@@ -232,15 +238,24 @@ public class ElementSet {
 	}
 
 	public boolean editAnObject(Element editedObject) {
+		editedObject.readIn();
+		
+		for (int i = 0; i < currentSize; i++) {
+			if (getCurrent().getClassName().equals(editedObject.getClassName())) {
+				theList[i] = editedObject;
+				return true;
+			}
+		}
+		
+		return false;
+		/*
 		for (int i = 0; i < currentSize; i++) {
 			Element e = getCurrent();
 			String className = e.getClassName();
 			if (className.equals("FrozenFood")) {
 				if (((FrozenFood) e).equals(editedObject)) {
-					if (((FrozenFood) e).equals(editedObject)) {
-						theList[i] = editedObject;
-						return true;
-					}
+					theList[i] = editedObject;
+					return true;
 				}
 			} else if (className.equals("CannedFood")) {
 				if (((FrozenFood) e).equals(editedObject)) {
@@ -251,6 +266,6 @@ public class ElementSet {
 				}
 			}
 		}
-		return false;
+		return false;*/
 	}
 }

@@ -144,33 +144,37 @@ public class Application {
 
 	private static void displayFrozenData() {
 		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.nextLine();
-		FrozenFood temp = new FrozenFood(name, "", "");
+		String name = input.next();
+		FrozenFood temp = new FrozenFood(name);
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
 	}
 
 	private static void displayCannedData() {
 		System.out.print("Enter the name of a CannedFood product: ");
-		String name = input.nextLine();
-		CannedFood temp = new CannedFood(name, "", "");
+		String name = input.next();
+		CannedFood temp = new CannedFood(name);
 		if (list.isMemberOf(temp))
 			list.displayAnObject(temp);
 	}
 
 	private static void editFrozenFood() {
 		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.nextLine();
-		FrozenFood temp = new FrozenFood(name, "", "");
+		String name = input.next().toUpperCase();
+		FrozenFood temp = new FrozenFood(name);
 		if (list.isMemberOf(temp))
 			list.editAnObject(temp);
+		else
+			System.out.println("This FrozenFood is not in the list.");
 	}
 
 	private static void editCannedFood() {
-		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.nextLine();
-		FrozenFood temp = new FrozenFood(name, "", "");
+		System.out.print("Enter the name of a CannedFood product: ");
+		String name = input.next().toUpperCase();
+		CannedFood temp = new CannedFood(name);
 		if (list.isMemberOf(temp))
 			list.editAnObject(temp);
+		else
+			System.out.println("This CannedFood is not in the list.");
 	}
 }
