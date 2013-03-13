@@ -4,8 +4,6 @@
 
 package assignment;
 
-import java.util.Scanner;
-
 /**
  * ElementSet is a revised version of the PersonSet class. ElementSet
  * illustrates that we can use an array whose base type is an abstract class. In

@@ -12,10 +12,11 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class FrozenFood extends Element {
-	// Class variable declaration
 	private String name;
 	private String manufacturer;
 	private String nutrients;
+	
+	private static Scanner input = new Scanner(System.in);
 
 	/**
 	 * Creates a new FrozenFood object with all blank fields.
@@ -67,8 +68,6 @@ public class FrozenFood extends Element {
 	}
 
 	public void readIn() {
-		Scanner input = new Scanner(System.in);
-
 		System.out.print("Enter the name of the Frozen Food: ");
 		name = input.nextLine().toUpperCase();
 
@@ -88,12 +87,13 @@ public class FrozenFood extends Element {
 				nutrients += ", ";
 		}
 
-		input.close();
+		//input.close();
 	}
 
 	public void display() {
 		System.out.println("Name: " + name);
 		System.out.println("Manufacturer: " + manufacturer);
+		System.out.println("Nutrients: ");
 		StringTokenizer token = new StringTokenizer(nutrients.replace(',', ' '));
 		while (token.hasMoreTokens()) {
 			System.out.println("  " + token.nextToken());
