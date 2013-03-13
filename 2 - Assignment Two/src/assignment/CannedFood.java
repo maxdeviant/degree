@@ -9,6 +9,7 @@
 package assignment;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class CannedFood extends Element {
 	// Class variable declaration
@@ -91,16 +92,28 @@ public class CannedFood extends Element {
 	}
 	
 	public void display() {
-		// TODO implement display()
+		System.out.println("Name: " + name);
+		System.out.println("Manufacturer: " + manufacturer);
+		StringTokenizer token = new StringTokenizer(nutrients.replace(',', ' '));
+		while (token.hasMoreTokens()) {
+			System.out.println("  " + token.nextToken());
+		}
 	}
 	
 	public boolean equals(Element dobj) {
-		// TODO implement equals(Element dobj)
-		return false; // Temporary error fix
+		if (getName().equals(((CannedFood)dobj).getName()))
+			return true;
+		else
+			return false;
 	}
 	
 	public Element clone() {
-		// TODO implement clone()
-		return null; // Temporary error fix
+		FrozenFood clone = new FrozenFood();
+		
+		clone.setName(getName());
+		clone.setManufacturer(getManufacturer());
+		clone.setNutrients(getNutrients());
+		
+		return clone;
 	}
 }
