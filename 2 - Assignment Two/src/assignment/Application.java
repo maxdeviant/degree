@@ -41,14 +41,10 @@ public class Application {
 	private static void menu() {
 		boolean validChoice = false;
 		char menuChoice;
-		String[] options = { "Add a Frozen Food product",
-				"Add a Canned Food product",
-				"Display names of all Frozen Food products",
-				"Display names of all Canned Food products",
-				"Display data for a Frozen Food product",
-				"Display data for a Canned Food product",
-				"Edit data for a Frozen Food Product",
-				"Edit data for a Canned Food product", "Quit" };
+		String[] options = { "Add a Frozen Food product", "Add a Canned Food product",
+				"Display names of all Frozen Food products", "Display names of all Canned Food products",
+				"Display data for a Frozen Food product", "Display data for a Canned Food product",
+				"Edit data for a Frozen Food Product", "Edit data for a Canned Food product", "Quit" };
 
 		do {
 			System.out.println("\nWholly Nutritious Foods Data Menu:");
@@ -57,12 +53,11 @@ public class Application {
 
 			System.out.print("Please select an option: ");
 			menuChoice = input.next().charAt(0);
-					
+
 			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
 			else
-				System.out
-						.println("Sorry, that is not a valid choice. Try again.");
+				System.out.println("Sorry, that is not a valid choice. Try again.");
 
 		} while (!validChoice);
 
@@ -101,11 +96,19 @@ public class Application {
 			menu();
 	}
 
+	/**
+	 * Menu 1): Add a new FrozenFood to the ElementSet list
+	 */
+	
 	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
 		list.add(temp);
 	}
+	
+	/**
+	 * Menu 2): Add a new CannedFood to the ElementSet list
+	 */
 
 	private static void addCannedFood() {
 		CannedFood temp = new CannedFood();
@@ -114,19 +117,28 @@ public class Application {
 	}
 
 	private static void displayFrozenNames() {
-		for (int i = 0; i < list.size(); i++)
-			if (list.getCurrent().getClassName().equals("FrozenFood"))
-				((FrozenFood) list.getCurrent()).getName();
-			else if (i == list.size())
-				System.out.println("There are no FrozenFood products.");
+		if (list.isEmpty())
+			System.out.println("There are no FrozenFood products.");
+		else {
+			for (int i = 0; i < list.size(); i++) {
+				if (list.getCurrent().getClassName().equals("FrozenFood"))
+					System.out.println(((FrozenFood) list.getCurrent()).getName());
+				if (i == list.size() - 1)
+					System.out.println("There are no FrozenFood products.");
+			}
+		}
 	}
 
 	private static void displayCannedNames() {
-		for (int i = 0; i < list.size(); i++) {
-			if (list.getCurrent().getClassName().equals("CannedFood"))
-				((CannedFood) list.getCurrent()).getName();
-			else if (i == list.size())
-				System.out.println("There are no CannedFood products.");
+		if (list.isEmpty())
+			System.out.println("There are no CannedFood products.");
+		else {
+			for (int i = 0; i < list.size(); i++) {
+				if (list.getCurrent().getClassName().equals("CannedFood"))
+					System.out.println(((CannedFood) list.getCurrent()).getName());
+				if (i == list.size() - 1)
+					System.out.println("There are no CannedFood products.");
+			}
 		}
 	}
 

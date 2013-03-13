@@ -15,7 +15,7 @@ public class CannedFood extends Element {
 	private String name;
 	private String manufacturer;
 	private String nutrients;
-	
+
 	private static Scanner input = new Scanner(System.in);
 
 	/**
