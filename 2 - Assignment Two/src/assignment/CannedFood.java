@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 public class CannedFood extends Element {
 	private String name;
 	private String manufacturer;
-	private String nutrients;
+	private String ingredients;
 
 	private static Scanner input = new Scanner(System.in);
 
@@ -25,7 +25,7 @@ public class CannedFood extends Element {
 	public CannedFood() {
 		name = "";
 		manufacturer = "";
-		nutrients = "";
+		ingredients = "";
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class CannedFood extends Element {
 	public CannedFood(String name) {
 		this.name = name;
 		manufacturer = "";
-		nutrients = "";
+		ingredients = "";
 	}
 
 	/**
@@ -46,13 +46,13 @@ public class CannedFood extends Element {
 	 * 
 	 * @param name
 	 * @param manufacturer
-	 * @param nutrients
+	 * @param ingredients
 	 */
 
-	public CannedFood(String name, String manufacturer, String nutrients) {
+	public CannedFood(String name, String manufacturer, String ingredients) {
 		this.name = name.toUpperCase();
 		this.manufacturer = manufacturer.toUpperCase();
-		this.nutrients = nutrients.toUpperCase();
+		this.ingredients = ingredients.toUpperCase();
 	}
 
 	public String getName() {
@@ -71,12 +71,12 @@ public class CannedFood extends Element {
 		this.manufacturer = manufacturer;
 	}
 
-	public String getNutrients() {
-		return nutrients;
+	public String getIngredients() {
+		return ingredients;
 	}
 
-	public void setNutrients(String nutrients) {
-		this.nutrients = nutrients;
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	public void readIn() {
@@ -86,25 +86,25 @@ public class CannedFood extends Element {
 		System.out.print("Enter the name of the manufacturer: ");
 		manufacturer = input.nextLine().toUpperCase();
 
-		System.out.print("Enter the number of nutrients for this food: ");
+		System.out.print("Enter the number of ingredients for this food: ");
 		int numNu = Integer.parseInt(input.nextLine());
 
-		System.out.print("Enter the nutrients when prompted: \n");
-		nutrients = "";
+		System.out.print("Enter the ingredients when prompted: \n");
+		ingredients = "";
 
 		for (int i = 0; i < numNu; i++) {
 			System.out.print((i + 1) + ") ");
-			nutrients += input.nextLine().toUpperCase();
+			ingredients += input.nextLine().toUpperCase();
 			if (i != numNu - 1)
-				nutrients += ", ";
+				ingredients += ", ";
 		}
 	}
 
 	public void display() {
 		System.out.println("Name: " + name);
 		System.out.println("Manufacturer: " + manufacturer);
-		System.out.println("Nutrients: ");
-		StringTokenizer token = new StringTokenizer(nutrients.replace(',', ' '));
+		System.out.println("Ingredients: ");
+		StringTokenizer token = new StringTokenizer(ingredients.replace(',', ' '));
 		while (token.hasMoreTokens()) {
 			System.out.println("  " + token.nextToken());
 		}
@@ -118,11 +118,11 @@ public class CannedFood extends Element {
 	}
 
 	public Element clone() {
-		FrozenFood clone = new FrozenFood();
+		CannedFood clone = new CannedFood();
 
 		clone.setName(getName());
 		clone.setManufacturer(getManufacturer());
-		clone.setNutrients(getNutrients());
+		clone.setIngredients(getIngredients());
 
 		return clone;
 	}
