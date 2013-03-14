@@ -188,14 +188,18 @@ public class Application {
 	 */
 
 	private static void displayFrozenData() {
+		boolean result = false;
+		
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
-		FrozenFood temp = new FrozenFood(name);
-
-		boolean result = list.displayAnObject(temp);
+		
+		if (list.isMemberOf(new FrozenFood(name))) {
+			FrozenFood temp = new FrozenFood(name);
+			result = list.displayAnObject(temp);
+		}
 
 		if (!result)
-			System.out.println("That FrozenFood product does not exist.");
+			System.out.println("Not a valid option.");
 	}
 
 	/**
@@ -204,14 +208,18 @@ public class Application {
 	 */
 
 	private static void displayCannedData() {
+		boolean result = false;
+		
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-		CannedFood temp = new CannedFood(name);
-
-		boolean result = list.displayAnObject(temp);
+		
+		if (list.isMemberOf(new CannedFood(name))) {
+			CannedFood temp = new CannedFood(name);
+			result = list.displayAnObject(temp);
+		}
 
 		if (!result)
-			System.out.println("That CannedFood product does not exist.");
+			System.out.println("Not a valid option.");
 	}
 
 	/**
@@ -220,16 +228,20 @@ public class Application {
 	 */
 
 	private static void editFrozenFood() {
+		boolean result = false;
+		
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
-		FrozenFood temp = new FrozenFood(name);
-
-		boolean result = list.editAnObject(temp);
+		
+		if (list.isMemberOf(new FrozenFood(name))) {
+			FrozenFood temp = new FrozenFood(name);
+			result = list.editAnObject(temp);
+		}
 
 		if (result)
 			System.out.println("This FrozenFood was successfully replaced.");
 		else
-			System.out.println("This FrozenFood is not in the list.");
+			System.out.println("Not a valid option.");
 	}
 
 	/**
@@ -238,15 +250,19 @@ public class Application {
 	 */
 
 	private static void editCannedFood() {
+		boolean result = false;
+		
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-		CannedFood temp = new CannedFood(name);
-
-		boolean result = list.editAnObject(temp);
+		
+		if (list.isMemberOf(new CannedFood(name))) {
+			CannedFood temp = new CannedFood(name);
+			result = list.editAnObject(temp);
+		}
 
 		if (result)
-			System.out.println("This FrozenFood was successfully replaced.");
+			System.out.println("This CannedFood was successfully replaced.");
 		else
-			System.out.println("This FrozenFood is not in the list.");
+			System.out.println("Not a valid option.");
 	}
 }
