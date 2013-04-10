@@ -97,43 +97,39 @@ public class Application {
 	}
 
 	/**
-	 * Menu 1): Add a new FrozenFood to the ElementSet list.
+	 * Menu 1): Add a new FrozenFood to the Set<Element> list.
 	 */
 
 	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
-		int outcome = list.add(temp);
+		boolean outcome = list.add(temp);
 
 		// Feedback
-		if (outcome == 1)
+		if (outcome)
 			System.out.println("This FrozenFood was added successfully!");
-		else if (outcome == -1)
-			System.out.println("This FrozenFood is already in the list.");
-		else if (outcome == 0)
-			System.out.println("The list is full!");
+		else
+			System.out.println("This FrozenFood is already in the list. FrozenFood not added.");
 	}
 
 	/**
-	 * Menu 2): Add a new CannedFood to the ElementSet list.
+	 * Menu 2): Add a new CannedFood to the Set<Element> list.
 	 */
 
 	private static void addCannedFood() {
 		CannedFood temp = new CannedFood();
 		temp.readIn();
-		int outcome = list.add(temp);
+		boolean outcome = list.add(temp);
 
 		// Feedback
-		if (outcome == 1)
+		if (outcome)
 			System.out.println("This CannedFood was added successfully!");
-		else if (outcome == -1)
-			System.out.println("This CannedFood is already in the list.");
-		else if (outcome == 0)
-			System.out.println("The list is full!");
+		else
+			System.out.println("This CannedFood is already in the list. CannedFood not added.");
 	}
 
 	/**
-	 * Menu 3): Display the names of all FrozenFood products in the ElementSet
+	 * Menu 3): Display the names of all FrozenFood products in the Set<Element>
 	 * list.
 	 */
 
@@ -146,7 +142,7 @@ public class Application {
 			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
-				if (e.getClassName().equals("FrozenFood")) {
+				if (e.getClass().getName().contains("FrozenFood")) {
 					System.out.println(((FrozenFood) e).getName());
 					c++;
 				}
@@ -158,7 +154,7 @@ public class Application {
 	}
 
 	/**
-	 * Menu 4): Display the names of all CannedFood products in the ElementSet
+	 * Menu 4): Display the names of all CannedFood products in the Set<Element>
 	 * list.
 	 */
 
@@ -171,7 +167,7 @@ public class Application {
 			int c = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
-				if (e.getClassName().equals("CannedFood")) {
+				if (e.getClass().getName().contains("CannedFood")) {
 					System.out.println(((CannedFood) e).getName());
 					c++;
 				}
@@ -184,7 +180,7 @@ public class Application {
 
 	/**
 	 * Menu 5): Display the data of a specified FrozenFood product in the
-	 * ElementSet list.
+	 * Set<Element> list.
 	 */
 
 	private static void displayFrozenData() {
@@ -204,7 +200,7 @@ public class Application {
 
 	/**
 	 * Menu 6): Display the data of a specified CannedFood product in the
-	 * ElementSet list.
+	 * Set<Element> list.
 	 */
 
 	private static void displayCannedData() {
@@ -224,7 +220,7 @@ public class Application {
 
 	/**
 	 * Menu 7): Edit the data of a specified FrozenFood product in the
-	 * ElementSet list.
+	 * Set<Element> list.
 	 */
 
 	private static void editFrozenFood() {
@@ -246,7 +242,7 @@ public class Application {
 
 	/**
 	 * Menu 8): Edit the data of a specified CannedFood product in the
-	 * ElementSet list.
+	 * Set<Element> list.
 	 */
 
 	private static void editCannedFood() {
