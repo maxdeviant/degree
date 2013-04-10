@@ -52,7 +52,7 @@ public abstract class Element {
 
 	public abstract void display();
 
-	public abstract boolean equals(Element dobj);
-
 	public abstract Element clone();
+	
+	public abstract String toString();
 }

@@ -94,16 +94,16 @@ public class FrozenFood extends Element {
 			System.out.println("  " + token.nextToken());
 		}
 	}
-
-	public boolean equals(Element dobj) {
-		if (dobj.getClassName().equals("FrozenFood")) {
+	
+	public boolean equals(Object dobj) {
+		if (dobj.getClass().equals("FrozenFood")) {
 			if (getName().equals(((FrozenFood) dobj).getName()))
 				return true;
 			else
 				return false;
 		}
 
-		if (dobj.getClassName().equals("CannedFood")) {
+		if (dobj.getClass().equals("CannedFood")) {
 			if (getName().equals(((CannedFood) dobj).getName()))
 				return true;
 			else
@@ -120,5 +120,9 @@ public class FrozenFood extends Element {
 		clone.setNutrients(getNutrients());
 
 		return clone;
+	}
+	
+	public String toString() {
+		return "Name: " + name + "\nManufacturer: " + manufacturer + "\nNutrients: " + nutrients;
 	}
 }

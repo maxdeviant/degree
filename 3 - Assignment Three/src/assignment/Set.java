@@ -143,7 +143,7 @@ public class Set<T> {
 	// Mutator methods ...
 
 	/**
-	 * The add method attenots to add the aT parameter to the set. It will fail
+	 * The add method attempts to add the aT parameter to the set. It will fail
 	 * if aT is already in the calling object set.
 	 * 
 	 * @param aT
@@ -202,6 +202,19 @@ public class Set<T> {
 				System.out.println("\n");
 			}
 		}
-
+	}
+	
+	public boolean displayAnObject(T aT) {
+		if (isMemberOf(aT)) {
+			System.out.println(aT.toString());
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean editAnObject(T editedT) {
+		//TODO Implement editAnObject()
+		return false;
 	}
 }
