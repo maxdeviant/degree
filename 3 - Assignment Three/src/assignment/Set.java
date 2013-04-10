@@ -205,16 +205,32 @@ public class Set<T> {
 	}
 	
 	public boolean displayAnObject(T aT) {
-		if (isMemberOf(aT)) {
-			System.out.println(aT.toString());
-			return true;
-		} else {
+		if (!isMemberOf(aT))
 			return false;
+		
+		for (int i = 0; i < theList.size(); i++) {
+			T anotherT = theList.get(i);
+			
+			if (aT.getClass().getName().contains("FrozenFood")) {
+				if (((FrozenFood) aT).getName().equals(((FrozenFood) anotherT).getName())) {
+					System.out.println(((FrozenFood) anotherT).toString());
+					return true;
+				}
+			}
+			if (aT.getClass().getName().contains("CannedFood")) {
+				if (((CannedFood) aT).getName().equals(((CannedFood) anotherT).getName())) {
+					System.out.println(((CannedFood) anotherT).toString());
+					return true;
+				}
+			}
 		}
+		return false;
 	}
 	
 	public boolean editAnObject(T editedT) {
-		//TODO Implement editAnObject()
+		if (isMemberOf(editedT)) {
+			
+		}
 		return false;
 	}
 }

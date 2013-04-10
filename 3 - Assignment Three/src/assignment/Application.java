@@ -185,14 +185,18 @@ public class Application {
 
 	private static void displayFrozenData() {
 		boolean result = false;
-		
+
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
 		
-		if (list.isMemberOf(new FrozenFood(name))) {
-			FrozenFood temp = new FrozenFood(name);
-			result = list.displayAnObject(temp);
-		}
+		/*
+		for (int i = 0; i < list.size(); i++) {
+			if ((list.getCurrent().getClass().getName()).contains("FrozenFood"))
+				if (name.equals(((FrozenFood) list.getCurrent()).getName()))
+					result = list.displayAnObject(list.getCurrent());
+		}*/
+		
+		result = list.displayAnObject(new FrozenFood(name));
 
 		if (!result)
 			System.out.println("Not a valid option.");
@@ -205,10 +209,10 @@ public class Application {
 
 	private static void displayCannedData() {
 		boolean result = false;
-		
+
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-		
+
 		if (list.isMemberOf(new CannedFood(name))) {
 			CannedFood temp = new CannedFood(name);
 			result = list.displayAnObject(temp);
@@ -225,10 +229,10 @@ public class Application {
 
 	private static void editFrozenFood() {
 		boolean result = false;
-		
+
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
-		
+
 		if (list.isMemberOf(new FrozenFood(name))) {
 			FrozenFood temp = new FrozenFood(name);
 			result = list.editAnObject(temp);
@@ -247,10 +251,10 @@ public class Application {
 
 	private static void editCannedFood() {
 		boolean result = false;
-		
+
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-		
+
 		if (list.isMemberOf(new CannedFood(name))) {
 			CannedFood temp = new CannedFood(name);
 			result = list.editAnObject(temp);
