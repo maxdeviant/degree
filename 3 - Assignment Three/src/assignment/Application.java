@@ -184,17 +184,11 @@ public class Application {
 	 */
 
 	private static void displayFrozenData() {
-		boolean result = false;
+		boolean result;
 
+		input = new Scanner(System.in);
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
-		
-		/*
-		for (int i = 0; i < list.size(); i++) {
-			if ((list.getCurrent().getClass().getName()).contains("FrozenFood"))
-				if (name.equals(((FrozenFood) list.getCurrent()).getName()))
-					result = list.displayAnObject(list.getCurrent());
-		}*/
 		
 		result = list.displayAnObject(new FrozenFood(name));
 
@@ -208,15 +202,13 @@ public class Application {
 	 */
 
 	private static void displayCannedData() {
-		boolean result = false;
+		boolean result;
 
+		input = new Scanner(System.in);
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-
-		if (list.isMemberOf(new CannedFood(name))) {
-			CannedFood temp = new CannedFood(name);
-			result = list.displayAnObject(temp);
-		}
+		
+		result = list.displayAnObject(new CannedFood(name));
 
 		if (!result)
 			System.out.println("Not a valid option.");

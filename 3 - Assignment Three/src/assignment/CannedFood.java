@@ -106,19 +106,10 @@ public class CannedFood extends Element {
 	}
 	
 	public boolean equals(Object dobj) {
-		if (dobj.getClass().equals("CannedFood")) {
-			if (getName().equals(((CannedFood) dobj).getName()))
+		if (dobj.getClass().getName().equals("assignment.CannedFood"))
+			if (name.equals(((CannedFood) dobj).name))
 				return true;
-			else
-				return false;
-		}
-		
-		if (dobj.getClass().equals("FrozenFood")) {
-			if (getName().equals(((FrozenFood) dobj).getName()))
-				return true;
-			else
-				return false;
-		}
+
 		return false;
 	}
 
