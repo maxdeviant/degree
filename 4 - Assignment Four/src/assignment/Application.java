@@ -57,7 +57,7 @@ public class Application {
 			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
 			else
-				System.out.println("Sorry, that is not a valid choice. Try again.");
+				System.out.println("\nSorry, that is not a valid choice. Try again.");
 
 		} while (!validChoice);
 
@@ -200,7 +200,7 @@ public class Application {
 
 			list.displayAnObject(new FrozenFood(name));
 		} catch (CannotFindException e) {
-
+			System.out.println("FrozenFood data not displayed.");
 		}
 	}
 
@@ -220,7 +220,7 @@ public class Application {
 
 			list.displayAnObject(new CannedFood(name));
 		} catch (CannotFindException e) {
-
+			System.out.println("CannedFood data not displayed.");
 		}
 	}
 
@@ -238,9 +238,9 @@ public class Application {
 				throw new CannotEditException("This FrozenFood could not be found.");
 
 			list.editAnObject(temp);
-			System.out.println("This FrozenFood was successfully replaced.");
+			System.out.println("\nThis FrozenFood was successfully replaced.");
 		} catch (CannotEditException e) {
-			System.out.println("\nFrozenFood not edited.");
+			System.out.println("FrozenFood not edited.");
 		}
 	}
 
@@ -258,9 +258,9 @@ public class Application {
 				throw new CannotEditException("This CannedFood could not be found.");
 
 			list.editAnObject(temp);
-			System.out.println("This CannedFood was successfully replaced.");
+			System.out.println("\nThis CannedFood was successfully replaced.");
 		} catch (CannotEditException e) {
-			System.out.println("\nCannedFood not edited.");
+			System.out.println("CannedFood not edited.");
 		}
 	}
 }

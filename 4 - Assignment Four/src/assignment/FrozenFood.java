@@ -65,23 +65,29 @@ public class FrozenFood extends Element {
 	}
 
 	public void readIn() {
-		System.out.print("Enter the name of the Frozen Food: ");
+		System.out.print("\nEnter the name of the Frozen Food: ");
 		name = input.nextLine().toUpperCase();
 
 		System.out.print("Enter the name of the manufacturer: ");
 		manufacturer = input.nextLine().toUpperCase();
 
 		System.out.print("Enter the number of nutrients for this food: ");
-		int numNu = Integer.parseInt(input.nextLine());
-
-		System.out.print("Enter the nutrients when prompted: \n");
-		nutrients = "";
-
-		for (int i = 0; i < numNu; i++) {
-			System.out.print((i + 1) + ") ");
-			nutrients += input.nextLine().toUpperCase();
-			if (i != numNu - 1)
-				nutrients += ", ";
+		
+		try {
+			int numNu = Integer.parseInt(input.nextLine());
+			
+			System.out.print("Enter the nutrients when prompted: \n");
+			nutrients = "";
+			
+			for (int i = 0; i < numNu; i++) {
+				System.out.print((i + 1) + ") ");
+				nutrients += input.nextLine().toUpperCase();
+				if (i != numNu - 1)
+					nutrients += ", ";
+			}
+		} catch (Exception e) {
+			System.out.println("That is not a valid number.");
+			readIn();
 		}
 	}
 
@@ -114,6 +120,6 @@ public class FrozenFood extends Element {
 	}
 
 	public String toString() {
-		return "Name: " + name + "\nManufacturer: " + manufacturer + "\nNutrients: " + nutrients;
+		return "\nName: " + name + "\nManufacturer: " + manufacturer + "\nNutrients: " + nutrients;
 	}
 }
