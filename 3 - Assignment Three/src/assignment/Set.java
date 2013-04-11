@@ -202,11 +202,20 @@ public class Set<T> {
 			}
 		}
 	}
-	
+
+	/**
+	 * Displays a specified object in the list based on the parameter passed by
+	 * the user.
+	 * 
+	 * @param aT
+	 * @return false if the object is not a member of theList, and true if the
+	 *         object is displayed.
+	 */
+
 	public boolean displayAnObject(T aT) {
 		if (!isMemberOf(aT))
 			return false;
-		
+
 		for (T anotherT : theList) {
 			if (anotherT.getClass().getName().equals("assignment.FrozenFood")) {
 				if (((FrozenFood) anotherT).equals(aT)) {
@@ -223,22 +232,31 @@ public class Set<T> {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Edits a specified object in the list based on the parameter passed by the
+	 * user.
+	 * 
+	 * @param editedT
+	 * @return false if the object is not a member of theList, and true if the
+	 *         object was successfully edited.
+	 */
+
 	public boolean editAnObject(T editedT) {
 		if (!isMemberOf(editedT))
 			return false;
-		
+
 		for (int i = 0; i < theList.size(); i++) {
 			T anotherT = theList.get(i);
 			String currClass = anotherT.getClass().getName();
-			
+
 			if (currClass.equals("assignment.FrozenFood")) {
 				if (((FrozenFood) anotherT).equals(editedT)) {
 					theList.set(currentIndex, editedT);
 					return true;
 				}
 			}
-			
+
 			if (currClass.equals("assignment.CannedFood")) {
 				if (((CannedFood) anotherT).equals(editedT)) {
 					theList.set(currentIndex, editedT);
@@ -246,7 +264,7 @@ public class Set<T> {
 				}
 			}
 		}
-		
+
 		return false;
 	}
 }

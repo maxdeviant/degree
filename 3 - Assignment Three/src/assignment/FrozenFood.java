@@ -94,7 +94,7 @@ public class FrozenFood extends Element {
 			System.out.println("  " + token.nextToken());
 		}
 	}
-	
+
 	public boolean equals(Object dobj) {
 		if (dobj.getClass().getName().equals("assignment.FrozenFood"))
 			if (name.equals(((FrozenFood) dobj).name))
@@ -112,7 +112,7 @@ public class FrozenFood extends Element {
 
 		return clone;
 	}
-	
+
 	public String toString() {
 		return "Name: " + name + "\nManufacturer: " + manufacturer + "\nNutrients: " + nutrients;
 	}

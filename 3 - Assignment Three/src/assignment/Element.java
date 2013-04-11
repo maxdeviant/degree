@@ -53,6 +53,6 @@ public abstract class Element {
 	public abstract void display();
 
 	public abstract Element clone();
-	
+
 	public abstract String toString();
 }

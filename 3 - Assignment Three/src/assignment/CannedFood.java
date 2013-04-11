@@ -104,7 +104,7 @@ public class CannedFood extends Element {
 
 		return clone;
 	}
-	
+
 	public boolean equals(Object dobj) {
 		if (dobj.getClass().getName().equals("assignment.CannedFood"))
 			if (name.equals(((CannedFood) dobj).name))

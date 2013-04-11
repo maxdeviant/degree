@@ -189,7 +189,7 @@ public class Application {
 		input = new Scanner(System.in);
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
-		
+
 		result = list.displayAnObject(new FrozenFood(name));
 
 		if (!result)
@@ -207,7 +207,7 @@ public class Application {
 		input = new Scanner(System.in);
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
-		
+
 		result = list.displayAnObject(new CannedFood(name));
 
 		if (!result)
@@ -224,7 +224,7 @@ public class Application {
 
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
-		
+
 		result = list.editAnObject(temp);
 
 		if (result)
@@ -243,7 +243,7 @@ public class Application {
 
 		CannedFood temp = new CannedFood();
 		temp.readIn();
-		
+
 		result = list.editAnObject(temp);
 
 		if (result)
