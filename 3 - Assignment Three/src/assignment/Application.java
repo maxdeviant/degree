@@ -220,20 +220,17 @@ public class Application {
 	 */
 
 	private static void editFrozenFood() {
-		boolean result = false;
+		boolean result;
 
-		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.next().toUpperCase();
-
-		if (list.isMemberOf(new FrozenFood(name))) {
-			FrozenFood temp = new FrozenFood(name);
-			result = list.editAnObject(temp);
-		}
+		FrozenFood temp = new FrozenFood();
+		temp.readIn();
+		
+		result = list.editAnObject(temp);
 
 		if (result)
 			System.out.println("This FrozenFood was successfully replaced.");
 		else
-			System.out.println("Not a valid option.");
+			System.out.println("Not a valid option. No items were edited.");
 	}
 
 	/**
@@ -242,19 +239,16 @@ public class Application {
 	 */
 
 	private static void editCannedFood() {
-		boolean result = false;
+		boolean result;
 
-		System.out.print("Enter the name of a CannedFood product: ");
-		String name = input.next().toUpperCase();
-
-		if (list.isMemberOf(new CannedFood(name))) {
-			CannedFood temp = new CannedFood(name);
-			result = list.editAnObject(temp);
-		}
+		CannedFood temp = new CannedFood();
+		temp.readIn();
+		
+		result = list.editAnObject(temp);
 
 		if (result)
 			System.out.println("This CannedFood was successfully replaced.");
 		else
-			System.out.println("Not a valid option.");
+			System.out.println("Not a valid option. No items were edited.");
 	}
 }
