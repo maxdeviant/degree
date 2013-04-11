@@ -205,21 +205,19 @@ public class Set<T> {
 	}
 	
 	public boolean displayAnObject(T aT) {
-		if (!isMemberOf(aT))
+		if (!(isMemberOf(aT)))
 			return false;
 		
-		for (int i = 0; i < theList.size(); i++) {
-			T anotherT = theList.get(i);
-			
-			if (aT.getClass().getName().contains("FrozenFood")) {
-				if (((FrozenFood) aT).getName().equals(((FrozenFood) anotherT).getName())) {
-					System.out.println(((FrozenFood) anotherT).toString());
+		for (T anotherT : theList) {
+			if (anotherT.getClass().getName().equals("assignment.FrozenFood")) {
+				if (((FrozenFood) anotherT).equals(aT)) {
+					System.out.println(anotherT.toString());
 					return true;
 				}
 			}
-			if (aT.getClass().getName().contains("CannedFood")) {
-				if (((CannedFood) aT).getName().equals(((CannedFood) anotherT).getName())) {
-					System.out.println(((CannedFood) anotherT).toString());
+			if (anotherT.getClass().getName().equals("assignment.CannedFood")) {
+				if (((CannedFood) anotherT).equals(aT)) {
+					System.out.println(anotherT.toString());
 					return true;
 				}
 			}
