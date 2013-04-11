@@ -70,7 +70,6 @@ public class Set<T> {
 
 	public boolean isMemberOf(T aT) {
 		// Local data ...
-		T anotherT;
 		String paramClass = aT.getClass().getName();
 		// Why can't we call getClassName()?
 		String currClass;
@@ -205,7 +204,7 @@ public class Set<T> {
 	}
 	
 	public boolean displayAnObject(T aT) {
-		if (!(isMemberOf(aT)))
+		if (!isMemberOf(aT))
 			return false;
 		
 		for (T anotherT : theList) {
@@ -226,9 +225,28 @@ public class Set<T> {
 	}
 	
 	public boolean editAnObject(T editedT) {
-		if (isMemberOf(editedT)) {
+		if (!isMemberOf(editedT))
+			return false;
+		
+		for (int i = 0; i < theList.size(); i++) {
+			T anotherT = theList.get(i);
+			String currClass = anotherT.getClass().getName();
 			
+			if (currClass.equals("assignment.FrozenFood")) {
+				if (((FrozenFood) anotherT).equals(editedT)) {
+					theList.set(currentIndex, editedT);
+					return true;
+				}
+			}
+			
+			if (currClass.equals("assignment.CannedFood")) {
+				if (((CannedFood) anotherT).equals(editedT)) {
+					theList.set(currentIndex, editedT);
+					return true;
+				}
+			}
 		}
+		
 		return false;
 	}
 }
