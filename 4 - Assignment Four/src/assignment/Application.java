@@ -103,13 +103,16 @@ public class Application {
 	private static void addFrozenFood() {
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
-		boolean outcome = list.add(temp);
 
-		// Feedback
-		if (outcome)
-			System.out.println("This FrozenFood was added successfully!");
-		else
-			System.out.println("This FrozenFood is already in the list. FrozenFood not added.");
+		try {
+			if (list.isMemberOf(temp))
+				throw new DuplicateObjectException("This FrozenFood is already in the list.");
+
+			list.add(temp);
+			System.out.println("\nThis FrozenFood was added successfully!");
+		} catch (DuplicateObjectException e) {
+			System.out.println("FrozenFood not added.");
+		}
 	}
 
 	/**
@@ -119,13 +122,16 @@ public class Application {
 	private static void addCannedFood() {
 		CannedFood temp = new CannedFood();
 		temp.readIn();
-		boolean outcome = list.add(temp);
 
-		// Feedback
-		if (outcome)
-			System.out.println("This CannedFood was added successfully!");
-		else
-			System.out.println("This CannedFood is already in the list. CannedFood not added.");
+		try {
+			if (list.isMemberOf(temp))
+				throw new DuplicateObjectException("This CannedFood is already in the list.");
+
+			list.add(temp);
+			System.out.println("\nThis CannedFood was added successfully!");
+		} catch (DuplicateObjectException e) {
+			System.out.println("CannedFood not added.");
+		}
 	}
 
 	/**
@@ -139,16 +145,16 @@ public class Application {
 			System.out.println("There are no FrozenFood products.");
 		else {
 			// Counter for number of FrozenFoods in the list
-			int c = 0;
+			int count = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
 				if (e.getClass().getName().contains("FrozenFood")) {
 					System.out.println(((FrozenFood) e).getName());
-					c++;
+					count++;
 				}
 			}
 			// If the counter is still zero, no FrozenFoods were found
-			if (c == 0)
+			if (count == 0)
 				System.out.println("There are no FrozenFood products.");
 		}
 	}
@@ -164,16 +170,16 @@ public class Application {
 			System.out.println("There are no CannedFood products.");
 		else {
 			// Counter for number of CannedFoods in the list
-			int c = 0;
+			int count = 0;
 			for (int i = 0; i < list.size(); i++) {
 				Element e = list.getCurrent();
 				if (e.getClass().getName().contains("CannedFood")) {
 					System.out.println(((CannedFood) e).getName());
-					c++;
+					count++;
 				}
 			}
 			// If the counter is still zero, no CannedFoods were found
-			if (c == 0)
+			if (count == 0)
 				System.out.println("There are no CannedFood products.");
 		}
 	}
@@ -184,16 +190,18 @@ public class Application {
 	 */
 
 	private static void displayFrozenData() {
-		boolean result;
-
-		input = new Scanner(System.in);
 		System.out.print("Enter the name of a FrozenFood product: ");
 		String name = input.next().toUpperCase();
+		FrozenFood temp = new FrozenFood(name);
 
-		result = list.displayAnObject(new FrozenFood(name));
+		try {
+			if (!list.isMemberOf(temp))
+				throw new CannotFindException("This FrozenFood could not be found.");
 
-		if (!result)
-			System.out.println("Not a valid option.");
+			list.displayAnObject(new FrozenFood(name));
+		} catch (CannotFindException e) {
+
+		}
 	}
 
 	/**
@@ -202,16 +210,18 @@ public class Application {
 	 */
 
 	private static void displayCannedData() {
-		boolean result;
-
-		input = new Scanner(System.in);
 		System.out.print("Enter the name of a CannedFood product: ");
 		String name = input.next().toUpperCase();
+		CannedFood temp = new CannedFood(name);
 
-		result = list.displayAnObject(new CannedFood(name));
+		try {
+			if (!list.isMemberOf(temp))
+				throw new CannotFindException("This CannedFood could not be found.");
 
-		if (!result)
-			System.out.println("Not a valid option.");
+			list.displayAnObject(new CannedFood(name));
+		} catch (CannotFindException e) {
+
+		}
 	}
 
 	/**
@@ -220,17 +230,18 @@ public class Application {
 	 */
 
 	private static void editFrozenFood() {
-		boolean result;
-
 		FrozenFood temp = new FrozenFood();
 		temp.readIn();
 
-		result = list.editAnObject(temp);
+		try {
+			if (!list.isMemberOf(temp))
+				throw new CannotEditException("This FrozenFood could not be found.");
 
-		if (result)
+			list.editAnObject(temp);
 			System.out.println("This FrozenFood was successfully replaced.");
-		else
-			System.out.println("Not a valid option. No items were edited.");
+		} catch (CannotEditException e) {
+			System.out.println("\nFrozenFood not edited.");
+		}
 	}
 
 	/**
@@ -239,16 +250,17 @@ public class Application {
 	 */
 
 	private static void editCannedFood() {
-		boolean result;
-
 		CannedFood temp = new CannedFood();
 		temp.readIn();
 
-		result = list.editAnObject(temp);
+		try {
+			if (!list.isMemberOf(temp))
+				throw new CannotEditException("This CannedFood could not be found.");
 
-		if (result)
+			list.editAnObject(temp);
 			System.out.println("This CannedFood was successfully replaced.");
-		else
-			System.out.println("Not a valid option. No items were edited.");
+		} catch (CannotEditException e) {
+			System.out.println("\nCannedFood not edited.");
+		}
 	}
 }
