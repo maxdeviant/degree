@@ -65,23 +65,29 @@ public class CannedFood extends Element {
 	}
 
 	public void readIn() {
-		System.out.print("Enter the name of the Canned Food: ");
+		System.out.print("\nEnter the name of the Frozen Food: ");
 		name = input.nextLine().toUpperCase();
 
 		System.out.print("Enter the name of the manufacturer: ");
 		manufacturer = input.nextLine().toUpperCase();
 
 		System.out.print("Enter the number of ingredients for this food: ");
-		int numNu = Integer.parseInt(input.nextLine());
-
-		System.out.print("Enter the ingredients when prompted: \n");
-		ingredients = "";
-
-		for (int i = 0; i < numNu; i++) {
-			System.out.print((i + 1) + ") ");
-			ingredients += input.nextLine().toUpperCase();
-			if (i != numNu - 1)
-				ingredients += ", ";
+		
+		try {
+			int numIng = Integer.parseInt(input.nextLine());
+			
+			System.out.print("Enter the ingredients when prompted: \n");
+			ingredients = "";
+			
+			for (int i = 0; i < numIng; i++) {
+				System.out.print((i + 1) + ") ");
+				ingredients += input.nextLine().toUpperCase();
+				if (i != numIng - 1)
+					ingredients += ", ";
+			}
+		} catch (Exception e) {
+			System.out.println("That is not a valid number.");
+			readIn();
 		}
 	}
 
@@ -114,6 +120,6 @@ public class CannedFood extends Element {
 	}
 
 	public String toString() {
-		return "Name: " + name + "\nManufacturer: " + manufacturer + "\nIngredients: " + ingredients;
+		return "\nName: " + name + "\nManufacturer: " + manufacturer + "\nIngredients: " + ingredients;
 	}
 }
