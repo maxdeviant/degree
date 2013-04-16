@@ -217,17 +217,14 @@ public class Set<T> {
 			return false;
 
 		for (T anotherT : theList) {
-			if (anotherT.getClass().getName().equals("assignment.FrozenFood")) {
-				if (((FrozenFood) anotherT).equals(aT)) {
-					System.out.println(anotherT.toString());
-					return true;
-				}
+			if (anotherT.equals(aT)) {
+				System.out.println(anotherT.toString());
+				return true;
 			}
-			if (anotherT.getClass().getName().equals("assignment.CannedFood")) {
-				if (((CannedFood) anotherT).equals(aT)) {
-					System.out.println(anotherT.toString());
-					return true;
-				}
+
+			if (anotherT.equals(aT)) {
+				System.out.println(anotherT.toString());
+				return true;
 			}
 		}
 		return false;
@@ -248,20 +245,15 @@ public class Set<T> {
 
 		for (int i = 0; i < theList.size(); i++) {
 			T anotherT = theList.get(i);
-			String currClass = anotherT.getClass().getName();
 
-			if (currClass.equals("assignment.FrozenFood")) {
-				if (((FrozenFood) anotherT).equals(editedT)) {
-					theList.set(currentIndex, editedT);
-					return true;
-				}
+			if (anotherT.equals(editedT)) {
+				theList.set(currentIndex, editedT);
+				return true;
 			}
 
-			if (currClass.equals("assignment.CannedFood")) {
-				if (((CannedFood) anotherT).equals(editedT)) {
-					theList.set(currentIndex, editedT);
-					return true;
-				}
+			if (anotherT.equals(editedT)) {
+				theList.set(currentIndex, editedT);
+				return true;
 			}
 		}
 
