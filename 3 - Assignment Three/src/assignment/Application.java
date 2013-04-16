@@ -41,10 +41,14 @@ public class Application {
 	private static void menu() {
 		boolean validChoice = false;
 		char menuChoice;
-		String[] options = { "Add a Frozen Food product", "Add a Canned Food product",
-				"Display names of all Frozen Food products", "Display names of all Canned Food products",
-				"Display data for a Frozen Food product", "Display data for a Canned Food product",
-				"Edit data for a Frozen Food Product", "Edit data for a Canned Food product", "Quit" };
+		String[] options = { "Add a Frozen Food product",
+				"Add a Canned Food product",
+				"Display names of all Frozen Food products",
+				"Display names of all Canned Food products",
+				"Display data for a Frozen Food product",
+				"Display data for a Canned Food product",
+				"Edit data for a Frozen Food Product",
+				"Edit data for a Canned Food product", "Quit" };
 
 		do {
 			System.out.println("\nWholly Nutritious Foods Data Menu:");
@@ -57,7 +61,8 @@ public class Application {
 			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
 			else
-				System.out.println("Sorry, that is not a valid choice. Try again.");
+				System.out
+						.println("Sorry, that is not a valid choice. Try again.");
 
 		} while (!validChoice);
 
@@ -109,7 +114,8 @@ public class Application {
 		if (outcome)
 			System.out.println("This FrozenFood was added successfully!");
 		else
-			System.out.println("This FrozenFood is already in the list. FrozenFood not added.");
+			System.out
+					.println("This FrozenFood is already in the list. FrozenFood not added.");
 	}
 
 	/**
@@ -125,7 +131,8 @@ public class Application {
 		if (outcome)
 			System.out.println("This CannedFood was added successfully!");
 		else
-			System.out.println("This CannedFood is already in the list. CannedFood not added.");
+			System.out
+					.println("This CannedFood is already in the list. CannedFood not added.");
 	}
 
 	/**

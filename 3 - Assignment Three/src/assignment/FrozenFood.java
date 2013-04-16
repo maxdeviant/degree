@@ -114,6 +114,7 @@ public class FrozenFood extends Element {
 	}
 
 	public String toString() {
-		return "Name: " + name + "\nManufacturer: " + manufacturer + "\nNutrients: " + nutrients;
+		return "Name: " + name + "\nManufacturer: " + manufacturer
+				+ "\nNutrients: " + nutrients;
 	}
 }
