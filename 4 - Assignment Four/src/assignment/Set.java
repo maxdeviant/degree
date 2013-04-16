@@ -199,15 +199,10 @@ public class Set<T> {
 	 */
 
 	public void displayAnObject(T aT) throws CannotFindException {
-		for (T anotherT : theList) {
-			if (anotherT.getClass().getName().equals("assignment.FrozenFood"))
-				if (((FrozenFood) anotherT).equals(aT))
-					System.out.println(anotherT.toString());
+		for (T anotherT : theList)
+			if (anotherT.equals(aT))
+				System.out.println(anotherT.toString());
 
-			if (anotherT.getClass().getName().equals("assignment.CannedFood"))
-				if (((CannedFood) anotherT).equals(aT))
-					System.out.println(anotherT.toString());
-		}
 	}
 
 	/**
@@ -222,15 +217,9 @@ public class Set<T> {
 	public void editAnObject(T editedT) throws CannotEditException {
 		for (int i = 0; i < theList.size(); i++) {
 			T anotherT = theList.get(i);
-			String currClass = anotherT.getClass().getName();
 
-			if (currClass.equals("assignment.FrozenFood"))
-				if (((FrozenFood) anotherT).equals(editedT))
-					theList.set(currentIndex, editedT);
-
-			if (currClass.equals("assignment.CannedFood"))
-				if (((CannedFood) anotherT).equals(editedT))
-					theList.set(currentIndex, editedT);
+			if (anotherT.equals(editedT))
+				theList.set(currentIndex, editedT);
 		}
 	}
 }
