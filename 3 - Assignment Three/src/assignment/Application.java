@@ -27,7 +27,7 @@ public class Application {
 
 	private static boolean getQuit() {
 		System.out.println("Do you want to quit?\nY)es\nN)o");
-		if (input.next().toUpperCase().charAt(0) == 'N')
+		if (input.nextLine().toUpperCase().charAt(0) == 'N')
 			return false;
 		else
 			return true;
@@ -56,7 +56,7 @@ public class Application {
 				System.out.println((i + 1) + ") " + options[i]);
 
 			System.out.print("Please select an option: ");
-			menuChoice = input.next().charAt(0);
+			menuChoice = input.nextLine().charAt(0);
 
 			if (menuChoice <= '9' && menuChoice >= '0')
 				validChoice = true;
@@ -195,7 +195,7 @@ public class Application {
 
 		input = new Scanner(System.in);
 		System.out.print("Enter the name of a FrozenFood product: ");
-		String name = input.next().toUpperCase();
+		String name = input.nextLine().toUpperCase();
 
 		result = list.displayAnObject(new FrozenFood(name));
 
@@ -213,7 +213,7 @@ public class Application {
 
 		input = new Scanner(System.in);
 		System.out.print("Enter the name of a CannedFood product: ");
-		String name = input.next().toUpperCase();
+		String name = input.nextLine().toUpperCase();
 
 		result = list.displayAnObject(new CannedFood(name));
 
