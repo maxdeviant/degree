@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 <title>Data Structures - Binary Heap &amp; HeapSort</title>
-<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
-<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
-<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
-<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<link rel="stylesheet" type="text/css" href="css/init.css" />
+<link href="images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="css/java.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css" media="print">
 /* override other settings to make print-friendly appearance */
 body { padding: 10px 20px; }
@@ -326,7 +326,7 @@ data[n] &le; data[2*n+1]        <span class="ssf">(when <tt>data[2*n+1]</tt> exi
 </pre>
 Here is an example:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6.png" />
+<img src="images/plots/6.6.png" />
 </div>
 
 The coding issue involved in using a complete binary tree as a heap
@@ -362,25 +362,25 @@ the insertion of the value 17 in this tree would be this:
 <li>
 Increase the size to 11 and create a hole at position 11 like this:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6a.png" />
+<img src="images/plots/6.6a.png" />
 </div>
 </li>
 <li>
 Comparing 17 with the hole's parent would make the parent value shift down:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6b.png" />
+<img src="images/plots/6.6b.png" />
 </div>
 </li>
 <li>
 Again, comparing 17 with the hole's parent would make the next parent value shift down:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6c.png" />
+<img src="images/plots/6.6c.png" />
 </div>
 </li>
 <li>
 Finally, 17 is larger than the parent value at 1, so it gets inserted into the hole:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6d.png" />
+<img src="images/plots/6.6d.png" />
 </div>
 </li>
 </ol>
@@ -444,27 +444,27 @@ Return the value and create a hole at position 1.
 Pull out the value at node 11 (<tt>elt=31</tt>) 
 and decrease the size to 10: 
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6e.png" />
+<img src="images/plots/6.6e.png" />
 </div>
 </li>
 <li>
 31 is bigger than the smallest child, 16, so move the hole down
 to position 3 and move 16 up:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6f.png" />
+<img src="images/plots/6.6f.png" />
 </div>
 </li>
 <li>
 Again, seeing that 31 is bigger than the smallest child, 19, 
 move the hole down to its position 6 and move 19 up:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6g.png" />
+<img src="images/plots/6.6g.png" />
 </div>
 </li>
 <li>
 Finally, since the hole has no children we move 31 into position 6:
 <div class="n">
-<img src="/~rkline/DS/images/plots/6.6h.png" />
+<img src="images/plots/6.6h.png" />
 </div>
 </li>
 </ol>
@@ -626,26 +626,26 @@ The raw array dara is of <tt>size</tt> 13 is
 <pre class="n">[13, 11, 12, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6]</pre> 
 Putting these directly in order into the tree gives:
 <div class="n">
-<img src="/~rkline/DS/images/plots/bh-a.png" />
+<img src="images/plots/bh-a.png" />
 </div>
 </li>
 <li>
 The process starts at node 6 (<tt>size/2</tt>) and works backward.
 After nodes 6, 5, 4 are done we have:
 <div class="n">
-<img src="/~rkline/DS/images/plots/bh-b.png" />
+<img src="images/plots/bh-b.png" />
 </div>
 </li>
 <li>
 After nodes 3, 2 are done we have:
 <div class="n">
-<img src="/~rkline/DS/images/plots/bh-c.png" />
+<img src="images/plots/bh-c.png" />
 </div>
 </li>
 <li>
 Finally, after node 1 is done:
 <div class="n">
-<img src="/~rkline/DS/images/plots/bh-d.png" />
+<img src="images/plots/bh-d.png" />
 </div>
 </li>
 

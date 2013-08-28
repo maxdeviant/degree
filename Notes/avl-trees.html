@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 <title>Data Structures - AVL Trees</title>
-<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
-<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
-<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
-<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<link rel="stylesheet" type="text/css" href="css/init.css" />
+<link href="images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="css/java.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css" media="print">
 /* override other settings to make print-friendly appearance */
 body { padding: 10px 20px; }
@@ -90,7 +90,7 @@ of a random tree with <tt>n</tt> nodes is
 This figure from the textbook is an illustration of such
 a random tree:
 <div class='n' style='position:relative'>
-<img src="/~rkline/DS/images/random-insertions.jpg" />
+<img src="images/random-insertions.jpg" />
 <span style='position:absolute;bottom:20px;left:490px'>Figure 4.26 from<br />
 Weiss textbook</span>
 </div>
@@ -103,7 +103,7 @@ outcome is a tree skewed completely right or left, respectively.
 For example, inserting the sequence 10, 20, 30, 40, 50 produces the
 search tree:
 <div class="n" style="text-align:left">
-<img src="/~rkline/DS/images/skew-right.png" height="150px" />
+<img src="images/skew-right.png" height="150px" />
 </div>
 In this case the internal path length with <tt>n</tt> nodes is:
 <pre class="n">
@@ -200,7 +200,7 @@ after an unbalancing <b>left-left</b> insertion.
 <img 
 width="620px"
 style="border: solid 1px black; margin: 0px"
-src="/~rkline/DS/images/single_rot_left.jpg" />
+src="images/single_rot_left.jpg" />
 </p>
 
 <b>Proof:</b>
@@ -265,7 +265,7 @@ operation after an unbalancing <b>left-right</b> insertion.
 <img 
 width="620px"
 style="border: solid 1px black; margin: 0px"
-src="/~rkline/DS/images/double_rot_left.jpg" />
+src="images/double_rot_left.jpg" />
 </p>
 <b>Proof:</b>
 Let <tt>a</tt>, <tt>b</tt>, <tt>c</tt>, <tt>d</tt>
@@ -362,20 +362,20 @@ rotations are all <b>single rotate</b> from the <b>right</b>. All but
 two insertions require rebalancing:
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-1-a.png" width="70px" /> </td>
+<td> <img src="images/avl-1-a.png" width="70px" /> </td>
 <td style='padding-top:20px'> at 1 &rArr; </td>
-<td> <img src="/~rkline/DS/images/avl-1-b.png" width="100px" /> </td>
-<td> <img src="/~rkline/DS/images/avl-1-c.png" width="130px" /> </td>
+<td> <img src="images/avl-1-b.png" width="100px" /> </td>
+<td> <img src="images/avl-1-c.png" width="130px" /> </td>
 <td style='padding-top:20px'> at 3 &rArr; </td>
-<td> <img src="/~rkline/DS/images/avl-1-d.png" width="160px" /> </td>
+<td> <img src="images/avl-1-d.png" width="160px" /> </td>
 </tr>
 </table>
 <table>
 <tr valign='top'>
 <td style='padding-top:20px'> at 2 &rArr; </td>
-<td> <img src="/~rkline/DS/images/avl-1-e.png" width="200px" /> </td>
+<td> <img src="images/avl-1-e.png" width="200px" /> </td>
 <td style='padding-top:20px'> at 5 &rArr; </td>
-<td> <img src="/~rkline/DS/images/avl-1-f.png" width="220px" /> </td>
+<td> <img src="images/avl-1-f.png" width="220px" /> </td>
 </tr>
 </table>
 <p></p>
@@ -392,42 +392,42 @@ Here is another example. The insertion sequence is:
 
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-2-a.png" width="70px" /> </td>
-<td> <img src="/~rkline/DS/images/avl-2-b.png" width="100px" /> </td>
+<td> <img src="images/avl-2-a.png" width="70px" /> </td>
+<td> <img src="images/avl-2-b.png" width="100px" /> </td>
 <td style='padding-top:20px'> 
 single<br />
 rot. left<br />
 at 50 &rArr; 
 </td>
-<td> <img src="/~rkline/DS/images/avl-2-c.png" width="100px" /> </td>
-<td> <img src="/~rkline/DS/images/avl-2-d.png" width="125px" /> </td>
+<td> <img src="images/avl-2-c.png" width="100px" /> </td>
+<td> <img src="images/avl-2-d.png" width="125px" /> </td>
 </tr>
 </table>
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-2-e.png" width="160px" /> </td>
+<td> <img src="images/avl-2-e.png" width="160px" /> </td>
 <td style='padding-top:20px'> 
 double<br />
 rot. left<br />
 at 10 &rArr; 
 </td>
-<td> <img src="/~rkline/DS/images/avl-2-f.png" width="160px" /> </td>
+<td> <img src="images/avl-2-f.png" width="160px" /> </td>
 </tr>
 </table>
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-2-g.png" width="200px" /> </td>
+<td> <img src="images/avl-2-g.png" width="200px" /> </td>
 <td style='padding-top:20px'> 
 single<br />
 rot. left<br />
 at 25 &rArr; 
 </td>
-<td> <img src="/~rkline/DS/images/avl-2-h.png" width="200px" /> </td>
+<td> <img src="images/avl-2-h.png" width="200px" /> </td>
 </tr>
 </table>
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-2-i.png" width="280px" />
+<td> <img src="images/avl-2-i.png" width="280px" />
 </td>
 <td style='padding-top:20px'> 
 <tt>add(30)</tt>, <tt>add(20)</tt>, <tt>add(8)</tt> need no rebalancing
@@ -436,13 +436,13 @@ at 25 &rArr;
 </table>
 <table>
 <tr valign='top'>
-<td> <img src="/~rkline/DS/images/avl-2-j.png" width="300px" /> </td>
+<td> <img src="images/avl-2-j.png" width="300px" /> </td>
 <td style='padding-top:20px'> 
 double<br />
 rot. right<br />
 at 7 &rArr; 
 </td>
-<td> <img src="/~rkline/DS/images/avl-2-k.png" width="300px" /> </td>
+<td> <img src="images/avl-2-k.png" width="300px" /> </td>
 </tr>
 </table>
 
