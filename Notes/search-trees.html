@@ -1,0 +1,1313 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - TreeSets</title>
+<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
+<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
+<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+TreeSets</h2>
+<div id="mtime">last modified: Apr 11, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#sets">Sets</option>
+<option value="#demo-project">Demo Project</option>
+<option value="#implementation">TreeSet Implementation</option>
+<option value="#searchtreeset-discussion">SearchTreeSet Discussion</option>
+<option value="#reference">The add function</option>
+<option value="#java-ref">Simulate a reference parameter</option>
+<option value="#boolean">Java-valid binary search tree add</option>
+<option value="#internal">Traversals / Displaying Structure</option>
+<option value="#remove">The remove function</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+
+<h3><a name="sets"></a>Sets</h3>
+
+The basic notion of a 
+<a href="../java/sets.html"><tt>Set&lt;E&gt;</tt></a> is that it is simply a 
+<a href="../java/data-structures.html#collection"><tt>Collection&lt;E&gt;</tt></a>
+ which does not store duplicates. 
+ 
+ A <tt>Set&lt;E&gt;</tt> by itself has no particular ordering of
+ the elements, there is no notion of position, no notion of first or last, etc.
+The key ingredient is that there are no "duplicate" elements
+in the sense of the <tt>equals</tt> operator. 
+If an element is already in the set, 
+the <tt>add</tt> operation, attempting to add a duplicate element,
+ returns <tt>false</tt> and the duplicate is not added.
+
+ There are three <tt>Set</tt> implementation classes of interest to us: 
+<ul class="notes">
+<li><tt>HashSet</tt>: An implementation of <tt>Set</tt> 
+in which no particular ordering of elements is maintained.</li>
+<li><tt>LinkedHashSet</tt>: 
+An implementation of <tt>Set</tt> 
+in which, like a <tt>LinkedList</tt>, the 
+the <b>entry</b> order of elements is maintained.</li>
+<li><tt>TreeSet</tt>: 
+An implementation of <tt>NavigableSet</tt> in which the 
+<b>sorted</b> order of the elements is maintained.</li>
+</ul>
+
+<p></p>
+ A stronger version
+of the <tt>Set&lt;E&gt;</tt>  is the
+<a href="../java/sets.html#sortedset"><tt>SortedSet&lt;E&gt;</tt></a>
+interface which assumes an ordering of the elements.
+This interface provides functions for computing
+the <i>first</i> and <i>last</i> elements and can
+keep track of the <i>range</i> between any two elements.
+<p></p>
+Even stronger is the 
+<a href="../java/sets.html#navigableset"><tt>NavigableSet&lt;E&gt;</tt></a>
+interface
+in which we can
+ find elements in the set which are "near to" some element. 
+ A <tt>NavigableSet&lt;E&gt;</tt> also allows the removal
+of the first and last elements.
+
+
+<h4>Simple TreeSet Implementation</h4>
+
+The <tt>Set&lt;E&gt;</tt> implementation of interest in this document 
+is the <tt>TreeSet&lt;E&gt;</tt> class which implements the
+ <tt>NavigableSet&lt;E&gt;</tt> interface. Its elements
+are distributed in a <i>search tree</i> structure of some kind which permits
+an efficient <tt><big>O</big>(log(n))</tt> search.
+The simplest form of a search tree is a 
+<i>binary</i> search tree, which is a binary tree
+which maintains the following ordering property at each node:
+<div class="n">
+<table>
+<tr>
+<td style="padding-right:20px"><b>data</b> values<br />of all nodes in
+<br />the left subtree
+<br />of node <tt>n</tt>
+</td>
+<td style="padding-right:20px">&lt;</td>
+<td style="padding-right:20px"><b>data</b> value<br />at node <tt>n</tt></td>
+<td style="padding-right:20px">&lt;</td>
+<td style="padding-right:20px"><b>data</b> values<br />of all nodes in
+<br />the right subtree
+<br />of node <tt>n</tt>
+</td>
+</tr>
+</table>
+</div>
+Here is an example of a tree with integer values:
+<div class="n">
+<img border="0" style="border:solid 1px black;" src="/~rkline/DS/images/bst2.png" />
+</div>
+
+When working with trees, you should become familiar with the terminology:
+<blockquote class="lh3">
+<i>root</i>,<br /> 
+<i>children</i>,<br /> 
+a <i>descendant</i> of a node (a path exists from the node to it),<br /> 
+<i>subtree (a node and all of its descendants)</i>,<br /> 
+<i>leaf</i> (a node with no children),<br />
+<i>interior</i> node (a non-leaf), <br />
+a node's <i>level</i> or <i>depth</i> (the path-distance from the root), 
+<br />
+the full tree's <i>height</i> (the maximum depth of any node),
+<br />
+a nodes's <i>height</i> (the height of the subtree at that node),
+<br />
+a <i>perfect</i> tree (all interior nodes have two children &amp; all
+leaves at same level)
+</blockquote>
+For example, some facts about the above tree:
+<pre class="n lh3">
+node 20, the root, is at level 0, 
+         it has height 3, 
+         it has two children: nodes 15 and 30
+node 25  is at level 2, 
+         it has height 1, and is a perfect subtree
+node 17  is a leaf at level 3 and has height 0
+</pre>
+
+
+<h4>Comparability</h4>
+Any <tt>SortedSet&lt;E&gt;</tt>, whatever the implementation may be, must
+somehow have the ability to determine an ordering of the elements.
+This usually means
+that the element type implements the <tt>Comparable&lt;E&gt;</tt> interface,
+implying that the <tt>compareTo</tt> function is defined:
+<pre class="n">
+                      &lt; 0  means e1 is less that e2
+e1.compareTo(e2)      = 0  means that e1 equals e2
+                      &gt; 0  means that e1 is greater than e2
+</pre>
+Alternatively, a <tt>Comparator&lt;E&gt;</tt> object
+can be used to define the relation between two elements. 
+A <tt>Comparator&lt;E&gt;</tt> object,
+<tt>cmp</tt>, is one which defines the <tt>compare</tt> function. 
+Using such an object we can defined the relation between two elements:
+<pre class="n">
+                      &lt; 0  means e1 is less that e2
+cmp.compare(e1,e2)    = 0  means that e1 equals e2
+                      &gt; 0  means that e1 is greater than e2
+</pre>
+
+<h4>TreeSet operation restrictions</h4>
+
+Because of the need for comparability, the
+<tt>TreeSet&lt;E&gt;</tt> class does not support
+adding <tt>null</tt>
+&#151; it throws an exception.
+
+Disallowing null values
+is not a restriction across all <tt>Set&lt;E&gt;</tt> implementations.
+For example, it is OK to store <tt>null</tt> into a <tt>HashSet&lt;E&gt;</tt>.
+Another restriction is that the <tt>remove(Object obj)</tt> function will 
+fail if called with an object which is not of the element type in use.
+
+<h3><a name="demo-project"></a>Demo Project</h3>
+
+Create a NetBeans project <tt class="file">TreeDemo</tt>.
+Assuming you use the default setup of NetBeans, the main class will be
+named <tt>TreeDemo</tt>.
+
+Copy/paste the following code into this class:
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/treedemo/TreeDemo.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+treedemo.TreeDemo</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<p></p>
+Run each of the first two "mains" by uncommenting the relevant call
+in the actual <tt>main</tt> function.
+The <tt>mainSetOps</tt> function makes use of a 
+<tt>Comparator</tt> object defined like this:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">Comparator<span class="sy0">&lt;</span>Integer<span class="sy0">&gt;</span> cmp <span class="sy0">=</span> <span class="kw1">new</span> Comparator<span class="sy0">&lt;</span>Integer<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">public</span> <span class="kw4">int</span> compare<span class="br0">&#40;</span><span class="kw3">Integer</span> lhs, <span class="kw3">Integer</span> rhs<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw3">String</span> lhs_str <span class="sy0">=</span> lhs.<span class="me1">toString</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">String</span> rhs_str <span class="sy0">=</span> rhs.<span class="me1">toString</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> lhs_str.<span class="me1">compareTo</span><span class="br0">&#40;</span>rhs_str<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span></pre></div>
+
+
+The object <tt>cmp</tt>
+is created using an <i>anonymous inner class</i>. 
+<tt>Comparator</tt> is an interface which 
+requires the definition of the function <tt>compare</tt>.
+Java
+creates a class which implements <tt>Comparator</tt> on the fly and makes
+<tt>cmp</tt> an instance of this class. 
+The class is local to the <tt>mainSetOps</tt>
+function and is never given a name.
+<p></p>
+The second demo function, <tt>mainSortedSetOps</tt>
+illustrates  advanced <tt>Set</tt> operations used in the
+<tt>SortedSet</tt> and <tt>NavigableSet</tt> interfaces.
+
+<h3><a name="implementation"></a>TreeSet Implementation</h3>
+
+We're going to install our own implementation of the <tt>TreeSet</tt> called
+<tt>SearchTreeSet</tt>. This is done is the same manner as in 
+<a href="array-lists.html#implementation">Array Lists</a>
+
+
+<h4>Adapter Basis</h4>
+As with the <tt>AListAdapter</tt>, <tt>LListAdapter</tt>, and <tt>DequeAdapter</tt> 
+we create a vacuous basis of the <tt>TreeSet</tt> class from which we will derive our 
+user-defined version.
+<p></p>
+
+The <tt>TreeSet</tt> only
+needs to implement the <tt>NavigableSet</tt> interface, and so we call
+our class <tt>NavSetAdapter</tt>.
+As a useful variation, we will write both a simpler
+<tt>SetAdapter</tt> class and make 
+<tt>NavSetAdapter</tt> an extension. This will serve several purposes
+later down the line as well.
+<p></p>
+
+
+Create the Java Class:
+<pre class='n'>
+Class Name: <b>SetAdapter</b>
+package:    <b>set</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/set/SetAdapter.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+set.SetAdapter</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+Create the Java Class:
+<pre class='n'>
+Class Name: <b>NavSetAdapter</b>
+package:    <b>set</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/set/NavSetAdapter.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+set.NavSetAdapter</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<h4><a name="searchtreeset-impl"></a>SearchTreeSet Implementation</h4>
+
+Create the Java Class:
+<pre class='n'>
+Class Name: <b>Mutable</b>
+package:    <b>util</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/util/Mutable.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+util.Mutable.java</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+Create the Java Class:
+<pre class='n'>
+Class Name: <b>SearchTreeSet</b>
+package:    <b>tree</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/tree/SearchTreeSet.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+tree.SearchTreeSet</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<h4>Initial test-drive of our implementation</h4>
+
+To verify that <tt>SearchTreeSet</tt> 
+"works" like <tt>TreeSet</tt> (to some degree):
+<ol>
+<li>add this <tt>import</tt> statement to <tt>Main.java</tt>
+(it is already there commented out):
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">import</span> <span class="co2">tree.*</span><span class="sy0">;</span></pre></div>
+</li>
+<li>
+Replace all three
+occurrences of <tt>TreeSet</tt> by <tt>SearchTreeSet</tt>
+in the <tt>mainSetOps</tt> function.
+</li>
+</ol>
+Our <tt>SearchTreeSet</tt> does not implement all the
+functions necessary to execute <tt>mainSortedSetOps</tt>,
+but you can try it to see what happens.
+
+
+<h3><a name="searchtreeset-discussion"></a>SearchTreeSet Discussion</h3>
+
+Our implementation uses a
+ simple binary tree constructed with nodes defined by this inner class:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw1">class</span> Node <span class="br0">&#123;</span>
+  E data<span class="sy0">;</span>
+  Node left, right<span class="sy0">;</span>
+&nbsp;
+  Node<span class="br0">&#40;</span>E data, Node left, Node right<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span>.<span class="me1">data</span> <span class="sy0">=</span> data<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">left</span> <span class="sy0">=</span> left<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">right</span> <span class="sy0">=</span> right<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+The data members of our class are these:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node root <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>
+<span class="kw1">private</span> <span class="kw4">int</span> size <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="kw1">private</span> Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;</span> cmp <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>  <span class="co1">// passed into constructor</span></pre></div>
+
+<h4>Comparability</h4>
+We remarked above that a
+ key feature of a <tt>TreeSet</tt> is the ability to order the elements.
+Thus they must either be 
+<ul class='notes'>
+	<li>
+<tt>Comparable</tt> themselves, as in this  instantiation:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">new</span> TreeSet<span class="sy0">&lt;</span>SomeComparableElementType<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+</li>
+<li>
+or a <tt>Comparator</tt> must be passed to the constructor as in:
+<div class='format_display'>
+<span></span>
+<pre class="java">Comparator<span class="sy0">&lt;</span>SomeElement<span class="sy0">&gt;</span> my_cmp <span class="sy0">=</span> <span class="kw1">new</span> Comparator<span class="sy0">&lt;</span>SomeElement<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">public</span> <span class="kw4">int</span> compare<span class="br0">&#40;</span>SomeElement lhs, SomeElement rhs<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="co1">//...</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">new</span> TreeSet<span class="sy0">&lt;</span>SomeElementType<span class="sy0">&gt;</span><span class="br0">&#40;</span>my_cmp<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+</li>
+</ul>
+
+In the former case the internal private data member <tt>cmp</tt> 
+is the default <tt>null</tt> value.
+In the latter case, we would have 
+<pre>cmp = my_cmp</pre> 
+making <tt>cmp</tt> a non-<tt>null</tt> value.
+In either case, we use a <tt>private</tt> helper function, <tt>myCompare</tt>,
+to do the right thing:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw4">int</span> myCompare<span class="br0">&#40;</span>E lhs, E rhs<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>cmp <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="co1">// no Comparator passed into constructor,</span>
+    <span class="co1">// assume element type, E, is Comparable</span>
+    <span class="kw1">return</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><span class="kw3">Comparable</span><span class="br0">&#41;</span>lhs<span class="br0">&#41;</span>.<span class="me1">compareTo</span><span class="br0">&#40;</span>rhs<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+  <span class="kw1">else</span> <span class="br0">&#123;</span>
+    <span class="co1">// use the Comparator to compare elements of type E</span>
+    <span class="kw1">return</span> cmp.<span class="me1">compare</span><span class="br0">&#40;</span>lhs, rhs<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h4>Textbook comparison</h4>
+The textbook's class declaration of the search tree is like this:
+<pre>
+public class SearchTreeSet&lt;E extends Comparable&lt;? super E&gt;&gt; ...
+</pre>
+which implies that its element type <b>must</b> be <tt>Comparable</tt>!
+This implementation unnecessarily restricts the 
+element types a search tree can hold, a restriction not made
+by the <tt>java.util.TreeSet</tt> class in which we
+can pass a <tt>Comparator</tt> for a non-<tt>Comparable</tt> class.
+
+
+<h3><a name="reference"></a>The add function</h3>
+
+Our goal in this and subsequent sections is to detail the writing of the
+<tt>add</tt> function:
+<pre class='n'>
+boolean add(E elt) { ... }
+</pre>
+The basic idea is to employ a recursive helper function which works its way
+down the tree looking for the correct spot to insert a new node whose
+data value is the element, <tt>elt</tt>.
+
+
+<h4>Reference parameters (non-existent in Java)</h4>
+
+Other languages, like C++, have 
+<i>reference</i> parameters for functions which provide the ability to modify
+a parameter variable. If this existed in Java, we could write the recursive helper like this:
+<div class='format_display'>
+<span></span>
+<pre class="java bad"><span class="kw4">boolean</span> add<span class="br0">&#40;</span>Node n, E elt<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+which is called at the root as follows:
+<div class='format_display'>
+<span></span>
+<pre class="java bad"><span class="kw4">boolean</span> found <span class="sy0">=</span> add<span class="br0">&#40;</span>root, elt<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+and the recursive helper function would be written like 
+this (<b style='color:blue'>this is not java!!!</b>):
+<div class='format_display'>
+<span></span>
+<pre class="java bad"><span class="kw1">private</span> <span class="kw4">boolean</span> add<span class="br0">&#40;</span>Node <span class="sy0">&amp;</span> n, E elt<span class="br0">&#41;</span>   <span class="co1">// n is a &quot;reference&quot; parameter </span>
+<span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    n <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, <span class="kw2">null</span>, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>  <span class="co1">// reset n's value</span>
+    <span class="kw1">return</span> <span class="kw2">false</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw4">int</span> comp <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> add<span class="br0">&#40;</span>n.<span class="me1">left</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> add<span class="br0">&#40;</span>n.<span class="me1">right</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="kw2">true</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+<p></p>
+We cannot proceed in this way because Java is a simple language when it comes
+to parameter passing &#151; there is only one way to pass a parameter. Despite the
+drawbacks of this limitation, the up side is that you will avoid the many potential
+mistakes which come along with parameter-passing flexibility. For example, in C++,
+there are 5 viable ways to pass an object as a parameter, and it's quite tricky to
+do the right thing unless you're an expert.
+
+<h3><a name="java-ref"></a>Simulate a reference parameter</h3>
+
+The Java language only provides pass-by-value, meaning that
+the function only ever works with a copy of the variable,
+never permitting a change to the original variable's value.
+If we want a function to have an effect on a variable,
+we must, in effect, <i>simulate</i> a reference parameter. 
+Our choices are these:
+<ol class="notes" type="a">
+<li>Pass a variable to the function
+(i.e., pass its value); return an updated value
+and reset the variable from the return value. The call will look like this:
+<pre class='n'>
+SomeType <b style='color:blue'>some_var</b> = foo( <b style='color:blue'>some_var</b>, ... );
+</pre>
+The variable <tt>some_var</tt> passes its value into the function, the function
+computes and returns a new value, and then the assignment statement
+resets <tt>some_var</tt> to the new value.
+</li>
+<li>
+Pass an object containing the variable as member data
+ and reset the value using permitted member operations.
+</li>
+</ol>
+
+
+<h3><a name="boolean"></a>Java-valid binary search tree add</h3>
+
+At first, we want to ignore the issue of reporting whether the element 
+was found or not and concentrate on simulating the
+<tt>Node</tt> reference parameter. 
+We write (as in the textbook):
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node add<span class="br0">&#40;</span>Node n, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, <span class="kw2">null</span>, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw4">int</span> comp <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>                 <span class="co1">// go left</span>
+    n.<span class="me1">left</span> <span class="sy0">=</span> add<span class="br0">&#40;</span>n.<span class="me1">left</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>    <span class="co1">// modify subtree on left</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>            <span class="co1">// go right</span>
+    n.<span class="me1">right</span> <span class="sy0">=</span> add<span class="br0">&#40;</span>n.<span class="me1">right</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>  <span class="co1">// modify subtree on right</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">else</span> <span class="br0">&#123;</span>         <span class="co1">// equal, do not add</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>    <span class="co1">// no changes to n</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+Duplicate elements are not added, but we currently have no report of whether
+the element was found or not.
+Given this version of <tt>add</tt>, the initial call within the public <tt>add</tt> function should be:
+<pre class='n'>
+<b style='color:blue'>root</b> = add(<b style='color:blue'>root</b>, elt);
+</pre>
+You can see this style repeated in each of the recursive calls:
+<pre class="n">
+<b style='color:blue'>n.left</b> = add(<b style='color:blue'>n.left</b>, elt);
+</pre>
+and
+<pre class="n">
+<b style='color:blue'>n.right</b> = add(<b style='color:blue'>n.right</b>, elt);
+</pre>
+The proof that this Java-based algorithm works is by induction. 
+Assuming <tt>root</tt> is the top of a binary search tree, 
+the claim is that the statement
+<pre class="n">
+n = add(n, elt);
+</pre>
+correctly inserts <tt>elt</tt> into the search tree rooted at Node <tt>n</tt>
+<div class="n lh3">
+  if <tt>n == null</tt>, clearly it works
+<br />
+  if <tt>n != null</tt>, and <tt>elt</tt> is found at <tt>n</tt>, it works also
+  <br />
+  otherwise, the algorithm correctly calls one of these two:
+     <pre class='n'>n.left = add(n.left,elt)    <span class='ssf'>or</span>     n.right = add(n.right,elt)</pre>
+  which, by the inductive assumption, must work, and
+  in that case <tt>n</tt> itself is not changed.
+</div>
+
+<h4>Determining the add return value using contains</h4>
+
+Java's public <tt>add</tt> function needs to know whether the private
+<tt>add</tt> function actually added the element or not because:
+<ul class='notes'>
+<li>if the element <b>was found</b> during the add it means it 
+ <b>was not added</b>,
+and so we do not increase size and return <b>false</b> to indicate a failed <tt>add</tt>.	
+</li>
+<li>
+if the element <b>was not found</b> during the add, it means that it 
+<b>was added</b>, and so we increase the size and return <b>true</b> 
+to indicate a successful <tt>add</tt>
+</li>
+</ul>
+The discovery of whether the element to be added already exists 
+could be done by an initial pass down the tree using the 
+<tt>contains</tt> function. We could write public <tt>add</tt> as follows:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw4">boolean</span> add<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw4">boolean</span> found <span class="sy0">=</span> contains<span class="br0">&#40;</span>elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>found<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="sy0">++</span>size<span class="sy0">;</span>
+    root <span class="sy0">=</span> add<span class="br0">&#40;</span>root, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">return</span> <span class="sy0">!</span>found<span class="sy0">;</span>  <span class="co1">// successful add if not found</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw4">boolean</span> contains<span class="br0">&#40;</span><span class="kw3">Object</span> obj<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  E elt <span class="sy0">=</span> <span class="br0">&#40;</span>E<span class="br0">&#41;</span> obj<span class="sy0">;</span>
+  <span class="kw1">return</span> contains<span class="br0">&#40;</span>root, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">private</span> <span class="kw4">boolean</span> contains<span class="br0">&#40;</span>Node n, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="kw2">false</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw4">int</span> comp <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> contains<span class="br0">&#40;</span>n.<span class="me1">left</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> contains<span class="br0">&#40;</span>n.<span class="me1">right</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="kw2">true</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+Of course, writing <tt>add</tt> in this way creates an unnecessary 
+doubling of execution time whenever a new element is added 
+(which is likely to be most of the time).
+Even though that execution time is considered to be
+logarithmic, it is still unnecessary.
+
+<h4>Simulating an additional (Boolean) reference variable</h4>
+
+If you refer back to the "C++-style" add function which has a Node
+reference parameter, you see that the return value of the function is
+the boolean value indicating whether the element was found (and not added)
+ or not found (and added).
+At this point, our <tt>add</tt>
+function return value is already in use as the <tt>Node</tt> parameter. 
+<p></p>
+Based on our discussion above, the only remaining way to "send back" 
+information from a function is through data members set
+in an object passed into the function.
+So what about using the <tt>Boolean</tt> (wrapper) class itself? 
+The problem is that there is no way to 
+<b>reset</b> a <tt>Boolean</tt> object's value. 
+All the standard wrapper classes defined in <tt>java.lang</tt>
+are <i>immutable</i>, meaning that once the initial value are set, say:
+<pre class='n'>
+Boolean b = new Boolean(true);
+</pre>
+you can never <b>reset</b> the internal value of this particular 
+object <b>b</b>. 
+As a summary:
+<div class='format_display'>
+<span></span>
+<pre class="java bad lh3"><span class="co1">// NEITHER OF THESE CAN WORK!!</span>
+Node add <span class="br0">&#40;</span>Node n, E elt, <span class="kw4">boolean</span> found<span class="br0">&#41;</span> <span class="br0">&#123;</span> ... <span class="br0">&#125;</span>
+Node add <span class="br0">&#40;</span>Node n, E elt, <span class="kw3">Boolean</span> found<span class="br0">&#41;</span> <span class="br0">&#123;</span> ... <span class="br0">&#125;</span></pre></div>
+<p></p>
+
+What we need is a our own wrapper class
+around <tt>Boolean</tt>
+(or other) object types in which one can read and write the internal
+data value.  This is the purpose of the
+<tt class='file'>util.Mutable</tt> class 
+used in our implementation:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">final</span> <span class="kw1">class</span> Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> <span class="br0">&#123;</span>
+  <span class="kw1">private</span> E value <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>
+  <span class="kw1">public</span> E get<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> 
+    <span class="kw1">return</span> value<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">public</span> <span class="kw4">void</span> set<span class="br0">&#40;</span>E value<span class="br0">&#41;</span> <span class="br0">&#123;</span> 
+    <span class="kw1">this</span>.<span class="me1">value</span> <span class="sy0">=</span> value<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">public</span> Mutable<span class="br0">&#40;</span>E value<span class="br0">&#41;</span> <span class="br0">&#123;</span> set<span class="br0">&#40;</span>value<span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+  <span class="kw1">public</span> Mutable<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+The <tt class='file'>final</tt> qualifier means that this class cannot be extended.
+
+<h4>The add function without contains</h4>
+
+Using this <tt>Mutable</tt> class, 
+we can pass back the found information in the <tt>add</tt> function like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw4">boolean</span> add<span class="br0">&#40;</span>Node n, E elt, Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span> found<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">//...</span>
+  found.<span class="me1">set</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="sy0">;</span>   <span class="co1">// if elt is found</span>
+  <span class="co1">//...</span>
+  found.<span class="me1">set</span><span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span><span class="sy0">;</span>  <span class="co1">// if elt is not in the tree</span>
+  <span class="co1">//...</span>
+<span class="br0">&#125;</span></pre></div>
+
+We can now rewrite <tt>add</tt> to achieve our goal using the corresponding
+<tt>found.get()</tt> to retrieve the value obtained from the function call.
+<pre>
+public boolean add(E elt) {
+  Mutable&lt;Boolean> found = new Mutable&lt;Boolean>();
+  root = add(root, elt, found);
+  if (!<b style='color:blue'>found.get()</b>) {
+    ++size;
+  }
+  return !<b style='color:blue'>found.get()</b>;  // a successful add is the opposite of being found
+}
+
+private Node add(Node n, E elt, Mutable&lt;Boolean> found) {
+  if (n == null) {
+    <b style='color:blue'>found.set(false)</b>;
+    return new Node(elt, null, null);
+  }
+  int comp = myCompare(elt, n.data);
+  if (comp &lt; 0) {
+    n.left = add(n.left, elt, found);
+    return n;
+  } else if (comp &gt; 0) {
+    n.right = add(n.right, elt, found);
+    return n;
+  } else {
+    <b style='color:blue'>found.set(true)</b>;
+    return n;
+  }
+}
+</pre>
+
+<h4>Timing Considerations</h4>
+
+Both versions of the <tt>add</tt> functions as well as contains are
+considered to be logarithmic time, i.e. <tt><big>O(log(n))</big></tt>.
+This of course, assumes that the tree is "well balanced" in some sense,
+however, in any realistic implementation, this will be the case.
+<p></p>
+The latter version of <tt>add</tt>, using the <tt>Mutable&lt;Boolean&gt;</tt>
+variable, is slightly more efficient because it needs only one pass 
+down the tree, whereas when <tt>contains</tt> is used, 
+two passes are needed when the element is actually added.
+
+<h3><a name="internal"></a>Traversals / Displaying Structure</h3>
+
+Obtaining information about the contents of a
+tree structure is usually accomplished by
+<i>traversing</i> the tree in one of several standard methods:
+<ol>
+<li>
+<i>preorder</i> traversal (root, left, right):
+<pre class="n" style="padding-top:0;margin-top:0;margin-bottom:0">
+ visit the root
+ visit the left subtree recursively
+ visit the right subtree recursively
+</pre>
+</li>
+<li>
+<i>inorder</i> traversal (left, root, right):
+<pre class="n" style="padding-top:0;margin-top:0;margin-bottom:0">
+ visit the left subtree recursively
+ visit the root
+ visit the right subtree recursively
+</pre>
+</li>
+<li>
+<i>postorder</i> traversal (left, right, root):
+<pre class="n" style="padding-top:0;margin-top:0;margin-bottom:0">
+ visit the left subtree recursively
+ visit the right subtree recursively
+ visit the root
+</pre>
+</li>
+<li>
+<i>levelorder</i> traversal (this is not recursive)
+<pre class="n" style="padding-top:0;margin-top:0;margin-bottom:0">
+ visit the root
+ visit the children of the root
+ visit the children's children   
+ ...
+</pre>
+</li>
+</ol>
+In the simplest form, each of the first three traversals is easy to
+implement as follows:
+<pre>
+preorderOutput(root);
+
+// using the function ...
+void <b style='color:blue'>preorderOutput</b>(Node n) {
+  if (n == null) {
+    return;
+  }
+  System.out.println(n.data);   // root
+  <b style='color:blue'>preorderOutput</b>(n.left);        // left
+  <b style='color:blue'>preorderOutput</b>(n.right);       // right
+}
+</pre>
+<pre>
+inorderOutput(root);
+
+// using the function ...
+void <b style='color:blue'>inorderOutput</b>(Node n) {
+  if (n == null) {
+    return;
+  }
+  <b style='color:blue'>inorderOutput</b>(n.left);        // left
+  System.out.println(n.data);   // root
+  <b style='color:blue'>inorderOutput</b>(n.right);       // right
+}
+</pre>
+<pre>
+postorderOutput(root);
+
+// using the function ...
+void <b style='color:blue'>postorderOutput</b>(Node n) {
+  if (n == null) {
+    return;
+  }
+  <b style='color:blue'>postorderOutput</b>(n.left);        // left
+  <b style='color:blue'>postorderOutput</b>(n.right);       // right
+  System.out.println(n.data);   // root
+}
+</pre>
+Consider the effect on the following binary search tree:
+<div class="n">
+<img border="0" style="border:solid 1px black;" src="/~rkline/DS/images/bst2.png" height="150px" />
+</div>
+One can validate that using the above inorder algorithm 
+would print out the elements in their correct comparable order
+(one per line):
+<pre class="n">
+inorder listing: 5 15 17 18 20 22 25 27 30
+</pre>
+In order to reveal the structure of the tree you also want
+to add indentation corresponding to a node's level. 
+To do this, modify the code as follows:
+<pre>
+inorderOutput(root,0);
+
+// using the function ...
+void <b style='color:blue'>inorderOutput</b>(Node n, int <b style='color:red'>level</b>) {
+  if (n == null) {
+    return;
+  }
+  <b style='color:blue'>inorderOutput</b>(n.left, <b style='color:red'>level+1</b>);
+  // print indentation corresponding to current level
+  System.out.println(n.data);
+  <b style='color:blue'>inorderOutput</b>(n.right, <b style='color:red'>level+1</b>);
+}
+</pre>
+Assuming that "print indentation corresponding to current level" means
+print <tt>3*level</tt> blanks, the output would be this:
+<pre class="n">
+      5
+   15
+          17
+      18
+20
+          22
+      25
+          27
+   30
+</pre>
+This yields a pretty good correspondence to the actual tree, 
+but it is easier to "see" the tree 
+if one used a <i>reverse-inorder</i> printing
+corresponding to a "right, root, left" visitation:
+<pre>
+reverseInorderOutput(root,0);
+
+// using the function ...
+void <b style='color:blue'>reverseInorderOutput</b>(Node n, int level) {
+  if (n == null) {
+    return;
+  }
+  <b style='color:blue'>reverseInorderOutput</b>(n.right, level+1);
+  // print indentation corresponding to current level
+  System.out.println(n.data);
+  <b style='color:blue'>reverseInorderOutput</b>(n.left, level+1);
+}
+</pre>
+Compare the output of this function with the actual tree:
+<div class="n">
+<table>
+<tr>
+<td>
+<pre class="n" style="font-size:110%">
+   30
+          27
+      25
+          22
+20
+      18
+          17
+   15
+      5
+</pre>
+</td>
+<td style="padding-left:40px">
+<img border="0" style="border:solid 1px black;" src="/~rkline/DS/images/bst2.png" height="140px"/>
+</td>
+</tr>
+</table>
+</div>
+Although generally not as useful for visualization, the preorder
+and postorder traversal methods are nevertheless very important in
+tree-processing algorithms. Here are their listings of our sample tree:
+<pre class="n lh3" style="padding-bottom:0">
+preorder listing:  20 15 5 18 17 30 25 22 27
+postorder listing: 5 17 18 15 22 27 25 30 20
+</pre>
+
+<h4>Test program</h4>
+The following function, <tt>mainTraversals</tt>,
+creates a random binary search tree with up to 10 elements and then
+calls the implementation-dependent traverse/output functions 
+<pre class="n">
+public String inorderOutput();
+public String preorderOutput();
+public String preorderOutput();
+public String reverseInorderOutput();
+</pre>
+Double-check that you have the <tt>import</tt> line:
+<pre>
+import tree.*;
+</pre>
+Then add the following function into the <tt>Main</tt> class:
+
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo_all/src/treedemo/Main4.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainTraversals</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+and have <tt>main</tt> call it:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">//...</span>
+  mainTraversals<span class="br0">&#40;</span>args<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h4>Timing Considerations</h4>
+
+For any of the traversals on a tree with <tt>N</tt> nodes,
+ we can prove the following:
+<div class='n'>
+the number of function calls = <tt>1 + 2*N</tt>
+</div>
+The proof is by induction. It is easy to verify for <tt>N=0</tt>
+or <tt>N=1</tt>. Then for <tt>N &ge; 1</tt> write:
+<pre class='n'>
+N = 1+L+R
+</pre>
+where
+<pre class='n'>
+L = <span class='ssf'># nodes in left subtree</span>
+R = <span class='ssf'># nodes in right subtree</span>
+</pre>
+Considering the initial call to the node as 1, we can see that
+<div class='n'>
+total calls = 1 + total calls on left side + total calls on right side
+</div>
+By induction,
+<div class='n'>
+total calls on left = <tt>1+2*L</tt>
+<br />
+total calls on right = <tt>1+2*R</tt>
+</div>
+giving us:
+<div class='n'>
+total calls = <tt>1 + (1+2*L) + (1+2*R) = 1 + 2*(1+L+R) = 1 + 2*N</tt>
+</div>
+In particular, we say that traversals are linear time, or <tt><big>O</big>(n)</tt> in terms of the number, <tt>n</tt> of nodes.
+
+<h3><a name="remove"></a>The remove function</h3>
+
+Removing an element from a search tree, although tricky, is 
+conceptually straight-forward with one (common) exception:
+removing the element at a node with two non-null children. In this case,
+the solution is either:
+<ul class="notes">
+<li>
+<b>removeMax</b>: 
+remove the maximum (rightmost) node from the <b>left</b> subtree and
+replace the root's value with the value of the removed node.
+</li>
+<li>
+<b>removeMin</b>: 
+remove the minimum (leftmost) node from the <b>right</b> subtree and
+replace the root's value with the value of the removed node.
+</li>
+</ul>
+In either case the search tree's order structure is preserved.
+
+<h4>removeMin and removeMax</h4>
+
+The idea of <tt>removeMin</tt> from a given node is simple: navigate to
+the leftmost node; capture the value, delete the node. Unfortuately, Java's
+lack of a reference parameters makes it tricky.
+<p></p>
+The first step is to understand the removal operation without returning the
+value. To do
+<tt>removeMin</tt> from the right subtree of 
+<tt>Node n</tt>, we would execute:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">n.<span class="me1">right</span> <span class="sy0">=</span> removeMin<span class="br0">&#40;</span> n.<span class="me1">right</span> <span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+using the recursive function:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node removeMin<span class="br0">&#40;</span> Node n <span class="br0">&#41;</span> <span class="br0">&#123;</span>  <span class="co1">// n is never null when called</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">left</span> <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span>
+    <span class="kw1">return</span> n.<span class="me1">right</span><span class="sy0">;</span>
+  <span class="kw1">else</span> <span class="br0">&#123;</span>
+    n.<span class="me1">left</span> <span class="sy0">=</span> removeMin<span class="br0">&#40;</span> n.<span class="me1">left</span> <span class="br0">&#41;</span><span class="sy0">;</span> 
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+Here is a depiction of how this would be used in the remove function.
+Suppose we do <tt>remove(20)</tt>
+and this calls <tt>removeMin</tt> on the right:
+<hr />
+<div style='font-size:10pt;margin: 10px 30px;position:relative'>
+<img src="/~rkline/DS/images/removeMin1.jpg" />
+<div style='position:absolute;left:0;top:145px'>
+<pre style='padding:8px'>
+p.right = removeMin(p.right);
+</pre>
+</div>
+</div>
+<hr />
+
+In order to capture the minimum
+value, we could, as is done in the textbook,
+call two operations, one to <b>find</b> the minimum value, a second to
+<b>remove</b> it. This is probably acceptable; however it is inefficient
+because we are navigating down to the same point in the tree twice.
+<p></p>
+As an alternative, we will use a <tt>Mutable</tt> object to capture the minimum value. 
+The modified code should capture the value prior to deleting the node:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node removeMin<span class="br0">&#40;</span>Node n, Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> save<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">left</span> <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    save.<span class="me1">set</span><span class="br0">&#40;</span>n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n.<span class="me1">right</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+    n.<span class="me1">left</span> <span class="sy0">=</span> removeMin<span class="br0">&#40;</span>n.<span class="me1">left</span>, save<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+After executing:
+<div class='format_display'>
+<span></span>
+<pre class="java">Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> save <span class="sy0">=</span> <span class="kw1">new</span> Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+n.<span class="me1">right</span> <span class="sy0">=</span> removeMin<span class="br0">&#40;</span> n.<span class="me1">right</span>, save <span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+we can obtain the captured value as
+<tt>save.get()</tt>
+and replace <tt>Node n</tt>'s value with it:
+<div class='format_display'>
+<span></span>
+<pre class="java">n.<span class="me1">data</span> <span class="sy0">=</span> save.<span class="me1">get</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+<p>
+</p>
+By symmetry we can easily generate the <tt>removeMax</tt> function:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node removeMax<span class="br0">&#40;</span>Node n, Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> save<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">right</span> <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    save.<span class="me1">set</span><span class="br0">&#40;</span>n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n.<span class="me1">left</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+    n.<span class="me1">right</span> <span class="sy0">=</span> removeMax<span class="br0">&#40;</span>n.<span class="me1">right</span>, save<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h4>The private remove helper function</h4>
+
+Like the <tt>add</tt> operation, <tt>remove</tt> needs to
+know whether the element was found or not in order to provide the
+correct return value. We could to the "found discovery" independently
+using the <tt>contains</tt> function, but we
+can also do it in one pass like this:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span> found <span class="sy0">=</span> <span class="kw1">new</span> Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+root <span class="sy0">=</span> remove<span class="br0">&#40;</span> root, elt, found <span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+Like <tt>add</tt>, we navigate down from the <tt>root</tt> 
+looking for an occurrence of <tt>elt</tt>.
+The base case is an empty tree in which we do nothing. If the element
+is found, then the "hard" case is when the node has both children.
+At this point we can choose to do either 
+<tt>removeMin</tt> or <tt>removeMax</tt>.
+There are two reasonable ways to proceed:
+<ul class="notes" type='a'>
+<li>
+choose to do one of <tt>removeMin</tt> or <tt>removeMax</tt> and
+always make the same choice
+</li>
+<li>
+choose one of 
+<tt>removeMin</tt> or <tt>removeMax</tt> 
+based
+on a random value
+</li>
+</ul>
+The textbook uses the former alternative and notes
+the potential "skewing" effect which can occur with certain add/remove operation sequences.
+The code we use effects the latter alternative.
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw3">Random</span> flipACoin <span class="sy0">=</span> <span class="kw1">new</span> <span class="kw3">Random</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">private</span> Node remove<span class="br0">&#40;</span>Node n, E elt, Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span> found<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    found.<span class="me1">set</span><span class="br0">&#40;</span><span class="kw2">false</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> <span class="kw2">null</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw4">int</span> comp <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    n.<span class="me1">left</span> <span class="sy0">=</span> remove<span class="br0">&#40;</span>n.<span class="me1">left</span>, elt, found<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    n.<span class="me1">right</span> <span class="sy0">=</span> remove<span class="br0">&#40;</span>n.<span class="me1">right</span>, elt, found<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> n<span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+  <span class="co1">// we have found it</span>
+  found.<span class="me1">set</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">left</span> <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> n.<span class="me1">right</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">right</span> <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> n.<span class="me1">left</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+&nbsp;
+  <span class="co1">// the most difficult situation is upon us!!</span>
+&nbsp;
+  Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> save <span class="sy0">=</span> <span class="kw1">new</span> Mutable<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw4">boolean</span> choose_min <span class="sy0">=</span> <span class="br0">&#40;</span>flipACoin.<span class="me1">nextInt</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">if</span> <span class="br0">&#40;</span>choose_min<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    n.<span class="me1">right</span> <span class="sy0">=</span> removeMin<span class="br0">&#40;</span>n.<span class="me1">right</span>, save<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span> 
+  <span class="kw1">else</span> <span class="br0">&#123;</span>
+    n.<span class="me1">left</span> <span class="sy0">=</span> removeMax<span class="br0">&#40;</span>n.<span class="me1">left</span>, save<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  n.<span class="me1">data</span> <span class="sy0">=</span> save.<span class="me1">get</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">return</span> n<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+The textbook points out in section 4.3.5 that always choosing, say,
+"removeMin on the right" can cause a skewing "left-skewing" effect.
+The following diagram indicates the outcome of 
+<tt>O(n<sup>2</sup>)</tt>
+deletions from a random tree created from 
+<tt>O(n)</tt> initial insertions: 
+<div class='n' style='position:relative'>
+<img src="/~rkline/DS/images/skew-deletions.jpg" />
+<span style='position:absolute;top:20px;left:20px'>Figure 4.27 from<br />
+Weiss textbook</span>
+</div>
+Other alternatives might be to try to make a "best" choice between
+<tt>removeMin</tt> or <tt>removeMax</tt> 
+based on, say, the height of the left and right subtrees or the number
+of nodes within; however, to make such a modification 
+efficient you would have to hold this extra information 
+in a field in the <tt>Node</tt> class and operations would have
+to <i>maintain</i> this field correctly.
+
+<h4>The public remove operation</h4>
+The public <tt>remove</tt> member function uses the following code:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw4">boolean</span> remove<span class="br0">&#40;</span><span class="kw3">Object</span> obj<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  E elt <span class="sy0">=</span> <span class="br0">&#40;</span>E<span class="br0">&#41;</span> obj<span class="sy0">;</span>
+  Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span> found <span class="sy0">=</span> <span class="kw1">new</span> Mutable<span class="sy0">&lt;</span>Boolean<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  root <span class="sy0">=</span> remove<span class="br0">&#40;</span>root, elt, found<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>found.<span class="me1">get</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="sy0">--</span>size<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">return</span> found.<span class="me1">get</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+As mentioned above, we can write a slightly simpler helper function and
+use the <tt>contains</tt> function to establish the return value like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw4">boolean</span> remove<span class="br0">&#40;</span><span class="kw3">Object</span> obj<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  E elt <span class="sy0">=</span> <span class="br0">&#40;</span>E<span class="br0">&#41;</span> obj<span class="sy0">;</span>
+  <span class="kw4">boolean</span> found <span class="sy0">=</span> contains<span class="br0">&#40;</span>elt<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>found<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    root <span class="sy0">=</span> remove<span class="br0">&#40;</span>root, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="sy0">--</span>size<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">return</span> found<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+The Java prototype of <tt>remove(Object obj)</tt> 
+forces us to cast <tt>obj</tt> to the generic type <tt>E</tt>. 
+This which will generate an exception if <tt>obj</tt> is not of type
+<tt>E</tt> to begin with! You could avoid the exception by
+ testing the type using
+"<tt>obj instanceof E</tt>", but
+Java's <tt>java.util.TreeSet</tt> implementation
+appears to prefer throwing the cast exception.
+
+<p></p>
+Note the semantic
+difference between the return value for <tt>add</tt> and <tt>remove</tt> 
+in that finding the element returns <tt>false</tt> for 
+<tt>add</tt> and <tt>true</tt> for <tt>remove</tt>.
+
+<h4>Test program</h4>
+The following function, <tt>mainRemove</tt>,
+ creates a "random" tree of up to <tt>num_samples</tt> integers
+and removes one of the integers at random.
+Add this function  to the <tt>Main</tt> class
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo_all/src/treedemo/Main5.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainRemove</span>
+<a href="/~rkline/ds/showhide/target/search-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+and have <tt>main</tt> call it:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">//...</span>
+  mainRemove<span class="br0">&#40;</span>args<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h4>Timing Considerations</h4>
+
+The <tt>remove</tt>, <tt>removeMax</tt> and <tt>removeMin</tt> functions,
+like <tt>add</tt> and <tt>contains</tt> can all be done with a single
+pass down the tree, and thus are also considered to be logarithmic time.
+
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>
