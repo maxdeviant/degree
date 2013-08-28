@@ -1,0 +1,638 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - AVL Trees</title>
+<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
+<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
+<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+AVL Trees</h2>
+<div id="mtime">last modified: Apr 3, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#avl-trees">AVL Search Trees</option>
+<option value="#rebalance-operations">AVL Rebalancing Operations</option>
+<option value="#examples">Examples</option>
+<option value="#demo">Demo programs</option>
+<option value="#code">AVL Tree Code</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+<h3>Average and Worst-case path lengths</h3>
+
+In section 4.3.5, the textbook sets up a recurrence equation for computing
+the internal path length of a tree
+<div class='n'>
+<tt>D(n)</tt> = sum of the depths of all nodes
+</div>
+for a tree created by <tt>n</tt> random insertions. By solving this equation
+(later in the textbook), it can be shown that 
+<b>average</b> internal path length over all binary trees with 
+<tt>n</tt> nodes is
+<div class='n'>
+<tt>D(n) = O(n*log(n))</tt>
+</div>
+When we say "all binary trees", we really mean 
+to generate the trees in this manner:
+<ul class='notes'>
+<li>
+Take a sequence of <tt>n</tt> ordered elements, like the integers 
+1,...,n.
+</li>
+<li>
+Take all permutations of this sequence.
+</li>
+<li>
+For each permutation, insert the elements into a binary tree in
+the order of the sequence (the first goes to the root, etc).
+</li>
+</ul>
+Even though the two insertion sequences (2,1,3) and (2,3,1) generate 
+the same tree, we are thinking of these as different trees.
+Thus a "random tree" means the tree generated from the insertion 
+sequence of a random permutation of the <tt>n</tt> ordered elements.
+<p></p>
+The implication of the order is that the <b>average path length</b> 
+of a random tree with <tt>n</tt> nodes is 
+<pre class='n'>
+(<span class='ssf'>average total path length for <tt>n</tt> nodes</span>)/n = O(n*log(n))/n = O(log(n))
+</pre>
+<p></p>
+This figure from the textbook is an illustration of such
+a random tree:
+<div class='n' style='position:relative'>
+<img src="/~rkline/DS/images/random-insertions.jpg" />
+<span style='position:absolute;bottom:20px;left:490px'>Figure 4.26 from<br />
+Weiss textbook</span>
+</div>
+
+
+
+In contrast the worst case is
+encountered if the sequence of numbers is sorted or reverse-sorted; the
+outcome is a tree skewed completely right or left, respectively.
+For example, inserting the sequence 10, 20, 30, 40, 50 produces the
+search tree:
+<div class="n" style="text-align:left">
+<img src="/~rkline/DS/images/skew-right.png" height="150px" />
+</div>
+In this case the internal path length with <tt>n</tt> nodes is:
+<pre class="n">
+0 + 1 + 2 + &hellip; + (n-1) = (n-1)*n/2,  <span class="ssf">i.e.,</span>  <big>O</big>(n<sup>2</sup>). 
+</pre>
+and the average path length is <tt>O(n)</tt>
+<p></p>
+The goal of advanced tree data structures is to ameliorate this worst-case scenario
+by having its operations "rebalance" the tree under certain circumstances so that
+the <tt>O(n)</tt> depths are avoided or not maintained.
+
+
+<h3><a name="avl-trees"></a>AVL Search Trees</h3>
+An AVL (<b>A</b>delson-<b>V</b>elski/<b>L</b>andis) tree
+is a binary search tree which maintains the following height-balanced
+"AVL property" at each node in the tree:
+<pre class="n">
+abs( (<span class='ssf'>height of left subtree</span>) &#150; (<span class='ssf'>height of right subtree</span>) ) &le; 1
+</pre>
+Namely, the left and right subtrees are of equal height, or their heights
+differ by 1.
+
+Recall that the <i>height</i> of a tree is the maximum depth (from the root)
+of any node. A tree with one node has height 0.
+We will say that the
+empty (<tt>null</tt>) tree has height <tt>-1</tt>.
+
+<p></p>
+
+It can be proved that an AVL tree with <tt>n</tt> nodes has height 
+<tt><big>O</big>(log n)</tt>, and so any <tt>n</tt> search/insert/delete operations ensuring
+ <b>worst-case</b> search cos of <tt><big>O</big>(log n)</tt>.
+
+The key idea behind the AVL tree is how a subtree is rebalanced when a node
+insertion or removal causes the AVL property to fail. Like
+the textbook, we will consider only insertions.
+
+<h4>Rebalancing Strategies</h4>
+Suppose that a node satisfies the AVL property  and that
+an add goes into the left subtree. There will be two separate cases to consider:
+<ul class='notes'>
+<li>the add goes into the left-left subtree</li>
+<li>the add goes into the left-right subtree</li>
+</ul>
+If either of these causes the left subtree to increase in height
+so that the increased height causes the AVL property to fail, 
+we perform one of the following two respective
+rotation operations:
+<ul class='notes'>
+<li>single rotate (from the) left</li>
+<li>double rotate (from the) left</li>
+</ul>
+In either case, the new tree will be balanced 
+(i.e., the AVL property satisfied)
+and will have height equal to the height of the tree prior to insertion. 
+This means that an add will only ever cause <b>one</b> rebalancing 
+rotation to reestablish the AVL property for the entire tree.
+
+<h3><a name="rebalance-operations"></a>AVL Rebalancing Operations</h3>
+
+The recursive add operation goes down the tree to the insertion point.
+Any AVL-out-of-balance problem will be "discovered" and dealt with
+as you come out of the recursive call.
+Consider  the <b>first</b> such "out-of-balance" discovery and subsequent
+rebalancing operation.
+We want to argue two things:
+<ul class="notes">
+<li>
+the rebalanced tree satisfies the AVL property at each node, and 
+</li>
+<li>
+the height of the rebalanced tree
+is the height of tree prior to insertion.
+</li>
+</ul>
+Thus as we proceed out of the recursive add calls, no other node will detect an
+"out-of-balance" state.
+In particular, only <b>one</b> rebalance ever needs to be done per add.
+<p></p>
+Aside from symmetric situations, there are two distinct cases to
+consider, so suppose the add "goes left." 
+It's trivial to
+see that if the inserted node <b>is</b> the left child, 
+then the new tree cannot be unbalanced. Therefore the cases are
+based on whether the insertion goes to the left or right
+of the left child.
+
+
+<h4>single rotate (from the) left, on a left-left insertion</h4>
+This diagram depicts the rebalance
+operation
+after an unbalancing <b>left-left</b> insertion.
+<p>
+<img 
+width="620px"
+style="border: solid 1px black; margin: 0px"
+src="/~rkline/DS/images/single_rot_left.jpg" />
+</p>
+
+<b>Proof:</b>
+Let <tt>x</tt>, <tt>y</tt>, <tt>z</tt> 
+be the heights of the trees
+X, Y, Z, respectively after insertion. Assume that the insertion
+into X caused an unbalancing at <tt>k<sub>2</sub></tt> (but not
+at <tt>k<sub>1</sub></tt> or at any node in X).
+We gather this information:
+
+
+
+<ol type="i" class="notes">
+<li>
+since the insertion into X caused an unbalancing height
+change for the full tree, the full tree's height
+after insertion must be <tt>x + 2</tt>,
+and thus <tt>x + 1</tt> before insertion.
+</li>
+<li><tt>x</tt> must be &ge; than <tt>y + 1</tt>, 
+otherwise the height of the left subtree at
+<tt>k<sub>2</sub></tt> would not have increased
+</li>
+<li>
+<tt>x</tt> cannot be greater than <tt>y + 1</tt>, otherwise the
+"AVL problem" would have been observed at <tt>k<sub>1</sub></tt>; 
+conclude that <tt>x = y + 1</tt>
+</li>
+<li><tt>x + 1 &ge; z + 2</tt>: otherwise there would be
+no problem at <tt>k<sub>2</sub></tt>
+</li>
+<li>
+<tt>x + 1</tt> cannot be greater than <tt>z + 2</tt>,
+otherwise the left side height prior to insertion (<tt>x</tt>)
+would be greater than <tt>z + 1</tt>, meaning that <tt>k<sub>2</sub></tt> was
+unbalanced prior to insertion;
+conclude that <tt>x + 1 = z + 2</tt>, i.e., 
+ <tt>x = z + 1</tt>
+
+</li>
+</ol>
+Putting these facts together:
+<pre class="n">
+x = y + 1, x = z + 1, and so y = z.
+</pre>
+For the rebalanced tree:
+<ol type="i" class="notes">
+<li>at <tt>k<sub>2</sub></tt>, left side height = <tt>y</tt> = <tt>z</tt> = right side height
+</li>
+<li>
+at <tt>k<sub>1</sub></tt>, left side height = <tt>x</tt>
+= <tt>y + 1</tt> =
+right-side height
+</li>
+<li>height of the tree = x + 1 = height before insertion</li>
+</ol>
+
+<h4>double rotate (from the) left, on a left-right insertion</h4>
+This diagram depicts the rebalance
+operation after an unbalancing <b>left-right</b> insertion.
+<p>
+<img 
+width="620px"
+style="border: solid 1px black; margin: 0px"
+src="/~rkline/DS/images/double_rot_left.jpg" />
+</p>
+<b>Proof:</b>
+Let <tt>a</tt>, <tt>b</tt>, <tt>c</tt>, <tt>d</tt>
+be the heights of the trees A, B, C, D,
+respectively after insertion. There are 3 cases to consider:
+<ol>
+<li>
+the inserted element is <tt>k<sub>2</sub></tt> 
+</li>
+<li>the inserted element goes into B</li>
+<li>the inserted element goes into C</li>
+</ol>
+In the first case, with a bit of pondering, you can convince
+yourself that the tree can consist only of the three nodes
+<tt>k<sub>1</sub></tt>,
+<tt>k<sub>2</sub></tt>
+and
+<tt>k<sub>3</sub></tt> with all
+other subtrees empty.
+
+
+We will show the proof for the second case
+where the insertion goes into the  B subtree;
+the proof of insertion into the C subtree is symmetric.
+<ol type="i" class="notes">
+<li>
+since the insertion into B caused an unbalancing height
+change of the full tree, the full tree's height
+after insertion must be <tt>b + 3</tt>,
+and thus <tt>b + 2</tt> before insertion.
+</li>
+<li>
+<tt>b</tt> must be &gt; <tt>c</tt>, otherwise the left subtree at 
+<tt>k<sub>3</sub></tt> would not have changed height.
+</li>
+<li>
+<tt>b</tt> cannot be &gt; <tt>c + 1</tt>, otherwise there 
+would be a problem at <tt>k<sub>2</sub></tt>;
+conclude that <tt>b = c + 1</tt>
+</li>
+<li><tt>b + 1</tt> must be &gt; <tt>a</tt>, otherwise
+the left 
+subtree at <tt>k<sub>3</sub></tt> would not have changed height.
+</li>
+<li>
+<tt>b + 1</tt> cannot be &gt; <tt>a + 1</tt>, otherwise there 
+would be a problem at <tt>k<sub>1</sub></tt>;
+conclude that <tt>b + 1 = a + 1</tt>, i.e., <tt>b = a</tt>
+</li>
+<li>
+in order for there to be a "problem" at <tt>k<sub>3</sub></tt>, we
+must have left-side height &ge; right-side height + 2, i.e.,
+<tt>b + 2 &ge; d + 2</tt>
+</li>
+<li>
+we cannot have <tt>b + 2 &gt; d + 2</tt>, otherwise 
+<div class="n">
+<tt>b + 1</tt> = left side height before insertion &ge; 
+<tt>d + 2</tt> = right side height before insertion + 2, 
+</div>
+meaning that
+the tree would have been unbalanced before insertion;
+conclude that <tt>b + 2 = d + 2</tt>, i.e., <tt>b = d</tt>
+</li>
+</ol>
+Putting these facts together:
+<pre class="n">
+d = a = b = c + 1
+</pre>
+For the rebalanced tree:
+<ol type="i" class="notes">
+<li>at <tt>k<sub>1</sub></tt>, left side height = <tt>a</tt> = <tt>b</tt> = right side height
+</li>
+<li>
+at <tt>k<sub>3</sub></tt>, left side height = <tt>c</tt>,
+right-side height = <tt>d = c + 1</tt>
+</li>
+<li>
+at <tt>k<sub>2</sub></tt>, left side height = <tt>b + 1</tt>
+= right-side height = <tt>d + 1</tt>
+</li>
+<li>height of the tree = b + 2 = height before insertion</li>
+</ol>
+
+<h3><a name="examples"></a>Examples</h3>
+
+An important example of AVL trees is the behavior on a worst-case
+add sequence for regular binary trees:
+<pre class='n'>
+1, 2, 3, 4, 5, 6, 7
+</pre>
+All insertions are <b>right-right</b> and so
+rotations are all <b>single rotate</b> from the <b>right</b>. All but
+two insertions require rebalancing:
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-1-a.png" width="70px" /> </td>
+<td style='padding-top:20px'> at 1 &rArr; </td>
+<td> <img src="/~rkline/DS/images/avl-1-b.png" width="100px" /> </td>
+<td> <img src="/~rkline/DS/images/avl-1-c.png" width="130px" /> </td>
+<td style='padding-top:20px'> at 3 &rArr; </td>
+<td> <img src="/~rkline/DS/images/avl-1-d.png" width="160px" /> </td>
+</tr>
+</table>
+<table>
+<tr valign='top'>
+<td style='padding-top:20px'> at 2 &rArr; </td>
+<td> <img src="/~rkline/DS/images/avl-1-e.png" width="200px" /> </td>
+<td style='padding-top:20px'> at 5 &rArr; </td>
+<td> <img src="/~rkline/DS/images/avl-1-f.png" width="220px" /> </td>
+</tr>
+</table>
+<p></p>
+It can be shown that inserting the sequence 
+<tt>1,...,2<sup>n+1</sup>-1</tt>
+will make a perfect tree of height <tt>n</tt>.
+<p></p>
+Here is another example. The insertion sequence is:
+&nbsp;
+<tt class='n'>
+50, 25, 10, 5, 7, 3, 30, 20, 8, 15
+</tt>
+
+
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-2-a.png" width="70px" /> </td>
+<td> <img src="/~rkline/DS/images/avl-2-b.png" width="100px" /> </td>
+<td style='padding-top:20px'> 
+single<br />
+rot. left<br />
+at 50 &rArr; 
+</td>
+<td> <img src="/~rkline/DS/images/avl-2-c.png" width="100px" /> </td>
+<td> <img src="/~rkline/DS/images/avl-2-d.png" width="125px" /> </td>
+</tr>
+</table>
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-2-e.png" width="160px" /> </td>
+<td style='padding-top:20px'> 
+double<br />
+rot. left<br />
+at 10 &rArr; 
+</td>
+<td> <img src="/~rkline/DS/images/avl-2-f.png" width="160px" /> </td>
+</tr>
+</table>
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-2-g.png" width="200px" /> </td>
+<td style='padding-top:20px'> 
+single<br />
+rot. left<br />
+at 25 &rArr; 
+</td>
+<td> <img src="/~rkline/DS/images/avl-2-h.png" width="200px" /> </td>
+</tr>
+</table>
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-2-i.png" width="280px" />
+</td>
+<td style='padding-top:20px'> 
+<tt>add(30)</tt>, <tt>add(20)</tt>, <tt>add(8)</tt> need no rebalancing
+</td>
+</tr>
+</table>
+<table>
+<tr valign='top'>
+<td> <img src="/~rkline/DS/images/avl-2-j.png" width="300px" /> </td>
+<td style='padding-top:20px'> 
+double<br />
+rot. right<br />
+at 7 &rArr; 
+</td>
+<td> <img src="/~rkline/DS/images/avl-2-k.png" width="300px" /> </td>
+</tr>
+</table>
+
+<h3><a name="demo"></a>Demo programs</h3>
+The class we wish to create, 
+<tt>AVLTreeSet</tt> is an "improvement" of the
+<tt>SearchTreeSet</tt> class.
+
+For demonstration purpose, we will assume you have set up the 
+<tt>TreeDemo</tt> project used in the <a href="search-trees.html">TreeSets</a> 
+document. 
+Within the <tt>tree</tt> package, create a Java Class:
+<pre class="n">
+Class Name: <b>AVLTreeSet</b>
+package:    <b>tree</b>
+</pre>
+Then insert the following content
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo/src/tree/AVLTreeSet.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+tree.AVLTreeSet</span>
+<a href="/~rkline/ds/showhide/target/avl-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+After installing the <tt>AVLTreeSet</tt> class, make it available to
+the <tt>Main</tt> class by adding the import line:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">import</span> <span class="co2">tree.*</span><span class="sy0">;</span></pre></div>
+
+The following function demonstrates the rotations made by 
+insertions according to both fixed and random patterns
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo_all/src/treedemo/MainAVL1.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainAVL1</span>
+<a href="/~rkline/ds/showhide/target/avl-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+This next program gives a comparison of how well an AVL tree competes 
+against a regular Binary Search tree for random insertion patterns.
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="TreeDemo_all/src/treedemo/MainAVL2.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainAVL2</span>
+<a href="/~rkline/ds/showhide/target/avl-trees">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+In both cases, have <tt>main</tt> call the functions by:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">//...</span>
+  mainAVL1<span class="br0">&#40;</span>args<span class="br0">&#41;</span><span class="sy0">;</span>
+  mainAVL2<span class="br0">&#40;</span>args<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h3><a name="code"></a>AVL Tree Code</h3>
+
+
+In order to keep track of height efficiently, the <tt>Node</tt> class
+is expanded to add a <tt>height</tt> field:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw1">class</span> Node <span class="br0">&#123;</span>
+  E data<span class="sy0">;</span>
+  Node left, right<span class="sy0">;</span>
+  <span class="kw4">int</span> height<span class="sy0">;</span>
+&nbsp;
+  Node<span class="br0">&#40;</span>E data, Node left, Node right, <span class="kw4">int</span> height<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span>.<span class="me1">data</span> <span class="sy0">=</span> data<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">left</span> <span class="sy0">=</span> left<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">right</span> <span class="sy0">=</span> right<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">height</span> <span class="sy0">=</span> height<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  Node<span class="br0">&#40;</span>E data, Node left, Node right<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span><span class="br0">&#40;</span>data, left, right, <span class="nu0">0</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+A private member function computes the height of 
+node so that empty tree's <tt>height</tt>
+can also be computed:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw4">int</span> height<span class="br0">&#40;</span>Node p<span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> <span class="br0">&#40;</span>p <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="sy0">?</span> <span class="sy0">-</span><span class="nu0">1</span> <span class="sy0">:</span> p.<span class="me1">height</span><span class="sy0">;</span> <span class="br0">&#125;</span></pre></div>
+
+Let's consider how the usage of the <b>single rotate left</b> will
+take place. As in the regular search tree, we start with code
+like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw4">int</span> comp <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>                       <span class="co1">// insertion goes left</span>
+   n.<span class="me1">left</span> <span class="sy0">=</span> add<span class="br0">&#40;</span>elt, n.<span class="me1">left</span>, found<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+Next, add the test for being out of balance:
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">if</span> <span class="br0">&#40;</span>height<span class="br0">&#40;</span>n.<span class="me1">left</span><span class="br0">&#41;</span> <span class="sy0">-</span> height<span class="br0">&#40;</span>n.<span class="me1">right</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">2</span><span class="br0">&#41;</span> <span class="br0">&#123;</span></pre></div>
+Assuming this is the case, we decide between single-rotate-left
+and double-rotate-left operations:
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw4">int</span> comp1 <span class="sy0">=</span> myCompare<span class="br0">&#40;</span>elt, n.<span class="me1">left</span>.<span class="me1">data</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>comp1 <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> s_rotate_left<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// left-left insertion</span>
+  <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> d_rotate_left<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// left-right insertion</span>
+  <span class="br0">&#125;</span></pre></div>
+
+We are, of course, assuming that <tt>n.left != null</tt>, but this is 
+implied by the fact that
+<tt>height(n.left) - height(n.right) == 2</tt>.
+Suppose the left-left insertion took place so that we call:
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">return</span> s_rotate_left<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// left-left insertion</span></pre></div>
+
+The function code attempts to mimick the effects indicated in the diagram above.
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node s_rotate_left<span class="br0">&#40;</span>Node n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  Node k2 <span class="sy0">=</span> n<span class="sy0">;</span>
+  Node k1 <span class="sy0">=</span> k2.<span class="me1">left</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw4">int</span> x <span class="sy0">=</span> k1.<span class="me1">left</span>.<span class="me1">height</span><span class="sy0">;</span>  <span class="co1">// k1.left cannot be null</span>
+&nbsp;
+  k2.<span class="me1">left</span> <span class="sy0">=</span> k1.<span class="me1">right</span><span class="sy0">;</span>
+  k1.<span class="me1">right</span> <span class="sy0">=</span> k2<span class="sy0">;</span>
+&nbsp;
+  k2.<span class="me1">height</span> <span class="sy0">=</span> x<span class="sy0">;</span>
+  k1.<span class="me1">height</span> <span class="sy0">=</span> x <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">return</span> k1<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+The original call was:
+<div class='format_display'>
+<span></span>
+<pre class="java">n <span class="sy0">=</span> add<span class="br0">&#40;</span>elt, n, found<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+The overall effect on the node alone would be:
+<div class='format_display'>
+<span></span>
+<pre class="java">n <span class="sy0">=</span> s_rotate_left<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+The element <tt>elt</tt> would, of course, not be found, i.e.,
+<tt>found.set(false)</tt>, and the new Node holding its value would
+end up in the left subtree of <tt>n</tt>.
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>

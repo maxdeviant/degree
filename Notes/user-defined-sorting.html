@@ -1,0 +1,603 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - User-defined Sorting</title>
+<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
+<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
+<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+<style type="text/css" media="all">
+<!--
+
+table.array td {
+ border: solid 1px black;
+  padding: 5px;
+}
+table.array th {
+  font-weight: normal;
+  padding: 5px;
+ text-align:left;
+}
+
+-->
+</style></head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+User-defined Sorting</h2>
+<div id="mtime">last modified: Apr 15, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#netbeans">NetBeans Installation</option>
+<option value="#showsorts">The showSorts demo function</option>
+<option value="#scenarios">Sorting Scenarios</option>
+<option value="#selection">Selection Sort</option>
+<option value="#array-sorting">Array-based sorting functions</option>
+<option value="#list-sorting">List-based sorting functions</option>
+<option value="#insertion">Insertion Sort</option>
+<option value="#time">Analysis &amp; Comparison</option>
+<option value="#average">Inversions and Average time</option>
+<option value="#counting">Counting Operations</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+<h3><a name="netbeans"></a>NetBeans Installation</h3>
+
+This document introduces two new sorting algorithms, selection sort
+and insertion sort. The support code will be used for other algorithms
+which we'll discuss later. We want to create a new Java project
+<pre class='n'>MySorts</pre>
+<h4>The sorts package</h4>
+After creating the project, the simplest way to install the code is by
+downloading the zipped package
+<div class="n">
+ <b><a href="/~rkline/ds/ziparchive?dir=MySorts/src/sorts">sorts.zip</a></b>
+</div>
+Extract the contents into the 
+<tt class="file">src</tt> folder
+of the NetBeans <tt class="file">MySorts</tt> project. 
+<p></p>
+
+Alternatively, you can create the 4 classes individually by copy/paste 
+from the following:
+
+<ol class="notes">
+<li>
+<pre class="n" style="padding-left:0">
+Class Name: <b>Algorithms</b>
+package:    <b>sorts</b>
+</pre>
+This class can be used to count the number of comparisons and data movements 
+in sorting. The overhead is minimal, and so it can be used as the actual
+sorting algorithms.
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts/src/sorts/Algorithms.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+sorts.Algorithms</span>
+<a href="/~rkline/ds/showhide/target/user-defined-sorting">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+</li>
+
+
+<li>
+<pre class="n" style="padding-left:0">
+Class Name: <b>Sorter</b>
+package:    <b>sorts</b>
+</pre>
+This is an auxiliary class used by the timing and counting comparison programs
+in later documents. Each individual algorithm can be called from an object
+of type <tt>Sorter.Choice</tt>. 
+Here is the code:
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts/src/sorts/Sorter.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+sorts.Sorter</span>
+<a href="/~rkline/ds/showhide/target/user-defined-sorting">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+</li>
+
+<li>
+<pre class="n" style="padding-left:0">
+Class Name: <b>ShowAlgorithms</b>
+package:    <b>sorts</b>
+</pre>
+This class illustrates the algorithm behavior visually in standard output.
+It is intended for usage only in small demonstration arrays.
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts/src/sorts/ShowAlgorithms.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+sorts.ShowAlgorithms</span>
+<a href="/~rkline/ds/showhide/target/user-defined-sorting">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+</li>
+
+</ol>
+In order to use any of these classes, we only need the import line:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">import</span> <span class="co2">sorts.*</span><span class="sy0">;</span></pre></div>
+
+
+<h3><a name="showsorts"></a>The showSorts demo function</h3>
+
+This function, using the sorting algorithms from the 
+<tt>ShowAlgorithms</tt> class gives demonstrations of these five
+sorting algorithms:
+<tt>selectionSort</tt>, <tt>insertionSort</tt>, <tt>shellSort</tt>, 
+<tt>quickSort</tt>, <tt>mergeSort</tt>, and <tt>heapSort</tt>. 
+
+Start by creating the following Main class 
+set up to run the function <tt>mainShowSorts</tt>.
+<p>
+</p>
+Here is the code
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts_Demo/src/mysorts/MainShowSorts.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+MainShowSorts</span>
+<a href="/~rkline/ds/showhide/target/user-defined-sorting">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<p></p>
+
+Choose an algorithm to demonstrate by setting:
+<pre class="n">
+WHICH = ShowAlgorithms.<u>(one of) SELECT, INSERT, SHELL, QUICK, MERGE, HEAP</u>
+</pre>
+Also set the <tt>NUM</tt> value (array size) appropriately 
+to give a decent demonstration.
+
+<h3><a name="scenarios"></a>Sorting Scenarios</h3>
+
+When you analyze sorting algorithms, like any other algorithm,
+the three cases are of interest:
+<ol type="i">
+<li>best case
+<li>worst case
+<li>average case
+</ol>
+The randomly-generated arrays usually give us a good idea of the average case.
+However another factor to consider is how the sorting algorithm behaves in
+certain "prepared" situations:
+<ol type="a">
+<li>the array is already sorted
+<li>the array is reverse sorted
+<li>all the elements in the array are equal
+</ol>
+Although these might be considered unlikely, they do represent
+situations which, although not likely to occur in a strict sense,
+can occur in a looser sense, namely, an array may
+be "nearly" sorted, or may have "many equals."
+
+In a number of situations the best and worst cases will
+match up with one or more of the situations (a) &#150; (c).
+
+<h3><a name="selection"></a>Selection Sort</h3>
+
+We start with this algorithm because it is probably the simplest one.
+The idea is this:
+<ul>
+<li>choose the smallest element in the array and put it into the first
+position,
+</li>
+<li>of the remaining, choose the smallest and put it into the second position
+</li>
+<li>etc, etc.</li>
+</ul>
+If we had an array, <tt>a[]</tt>, of <tt>int</tt> elements,
+ the code would look like this (using <tt>n = a.length</tt>):
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> n <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">// set selected_index so that a[selected_index] smallest in a[i]..a[n-1]</span>
+  <span class="kw4">int</span> selected_index <span class="sy0">=</span> i<span class="sy0">;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> j <span class="sy0">=</span> i <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span> j <span class="sy0">&lt;</span> n<span class="sy0">;</span> <span class="sy0">++</span>j<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>a<span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">&lt;</span> a<span class="br0">&#91;</span>selected_index<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+       selected_index <span class="sy0">=</span> j<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>selected_index <span class="sy0">!=</span> i<span class="br0">&#41;</span> <span class="br0">&#123;</span>      <span class="co1">// swap a[i] &amp; a[selected_index]</span>
+    <span class="kw4">int</span> tmp <span class="sy0">=</span> a<span class="br0">&#91;</span>selected_index<span class="br0">&#93;</span><span class="sy0">;</span>
+    a<span class="br0">&#91;</span>selected_index<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span>
+    a<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> tmp<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h3><a name="array-sorting"></a>Array-based sorting functions</h3>
+
+There are 4 generic array sort operations in the Java scheme:
+<pre class="lh3 n">
+1. public static &lt;E> void <b>somethingSort</b>(
+        E[] a, int fromIndex, int toIndex, Comparator&lt;? super E> c);
+2. public static &lt;E> void <b>somethingSort</b>(E[] a, Comparator&lt;? super E> c);
+3. public static void <b>somethingSort</b>(Object[] a, int fromIndex, int toIndex);
+4. public static void <b>somethingSort</b>(Object[] a);
+</pre>
+Only the first of these contains actual sort code; the other 3 are derived:
+<pre class="n">
+2. public static &lt;E> void <b>somethingSort</b>(E[] a, Comparator&lt;? super E> c) {
+     <b>somethingSort</b>(a, 0, a.length, c);
+   }
+
+3. public static void <b>somethingSort</b>(Object[] a, int fromIndex, int toIndex) {
+     Comparator&lt;Object> c = new Comparator&lt;Object>() {
+       @Override
+       public int compare(Object lhs, Object rhs) {
+         return ((Comparable)lhs).compareTo(rhs);
+       }
+     };
+     <b>somethingSort</b>(a, fromIndex, toIndex, c);
+   }
+
+4. public static void <b>somethingSort</b>(Object[] a) {
+     <b>somethingSort</b>(a, 0, a.length);
+   }
+</pre>
+In the case of selection sort, the primary sorting algorithm is this:
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">public</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> <span class="kw4">void</span> selectionSort<span class="br0">&#40;</span>
+          E<span class="br0">&#91;</span><span class="br0">&#93;</span> a, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;</span> c<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> fromIndex<span class="sy0">;</span> i <span class="sy0">&lt;</span> toIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw4">int</span> selected_index <span class="sy0">=</span> i<span class="sy0">;</span>
+      <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> j <span class="sy0">=</span> i <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span> j <span class="sy0">&lt;</span> toIndex<span class="sy0">;</span> <span class="sy0">++</span>j<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span>c.<span class="me1">compare</span><span class="br0">&#40;</span>a<span class="br0">&#91;</span>j<span class="br0">&#93;</span>, a<span class="br0">&#91;</span>selected_index<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+          selected_index <span class="sy0">=</span> j<span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+      <span class="br0">&#125;</span>
+      <span class="kw1">if</span> <span class="br0">&#40;</span>selected_index <span class="sy0">!=</span> i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        swap<span class="br0">&#40;</span>a, selected_index, i<span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+
+<h3><a name="list-sorting"></a>List-based sorting functions</h3>
+
+Recall Java's <tt>sort</tt> function for <tt>List</tt> classes:
+<pre class="lh3 n">
+List L&lt;SomeClass&gt; = /* an ArrayList or LinkedList */;
+Collections.sort(L);
+Collections.sort(L, cmp);
+</pre>
+If we were to write our own versions, there would be two generic list sort 
+operations required:
+<pre class="n" style="line-height:3.2ex">
+public static &lt;E> void <b>somethingSort</b>(List&lt;E> list, Comparator&lt;? super E> c);
+public static &lt;E extends Comparable&lt;? super E>> void <b>somethingSort</b>(List&lt;E> list);
+</pre>
+Like arrays, only the most general version is written directly. In this case
+the latter version is derived from the former:
+<pre class="n">
+public static &lt;E extends Comparable&lt;? super E>> void <b>somethingSort</b>(List&lt;E> list) {
+  Comparator&lt;E> c = new Comparator&lt;E>() {
+    @Override
+    public int compare(E lhs, E rhs) {
+      return lhs.compareTo(rhs);
+    }
+  };
+  <b>somethingSort</b>(list, c);
+}
+</pre>
+There are two conceivable ways to write the primary list sorting alorithm:
+<ol type="a" class="notes">
+<li>transfer the list to an array; sort the array; write the
+sorted array back to the list
+</li>
+
+<li>sort the list in place, replacing 
+element accesses of the form <tt>x = a[i]</tt> (read) 
+by <tt>x = L.get(i)</tt> and
+<tt>a[i] = x</tt> (write) by <tt>L.set(i,x)</tt>
+</li>
+</ol>
+Due to overhead concerns, it is most likely that the first option is preferred.
+
+<h3><a name="insertion"></a>Insertion Sort</h3>
+
+The idea is like this:
+<ul>
+<li>
+pull out the second element and insert it into
+the correct position in the 2-element array
+</li>
+<li>
+pull out the third element and insert it into
+the correct position in the 3-element array
+</li>
+<li>etc, etc.</li>
+</ul>
+Inserting into the correct position means examining each
+array element
+from the top, one by one, and shifting 
+this element up if it is greater than then element to insert.
+<p>
+We could effectively write the code by having an element move
+down to its correct position by swapping with the one below
+and then moving down, etc. However, swapping is more costly
+than simply shifting an element (by a factor of 3) and so it
+is more efficient to think of shifting the element up.
+</p>
+In simple form, using and array of int elements in
+the range from 0 to <tt>n</tt>, the code looks like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> n<span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw4">int</span> insert_value <span class="sy0">=</span> a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span> <span class="co1">// pull the i-th value &quot;out&quot;</span>
+  <span class="kw4">int</span> j<span class="sy0">;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span>j <span class="sy0">=</span> i<span class="sy0">;</span> j <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="sy0">;</span> <span class="sy0">--</span>j<span class="br0">&#41;</span> <span class="br0">&#123;</span>           <span class="co1">// j = &quot;a first correct position&quot;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>a<span class="br0">&#91;</span>j <span class="sy0">-</span> <span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">&gt;</span> insert_value<span class="br0">&#41;</span> <span class="br0">&#123;</span>    <span class="co1">// a[j-1] is bigger</span>
+      a<span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="br0">&#91;</span>j <span class="sy0">-</span> <span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">;</span>                <span class="co1">// shift the value up</span>
+    <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+      <span class="kw1">break</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>j <span class="sy0">!=</span> i<span class="br0">&#41;</span> <span class="br0">&#123;</span>           <span class="co1">// if j is not the same as i</span>
+    a<span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> insert_value<span class="sy0">;</span>  <span class="co1">// insert into the j-th position</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+Here is the general form we'd use for an array:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> <span class="kw4">void</span> insertionSort<span class="br0">&#40;</span>
+        E<span class="br0">&#91;</span><span class="br0">&#93;</span> a, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;</span> c<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> fromIndex <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> toIndex<span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+    E insert_value <span class="sy0">=</span> a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span> <span class="co1">// pull the i-th value &quot;out&quot;</span>
+&nbsp;
+    <span class="kw4">int</span> j<span class="sy0">;</span>
+    <span class="kw1">for</span> <span class="br0">&#40;</span>j <span class="sy0">=</span> i<span class="sy0">;</span> j <span class="sy0">&gt;</span> fromIndex<span class="sy0">;</span> <span class="sy0">--</span>j<span class="br0">&#41;</span> <span class="br0">&#123;</span>  <span class="co1">// j = &quot;a first correct position&quot;</span>
+&nbsp;
+      <span class="kw1">if</span> <span class="br0">&#40;</span>c.<span class="me1">compare</span><span class="br0">&#40;</span>a<span class="br0">&#91;</span>j <span class="sy0">-</span> <span class="nu0">1</span><span class="br0">&#93;</span>, insert_value<span class="br0">&#41;</span> <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="co1">// a[j-1] is bigger</span>
+&nbsp;
+        a<span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="br0">&#91;</span>j <span class="sy0">-</span> <span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">;</span>    <span class="co1">// shift the value up</span>
+&nbsp;
+      <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+        <span class="kw1">break</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>j <span class="sy0">!=</span> i<span class="br0">&#41;</span> <span class="br0">&#123;</span>           <span class="co1">// if j is not the same as i</span>
+      a<span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> insert_value<span class="sy0">;</span>  <span class="co1">// insert into the j-th position</span>
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+<h3><a name="time"></a>Analysis &amp; Comparison</h3>
+
+When we consider timing analysis of sorting algorithms both
+comparisons and data movements count. We also want to consider
+the behavior of an array which is already sorted or nearly
+sorted, which is usually the best case in these algorithms.
+<p></p>
+
+For selection sort, the number of comparisons is always the
+same, regardless of the array input. The number is:
+<pre class="n">
+(n-1) + (n-2) + ... + 1  =  n*(n-1)/2
+</pre>
+
+The number of data movements is at best 0 if the array 
+is already sorted. The worst case is a reverse-sorted array
+in which case we must do a swap on each iteration. Counting
+a swap as 3 data movements we get a worst case of
+ <tt>3*(n-1)</tt>.
+<p></p>
+
+For insertion sort, the number of comparisons and data movement
+may both vary. In the best case of a sorted array, there are 
+<tt>n-1</tt>
+data movements 
+(to save the insert element)
+and <tt>n-1</tt> comparisons. In the worst case of
+a reverse-sorted array there <tt>n*(n-1)/2</tt> comparisons and 
+the same number of shifts, each counting for 1 data movement.
+<p></p>
+A final table illustrates the analysis of the two algorithms:
+
+<div class="n">
+<table cellpadding="8px" class="array">
+<tr valign="bottom">
+<th></th>
+<th colspan="2" style="text-align:center">
+<b>best case</b><br />(sorted)
+</th>
+<th colspan="2" style="text-align:center">
+<b>worst case</b><br />(reverse sorted)
+</th>
+</tr>
+<tr valign="bottom">
+<th></th>
+<th>
+comparisons
+</th>
+<th>
+data movements
+</th>
+<th>
+comparisons
+</th>
+<th>
+data movements
+</th>
+</tr>
+<tr>
+<th>selection sort</th>
+<td><tt>n*(n-1)/2</tt></td>
+<td><tt>0</tt></td>
+<td><tt>n*(n-1)/2</tt></td>
+<td><tt>3*(n-1)</tt></td>
+</tr>
+<tr>
+<th>insertion sort</th>
+<td><tt>n-1</tt></td>
+<td><tt>n-1</tt></td>
+<td><tt>n*(n-1)/2</tt></td>
+<td><tt>2*(n-1) + n*(n-1)/2</tt></td>
+</tr>
+</table>
+</div>
+
+In particular, if you know that your array is <i>nearly</i>
+sorted, insertion sort is close to an <tt><i><big>O</big></i>(n)</tt> time.
+This fact about insertion sort is used in the shell sort algorithm to achieve a speed-up.
+Selection sort, although slow w.r.t comparisons, is fast 
+w.r.t data movements. The <i>heap sort</i> algorithm uses the same
+selection idea but improves upon the manner of selection.
+
+<h4>Stability</h4>
+
+Selectsort is not stable. We can see this in a simple example:
+<pre class='n'>
+[ 3, 3&prime;, 2 ] &Rarr; [ 2, 3&prime;, 3 ]
+</pre>
+The "2" exchanges with the first "3" making "3" elements change
+order from the original array.
+<p></p>
+In contrast, insertion sort is stable.  
+The element comparison is crucial for maintaining the stability:
+<pre class="n">
+if (c.compare(a[j&#150;1], insert_value) &gt; 0) {
+  a[j] = a[j&#150;1];
+} 
+</pre>
+If we were to change "<tt>&gt;</tt>" to "<tt>&gt;=</tt>", then equal elements 
+would "slide" across each other and in the final array be
+reverse-ordered in the sorted output relative to the original array
+(this would also cause an unnecessary extra number of comparisons and data
+movements).
+
+
+<h3><a name='average'></a>Inversions and Average time</h3>
+
+In selection sort, the number of comparisons is always the same,
+<tt>n*(n&#150;1)/2 <big>&asymp;</big> n<sup>2</sup>/2</tt>,
+thus the average time is quadratic.
+In insertion sort, we see that the time can vary between linear
+(best) and quadratic (worst). To show that the average time is
+quadratic we count the average number of swaps of adjacent
+elements &#151; recall that insertion sort doesn't actually swap the elements. 
+<p></p>
+Consider all possible permutations of an array of <tt>n</tt> elements, 
+assuming for simplicity that the
+elements are all distinct. 
+Group each array with its reverse. The total number of inversions 
+which appear in any array and its reverse is exactly 
+<tt>n*(n&#150;1)/2</tt>. The averaging, considering only this pair,
+is <tt>n*(n&#150;1)/4</tt>. So, since this is true for every array/reverse
+pair, we conclude the average number of <i>inversions</i> in an array
+is <tt>n*(n&#150;1)/4 <big>&asymp;</big> n<sup>2</sup>/4</tt>.
+<p></p>
+Each swap in insertion sort removes one inversion, thus the average number of
+swaps <tt>&asymp; n<sup>2</sup>/4</tt>.
+Since each swap was preceded by a comparison, this number also reflects
+the number of comparisons, yielding an total average cost of
+<tt>n<sup>2</sup>/2</tt>, which is quadratic of the same order constant
+as selection sort.
+<p></p>
+The preceeding argument holds for any algorithm that sorts by swapping
+pairs of elements: it has a quadratic worst-case and average-case time.
+In particular, if you know about <b>bubble sort</b>, it sorts also
+by swapping pairs of elements. So how does bubble sort stack up 
+against insertion sort: the answer is the insertion sort is the clear winner.
+Here are some excerpts from the wikipedia article,
+<a href="http://en.wikipedia.org/wiki/Bubble_sort">http://en.wikipedia.org/wiki/Bubble_sort</a>
+<blockquote>
+Even among simple 
+<tt><i><big>O</big></i>(n<sup>2</sup>)</tt> 
+sorting algorithms, algorithms like insertion sort 
+are usually considerably more efficient [than bubble sort].
+<p></p>
+Due to its simplicity, bubble sort is often used to introduce the concept of an 
+algorithm, or a sorting algorithm, to introductory computer science students. 
+However, some researchers such as Owen Astrachan have gone to great lengths to 
+disparage bubble sort and its continued popularity in computer science 
+education, recommending that it no longer even be taught.
+<p></p>
+The Jargon file ... calls bubble sort "the generic bad algorithm".
+Donald Knuth, in his famous book The Art of Computer Programming, 
+concluded that "the bubble sort seems to have nothing to recommend it, 
+except a catchy name and the fact that it leads to some interesting 
+theoretical problems", some of which he then discusses.
+</blockquote>
+
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>

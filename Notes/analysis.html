@@ -1,0 +1,1814 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - Algorithm Analysis</title>
+<link rel="stylesheet" type="text/css" href="/~rkline/css/basic.css" />
+<link rel="stylesheet" type="text/css" href="/~rkline/css/init.css" />
+<link href="/~rkline/images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="/~rkline/css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+<style type="text/css" media="all">
+<!--
+
+#failedsearch tr.data td {
+  border: solid 1px black; 
+  padding: 5px;
+}
+#failedsearch td {
+  width: 15px;
+  text-align: center;
+}
+#lin_avg_cost {
+  margin: 15px 0 0 15px;
+  border-collapse: collapse;
+}
+#lin_avg_cost td {
+  padding-right: 10px;
+}
+#lin_avg_cost tr.numeric td {
+  text-align: center;
+  font-family: monospace;
+}
+#binlin {
+  margin: 10px 0;
+}
+#binlin td {
+  padding-left:15px;
+}
+      
+-->
+</style></head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+Algorithm Analysis</h2>
+<div id="mtime">last modified: Sep 26, 2012</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#linsearch">Linear Search</option>
+<option value="#linsearch-analysis">Analysis of Linear Search</option>
+<option value="#asymptotics">Language of Asymptotics</option>
+<option value="#binary_search">Binary Search</option>
+<option value="#logarithms">Logarithms in analysis</option>
+<option value="#binsearch-worst">Binary Search Worst Case</option>
+<option value="#order_classes">Order class hierarchy</option>
+<option value="#other-algorithmic-terminology">Other algorithmic terminology</option>
+<option value="#binsearch-ave">Binary Search average case</option>
+<option value="#binary-search-code">Binary Search Implementations</option>
+<option value="#bin-lin">Binary vs. Linear search</option>
+<option value="#expon">Integer exponentiation</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+
+The algorithms in this document can be run and tested individually in
+NetBeans. Instead of creating a project for each, create a single project, 
+<b>Miscell</b>, with separate main classes for each. 
+We do not particularly need  the auto-created <tt>Main</tt> class, 
+so delete it if you'd like.
+<p>
+</p>
+For each of the sample programs do the following:
+<ol class="notes">
+<li>
+From the <b>Projects</b> window, right-click either on
+<ul>
+<li>the <b><tt>Miscell</tt></b> project</li>
+<li>the <b>Source Packages</b> entry</li>
+<li>the <b>miscell</b> package (this is most efficient)</li>
+</ul>
+<li>
+Select <b>New &rarr; Other</b> and from the list select
+<b>Java Main Class</b> (only need to go throuh <b>Other</b> once).
+<li>
+In the popup window (<b>Name and Location</b>), set the
+<b>Class Name</b> something related to the algorithm of interest.
+For example, you might be creating entries like this:
+<pre class='n lh3'>
+Class Name: LinearSearch1, LinearSearch2, ...
+package:    miscell
+</pre>
+</li>
+<li>
+In some situations you'll want to create a simple <b>Java Class</b>, 
+not <b>Java Main Class</b>.
+</li>
+<li> Replace the class content by the suggested content by copy/paste.  
+</li>
+
+<li>In every case you will need the <tt>import</tt> statement:  
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span></pre></div>
+</li>
+
+<li>
+Run the program by locating it in 
+<b>Source Packages &rarr; miscell</b>,
+right-clicking and selecting <b>Run File</b>.
+</li>
+
+<li>
+Repeated runs are easily done
+by clicking the "rerun" button
+<img src="/~rkline/images/nb_rerun.png" />
+in the output window.
+</li>
+
+<li>
+To make repeated runs even easier, select <b>Customize</b> in the
+drop-down below <b>&lt;default config&gt;</b>. In this window,
+use the <b>Browse</b> button to specify the <b>Main Class</b>.
+With this in place, you can use the 
+"run project" button
+<img src="/~rkline/images/nb_runProject.png" />
+in the menu bar.
+</li>
+</ol>
+
+
+<h3><a name="linsearch"></a>Linear Search</h3>
+
+For example, consider simple linear search of an integer array for a given key. 
+The following class representing a simple random linear search might be 
+something like this:
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="Miscell/src/miscell/LinearSearch1.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+LinearSearch1</span>
+<a href="/~rkline/ds/showhide/target/analysis">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<h4>Coding</h4>
+
+In order to create a general version which could be reused, we should
+consult what Java does in the <tt>Arrays</tt> class:
+<div class='n'>
+<a href="jdk/api/java/util/Arrays.html">java.util.Arrays</a>
+
+</div>
+There is no linear search algorithm, but there is a binary search. 
+Here are two relevant static functions:
+<pre class="lh3 n">
+int binarySearch(int[] a, int key)
+int binarySearch(int[] a, int fromIndex, int toIndex, int key)
+</pre>
+The "<tt>toIndex</tt>" argument name is misleading since the 
+range is really between 
+<tt>fromIndex</tt> and <tt>toIndex &#150; 1</tt>, inclusive. Thus
+these two calls are equivalent:
+<pre class="lh3 n">
+java.util.Arrays.binarySearch(A, key);
+java.util.Arrays.binarySearch(A, 0, A.length, key);
+</pre>
+The <tt>int</tt> return value is supposed to be the position at which the <tt>key</tt>
+is found. If not found, a <b>negative</b> value is returned.
+<p></p>
+These algorithm specifications
+ suggest a more general way to write linear search, namely
+using our own package, <tt>util</tt>, and our own class <tt>MyArrays</tt> with two versions:
+<pre class="lh3 n">
+util.MyArrays.linearSearch(int[] a, int key)
+util.MyArrays.linearSearch(int[] a, int fromIndex, int toIndex, int key)
+</pre>
+We should also consider what to do if the latter of these calls is provided
+with invalid arguments such as these:
+<pre class="lh3 n">
+linearSearch(A, -3, 2, 15);
+linearSearch(A, 3, 2, 15);
+</pre>
+In these cases, we want to throw an Exception. A few tests of 
+<tt>Arrays.binarySearch</tt> leads us to add this starter code:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> toIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> fromIndex <span class="sy0">&gt;</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IllegalArgumentException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+In Netbeans, create the <b>Java Class</b>:
+<pre class='n'>
+<b>Class Name</b>  MyArrays
+<b>package</b>     util
+</pre>
+with this content:
+<div class='format_display'>
+<button class="print_hide select_text"
+style='position:absolute;top:10px;right:5px;width:100px;font-size:9pt'>Select Text</button>
+<span></span>
+<pre class="java"><span class="kw1">package</span> <span class="co2">util</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">class</span> MyArrays <span class="br0">&#123;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> linearSearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> toIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> fromIndex <span class="sy0">&gt;</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IllegalArgumentException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw4">int</span> i<span class="sy0">;</span>
+    <span class="kw1">for</span> <span class="br0">&#40;</span>i <span class="sy0">=</span> fromIndex<span class="sy0">;</span> i <span class="sy0">&lt;</span> toIndex<span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">==</span> A<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">return</span> i<span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> linearSearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> linearSearch<span class="br0">&#40;</span>A, <span class="nu0">0</span>, A.<span class="me1">length</span>, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+
+
+Apply this search algorithm by creating the following main class:
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="Miscell/src/miscell/LinearSearch2.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+LinearSearch2</span>
+<a href="/~rkline/ds/showhide/target/analysis">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+<h4>Other Java types</h4>
+
+Consider expanding the linear search algorithm to other types such as 
+<tt>float</tt> or <tt>String</tt>. 
+These two are very different because <tt>float</tt>, like <tt>int</tt> is 
+a <i>primitive</i> type and <tt>String</tt> is an <tt>Object</tt>. 
+With respect to <tt>float</tt>, or any of the other primitive types, 
+we have to write  separate functions for each even though they effectively 
+do the same thing.
+<p></p>
+Regarding <tt>Object</tt> types, such as <tt>String</tt>, 
+we would want a version like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">package</span> <span class="co2">util</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">class</span> MyArrays <span class="br0">&#123;</span>
+&nbsp;
+  <span class="co1">// ...</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> linearSearch<span class="br0">&#40;</span>
+                <span class="kw3">Object</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw3">Object</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> toIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> fromIndex <span class="sy0">&gt;</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IllegalArgumentException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw4">int</span> i<span class="sy0">;</span>
+    <span class="kw1">for</span> <span class="br0">&#40;</span>i <span class="sy0">=</span> fromIndex<span class="sy0">;</span> i <span class="sy0">&lt;</span> toIndex<span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">if</span> <span class="br0">&#40;</span>key.<span class="me1">equals</span><span class="br0">&#40;</span>A<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">return</span> i<span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> linearSearch<span class="br0">&#40;</span><span class="kw3">Object</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw3">Object</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> linearSearch<span class="br0">&#40;</span>A, <span class="nu0">0</span>, A.<span class="me1">length</span>, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre></div>
+
+The problem with generating an example is how to "meaningfully"
+generate an array of Strings and a search key.
+A simple example (not terribly meaningful) is this:
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="Miscell/src/miscell/LinearSearch3.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+LinearSearch3</span>
+<a href="/~rkline/ds/showhide/target/analysis">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+<h4>Abstract time for linear search</h4>
+
+Regarding the notion of "abstract time" we usually say to 
+"count the number of comparisons"  to get a measure of the actual time.
+There are several deviations
+from reality:
+<ul class="notes">
+<li>we're overlooking any setup, like initializing the variables 
+<tt>found</tt> and <tt>i</tt>, 
+as well as other repetitive features,
+like incrementing <tt>i</tt> comparing it to the size 
+</li>
+<li>
+We're ignoring the actual cost of a comparison. 
+The <tt>Object</tt> comparison
+<pre class="n">
+A[i].equals(key)
+</pre>
+say, for <tt>String</tt> type, is not constant and is likely to be 
+more time-consuming than comparison of primitive types.
+</li>
+</ul>
+ 
+Nevertheless, simplifications such as this are useful for 
+algorithm analysis because we can more easily go on and
+describe the behavior for arbitrarily large arrays.
+
+<h3><a name="linsearch-analysis"></a>Analysis of Linear Search</h3>
+
+The worst case is if the element is not found or is found at the end
+of the search in which case there are <tt>n</tt> comparisons. 
+The best case is that the thing you're looking for is in the first slot 
+and so there's only one comparison. We say:
+<ul>
+<li>
+the best case is 1 comparison
+</li>
+<li>
+the worst case is <tt>n</tt> comparisons
+</li>
+</ul>
+
+<h4>Average case for linear search</h4>
+
+A simple guess might be to take the average of the best and worst, getting
+<tt>(n+1)/2</tt>. This answer  turns out to be correct,
+but we must derive it more methodically.
+<p></p>
+First of all, we need to make the assumption
+that the search is <b>successful</b>.  
+Why? Consider an array of size 10, holding arbitrary integers and
+the key is an arbitrary integer. Given that there are about 4 billion
+32-bit integers, 
+the probability that our key is one of these 10 is effectively zero!
+In addition, we will assume that the key is equally likely to be found
+at each of the <tt>n</tt> positions.
+<p></p>
+
+Using this notion, the average cost is:
+<div class="n">
+( total cost for finds at all positions ) &nbsp;<b>/</b>&nbsp; number of positions
+</div>
+The cost for finding at position <tt>i</tt> is <tt>(i+1)</tt>, for values
+<tt>i = 0 ... n-1</tt>. Therefore we derive:
+
+<table id="lin_avg_cost">
+
+<tr class='numeric'>
+<td></td>
+<td>
+1 + 2 + &sdot;&sdot;&sdot; + n
+</td>
+<td></td>
+<td>
+n*(n+1)/2
+</td>
+<td></td>
+<td>
+n + 1
+</td>
+</tr>
+
+<tr>
+<td> average cost = </td>
+<td> <hr /> </td>
+<td> = </td>
+<td> <hr /> </td>
+<td> = </td>
+<td> <hr /> </td>
+</tr>
+
+<tr class='numeric'>
+<td></td>
+<td>
+n
+</td>
+<td></td>
+<td>
+n
+</td>
+<td></td>
+<td>
+2
+</td>
+</tr>
+</table>
+
+<h3><a name="asymptotics"></a>Language of Asymptotics</h3>
+
+Asymptotics has to do with describing the behavior of functions, 
+specifically algorithmic timing functions, for arbitrarily large problem sizes. 
+Often a problem size can be characterized by a single parameter <tt>n</tt>, 
+e.g., the size of an array.
+
+<h4>Big-O Notation</h4>
+We would really like to present information about this algorithm which 
+ignores the constants. The "big O notation" and other complexity terminology 
+allows us do precisely that. We say:
+<pre class="n">
+T(n) = <big><i>O</i></big>(f(n))   <span class="ssf">or</span>   T(n) <span class='ssf'><i>is</i></span> <big><i>O</i></big>(f(n))
+</pre>
+if
+<div class='m' >
+there are positive constants <tt>C</tt> and <tt>k</tt>, such that
+<pre style='background:white'>
+T(n) &le; C * f(n)  <span class='ssf'>for all</span> n &ge; k
+</pre>
+</div>
+The big-O notation is simply a convenience for expressing the relation 
+between an unknown "timing function", <tt>T(n)</tt>, and a known 
+reference function, <tt>f(n)</tt>.
+In reality <tt><big><i>O</i></big>(f(n))</tt> is a <i>class</i> of functions, 
+of which <tt>T(n)</tt> is a member. Nevertheless, it is convenient to
+be able to make statements like this
+<div class="n">
+  "the worst case time for such-and-such-algorithm is <tt><big><i>O</i></big>(n*log(n))</tt>"
+</div>
+ and have a rigorous basis for what you're saying.
+<p></p>
+The idea of "<tt>n &ge; k</tt>" in the definition means 
+<i>eventually</i>, i.e., if we ignore some initial finite portion. 
+For example, suppose
+<pre class="n">
+T(n) = n + 100
+</pre>
+We can say:
+<pre class="n">
+T(n) &le; 101 * n, for all n &ge; 1 
+</pre>
+but we can also say
+<pre class="n">
+T(n) &le; 2 * n, for all n &ge; 100
+</pre>
+getting a "better" asymptotic constant, <tt>C</tt>, in the sense that
+it is smaller (we can always make it larger). 
+In either case we have proved that
+<pre class='n'>
+n + 100 = O(n)
+</pre>
+by finding constants <tt>C</tt> and <tt>k</tt> which make the 
+definition statement work.
+
+<h4>Linear Search in big-O terms</h4>
+Going back to linear search we observed that when counting comparisons:
+<blockquote>
+the best case is <tt>1</tt>
+<br />
+the worst case is <tt>n</tt>
+<br />
+the average case is <tt>(n+1)/2 = &frac12; n + &frac12;</tt>
+</blockquote>
+In big-O terminology, we would say this about linear search:
+<blockquote>
+the best case time is <tt><big><i>O</i></big>(1)</tt>
+<br />
+the worst case time is <tt><big><i>O</i></big>(n)</tt>
+<br />
+the average case time is <tt><big><i>O</i></big>(n)</tt>
+</blockquote>
+
+<h3><a name="binary_search"></a>Binary Search</h3>
+
+Binary search searches a <b>sorted</b> array in the most
+efficient way possible. This algorithm employs a simple example of a 
+<i>divide-and-conquer </i>
+strategy in which we subdivide the problem into equal-sized "sub-problems". 
+The idea is simple: compare the key to the "middle" element, 
+if not equal, either look left or look right portion based
+on whether the key is less than, or greater than, the middle element.
+
+
+<h4><a name="binsearch-impl-first"></a>First Binary Search Implementation</h4>
+
+This algorithm expresses itself most naturally in a recursive manner based
+on the way I say: 
+<div class="n">
+<b>search</b> the whole array invokes <b>search</b> of one half or another.
+</div>
+In order to express the recursive nature, the parameter of the algorithm
+must allow arbitrary beginnings and ends. 
+Our inital coding might look something like this:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">==</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span> 
+    <span class="kw1">return</span> <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> 
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw4">int</span> mid <span class="sy0">=</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">+</span> toIndex<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">==</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> mid<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="co1">// else</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">&lt;</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, fromIndex, mid, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="co1">// else  (key &gt; A[mid])</span>
+  <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, mid<span class="sy0">+</span><span class="nu0">1</span>, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+The <tt>else</tt> keywords are optional because of the 
+<tt>return</tt> statements.
+One has to keep in mind that the division used to compute <tt>mid</tt>
+is <b>integer</b> division (i.e., fractional truncation).
+As is the case with <tt>linearSearch</tt>, 
+the second range parameter, <tt>toIndex</tt>, is not included in the search 
+range. Our textbook makes, in my opinion, the unfortunate
+decision to make the second parameter position in his array-based
+algorithms the <b>rightmost</b> index, so beware.
+
+
+<h4>Binary Search Visitation tree</h4>
+Lay out the array positions that the algorithm would visit in a
+binary tree, where the root is the middle of the array, 
+the left and right subtrees are generated by searches of the 
+left and right subarrays, respectively.
+Here are the binary search trees for arrays of size 7 and 10, resp.:
+
+<table style="margin:5px 0px 5px 0px">
+<tr valign="top">
+<td><img src="/~rkline/DS/images/binsrch-7.png" /></td>
+<td><img src="/~rkline/DS/images/binsrch-10.png" /></td>
+</tr>
+</table>
+Note the "left-leaning" aspect of the latter tree. This reflects the fact that
+our algorithm, when it cannot split the array exactly in half, will have one
+more element on the left size compared to the right side.
+
+
+<h4>Algorithmic correctness proof by induction</h4>
+The proof uses a form of induction called <i>strong</i> induction, 
+whereby we assume true the thing we want to prove for <b>all</b> values 
+(within a suitable range) up to that point. 
+Consider the execution of:
+The execution of
+<pre class='n'>
+int pos = binarySearch(A, fromIndex, toIndex, key) 
+</pre>
+We want to say that:
+<ul class='notes'>
+<li>
+if <tt>pos &ge; 0</tt> then 
+<tt>fromIndex &le; pos &lt; toIndex</tt>
+and
+<tt>A[pos] == key</tt>
+</li>
+<li>
+if <tt>pos &lt; 0</tt> then <tt>A[i] != key</tt>, for all
+<tt>fromIndex &le; i &lt; toIndex</tt>.
+</li>
+</ul>
+The proof is by induction on the array size, <tt>len = toIndex - fromIndex</tt>
+It is a good idea to run a few examples by hand.
+Again, keep in mind that computer integer division is <i>truncated</i>. 
+In mathematical terms, division of two integers with integer result:
+<pre class="n">
+a/b
+</pre>
+is expressed mathematically
+as the "floor" function <tt>flr</tt>, which simply truncates any
+decimal part.
+<div class="n">
+<tt>flr(a/b)</tt>
+</div>
+
+
+<h5>Base case: len = 0</h5>
+This means that <tt>toIndex == fromIndex</tt>. 
+The <tt>key</tt> cannot be present
+in the array and the algorithm indicates failure.
+
+
+<h5>Inductive case: len &ge; 1</h5>
+
+Because the array is sorted,
+it is obvious that the algorithm will work so long as:
+<ul class="notes">
+<li><tt>fromIndex &le; mid &lt; toIndex</tt> </li>
+<li>the left <tt>(fromIndex,mid)</tt> and 
+right <tt>(mid+1,toIndex)</tt> ranges
+both have <b>fewer</b> than <tt>len</tt> elements.
+</li>
+</ul>
+The even and odd cases values need to be considered separately. 
+Write: <tt>toIndex = fromIndex + len</tt> and compute:
+<pre class="n lh3">
+mid = (fromIndex + toIndex)/2 = (2*fromIndex + len)/2
+    = fromIndex + len/2,      if len is even
+    = fromIndex + (len-1)/2,  if len is odd
+</pre>
+<ol class="notes" type="i">
+<li>
+	
+<b><tt>len</tt> is even</b>
+<br />
+Because <tt>len</tt> is even and positive, we have
+<pre class="n">
+mid = fromIndex + len/2,   len/2 &gt; 0,   len/2 &lt; len
+</pre>
+Computing the length of both sides gives:
+<pre class="n lh3">
+mid - fromIndex                     = len/2     &lt; len
+toIndex - (mid+1) = len - len/2 - 1 = len/2 - 1 &lt; len
+</pre>
+</li>
+
+<li>
+<b><tt>len</tt> is odd</b>
+<br />
+Because <tt>len</tt> is odd we have
+<pre class="n">
+mid = fromIndex + (len-1)/2,   (len-1)/2 &ge; 0,   (len-1)/2 = len/2  &lt; len
+</pre>
+To get the exact numbers, it's better to express <tt>len = 2*k + 1</tt>, where <tt>k = len/2</tt>.
+Computing the length of both sides gives:
+<pre class="n lh3">
+mid - fromIndex                             = (len-1)/2 = k = len/2 &lt; len
+toIndex - (mid+1) = len - (len-1)/2 - 1 = 2*k+1 - k - 1 = k = len/2 &lt; len
+</pre>
+</ol>
+Summarizing, we see that
+<ul class="notes">
+<li>when <tt>len</tt> is even, the split is unequal,  the
+left side having <tt>len/2</tt> elements and the right side one less.
+</li>
+<li>
+when <tt>len</tt> is odd, the split is equal, 
+both sides having <tt>len/2</tt> elements
+</li>
+</ul>
+<h3><a name="logarithms"></a>Logarithms in analysis</h3>
+
+Logarithms, particularly base-2 logarithms are important because
+they represent the number of times <tt>n</tt> things can be halved.
+In particular, there are 
+roughly <tt> log<sub>2</sub>n </tt> term in this sequence:
+<pre class="n">
+n, n/2, n/4, ..., 1
+</pre>
+The definition of logarithm to the base <tt>b</tt> is:
+<pre class="n">
+x = log<sub>b</sub>n    means   b<sup>x</sup> = n, i.e., b<sup>log<sub>b</sub>n</sup> = n
+</pre>
+The most common bases are these:
+<ul class="notes">
+<li>base 2, used in computer science</li>
+<li>base 10, used in other sciences</li>
+<li>base <i>e</i> = 2.718...,  used in mathematics, where
+<i>e</i> is the base of the <a target="_explanation" href="http://en.wikipedia.org/wiki/Natural_logarithm">natural logarithm</a>, the so-called
+<a target="_explanation" href="http://en.wikipedia.org/wiki/E_(mathematical_constant)">Euler's number</a> 
+which is one of the fundamental constants
+of mathematics, like &pi;
+</li>
+</ul>
+All bases differ by a constant factor.
+<pre class="n lh3">
+b<sup>log<sub>b</sub>2</sup> = 2
+(b<sup>log<sub>b</sub>2</sup>)<sup>x</sup> = b<sup>(log<sub>b</sub>2)*x</sup> = 2<sup>x</sup>
+</pre>
+Using <tt>x = log<sub>2</sub>(n)</tt>,
+<pre class="n lh3">
+b<sup>log<sub>b</sub>2 * log<sub>2</sub>n</sup> = 2<sup>log<sub>2</sub>n</sup> = n
+</pre>
+This means, according to what the definition of <tt>log</tt>:
+<pre class="n lh3">
+log<sub>b</sub>n = log<sub>b</sub>2 * log<sub>2</sub>n  <span class='ssf'>(think of the 2's as "cancelling out"), or simplifying,</span>
+log<sub>2</sub>n = log<sub>b</sub>n / log<sub>b</sub>2
+</pre>
+Therefore, regarding big-<big>O</big> logarithms of all bases are equal. 
+In scientific computations, <tt>log(n)</tt> is understood to be
+the base-10 logarithm and  <tt>ln(n)</tt> the natural logarithm.
+In computer language library functions, <tt>log(n)</tt> often means 
+the natural logarithm and base-2 logarithm is usually written with 
+an explicit base.  For example, in Java, the function <tt>Math.log</tt> 
+is the natural logarithm, but we can easily write the base-2 logarithm:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">static</span> <span class="kw4">double</span> log_2<span class="br0">&#40;</span><span class="kw4">double</span> x<span class="br0">&#41;</span> <span class="br0">&#123;</span> 
+  <span class="kw1">return</span> <span class="kw3">Math</span>.<span class="me1">log</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="kw3">Math</span>.<span class="me1">log</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span> 
+<span class="br0">&#125;</span></pre></div>
+For our purposes,  since the base-2 is preeminent, we'll drop the 2 and assume:
+<pre class="n">
+log n = log<sub><i>2</i></sub>n
+</pre>
+
+<h4>Integer logarithms</h4>
+
+In computational settings in which logarithms appear, 
+they always appear in these integer formats:
+<pre class="n lh3">
+flr(log n)  = <span class="ssf">the largest <tt>power</tt> of 2 so that</span> 2<sup>power</sup> &le; n
+ceil(log n) = <span class="ssf">the smallest <tt>power</tt> of 2 so that</span> n &le; 2<sup>power</sup>
+</pre>
+For example, 
+<tt>flr(log 8) = 3</tt>, <tt>ceil(log 8) = 3</tt>
+and
+<tt>flr(log 10) = 3</tt>, <tt>ceil(log 10) = 4</tt>.
+
+
+
+<h3><a name="binsearch-worst"></a>Binary Search Worst Case</h3>
+From an analysis perspective, with an array of size <tt>n &gt; 1</tt>,
+<pre class="lh3 n">
+n even =&gt; <span class='ssf'>left side</span> n/2, <span class='ssf'>right side</span> n/2 - 1 
+n odd  =&gt; <span class='ssf'>both sides have size</span> (n-1)/2 = n/2
+</pre>
+Let
+<tt>T(n)</tt> = worst case number of comparisons in binary search of
+an array of size <tt>n</tt>
+<p>
+</p>
+In the worst case, we would end up consistently exploring 
+the left side with <tt>n/2</tt> elements:
+<pre class='n'>
+T(1) = 1
+T(n) = 1 + T( n/2 ), n > 1
+</pre>
+Our claim is that <tt>T(n) = <big><i>O</i></big>(log n)</tt>. In fact we 
+want to prove:
+<pre class='n'>
+T(n) &le; 2 * log(n), n &ge; 2
+</pre>
+Look at a comparison of some computed values of <tt>T(n)</tt> and <tt>log(n)</tt>
+<pre class='n'>
+T(2) = 2,  log(2) = 1
+T(3) = 2,  log(3) = 1.x
+T(4) = 3,  log(4) = 2
+T(5) = 3,  log(5) = 2.x
+</pre>
+Observe that the multiplier 2 satisfies the 
+inequality we claim for each value.
+
+<h5>Proof by induction.</h5>
+Again, we use <i>strong</i> induction. We have verified 
+that for base cases <tt>n = 2, 3, 4, 5</tt> that:
+<pre class='n'>
+T(n) &le; 2 * log(n), n &ge; 2
+</pre>
+Assume  valid up to (but not including) <tt>n</tt>. 
+This means that we can make the <b>inductive assumption</b>
+and assume this to be true:
+<pre class='n'>
+T(n/2) &le; 2 * log(n/2),  n/2 &lt; n
+</pre>
+Then the proof goes like this:
+<pre class="lh3 n">
+T(n) = 1 + T(n/2)             <span class='ssf'>(the recurrence)</span> 
+     &le; 1 + 2 * log( n/2 )     <span class='ssf'>(substitute from inductive assumption)</span>
+     = 1 + 2 * (log(n) &#150; 1)   <span class='ssf'>(properties of <tt>log</tt>)</span>
+     = 2 * log(n) &#150; 1         <span class='ssf'>(simple algebra)</span>
+     &le; 2 * log(n)             <span class='ssf'>(becoming larger)</span>
+</pre>
+The key algebraic step relies on the property:
+<pre class='n'>
+log(a/b) = log(a) &#150; log(b)
+</pre>
+which we are using like this:
+<pre class='n'>
+log(n/2) = log(n) &#150; log(2) = log(n) &#150; 1
+</pre>
+However, because <tt>n/2</tt> is <b>truncated</b> division, 
+this last statement is not technically correct when <tt>n</tt> is odd.
+For simplicity, we'll ignore this technicality.
+
+<h4>Demo program</h4>
+
+It's useful to see a programmatic comparison of <tt>T(n)</tt> and 
+<tt>log(n)</tt> as can be done with the following program:
+
+<div class='format_display'>
+<button class="print_hide select_text"
+style='position:absolute;top:10px;right:5px;width:100px;font-size:9pt'>Select Text</button>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">class</span> MainBS <span class="br0">&#123;</span>
+  <span class="kw1">static</span> <span class="kw4">int</span> T<span class="br0">&#40;</span><span class="kw4">int</span> n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="nu0">1</span> <span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="nu0">1</span> <span class="sy0">+</span> T<span class="br0">&#40;</span> n<span class="sy0">/</span><span class="nu0">2</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="co1">// base-2 logarithm</span>
+  <span class="kw1">static</span> <span class="kw4">double</span> log<span class="br0">&#40;</span><span class="kw4">double</span> x<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="kw3">Math</span>.<span class="me1">log</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="kw3">Math</span>.<span class="me1">log</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> n <span class="sy0">=</span> <span class="nu0">2</span><span class="sy0">;</span> n <span class="sy0">&lt;=</span> <span class="nu0">32</span><span class="sy0">;</span> <span class="sy0">++</span>n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw4">int</span> t_val <span class="sy0">=</span> T<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="kw4">double</span> log_val <span class="sy0">=</span> log<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;T(&quot;</span> <span class="sy0">+</span> n <span class="sy0">+</span> <span class="st0">&quot;)/log(&quot;</span> <span class="sy0">+</span> n <span class="sy0">+</span> <span class="st0">&quot;)<span class="es0">\t</span>&quot;</span> <span class="sy0">+</span> <span class="br0">&#40;</span>t_val<span class="sy0">/</span>log_val<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+A run yields values like this which indicate that 
+<tt>T(n)</tt> and <tt>log(n)</tt> 
+get closer for larger values of <tt>n</tt>, although
+not in a uniform sense in that powers of 2 "stand out" in the table.
+<table cellpadding="0" cellspacing="0">
+<tr valign="top">
+<td>
+<pre>
+T(2)/log(2)	2.0
+T(3)/log(3)	1.2618595071429148
+T(4)/log(4)	1.5
+T(5)/log(5)	1.2920296742201793
+T(6)/log(6)	1.1605584217036249
+T(7)/log(7)	1.0686215613240666
+T(8)/log(8)	1.3333333333333333
+T(9)/log(9)	1.2618595071429148
+T(10)/log(10)	1.2041199826559246
+T(11)/log(11)	1.1562593052715513
+T(12)/log(12)	1.1157717826045193
+T(13)/log(13)	1.080952617709279
+T(14)/log(14)	1.0505981401487743
+T(15)/log(15)	1.023832099239262
+T(16)/log(16)	1.25
+T(17)/log(17)	1.22325271059113
+</pre>
+</td>
+<td>
+<pre>
+T(18)/log(18)	1.1990623328406573
+T(19)/log(19)	1.1770445668331913
+T(20)/log(20)	1.1568910657987959
+T(21)/log(21)	1.138351243484765
+T(22)/log(22)	1.1212191210878772
+T(23)/log(23)	1.1053236472875188
+T(24)/log(24)	1.0905214599276576
+T(25)/log(25)	1.0766913951834827
+T(26)/log(26)	1.0637302677668157
+T(27)/log(27)	1.0515495892857623
+T(28)/log(28)	1.0400729883825475
+T(29)/log(29)	1.0292341623021721
+T(30)/log(30)	1.018975235452531
+T(31)/log(31)	1.0092454329104992
+T(32)/log(32)	1.2
+
+</pre>
+</td>
+</tr>
+</table>
+
+<h4>Improvement on the worst-case order constant</h4>
+
+In the above sections we proved that
+<pre class="n">
+T(n) &le; 2 * log(n),  n &ge; 2
+</pre>
+Can we do better?
+It is not true that <tt>T(n) &le; log(n)</tt> per se,
+but the proof above can easily be adpated to prove this inequality:
+<pre class="n">
+T(n) &le; log(n) + 1,  n &ge; 2
+</pre>
+Thus, including the extra "1" term the constant multiplier is effectively 1,
+which is an improvement over the multiplier 2 indicated above.
+
+<h3><a name="order_classes"></a>Order class hierarchy</h3>
+The functions which characterize algorithm timing tend to 
+fall into a few common ones:
+<pre class='n lh3'>
+<big><i>O</i></big>(1)           <span class='ssf'>&#151; constant time</span>
+<big><i>O</i></big>(log n)       <span class='ssf'>&#151; logarithmic time</span>
+<big><i>O</i></big>(n)           <span class='ssf'>&#151; linear time</span>
+<big><i>O</i></big>(n * log n)
+<big><i>O</i></big>(n<sup>2</sup>)          <span class="ssf">&#151; quadratic time</span>
+<big><i>O</i></big>(n<sup>2</sup> * log n)
+<big><i>O</i></big>(b<sup>n</sup>)          <span class="ssf">&#151; each base <tt>b</tt> generates a distinct order class</span>
+</pre>
+
+These order classes are upwardly inclusive, i.e.,
+if <tt>T(n) = <big><i>O</i></big>(log n)</tt>, 
+then of course, <tt>T(n) = <big><i>O</i></big>(n)</tt>. We're usually
+interested in the "best fit" in the sense of finding the <b>smallest</b> order
+class to which <tt>T(n)</tt> belongs.
+
+In order to characterize the "best fit" of an order class, we need
+two other notions:
+
+<h4>Lower bound: <big><i>&Omega;</i></big></h4>
+
+We say:
+<pre class='n'>
+T(n) = <big><i>&Omega;</i></big>(f(n))  (<span class="ssf">or</span> T(n) <span class='ssf'><i><b>is</b></i></span> <big><i>&Omega;</i></big>(f(n)))
+</pre>
+if there are positive constants <tt>C</tt> and <tt>k</tt>, such that
+<pre class='n'>
+T(n) &ge; C * f(n),  <span class='ssf'>for all</span> n &ge; k
+</pre>
+
+<h4>Exact bound: <big><i>&Theta;</i></big></h4>
+
+We say:
+<pre class='n' style='margin-bottom: 0'>
+T(n) = <big><i>&Theta;</i></big>(f(n))  (<span class="ssf">or</span> T(n) <span class='ssf'><i><b>is</b></i></span> <big><i>&Theta;</i></big>(f(n)))
+</pre>
+if
+<pre class='n' style='margin-top: 0'>
+T(n) = <big><i>O</i></big>(f(n))  <span class='ssf'><b>and</b></span>  T(n) = <big><i>&Omega;</i></big>(f(n))
+</pre>
+This means that there are positive constants 
+<tt>C<sub>1</sub></tt>, <tt>C<sub>2</sub></tt> and <tt>k</tt>, such that
+<pre class='n'>
+C<sub>1</sub> * f(n)  &le;  T(n)  &le;  C<sub>2</sub> * f(n),  for all n &ge; k
+</pre>
+
+The <big><i>&Theta;</i></big> concept gives the precise sense
+to the notion of "order class" because it completely characterizes the
+behavior of a timing function relative to a reference
+function up to a constant multiple.
+
+<h4>Order Summary</h4>
+
+Officially there are three considerations.
+<ul class="notes">
+<li><big><i>O</i></big>: upper bound, 
+meaning "we can do at least this well" up to a constant factor
+</li>
+<li><big><i>&Omega;</i></big>: lower bound, ignoring constant factors,
+meaning, "we cannot expect to do better than this" up to a constant factor
+</li>
+<li><big><i>&Theta;</i></big>: characterization of the run-time behavior, up to a constant factor
+</li>
+</ul>
+Unofficially, the big-O terminology dominates the discussion 
+in algorithmic analysis.  Authors commonly use <big><i>O</i></big> even
+when they really mean <big><i>&Theta;</i></big>.
+If the exact order class is not known it means that a
+complete mathematical understanding of the run-time behavior is lacking.
+
+<h3><a name='other-algorithmic-terminology'></a>Other algorithmic terminology</h3>
+
+<i>Asymptotic dominance</i> of one function by another
+is expressed by the  <b>little-o</b> notation:
+<pre class='n'>
+T(n) = <i>o</i>(f(n))
+</pre> 
+This means that for <b>every</b> <tt>c</tt> (no matter how small), 
+there is a <tt>k</tt> such that
+<pre class="n">
+T(n) &le; c * f(n), n &ge; k
+</pre>
+For the most part this means the following:
+<pre class='n'>
+lim<sub>n <big>&rarr; &infin;</big></sub> T(n)/f(n) = 0
+</pre>
+Asymptotic dominance expresses the relationship of the 
+reference functions in the order class hierarchy above:
+<pre class='n lh3'>
+1      = o(log(n))
+log(n) = o(n)
+n      = o(n<sup>2</sup>)
+n<sup>2</sup>     = o(2<sup>n</sup>)
+2<sup>n</sup>     = o(3<sup>n</sup>)
+...
+</pre>
+The first of these relations, <tt>log(n) = <i>o</i>(n)</tt>, is proved using
+ L'H&ocirc;pital's rule from calculus, 
+substituting a continous variable <tt>x</tt> for the integer <tt>n</tt>:
+<pre class="lh3 n">
+lim<sub>x <big>&rarr; &infin;</big></sub>  log<sub>2</sub>(x)/x 
+= lim<sub>x <big>&rarr; &infin;</big></sub>  log<sub>2</sub>(e) * ln(x)/x 
+= lim<sub>x <big>&rarr; &infin;</big></sub>  log<sub>2</sub>(e) * ln<big>&prime;</big>(x) / x<big>&prime;</big>
+= lim<sub>x <big>&rarr; &infin;</big></sub>  log<sub>2</sub>(e) * 1/x / 1 
+= lim<sub>x <big>&rarr; &infin;</big></sub>  log<sub>2</sub>(e) / x  =  0
+</pre>
+
+<i>Asymptotic equality</i> is written this way:
+<pre class='n'>
+T(n) &asymp; (f(n))
+</pre>
+and it means:
+<tt>
+lim<sub>n <big>&rarr; &infin;</big></sub> T(n)/f(n) = 1
+</tt>
+The "wavy" equal lines suggest that these two functions are 
+essentially the same for large values.
+For example, in a polynomial function, 
+we can effectively ignore all but the highest order term.
+For example, if
+<pre class='n'>
+T(n) = 100 * n + 200 * n<sup>2</sup> + 3 * n<sup>3</sup>
+</pre>
+then 
+<pre class='n'>
+T(n) &asymp; 3 * n<sup>3</sup>
+</pre>
+Unfortunately the Weiss textbook does not define this relation.
+Asymptotic equality is, in some sense, similar to the exact bound 
+<big><i>&Theta;</i></big>,
+except that it gives a precise order constant, which is often of interest
+when you want to compare two timing functions within the same order class.
+For example, let
+<div class="n">
+<tt>W(n)</tt> = worst case time for linear search
+<br />
+<tt>A(n)</tt> = average case time for linear search
+</div>
+Both functions are exactly linear time and we would write:
+<pre class='n'>
+W(n) = &Theta;(n)
+A(n) = &Theta;(n)
+</pre>
+However, the order constants are different and this is expressed using <tt>&asymp;</tt>:
+<pre class='n'>
+W(n) &asymp; n
+A(n) &asymp; &frac12; n
+</pre>
+
+<h3><a name="binsearch-ave"></a>Binary Search average case</h3>
+
+The average case timing is more complicated. 
+As in the case of linear search, we assume a successful search, 
+and that each of the array positions are equally likely to hold the search key.
+We are mostly interested in getting some sense about 
+how much <b>better</b> the average case
+might be, and proving that it is still logarithmic.
+Technically we want to prove the <b>lower bound</b>:
+
+<pre class="n">
+<span class='ssf'>Average binary search time</span>(n) = <big><i>&Omega;</i></big>(log(n))   
+</pre>
+Combined with the fact that the average time can only be better
+than the worst-case time, which is 
+<tt><big><i>O</i></big>(log(n))</tt>
+we can then conclude that
+<pre class="n">
+<span class='ssf'>Average binary search time</span>(n) = <big><i>&Theta;</i></big>(log(n))   
+</pre>
+Additionally we want to get some idea about what the order constant might be.
+
+<h4>Counting the total number of comparisons</h4>
+
+In order to compute the average number of comparisons, 
+we need to find a way to compute the <b>total</b> 
+number of comparison for all possible nodes in the positional visitation tree.
+
+The <b>level</b> of a node is its distance from the root. 
+The root, at level 0, counts for 1 comparison. 
+Both of its children count for 2 comparisons each, etc.
+Thus,
+<pre class="n">
+Total comparisons = <big>&sum;</big><sub>all nodes at level i</sub> (i+1)
+</pre>
+In general, at
+level <tt>i</tt>, if it is full, there will be <tt>2<sup>i</sup></tt> children, 
+each contributing <tt>(i+1)</tt> comparisons. 
+<p></p>
+A binary tree is <b>perfect</b> if every level is full.
+In general, the binary search position visitation
+ tree will not be perfect, but it can be argued that
+<ul class="notes">
+<li>The levels <tt>0</tt> to <tt>flr(log n)-1</tt>  
+are all full: thus a total of <tt>L = flr(log n)</tt> levels are full.</li>
+<li>The maximum level of a node is <tt>flr(log n)</tt> (which may not be full)</li>
+</ul>
+
+We reproduce the depictions of the binary search visitation trees for arrays of size 7 and 10:
+
+<table style="margin:5px 0px 0px 0px">
+<tr valign="top">
+<td><img src="/~rkline/DS/images/binsrch-7.png" /></td>
+<td><img src="/~rkline/DS/images/binsrch-10.png" /></td>
+</tr>
+<tr valign="top" style="text-align:center; font-family:monospace; font-size:110%">
+<td>flr(log(7)) = 2</td>
+<td>flr(log(10)) = 3</td>
+</tr>
+</table>
+
+<h4>Computing a lower bound</h4>
+
+The following is a useful expression which gives total number of comparisons in
+a <b>perfect</b> tree with 
+of <tt>L</tt> levels (levels <tt>0</tt> to <tt>L-1</tt>):
+
+<pre class='n'>
+Comparisons(L) = 1 + 2*2<sup>1</sup> + 3*2<sup>2</sup> + ... + L*2<sup>L-1</sup> = (L-1)*2<sup>L</sup> + 1
+</pre>
+Using this equation we can derive a lower bound on the number of comparisons for binary search.
+Using <tt>L = flr(log n)</tt>, we get
+<pre class="n lh3">
+total comparisons &ge; Comparisons( flr(log n) ) 
+                  = ( flr(log n) - 1 ) * 2<sup>flr(log n)</sup> + 1 
+</pre>
+The <tt>flr(log n)</tt> expression truncates the decimal part of <tt>log(n)</tt> and so
+it will subtract away less than 1 from <tt>log(n)</tt>, i.e.,
+<pre class="n">
+flr(log(n)) &gt; log(n)-1
+</pre>
+Replacing <tt>flr(log n)</tt> 
+by <tt>log(n)-1</tt> 
+and doing the algebra, we get
+<pre class="n lh3">
+total comparisons &gt; ( log(n) - 2 ) * 2<sup>log(n) - 1</sup> + 1
+                  =  log(n) * 2<sup>log(n) - 1</sup> - 2<sup>log(n)</sup> + 1  
+                  = &frac12; * n * log(n) - n + 1
+</pre>
+Dividing the total comparisons by <tt>n</tt> gives the average, i.e.,
+<pre class="n lh3">
+average comparisons &gt; &frac12; * log(n) - 1 + 1/n &gt; <b style='color:blue'>&frac12; * log(n) </b>- 1 
+</pre>
+Therefore, the average number of comparisons is <tt><big><i>&Omega;</i></big>(log(n))</tt>.
+
+<h4>Exact bounds</h4>
+
+Going one step further, we indicated above that:
+<pre class='n'>
+worst case comparisons &le; log(n) + 1
+</pre>
+meaning that this inequality is, of course, true as well for the average comparisons. We conclude that
+<pre class='n'>
+&frac12; * log(n) - 1  &le;  average comparisons  &le;  log(n) + 1
+</pre>
+We conclude that the average and worst-case comparisons are both <tt><big><i>&Theta;</i></big>(log(n))</tt>
+where the relevant muliplicative constant varies between &frac12; and 1.
+
+
+<h3><a name="binary-search-code"></a>Binary Search Implementations</h3>
+
+First of all, create a simple test program to see what Java does.
+Create the main class <tt>JavaBinarySearch</tt> with this content:
+<div class='format_display'>
+<button class="print_hide select_text"
+style='position:absolute;top:10px;right:5px;width:100px;font-size:9pt'>Select Text</button>
+<span></span>
+<pre class="java"><span class="kw1">package</span> <span class="co2">miscell</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">class</span> JavaBinarySearch <span class="br0">&#123;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+    <span class="kw3">Random</span> rand <span class="sy0">=</span> <span class="kw1">new</span> <span class="kw3">Random</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw4">int</span> A<span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="kw1">new</span> <span class="kw4">int</span><span class="br0">&#91;</span><span class="nu0">20</span><span class="br0">&#93;</span>, key<span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> A.<span class="me1">length</span><span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      A<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> rand.<span class="me1">nextInt</span><span class="br0">&#40;</span>A.<span class="me1">length</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span> 
+    <span class="br0">&#125;</span>   
+    key <span class="sy0">=</span> rand.<span class="me1">nextInt</span><span class="br0">&#40;</span>A.<span class="me1">length</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span> 
+&nbsp;
+    <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;A (initial) = &quot;</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">&#40;</span>A<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">Arrays</span>.<span class="me1">sort</span><span class="br0">&#40;</span>A<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;A (sorted)  = &quot;</span> <span class="sy0">+</span> <span class="kw3">Arrays</span>.<span class="me1">toString</span><span class="br0">&#40;</span>A<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;key = &quot;</span> <span class="sy0">+</span> key<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw4">int</span> pos<span class="sy0">;</span>
+&nbsp;
+    pos <span class="sy0">=</span> <span class="kw3">Arrays</span>.<span class="me1">binarySearch</span><span class="br0">&#40;</span>A, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span>
+      <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;binary search from Arrays class&quot;</span> <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;return = &quot;</span> <span class="sy0">+</span> pos <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;found = &quot;</span> <span class="sy0">+</span> <span class="br0">&#40;</span>pos <span class="sy0">&gt;=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span>
+      <span class="br0">&#41;</span><span class="sy0">;</span>  
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+Of what use is the negative return value?
+
+<p></p>
+Our version is created by adding code to the <tt>util.MyArrays</tt> class.
+Here is the code
+<table class='format_display'><tr><td><hr /></td><th>util.MyArrays &#151; code added</th></tr></table>
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">int</span> count<span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> getCount<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> count<span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> setCount<span class="br0">&#40;</span><span class="kw4">int</span> count<span class="br0">&#41;</span> <span class="br0">&#123;</span> MyArrays.<span class="me1">count</span> <span class="sy0">=</span> count<span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">==</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> <span class="sy0">-</span> fromIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="sy0">++</span>count<span class="sy0">;</span>
+    <span class="kw4">int</span> mid <span class="sy0">=</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">+</span> toIndex<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">==</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> mid<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">&lt;</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, fromIndex, mid, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="co1">// else key &gt; A[mid]</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, mid<span class="sy0">+</span><span class="nu0">1</span>, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, <span class="nu0">0</span>, A.<span class="me1">length</span>, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+
+<h4>Failed search value</h4>
+
+We have modified the return value in case of failure. Before we wrote simply
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">return</span> <span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span></pre></div>
+However, we can provide better information which indicates the position
+that the <tt>key</tt> should be added. This is done by:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">return</span> <span class="sy0">-</span> fromIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span></pre></div>
+We are insured that this value is negative under all circumstances. 
+In this case, when the <tt>key</tt> is not found 
+the negative return value can be used
+to compute the correct <i>insert position</i> as:
+<pre class="n">
+int insert_pos = - ret - 1;
+</pre>
+We can then correctly add <tt>key</tt> to the array, <tt>A</tt> 
+(maintainin sortedness) if we 
+<ul class='notes'>
+<li>shift the array contents in 
+ positions <tt>insert_pos</tt> to <tt>toIndex</tt> one to the <b>right</b>,
+</li>
+<li>
+set <tt>A[insert_pos] = key</tt>
+</li>
+</ul>
+It's good to verify this with an example. Suppose the array is
+<div class="n">
+<table id="failedsearch" cellpadding="0" cellspacing="0">
+<tr class="data">
+<td>0</td><td>10</td><td>20</td><td>30</td><td>40</td>
+</tr>
+<tr>
+<td>0</td><td>1</td><td>2</td><td>3</td><td>4</td>
+</tr>
+</table>
+</div>
+Consider the failed search for <tt>key=25</tt>. The successive search
+ranges would be:
+<pre class='n'>
+(0,5), (3,5), (3,4), (3,3)
+</pre>
+The return value would be <tt>-4</tt> which would be correctly interpreted as
+an insert position of <tt>3</tt>.
+It's also important to ensure that the "extreme" cases work out correctly:
+<ul class="notes">
+<li>
+A failed search for <tt>key = -10</tt> will maintain 
+<tt>fromIndex = 0</tt> on all steps. 
+At the end, the return value will be <tt>-1</tt>, 
+signifying that the correct insert position is <tt>0</tt>.
+</li>
+<li>
+A failed search for <tt>key = 50</tt> will search this sequence of
+ranges: 
+<tt>(0,5), (3,5), (5,5)</tt>.
+At the end, the return value will be <tt>-6</tt>, 
+signifying that the correct insert position
+is <tt>5</tt> (off the right end).
+</li>
+</ul>
+
+<h4>Counting comparisons</h4>
+Unlike linear search, there are, in reality, one or two actual 
+comparisons, but we ignore that issue and declare these as one comparison. 
+Also unlike linear search, the position at which an element is found does 
+not automatically relate to the number of comparisons made to find it.
+<p></p>
+To support empirical analysis of binary search we need to create a 
+programmatic method for inserting "count code" in a non-obtrusive way.
+As you see below, 
+a <tt>count</tt> variable introduced records each comparison. 
+The problem is setting and getting this value. The idea is this:
+<pre class='lh3'>
+MyArrays.setCount(0);   // initialize the counter prior to call
+binarySearch(A, ...);   // run binary search
+int count = MyArrays.getCount();  // retrieve the count value
+</pre>
+
+<h4>Error Checking</h4>
+We've left out error checking code from <tt>binarySearch</tt>:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> toIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> fromIndex <span class="sy0">&gt;</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IllegalArgumentException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="co1">//...</span>
+<span class="br0">&#125;</span></pre></div>
+
+The problem with introducing the error checking code inside the recursive function is
+that it is inefficient; only the <b>first</b> invocation needs to check for an invalid range,
+not all the recursive calls. A better approach is to have the <b>public</b> 
+<tt>binarySearch</tt> function call a <b>private</b> recursive
+function like this:
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> toIndex <span class="sy0">&lt;</span> <span class="nu0">0</span> <span class="sy0">||</span> fromIndex <span class="sy0">&gt;</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IllegalArgumentException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> _binarySearch<span class="br0">&#40;</span>A, fromIndex, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">private</span> <span class="kw1">static</span> <span class="kw4">int</span> _binarySearch<span class="br0">&#40;</span><span class="kw4">int</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw4">int</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">==</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> <span class="sy0">-</span> fromIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+    <span class="sy0">++</span>count<span class="sy0">;</span>
+    <span class="kw4">int</span> mid <span class="sy0">=</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">+</span> toIndex<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">==</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> mid<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>key <span class="sy0">&lt;</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> _binarySearch<span class="br0">&#40;</span>A, fromIndex, mid, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="co1">// else key &gt; A[mid]</span>
+    <span class="kw1">return</span> _binarySearch<span class="br0">&#40;</span>A, mid<span class="sy0">+</span><span class="nu0">1</span>, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+<h4>Testing</h4>
+
+To test out this user-created version, 
+add the following code to the end of the main function
+in the <tt>BinarySearch</tt> class:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">    MyArrays.<span class="me1">setCount</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    pos <span class="sy0">=</span> MyArrays.<span class="me1">binarySearch</span><span class="br0">&#40;</span>A, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span>
+      <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;binary search from MyArrays class&quot;</span> <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;return = &quot;</span> <span class="sy0">+</span> pos <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+      <span class="st0">&quot;comparisons: &quot;</span> <span class="sy0">+</span> MyArrays.<span class="me1">getCount</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+      <span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+<h4>Supporting object types</h4>
+
+The situation is more complicated than that of linear search
+for object types because binary search is based the <i>comparability</i> of objects,
+meaning that we have to be able to determine not just equality, but a less than/greater than
+inequality of elements.
+<p></p>
+In particular the Java API for <tt>binarySearch</tt> supports the ability to pass in a user-defined
+comparator instead of using relying upon the innate comparability of elements. A comparator
+is always passed in with the parameter type:
+<div class='format_display'>
+<span></span>
+<pre class="java">Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> T<span class="sy0">&gt;</span> c</pre></div>
+
+where <tt>T</tt> is a generic type variable.
+
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span>
+      <span class="kw3">Object</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, <span class="kw3">Object</span> key<span class="br0">&#41;</span> 
+  <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">==</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> <span class="sy0">-</span> fromIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw4">int</span> mid <span class="sy0">=</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">+</span> toIndex<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+&nbsp;
+    <span class="sy0">++</span>count<span class="sy0">;</span> <span class="co1">// optional counting code</span>
+&nbsp;
+    <span class="kw4">int</span> comp <span class="sy0">=</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><span class="kw3">Comparable</span><span class="br0">&#41;</span> key<span class="br0">&#41;</span>.<span class="me1">compareTo</span><span class="br0">&#40;</span>A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> mid<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, fromIndex, mid, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="co1">// else comp &gt; 0</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, mid<span class="sy0">+</span><span class="nu0">1</span>, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span><span class="kw3">Object</span><span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw3">Object</span> key<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, <span class="nu0">0</span>, A.<span class="me1">length</span>, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="co1">// when a user-defined comparator is provided ...</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>T<span class="sy0">&gt;</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span>
+       T<span class="br0">&#91;</span><span class="br0">&#93;</span> A, <span class="kw4">int</span> fromIndex, <span class="kw4">int</span> toIndex, T key, Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> T<span class="sy0">&gt;</span> c<span class="br0">&#41;</span> 
+  <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">==</span> toIndex<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> <span class="sy0">-</span>fromIndex <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw4">int</span> mid <span class="sy0">=</span> <span class="br0">&#40;</span>fromIndex <span class="sy0">+</span> toIndex<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="nu0">2</span><span class="sy0">;</span>
+&nbsp;
+    <span class="sy0">++</span>count<span class="sy0">;</span> <span class="co1">// optional counting code</span>
+&nbsp;
+    <span class="kw4">int</span> comp <span class="sy0">=</span> c.<span class="me1">compare</span><span class="br0">&#40;</span>key, A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> mid<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>comp <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, fromIndex, mid, key<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="co1">// else comp &gt; 0</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, mid <span class="sy0">+</span> <span class="nu0">1</span>, toIndex, key<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="sy0">&lt;</span>T<span class="sy0">&gt;</span> <span class="kw4">int</span> binarySearch<span class="br0">&#40;</span>T<span class="br0">&#91;</span><span class="br0">&#93;</span> A, T key, Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> T<span class="sy0">&gt;</span> c<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> binarySearch<span class="br0">&#40;</span>A, <span class="nu0">0</span>, A.<span class="me1">length</span>, key, c<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+In the first case, assuming the innate comparability of elements, the
+ the <tt>compareTo</tt> member function is used.
+Thus we assume the key value
+is <tt>Comparable</tt> by forcing a cast, getting this code:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw4">int</span> comp <span class="sy0">=</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><span class="kw3">Comparable</span><span class="br0">&#41;</span> key<span class="br0">&#41;</span>.<span class="me1">compareTo</span><span class="br0">&#40;</span> A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span> <span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+The value of <tt>comp</tt> determines one of the three relations: 
+<div class="n lh3">
+  less than if <tt>comp &lt; 0</tt>,
+  <br />
+equals if <tt>comp == 0</tt>, 
+  <br />
+greater than if <tt>comp &gt; 0</tt>.
+</div>
+In the latter case, when a comparator <tt>c</tt> is passed, the equivalent idea is to
+make a comparison using this object as follows:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw4">int</span> comp <span class="sy0">=</span> c.<span class="me1">compare</span><span class="br0">&#40;</span>key, A<span class="br0">&#91;</span>mid<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+
+<h3><a name="bin-lin"></a>Binary vs. Linear search</h3>
+
+The problem with binary search is that, although the search
+time is much faster, the array must be sorted for it work.
+The best algorithms for sorting a random array
+have a run time of <tt><big><i>O</i></big>(n * log n)</tt>. 
+So there is no advantage of binary search
+over linear search if every search is on a fresh array.
+Here is how we compare the two algorithms:
+<table id='binlin'>
+
+<tr>
+<td></td>
+<td>
+Linear Search
+</td>
+<td>
+Binary Search
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td> <hr /> </td>
+<td> <hr /> </td>
+</tr>
+
+<tr>
+<td>
+create array:
+</td>
+<td>
+<tt>O(n)</tt>
+</td>
+<td>
+<tt>O(n)</tt>
+</td>
+</tr>
+
+<tr>
+<td>
+prepare array:
+</td>
+<td>
+<tt>-</tt>
+</td>
+<td>
+<tt>O(n*log(n))</tt>
+</td>
+</tr>
+
+<tr>
+<td>
+search array:
+</td>
+<td>
+<tt>O(n)</tt>
+</td>
+<td>
+<tt>O(log(n))</tt>
+</td>
+</tr>
+
+</table>
+If, using a single array, we do 
+<tt><big><i>O</i></big>(log n)</tt> searches 
+then, with the Linear Search total time is 
+<tt><big><i>O</i></big>(n * log n)</tt> which would break even
+with Binary Search. To put this in perspective, if we have an 
+array with 1 million, or 2<sup>20</sup> entries, then, after sorting, 
+we would need to do roughly 20 
+searches for Binary Search to break even with Linear Search.
+
+<h3><a name="expon"></a>Integer exponentiation</h3>
+
+We want to write an algorithm to compute 
+<tt>x<sup>n</sup></tt> for an integer <tt>n &ge; 0</tt>. The obvious
+linear-time algorithm involves repeated multiplication by <tt>x</tt>.
+A more subtle version uses the binary representation of the
+exponent. The basis of the algorithm is this:
+<pre class="n">
+n = 2 * n/2, if n even
+n = 2 * n/2 + 1, if n odd
+</pre>
+Throughout this section, for convenience, we'll represent integer
+truncated division by simple division, i.e.,
+<pre class="n">
+n/2  is really  flr(n/2)
+</pre>
+Using properties of exponents, we have:
+<pre class="n lh3">
+x<sup>0</sup> =  1
+x<sup>1</sup> =  x
+</pre>
+and then we can write either:
+<ol type="a" class="notes">
+<li>
+<pre class="n lh3">
+n even: x<sup>n</sup> = (x<sup>2</sup>)<sup>n/2</sup>
+n odd:  x<sup>n</sup> = x * (x<sup>2</sup>)<sup>n/2</sup>
+</pre>
+</li>
+<li>
+<pre class="n lh3">
+n even: x<sup>n</sup> = (x<sup>n/2</sup>)<sup>2</sup>
+n odd:  x<sup>n</sup> = x * (x<sup>n/2</sup>)<sup>2</sup>
+</pre>
+</li>
+</ol>
+
+
+Both the "<b>a</b>" equations the "<b>b</b>" equations 
+can be the source of recursive algorithms.
+Here is the full code:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">double</span> powA<span class="br0">&#40;</span><span class="kw4">double</span> x, <span class="kw4">int</span> n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> x<span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">%</span> <span class="nu0">2</span> <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> powA<span class="br0">&#40;</span> x <span class="sy0">*</span> x, n<span class="sy0">/</span><span class="nu0">2</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="co1">//else</span>
+    <span class="kw1">return</span> x <span class="sy0">*</span> powA<span class="br0">&#40;</span> x <span class="sy0">*</span> x, n<span class="sy0">/</span><span class="nu0">2</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">double</span> powB<span class="br0">&#40;</span><span class="kw4">double</span> x, <span class="kw4">int</span> n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> x<span class="sy0">;</span>
+  <span class="kw4">double</span> val <span class="sy0">=</span> powB<span class="br0">&#40;</span>x, n<span class="sy0">/</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">%</span> <span class="nu0">2</span> <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> 
+    <span class="kw1">return</span> val <span class="sy0">*</span> val<span class="sy0">;</span>
+  <span class="co1">//else</span>
+    <span class="kw1">return</span> x <span class="sy0">*</span> val <span class="sy0">*</span> val<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><span class="kw3">String</span><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="kw1">throws</span> <span class="kw3">Exception</span> <span class="br0">&#123;</span>
+  <span class="kw4">double</span> x <span class="sy0">=</span> <span class="nu0">2.0</span><span class="sy0">;</span>
+  <span class="kw4">int</span> n <span class="sy0">=</span> <span class="nu0">10</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span>
+    <span class="st0">&quot;powA(&quot;</span> <span class="sy0">+</span> x <span class="sy0">+</span> <span class="st0">&quot;,&quot;</span> <span class="sy0">+</span> n <span class="sy0">+</span> <span class="st0">&quot;) = &quot;</span> <span class="sy0">+</span> powA<span class="br0">&#40;</span>x,n<span class="br0">&#41;</span> 
+    <span class="sy0">+</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span> <span class="sy0">+</span>
+    <span class="st0">&quot;powB(&quot;</span> <span class="sy0">+</span> x <span class="sy0">+</span> <span class="st0">&quot;,&quot;</span> <span class="sy0">+</span> n <span class="sy0">+</span> <span class="st0">&quot;) = &quot;</span> <span class="sy0">+</span> powB<span class="br0">&#40;</span>x,n<span class="br0">&#41;</span>
+  <span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+The proof of correctness is more-or-less obvious for the recursive
+functions <tt>powA</tt> and  <tt>powB</tt>.
+If we count each multiplication as "<tt>1</tt>", then,
+for the worst-case time function <tt>T(n)</tt>, we compute:
+<ul class="notes">
+<li>for <tt>powA</tt>: 1 multiplication to compute <tt>x * x</tt>,
+<tt>T(n/2)</tt> 
+for the recursive call to <tt>n/2</tt>, 1 multiplcation afterwards.
+</li>
+<li>for <tt>powB</tt>: 
+<tt>T(n/2)</tt> for the 
+recursive call to <tt>n/2</tt>, 2 multiplcations afterwards.
+</li>
+</ul>
+In either case, we get
+<pre class='n'>
+T(0) = 0
+T(1) = 0
+T(n) = T(n/2) + 2,   n &ge; 2
+</pre>
+It can be proved by induction that:
+<pre class='n'>
+T(n) = <big><i>O</i></big>( log(n) )
+</pre>
+Note that we were careful <b>not</b> to write the <tt>powB</tt> 
+function like this:
+<pre class='n'>
+if (n % 2 == 0) 
+  return powB(x,n/2) * powB(x,n/2);
+else
+  return x * powB(x,n/2) * powB(x,n/2);
+</pre>
+The reason is that it would make the recurrence relation
+this:
+<pre class='n'>
+T<sub>1</sub>(0) = 0
+T<sub>1</sub>(1) = 0
+T<sub>1</sub>(n) = 2 * T(n/2) + 2
+</pre>
+The factor of <tt>2</tt> in front of <tt>T<sub>1</sub>(n/2)</tt> 
+causes <tt>T<sub>1</sub>(n)</tt> to enter a different order class. 
+It can be proved that
+<pre class='n'>
+T<sub>1</sub>(n) = <big><i>&Theta;</i></big>( n )
+</pre>
+by inductively proving two inequalities 
+<ol type="i" class='notes'>
+<li>
+<pre class='n'>
+T<sub>1</sub>(n) &ge; n - 1,  n &ge; 1
+</pre>
+</li>
+<li>
+<pre class='n'>
+T<sub>1</sub>(n) &le; 2*n - 2,  n &ge; 1
+</pre>
+</li>
+</ol>
+
+<h4>The iterative version</h4>
+
+However difficult you consider recursion, it is much more transparent
+when compared to an interative version.
+Here is the code:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">double</span> powC<span class="br0">&#40;</span><span class="kw4">double</span> x, <span class="kw4">int</span> n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw4">double</span> val <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">while</span><span class="br0">&#40;</span>n <span class="sy0">!=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">%</span> <span class="nu0">2</span> <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span> val <span class="sy0">*=</span> x<span class="sy0">;</span>
+    n <span class="sy0">=</span> n<span class="sy0">/</span><span class="nu0">2</span><span class="sy0">;</span>
+    x <span class="sy0">=</span> x<span class="sy0">*</span>x<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">return</span> val<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+Proving the correctness of an iterative algorithm is technically 
+harder than the correctness of a recursive algorithm, 
+which is more-or-less a straight-foroward induction proof. 
+<p>
+</p>
+
+In particular, an iterative algorithm uses
+variables which <b>change state</b> in order to control the iteration.
+A proof requires that you
+ establish a <i>loop invariant</i>, which is a logical statement
+expressed using the program variables so that:
+<ul class="notes">
+<li>it is initially true with the variable initializations</li>
+<li>assuming that it is true at some step, it remains
+true at the next step using the modified variable values</li>
+<li>when the loop is terminated, the invariant "proves" what
+you want the loop to compute.
+</li>
+</ul>
+Let's look at the <tt>powC</tt> algorithm with some annotations:
+<div class='format_display'>
+<span></span>
+<pre class="java">b <span class="sy0">=</span> x<span class="sy0">;</span> p <span class="sy0">=</span> n<span class="sy0">;</span>
+<span class="kw4">double</span> val <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+<span class="kw1">while</span><span class="br0">&#40;</span>n <span class="sy0">!=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>n <span class="sy0">%</span> <span class="nu0">2</span> <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span> val <span class="sy0">*=</span> x<span class="sy0">;</span>
+  n <span class="sy0">=</span> n<span class="sy0">/</span><span class="nu0">2</span><span class="sy0">;</span>
+  x <span class="sy0">=</span> x<span class="sy0">*</span>x<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+The variables
+<tt>b</tt> (base) and <tt>p</tt> (power)
+represent the initial values of <tt>n</tt> and <tt>x</tt>,
+respectively. We want to argue that after the loop terminates:
+<pre class='n'>
+val = b<sup>p</sup>
+</pre>
+The additional annotated variables
+<tt>b</tt> (base) and <tt>p</tt> are needed to express the invariant
+because <tt>x</tt> and <tt>n</tt> change state.
+
+The invariant we want is this:
+<pre class='n'>
+val * x<sup>n</sup> = b<sup>p</sup>
+</pre>
+It is true initially. Using the values
+<pre class='n'>
+val = 1, x = b, n = p
+</pre>
+we have that
+<pre class='n'>
+val * x<sup>n</sup> = 1 * b<sup>p</sup> = b<sup>p</sup>
+</pre>
+Now assume it is true up to a certain point
+and then consider the next iteration step. Let 
+<tt>val&prime;</tt>,
+<tt>n&prime;</tt>, 
+and
+<tt>x&prime;</tt>
+ be the new
+values of <tt>val</tt>, <tt>n</tt> and <tt>x</tt>, respectively, then:
+<pre class='n'>
+x&prime; = x * x
+n&prime; = n/2
+val&prime; = val * x, if n odd
+     = val,     if n even
+</pre>
+We must show:
+<pre class='n'>
+val&prime; * (x&prime;)<sup>n&prime;</sup> = val * x<sup>n</sup>
+</pre>
+There are two cases:
+<ul>
+<li><tt>n</tt> even:
+<pre class='n'>
+val&prime; * (x&prime;)<sup>n&prime;</sup> = val * (x<sup>2</sup>)<sup>n/2</sup> = val * x<sup>2*(n/2)</sup> = val * x<sup>n</sup>
+</pre>
+</li>
+<li><tt>n</tt> odd:
+<pre class='n'>
+val&prime; * (x&prime;)<sup>n&prime;</sup> = val * x * (x<sup>2</sup>)<sup>n/2</sup> = val * x<sup>2*(n/2) + 1</sup> = val * x<sup>n</sup>
+</pre>
+</li>
+</ul>
+The loop terminates when <tt>n</tt> equals 0, and so we get:
+<pre class='n'>
+val * x<sup>0</sup> = b<sup>p</sup>, i.e., val = b<sup>p</sup>
+</pre>
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>
