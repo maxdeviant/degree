@@ -1,0 +1,747 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - Linked Lists</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<link rel="stylesheet" type="text/css" href="css/init.css" />
+<link href="images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+<style type="text/css" media="all">
+<!--
+
+table.ops td {
+   padding: 10px 20px 10px 10px;
+   font-family: monospace;
+   border-bottom: solid 1px black;
+}
+table.ops td.descrip {
+   font-family: sans-serif;
+   border-right: solid 1px black;
+   padding-left: 5px;
+}
+table.ops th {
+   padding: 10px 20px 10px 5px;
+   border-bottom: solid 1px black;
+}
+
+-->
+</style></head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+Linked Lists</h2>
+<div id="mtime">last modified: Feb 13, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#description">Description</option>
+<option value="#demo">Demo Program</option>
+<option value="#adapter">LListAdapter</option>
+<option value="#list-types">Linked List Types</option>
+<option value="#single-list">Singly-linked Implementation</option>
+<option value="#double-list">Doubly-linked Implementation</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+
+The goals and methods for creating user-defined Linked Lists
+are similiar to those described in
+the <a href="array-lists.html">Array Lists</a> document. 
+We will create a <tt>LListAdapter</tt> class from which we
+can derive our implementation classes.
+We are interested in linked lists created both from singly-linked 
+(forward-only) node structures as well as doubly-linked 
+node structures. Towards this end two implementations
+<tt>SingleLList</tt> and <tt>DoubleLList</tt> are created.
+
+<h3><a name="description"></a>Description</h3>
+
+<h4>Comparison of LinkedList/ArrayList</h4>
+The linking structure of linked lists creates different
+behavior from array lists, here are the key difference:
+<div class="n">
+<table cellspacing='0' border="1" width="90%" cellpadding="5px">
+<tbody valign="top">
+<tr>
+<td>&nbsp;</td>
+<th width="45%">ArrayList</th>
+<th width="45%">LinkedList</th>
+</tr>
+<tr>
+<td>get/set random access </td>
+<td>accessing an element (get/set) at an index is <tt><big><i>O</i></big>(1)</tt></td>
+<td>accessing an element (get/set) at an index is <tt><big><i>O</i></big>(n)</tt> because we must proceed through
+a sequence of node pointers to get to the correct position.
+</td>
+</tr>
+<tr>
+<td>add/remove at first and last positions</td>
+<td>
+add at the <b>last</b> position is 
+<tt><big><i>O</i></big>(1)</tt> in general; an additional
+<tt><big><i>O</i></big>(n)</tt> cost  is incurred 
+when the array's capacity is increase;
+if the capacity is maintained efficiently, the overall average cost is 
+still <tt><big><i>O</i></big>(1)</tt>
+<p>
+remove at the <b>last</b> position is always
+<tt><big><i>O</i></big>(1)</tt>
+</p>
+add/remove at the <b>first</b> position is always 
+<tt><big><i>O</i></big>(n)</tt>
+because the entire array is shifted
+</td>
+<td>
+add/remove at the first or last positions is 
+<tt><big><i>O</i></big>(1)</tt>
+(with doubly-linked lists)
+</td>
+</tr>
+<tr>
+<td>add/remove at arbitrary position</td>
+<td>
+add/remove at arbitrary position is 
+<tt><big><i>O</i></big>(n)</tt> due to shifting
+</td>
+<td>
+add/remove at arbitrary position is <tt><big><i>O</i></big>(n)</tt> 
+due to sequencing through pointers
+</td>
+</tr>
+<tr>
+<td>space usage</td>
+<td>
+wasted space varies according to the number of
+unused array positions; in order to keep
+average add time efficient, 
+<tt><big><i>O</i></big>(n)</tt> wasted space
+must be created at capacity increases
+</td>
+<td>
+the links are "wasted" by virtue of not holding data; thus
+there is always
+<tt><big><i>O</i></big>(n)</tt> 
+wasted space
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+In general terms, an <tt>ArrayList</tt>
+is a better choice when we're interested in 
+"random positional" access of elements whereas a
+<tt>LinkedList</tt> is better suited for end-based access.
+
+<h4>Member functions</h4>
+
+The <tt>LinkedList</tt> implements the 
+<tt>Queue</tt> and <tt>Deque</tt> interfaces in addition
+to the <tt>List</tt> interface. All 
+of these interface/implementation declarations are useful
+in practical situations:
+<pre class="lh3 n">
+Deque&lt;E&gt; L = new LinkedList&lt;E&gt;();
+Queue&lt;E&gt; L = new LinkedList&lt;E&gt;();
+List&lt;E&gt; L = new LinkedList&lt;E&gt;();
+</pre>
+The <tt>Queue</tt> and <tt>Deque</tt> interfaces offer a bewildering 
+array of choices of member functions, as described in the
+<a href="../Java/data-structures.html#queue-deque-stack">Java Data Structures (java.util)</a>
+document.
+
+Here is a table of operation descriptions focusing on the non-index 
+based operations. Keep in mind that <i>first</i> and <i>last</i> 
+signify the <i>leftmost</i> and <i>rightmost</i> elements, respectively.
+
+<div class="n">
+<table class="ops" cellpadding="0" cellspacing="0">
+<tr>
+<th align="left">description</th>
+<th>versions</th>
+</tr>
+
+<tr>
+<td class="descrip">add to last</td>
+<td>
+void&nbsp;addLast(e),
+boolean&nbsp;add(e),	
+boolean&nbsp;offerLast(e)
+</td>
+</tr>
+
+<tr>
+<td class="descrip">add to first</td> 
+<td>
+void&nbsp;addFirst(e),
+boolean&nbsp;push(e),
+boolean&nbsp;offer(e),
+boolean&nbsp;offerLast(e)
+</td>
+</tr>
+
+<tr>
+<td class="descrip">remove last element</td>
+<td>
+E&nbsp;removeLast(),
+E&nbsp;pollLast()
+</td>
+</tr>
+
+<tr>
+<td class="descrip">remove first element</td>
+<td>
+E&nbsp;removeFirst(),
+E&nbsp;remove(),
+E&nbsp;pop(),
+E&nbsp;poll(),
+E&nbsp;pollFirst()
+</td>
+</tr>
+
+<tr>
+<td class="descrip">get last element</td>
+<td>getLast(),
+peekLast()</td>
+</tr>
+
+<tr>
+<td class="descrip">get first element</td>
+<td>
+getFirst(),
+element(),	
+peek(),
+peekFirst()</td>
+</tr>
+
+</table>
+</div>
+The main difference between the "<tt>remove_</tt>" and "<tt>get_</tt>" 
+operations versus the "<tt>poll_</tt>" and "<tt>peek_</tt>" operations is 
+that for the former ones, an exception is thrown if the list is empty, 
+whereas for the latter, a <tt>null</tt> is returned.
+<p></p>
+Of course, we can also use the more obvious declaration:
+<div class='format_display'>
+<span></span>
+<pre class="java">LinkedList<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span> L <span class="sy0">=</span> <span class="kw1">new</span> LinkedList<span class="sy0">&lt;</span>E<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+which would give us access to all the relevant operations, but in
+practice one tends to focus on one the <tt>Queue</tt>, <tt>Deque</tt>, 
+or <tt>List</tt> interface operations exclusively.
+
+<h3><a name="demo"></a>Demo Program</h3>
+
+Create a NetBeans project <tt>LListDemo</tt>. 
+Assuming you use the default setup of NetBeans, the main class will be
+named <tt>LListDemo</tt>.
+Change the content to the following:
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="LListDemo/src/llistdemo/LListDemo.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+llistdemo.LListDemo</span>
+<a href="/~rkline/ds/showhide/target/linked-lists">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+Try running both <tt>main1</tt> and <tt>main2</tt> which illustrate 
+different features of Linked Lists.
+
+<h3><a name="adapter"></a>LListAdapter</h3>
+
+Our <tt>LListAdapter</tt> demonstrates all the functions 
+satisfied by <tt>LinkedList</tt>. The functions are all "unimplemented"
+in the sense that their only code is to throw an
+ <tt>UnsupportedOperationException</tt>.
+All of our user-defined versions will be extensions of <tt>LListAdapter</tt>.
+As described in the
+<a href="user-array-lists.html#adapter">User defined Array Lists</a>
+document, the <tt>Serializable</tt> implementation is avoided. 
+<p></p>
+In order to create this in NetBeans, create a new Java Class:
+
+<pre class='n'>
+Class Name: <b>LListAdapter</b>
+package:    <b>llist</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="LListDemo/src/llist/LListAdapter.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+llist.LListAdapter</span>
+<a href="/~rkline/ds/showhide/target/linked-lists">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+<h3><a name="list-types"></a>Linked List Types</h3>
+
+<h4>Singly Linked</h4>
+A singly-linked list represents a minimalistic linked representation.
+The entire list is accessed by the <tt>first</tt> pointer.
+A single <tt>next</tt> element within each node
+moves forward in the list and all nodes contain
+list element data. The list is <tt>null</tt>-terminated.
+The empty list is simply the <tt>null</tt> pointer.
+<p></p>
+<table style="margin-left:5px">
+	<tbody valign="top">
+	<tr>
+<td style="padding-top:10px;">
+	<tt>(8,4,9)</tt>
+</td>
+		<td>
+<img src="images/SimplePointerChain.png" />
+		</td>
+    <td style="padding-top:10px;padding-right:10px">
+Empty List:
+    </td>
+		<td style="padding-top:5px;">
+<img src="images/NullNode.png" />
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<h4>Singly Linked With Header</h4>
+It is often common to add an always-present "dummy" node which <tt>first</tt>
+points to.
+The data in this node, whatever it may be is ignored.
+The list is <tt>null</tt>-terminated.
+The empty list points to the dummy node which has <tt>next == null</tt>.
+<p></p>
+<table style="margin-left:5px">
+  <tbody valign="top">
+  <tr>
+<td style="padding-top:10px;">
+  <tt>(8,4,9)</tt>
+</td>
+    <td>
+<img src="images/HeaderPointerChain.png" />
+    </td>
+    <td style="padding-top:10px;padding-right:10px">
+Empty List:
+    </td>
+    <td style="padding-top:0px;">
+<img src="images/EmptyHeaderPointerChain.png" />
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>Doubly Linked</h4>
+A doubly linked list is accessed by first and last pointers. Going forward and
+backwards are treated symmetrically with employ both internal
+<tt>next</tt> (forward) and <tt>prev</tt> (backward) pointers.
+<p></p>
+<table style="margin-left:5px">
+  <tbody valign="top">
+  <tr>
+<td style="padding-top:10px;">
+  <tt>(8,4,9)</tt>
+</td>
+    <td>
+<img src="images/DoublyLinked.png" />
+    </td>
+    <td style="padding:10px 10px 0px 30px">
+Empty List:
+    </td>
+    <td style="padding-top:5px;">
+<img src="images/NullNode.png" />
+&nbsp;
+&nbsp;
+<img src="images/NullNode.png" />
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>Doubly Linked with Header and Footer</h4>
+The always-present dummy nodes at the start and end serve the same purpose
+as the single header node in the singly linked list above. The
+<tt>first</tt> and <tt>last</tt> pointer always point to these respective nodes.
+<p></p>
+<table style="margin-left:5px">
+  <tbody valign="top">
+  <tr>
+<td style="padding-top:10px;">
+  <tt>(8,4,9)</tt>
+</td>
+    <td>
+<img src="images/DoublyLinkedHeader.png" />
+    </td>
+    <td style="padding:10px 0px 0px 5px">
+Empty List:
+    </td>
+    <td style="padding-top:0px;">
+<img src="images/DoublyLinkedHeaderEmpty.png" />
+    </td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h3><a name="single-list"></a>Singly-linked Implementation</h3>
+
+Our first attempt at an implementation uses a singly-linked list. Both
+the with-header and without-header have advantages and disadvantages. For
+simplicity we'll implement a the version without header.
+<p></p>
+Create a Java Class:
+<pre class='n'>
+Class Name: <b>SingleLList</b>
+package:    <b>llist</b>
+</pre>
+Then insert the following content
+
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="LListDemo/src/llist/SingleLList.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+llist.SingleLList</span>
+<a href="/~rkline/ds/showhide/target/linked-lists">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+<h4>Testing</h4>
+
+The <tt>main1</tt> function (not <tt>main2</tt>)
+can execute for
+ <tt>SingleLList</tt> in place of <tt>LinkedList</tt>.
+Add the <tt>import</tt> statement to <tt>Main</tt>:
+<pre>
+import llist.*;
+</pre>
+Replace the definition of <tt>L</tt> in <tt>main1</tt>
+and reset <tt>main</tt> to call <tt>main1</tt>
+<pre>
+public static void main1(String[] args) {
+  //Deque&lt;String> L = new LinkedList&lt;String>();
+  Deque&lt;String> L = new SingleLList&lt;String>();
+  ...
+</pre>
+<h4>Description</h4>
+<tt>SingleLList</tt> uses the inner class:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw1">class</span> Node <span class="br0">&#123;</span>
+&nbsp;
+  <span class="kw1">public</span> E data<span class="sy0">;</span>
+  <span class="kw1">public</span> Node next<span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">public</span> Node<span class="br0">&#40;</span>E data, Node next<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span>.<span class="me1">data</span> <span class="sy0">=</span> data<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">next</span> <span class="sy0">=</span> next<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+The data members of <tt>SingleLList</tt> are:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> Node first <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>
+<span class="kw1">private</span> Node last <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>
+<span class="kw1">private</span> <span class="kw4">int</span> size <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span></pre></div>
+<h4>The add functions</h4>
+If we have at least one element in the list these statements would serve
+to add to either first or last:
+<ol type='a' class='notes'>
+<li>add to first:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">first <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, first<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+</li>
+<li>add to last:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">last.<span class="me1">next</span> <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+last <span class="sy0">=</span> last.<span class="me1">next</span><span class="sy0">;</span></pre></div>
+</li>
+</ol>
+If, however, the list is empty, we need to do something different:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw4">void</span> addToEmptyList<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  first <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  last <span class="sy0">=</span> first<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+This operation serves both for add to first and add to last on an
+empty list.
+With this in place, our public 
+<tt>addFirst</tt> and <tt>addLast</tt> functions both use this style:
+<pre>
+if (isEmpty()) {
+  addToEmptyList(elt); 
+} else {
+  // do the "usual thing"
+}
+</pre>
+
+<h4>The removeFirst function</h4>
+
+Removing the first element effectively means moving the
+<tt>first</tt> pointer ahead. We simply need to capture the data value
+before losing access to the old pointer.
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> E removeFirst<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>isEmpty<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">NoSuchElementException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  E data <span class="sy0">=</span> first.<span class="me1">data</span><span class="sy0">;</span>
+  first <span class="sy0">=</span> first.<span class="me1">next</span><span class="sy0">;</span>
+  <span class="sy0">--</span>size<span class="sy0">;</span>
+  <span class="kw1">return</span> data<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+
+
+<h4>Singly-linked limitations</h4>
+<tt>SingleLList</tt> purposefully avoids many operations. 
+The foremost of these
+is <tt>removeLast</tt>, which the singly-linked list structure
+is not equipped to
+handle efficiently. 
+Removing the <b>first</b> element is easy because
+there is nothing before it. At all other positions it is different, because
+you would need to access the <b>previous</b> element in order to be able to
+link it to the <b>next</b> element, thereby bypassing the deleted node.
+
+<h3><a name="double-list"></a>Doubly-linked Implementation</h3>
+
+A realistic implementation must be doubly-linked. As with the singly linked version,
+one can use the dummy header and footer nodes. We'll implement
+a version with these features.
+
+Create a Java Class:
+
+<pre class='n'>
+Class Name: <b>DoubleLList</b>
+package:    <b>llist</b>
+</pre>
+Then insert the following content
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="LListDemo/src/llist/DoubleLList.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+llist.DoubleLList</span>
+<a href="/~rkline/ds/showhide/target/linked-lists">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+<h4>Testing</h4>
+
+Replace <tt>DoubleLList</tt> in place of <tt>LinkedList</tt> 
+in both <tt>main1</tt> and <tt>main2</tt> by
+by replacing the definition of <tt>L</tt>:
+<pre>
+//Deque&lt;String> L = new LinkedList&lt;String>();
+Deque&lt;String> L = new DoubleLList&lt;String>();
+...
+</pre>
+<h4>Description</h4>
+The doubly-linked used uses an inner class:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw1">class</span> Node <span class="br0">&#123;</span>
+  <span class="kw1">public</span> E data<span class="sy0">;</span>
+  <span class="kw1">public</span> Node prev, next<span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">public</span> Node<span class="br0">&#40;</span>E data, Node prev, Node next<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">this</span>.<span class="me1">data</span> <span class="sy0">=</span> data<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">prev</span> <span class="sy0">=</span> prev<span class="sy0">;</span>
+    <span class="kw1">this</span>.<span class="me1">next</span> <span class="sy0">=</span> next<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+Establishing the initial state looks like this:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">private</span> <span class="kw4">void</span> makeNewList<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  first <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span><span class="kw2">null</span>, <span class="kw2">null</span>, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  last <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span><span class="kw2">null</span>, <span class="kw2">null</span>, <span class="kw2">null</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  first.<span class="me1">next</span> <span class="sy0">=</span> last<span class="sy0">;</span>
+  last.<span class="me1">prev</span> <span class="sy0">=</span> first<span class="sy0">;</span>
+  size <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>    
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">public</span> DoubleLList<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> makeNewList<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+@Override
+<span class="kw1">public</span> <span class="kw4">void</span> clear<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span> makeNewList<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span></pre></div>
+<p>
+</p>
+A doubly linked list makes the list effectively symmetrical
+and thereby makes sense out of the
+following required operations which would be, at best, tricky with singly-linked lists:
+<ul>
+<li><tt>descendingIterator</tt></li>
+<li><tt>removeLast</tt></li>
+</ul>
+
+<h4>Helpers for add/remove operations</h4>
+
+Using a doubly linked list with header nodes, all add and remove operations are
+derivable from these three operations:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="co1">// assume n in list, insert at n's position by pushing list towards last</span>
+<span class="kw1">private</span> <span class="kw4">void</span> addNode<span class="br0">&#40;</span>Node n, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  Node newNode <span class="sy0">=</span> <span class="kw1">new</span> Node<span class="br0">&#40;</span>elt, n.<span class="me1">prev</span>, n<span class="br0">&#41;</span><span class="sy0">;</span>
+  n.<span class="me1">prev</span>.<span class="me1">next</span> <span class="sy0">=</span> newNode<span class="sy0">;</span>
+  n.<span class="me1">prev</span> <span class="sy0">=</span> newNode<span class="sy0">;</span>
+  <span class="sy0">++</span>size<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// assume n in list, remove at n's position by shifting list down from last</span>
+<span class="kw1">private</span> E removeNode<span class="br0">&#40;</span>Node n<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  E data <span class="sy0">=</span> n.<span class="me1">data</span><span class="sy0">;</span>
+  n.<span class="me1">prev</span>.<span class="me1">next</span> <span class="sy0">=</span> n.<span class="me1">next</span><span class="sy0">;</span>
+  n.<span class="me1">next</span>.<span class="me1">prev</span> <span class="sy0">=</span> n.<span class="me1">prev</span><span class="sy0">;</span>
+  <span class="sy0">--</span>size<span class="sy0">;</span>
+  <span class="kw1">return</span> data<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// locate the node at index position by crawling from left to right</span>
+<span class="co1">// allow index = size to return last if includeLast is true</span>
+<span class="kw1">private</span> Node nodeAt<span class="br0">&#40;</span><span class="kw4">int</span> index, <span class="kw4">boolean</span> includeLast<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="kw4">int</span> max <span class="sy0">=</span> <span class="br0">&#40;</span>includeLast<span class="br0">&#41;</span> <span class="sy0">?</span> size <span class="sy0">:</span> size <span class="sy0">-</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>index <span class="sy0">&gt;</span> max <span class="sy0">||</span> index <span class="sy0">&lt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">IndexOutOfBoundsException</span><span class="br0">&#40;</span>
+      <span class="st0">&quot;Index: &quot;</span> <span class="sy0">+</span> index <span class="sy0">+</span> <span class="st0">&quot;, &quot;</span> <span class="sy0">+</span> <span class="st0">&quot;Size: &quot;</span> <span class="sy0">+</span> size<span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  Node n <span class="sy0">=</span> first.<span class="me1">next</span><span class="sy0">;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> counter <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> counter <span class="sy0">&lt;</span> index<span class="sy0">;</span> <span class="sy0">++</span>counter<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    n <span class="sy0">=</span> n.<span class="me1">next</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">return</span> n<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+<span class="kw1">private</span> Node nodeAt<span class="br0">&#40;</span><span class="kw4">int</span> index<span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> nodeAt<span class="br0">&#40;</span>index, <span class="kw2">false</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span></pre></div>
+
+<h4>public add/remove operations</h4>
+
+
+These are the add operations:
+<div class='format_display'>
+<span></span>
+<pre class="java">  @Override
+  <span class="kw1">public</span> <span class="kw4">void</span> addFirst<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span> addNode<span class="br0">&#40;</span>first.<span class="me1">next</span>, elt<span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> <span class="kw4">void</span> addLast<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span> addNode<span class="br0">&#40;</span>last,elt<span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> <span class="kw4">void</span> add<span class="br0">&#40;</span><span class="kw4">int</span> index, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span> addNode<span class="br0">&#40;</span>nodeAt<span class="br0">&#40;</span>index,<span class="kw2">true</span><span class="br0">&#41;</span>,elt<span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> <span class="kw4">boolean</span> add<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    addLast<span class="br0">&#40;</span>elt<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="kw1">return</span> <span class="kw2">true</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+These are the remove operations:
+<div class='format_display'>
+<span></span>
+<pre class="java">  @Override
+  <span class="kw1">public</span> E removeFirst<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>isEmpty<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">NoSuchElementException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> removeNode<span class="br0">&#40;</span>first.<span class="me1">next</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> E removeLast<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>isEmpty<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">NoSuchElementException</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> removeNode<span class="br0">&#40;</span>last.<span class="me1">prev</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> <span class="kw4">boolean</span> remove<span class="br0">&#40;</span><span class="kw3">Object</span> obj<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    Node n <span class="sy0">=</span> first.<span class="me1">next</span><span class="sy0">;</span>
+    <span class="kw1">while</span> <span class="br0">&#40;</span>n <span class="sy0">!=</span> last<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">if</span> <span class="br0">&#40;</span>n.<span class="me1">data</span>.<span class="me1">equals</span><span class="br0">&#40;</span>obj<span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        removeNode<span class="br0">&#40;</span>n<span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="kw1">return</span> <span class="kw2">true</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+      n <span class="sy0">=</span> n.<span class="me1">next</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="kw2">false</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> E remove<span class="br0">&#40;</span><span class="kw4">int</span> index<span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="kw1">return</span> removeNode<span class="br0">&#40;</span>nodeAt<span class="br0">&#40;</span>index<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span></pre></div>
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>

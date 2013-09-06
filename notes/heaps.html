@@ -1,0 +1,878 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - Binary Heap &amp; HeapSort</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<link rel="stylesheet" type="text/css" href="css/init.css" />
+<link href="images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+Binary Heap &amp; HeapSort</h2>
+<div id="mtime">last modified: Feb 8, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#pq">Priority Queues</option>
+<option value="#binaryheap">BinaryHeap</option>
+<option value="#heap-test-program">BinaryHeap Test Programs</option>
+<option value="#heapsort-concept">Heapsort concept</option>
+<option value="#buildHeap">The buildHeap operation</option>
+<option value="#heapsort">HeapSort</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+
+<h3><a name="pq"></a>Priority Queues</h3>
+
+A priority queue is like a queue in that it supports add
+and remove from "opposite sides" with operations:
+<ul class="notes">
+<li>
+<tt>add(e)</tt>, <tt>offer(e)</tt>: add an element
+<li>
+<tt>element()</tt>, <tt>peek()</tt>: read the "highest priority" element
+<li>
+<tt>remove()</tt>, <tt>poll()</tt>: read &amp; remove the "highest priority" element
+</ul>
+The usual FIFO queue is like a list in that 
+<tt>add</tt> operations go on one
+end while <tt>element</tt> and <tt>remove</tt> are from the opposite end. 
+In contrast, a <i>priority</i> queue is one with 
+no particular structure; the requirement is that
+<tt>element</tt> and <tt>remove</tt> always use a 
+<b>smallest</b> element with respect to the given order.
+<p>
+</p>
+By using a suitable comparator, we can make easily change the notion
+of "smallest" by "largest". Ultimately the notion of the priority
+queue is quite general in that a FIFO queue can be seen
+a priority queue with comparison of
+elements "by time stamp on entering the queue."
+
+<h4>Java Priority Queue</h4>
+The Java priority queue is the appropriately named generic
+class <tt>PriorityQueue</tt> implementing the <tt>Queue</tt> interface. 
+The key constructors are these:
+<ul class="notes">
+<li><tt>PriorityQueue&lt;E>()</tt>:  
+the "current" element for selection is the smallest element
+with respect to the natural ordering on <tt>E</tt>, i.e., 
+<tt>E</tt> is assumed to implement the <tt>Comparable</tt> interface.
+</li>
+<li><tt>PriorityQueue&lt;E>(int initialCapacity)</tt>: 
+specify the initial capacity.
+</li>
+<li><tt>PriorityQueue&lt;E>(int initialCapacity, Comparator&lt;? super E> cmp)</tt>:
+specify the initial capacity and the desired <tt>Comparator</tt>
+for <tt>E</tt> objects.
+</li>
+</ul>
+The <tt>initialCapacity</tt> parameter suggests that the underlying 
+implementation is array-based. 
+We will see such an implementation below, the standard implementation
+called the <i>Binary Heap</i>.
+
+<h4>List-based implementations</h4>
+
+There are actually two potentially viable list-based implementations:
+<ol class='notes' type="a">
+<li>
+An <b>unordered LinkedList</b>. 
+In this case we simply add elements to
+the front of the list (or back), making the 
+<tt>add</tt> 
+operation constant time.
+It is the others which have a significant cost. 
+Both 
+<tt>element</tt> 
+and 
+<tt>remove</tt> 
+must search the entire list for a smallest element, making them
+linear time operations.
+</li>
+<li>
+An <b>reverse-ordered ArrayList</b>. 
+In this case the 
+<tt>element</tt> 
+and 
+<tt>remove</tt> 
+operations
+are constant time, since the smallest element is always 
+the last one. It is the 
+<tt>add</tt> 
+which has significant cost, since we must find the correct position
+to add (logarithmic), plus shift all smaller elements up 1
+(linear time).
+</li>
+</ol>
+<table class='heap-alternatives' cellpadding="7px">
+<tbody valign="top">
+<tr>
+<td> </td>
+<th>comparisons </th>
+<th>data moves </th>
+<th>total </th>
+</tr>
+<tr>
+<th>element </th>
+<td>
+(a) <span>O(n)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+<td>
+(a) <span>O(1)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+<td>
+(a) <span>O(n)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+</tr>
+<tr>
+<th>add </th>
+<td>
+(a) <span>O(1)</span><br />
+(b) <span>O(log n)</span><br />
+</td>
+<td>
+(a) <span>O(1)</span><br />
+(b) <span>O(n)</span><br />
+</td>
+<td>
+(a) <span>O(1)</span><br />
+(b) <span>O(n)</span><br />
+</td>
+</tr>
+<tr>
+<th>remove </th>
+<td>
+(a) <span>O(n)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+<td>
+(a) <span>O(1)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+<td>
+(a) <span>O(n)</span><br />
+(b) <span>O(1)</span><br />
+</td>
+</tr>
+</tbody>
+</table>
+We might conclude that (b) is the "winner", but both are subject
+to linear time operational costs when all three operations are employed.
+It is the goal of various heap structures to produce either constant
+or logarithmic time for all three operations.
+
+<h4>Heaps</h4>
+
+A <i>heap</i>, or more strictly speaking,
+a <i>min heap</i>, is an implementation of a priority queue
+in the form of a heirarchical tree-like structure where, at each node, 
+the element is smaller than or equal to the elements at the
+child nodes.  In particular, the root must be holding the least element.
+
+A <i>max heap</i> is one in which the notion
+of ordering of elements is reversed.
+In practice, a max heap is simply a min heap in which we
+use the "reverse comparator."
+<p></p>
+
+<h4>Test Programs/NetBeans</h4>
+
+The project we're using is <tt class="file">PrioQueueDemo</tt>.
+The following test program illustrates several standard usages of
+Java's <tt>PriorityQueue</tt> class.
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo_Demo/src/prioqueuedemo/MainBasic.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+main starter class</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+Note the output of the statements which print the queues:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;queue:     &quot;</span> <span class="sy0">+</span> queue<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw3">System</span>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;queue_rev: &quot;</span> <span class="sy0">+</span> queue_rev<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+It may not make sense what this output reflects, 
+but it reflects the underlying structure which we'll soon see.
+
+<h3><a name="binaryheap"></a>BinaryHeap</h3>
+
+Like our other user-defined data structures, extensions
+of the <tt>QueueAdapter</tt> class below give us the ability
+to use our user-defined <tt>BinaryHeap</tt> 
+class as we would a <tt>PriorityQueue</tt>.
+
+<p></p>
+Create the class:
+<pre class="n">
+Class Name: <b>QueueAdapter</b>
+package:    <b>queue</b>
+</pre>
+Then insert the following content
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo/src/queue/QueueAdapter.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+queue.QueueAdapter</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+Create the class:
+<pre class="n">
+Class Name: <b>BinaryHeap</b>
+package:    <b>heap</b>
+</pre>
+Then insert the following content
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo/src/heap/BinaryHeap.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+heap.BinaryHeap</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+A <i>Binary Heap</i> is a heap which is maintained as a complete 
+binary tree, meaning all levels are full except possibly the
+last level, which is filled out from the left. A binary heap
+is most easily implemented by an array using data members similar
+to an ArrayList: 
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">private</span> <span class="kw4">int</span> capacity<span class="sy0">;</span>
+  <span class="kw1">private</span> <span class="kw4">int</span> size <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+  <span class="kw1">private</span> E<span class="br0">&#91;</span><span class="br0">&#93;</span> data<span class="sy0">;</span>
+  <span class="kw1">private</span> Comparator<span class="sy0">&lt;?</span> <span class="kw1">super</span> E<span class="sy0">&gt;</span> cmp <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span></pre></div>
+Like SearchTreeSets, we need a comparator to establish the heap and also 
+use a <tt>myCompare</tt> function in an analogous way.
+<p>
+</p>
+Suppose we use the array <tt>data</tt>
+in positions 1 through <tt>size</tt>, then
+<ul class="notes">
+<li><tt>data[1]</tt> is the root</li>
+<li><tt>data[2*n]</tt> and <tt>data[2*n+1]</tt> 
+are the left and right childen of <tt>data[n]</tt>, respectively</li>
+<li><tt>data[n]</tt> has only a left child if <tt>2*n == size</tt></li>
+<li><tt>data[n]</tt> is a leaf if <tt>2*n &gt; size</tt></li>
+</ul>
+A node <tt>n != 1</tt> can always determine its parent node by the operation:
+<pre class="n">
+parent = n/2
+</pre>
+Saying that a complete binary tree
+satisfies the heap property means that at
+each node <tt>n</tt>,
+<pre class="n">
+data[n/2] &le; data[n]          (n != 1)
+</pre>
+or, looking at it the other way:
+<pre class="n">
+data[n] &le; data[2*n]          <span class="ssf">(when <tt>data[2*n]</tt> exists)</span>
+data[n] &le; data[2*n+1]        <span class="ssf">(when <tt>data[2*n+1]</tt> exists)</span>
+</pre>
+Here is an example:
+<div class="n">
+<img src="images/plots/6.6.png" />
+</div>
+
+The coding issue involved in using a complete binary tree as a heap
+is in maintaining the heap property with insertions and removals.
+
+<h4>Adding: percolate up</h4>
+
+Inserting an element, <tt>elt</tt>, 
+means creating a new position in the array. 
+This position is called a "hole" whose initial value is:
+<pre class="n">
+hole = ++size;
+</pre>
+The operation we do is called "percolate up" in which the hole is
+moved to the correct position in the tree so that we can do the insertion:
+<pre class="n">
+data[hole] = elt
+</pre>
+and know that the heap property is maintained:
+<pre class="n">
+data[hole/2] &le; data[hole]
+</pre>
+And so, if necessary, 
+the <tt>hole</tt> moves up the tree from the leaf while the data in the
+parent is shifted down with an operation like this:
+<pre class="n">
+data[hole] = data[hole/2];
+hole = hole/2;
+</pre>
+For example, the steps to do
+the insertion of the value 17 in this tree would be this:
+<ol type="a">
+<li>
+Increase the size to 11 and create a hole at position 11 like this:
+<div class="n">
+<img src="images/plots/6.6a.png" />
+</div>
+</li>
+<li>
+Comparing 17 with the hole's parent would make the parent value shift down:
+<div class="n">
+<img src="images/plots/6.6b.png" />
+</div>
+</li>
+<li>
+Again, comparing 17 with the hole's parent would make the next parent value shift down:
+<div class="n">
+<img src="images/plots/6.6c.png" />
+</div>
+</li>
+<li>
+Finally, 17 is larger than the parent value at 1, so it gets inserted into the hole:
+<div class="n">
+<img src="images/plots/6.6d.png" />
+</div>
+</li>
+</ol>
+Here is the code:
+
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">private</span> <span class="kw4">int</span> percolateUp<span class="br0">&#40;</span><span class="kw4">int</span> hole, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">while</span> <span class="br0">&#40;</span>hole <span class="sy0">!=</span> <span class="nu0">1</span> <span class="sy0">&amp;&amp;</span> myCompare<span class="br0">&#40;</span>data<span class="br0">&#91;</span>hole<span class="sy0">/</span><span class="nu0">2</span><span class="br0">&#93;</span>, elt<span class="br0">&#41;</span> <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span> <span class="sy0">=</span> data<span class="br0">&#91;</span>hole<span class="sy0">/</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">;</span>         <span class="co1">// shift parent down</span>
+      hole <span class="sy0">=</span> hole<span class="sy0">/</span><span class="nu0">2</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> hole<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw4">boolean</span> add<span class="br0">&#40;</span>E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>size <span class="sy0">==</span> capacity<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      resize<span class="br0">&#40;</span><span class="nu0">2</span><span class="sy0">*</span>capacity<span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw4">int</span> hole <span class="sy0">=</span> percolateUp<span class="br0">&#40;</span> <span class="sy0">++</span>size, elt <span class="br0">&#41;</span><span class="sy0">;</span>
+    data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span> <span class="sy0">=</span> elt<span class="sy0">;</span>
+    <span class="kw1">return</span> <span class="kw2">true</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+
+<h4>Removal: percolate down</h4>
+
+Removal means deleting the node at the root, i.e., at position 1.
+This creates a hole into which we want to eventually insert the
+last element in the array which must give up its position:
+<pre class="n">
+elt = data[size--];
+hole = 1;
+</pre>
+The hole must move down the tree (percolate down) 
+with an operation like:
+<pre class="n">
+hole = 2 * hole;       <span class="ssf">or</span>        hole = 2 * hole + 1;
+</pre>
+until we can set
+<pre class="n">
+data[hole] = elt
+</pre>
+satisfied that the heap property is maintained:
+<pre class="n">
+elt &le; data[2*hole]
+elt &le; data[2*hole+1]
+</pre>
+When a hole goes down from parent to child, always choose a
+child with a <b>smaller</b> value.
+<p></p>
+Programmatically, percolate down is a more complicated operation
+due to having to choose between 
+two children and determining how many children do deal with.
+<p></p>
+If we do a removal on the tree above (after the insert of 17 is complete)
+these are the steps;
+<ol type="a">
+<li>
+Return the value and create a hole at position 1.
+Pull out the value at node 11 (<tt>elt=31</tt>) 
+and decrease the size to 10: 
+<div class="n">
+<img src="images/plots/6.6e.png" />
+</div>
+</li>
+<li>
+31 is bigger than the smallest child, 16, so move the hole down
+to position 3 and move 16 up:
+<div class="n">
+<img src="images/plots/6.6f.png" />
+</div>
+</li>
+<li>
+Again, seeing that 31 is bigger than the smallest child, 19, 
+move the hole down to its position 6 and move 19 up:
+<div class="n">
+<img src="images/plots/6.6g.png" />
+</div>
+</li>
+<li>
+Finally, since the hole has no children we move 31 into position 6:
+<div class="n">
+<img src="images/plots/6.6h.png" />
+</div>
+</li>
+</ol>
+
+<div class='format_display'>
+<span></span>
+<pre class="java">  <span class="kw1">private</span> <span class="kw4">int</span> percolateDown<span class="br0">&#40;</span><span class="kw4">int</span> hole, E elt<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">while</span> <span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw4">int</span> left <span class="sy0">=</span> <span class="nu0">2</span> <span class="sy0">*</span> hole, right <span class="sy0">=</span> <span class="nu0">2</span> <span class="sy0">*</span> hole <span class="sy0">+</span> <span class="nu0">1</span><span class="sy0">;</span>
+&nbsp;
+      <span class="kw1">if</span> <span class="br0">&#40;</span>left <span class="sy0">&gt;</span> size<span class="br0">&#41;</span> <span class="br0">&#123;</span> <span class="co1">// hole is a leaf</span>
+        <span class="kw1">break</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+&nbsp;
+      <span class="co1">// so hole must have at least a left child</span>
+&nbsp;
+      <span class="kw4">int</span> child<span class="sy0">;</span>   <span class="co1">// child with the smallest value</span>
+&nbsp;
+      <span class="kw1">if</span> <span class="br0">&#40;</span>left <span class="sy0">==</span> size<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// hole has only a left child</span>
+        child <span class="sy0">=</span> left<span class="sy0">;</span>
+      <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="kw1">if</span> <span class="br0">&#40;</span>myCompare<span class="br0">&#40;</span>data<span class="br0">&#91;</span>left<span class="br0">&#93;</span>, data<span class="br0">&#91;</span>right<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">// 2 children with smaller left</span>
+        child <span class="sy0">=</span> left<span class="sy0">;</span>
+      <span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+        <span class="co1">// 2 children with smaller right</span>
+        child <span class="sy0">=</span> right<span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+      <span class="kw1">if</span> <span class="br0">&#40;</span>myCompare<span class="br0">&#40;</span>elt, data<span class="br0">&#91;</span>child<span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">break</span><span class="sy0">;</span>    <span class="co1">// elt smaller than least child: correct position</span>
+      <span class="br0">&#125;</span>
+      <span class="kw1">else</span> <span class="br0">&#123;</span>
+        data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span> <span class="sy0">=</span> data<span class="br0">&#91;</span>child<span class="br0">&#93;</span><span class="sy0">;</span>  <span class="co1">// shift child up</span>
+        hole <span class="sy0">=</span> child<span class="sy0">;</span>              <span class="co1">// move hole down</span>
+      <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> hole<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  @Override
+  <span class="kw1">public</span> E remove<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>size <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="kw1">throw</span> <span class="kw1">new</span> <span class="kw3">NoSuchElementException</span><span class="br0">&#40;</span><span class="st0">&quot;remove&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    E top <span class="sy0">=</span> data<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">;</span>
+    E insert <span class="sy0">=</span> data<span class="br0">&#91;</span>size<span class="sy0">--</span><span class="br0">&#93;</span><span class="sy0">;</span>   <span class="co1">// get element to reinsert from root</span>
+    <span class="kw4">int</span> hole <span class="sy0">=</span> percolateDown<span class="br0">&#40;</span><span class="nu0">1</span>, insert<span class="br0">&#41;</span><span class="sy0">;</span>
+    data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span> <span class="sy0">=</span> insert<span class="sy0">;</span>
+    <span class="kw1">return</span> top<span class="sy0">;</span>
+  <span class="br0">&#125;</span></pre></div>
+
+
+<h3><a name="heap-test-program"></a>BinaryHeap Test Programs</h3>
+
+To test the effectiveness of this new class, in <tt>mainBasic</tt>, 
+you can uncomment the import line:
+<pre class="n">
+//import heap.*;
+</pre>
+and replace the commented and uncommented sections:
+<pre>
+Queue&lt;Integer> queue = new PriorityQueue&lt;Integer>();
+Queue&lt;Integer> queue_rev = new PriorityQueue&lt;Integer>(20, rev_cmp);
+
+//Queue&lt;Integer> queue = new BinaryHeap&lt;Integer>();
+//Queue&lt;Integer> queue_rev = new BinaryHeap&lt;Integer>(20, rev_cmp);
+</pre>
+<p></p>
+A second test program is better for showing the underlying structure
+which provided by the <tt>BinaryHeap</tt> class:
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo_Demo/src/prioqueuedemo/MainTestHeap.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainTestHeap</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+
+<h4>Analysis</h4>
+
+We see that, since the tree maintained is always a complete 
+binary tree, the height (when non-empty) is <tt>flr(log n)</tt>.
+This becomes, up to a constant factor, the maximum number
+of comparisons + data movements for either an element insertion or
+deletion.
+
+<h3><a name="heapsort-concept"></a>Heapsort concept</h3>
+
+The idea of heapsort is that it is conceptually similar to selectionSort
+with a time improvement on the selection operation. An oversimplified
+version is as follows, starting from an array, <tt>A</tt> to be sorted,
+using an auxiliary binary heap <tt>H</tt>:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="co1">// create the heap</span>
+<span class="kw4">int</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="kw1">for</span><span class="br0">&#40;</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> A.<span class="me1">length</span><span class="sy0">;</span> <span class="sy0">++</span>i <span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  H.<span class="me1">add</span><span class="br0">&#40;</span>A<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+<span class="co1">// remove one-by-one, putting back into array</span>
+i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="kw1">while</span> <span class="br0">&#40;</span><span class="sy0">!</span> H.<span class="me1">isEmpty</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  A<span class="br0">&#91;</span>i<span class="sy0">++</span><span class="br0">&#93;</span> <span class="sy0">=</span> H.<span class="me1">remove</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre></div>
+Since both <tt>add</tt> and <tt>remove</tt> are 
+<tt><big>O</big>(log(n))</tt>
+operations, the entire worst-case time is
+<tt><big>O</big>(n*log(n))</tt>. In particular, the 
+<tt><big>O</big>(n)</tt> smallest element selection process used
+by selection sort is replaced by the efficient
+<tt><big>O</big>(log(n))</tt>
+heap remove operation.
+<p></p>
+Although we cannot do better than an overall
+<tt><big>O</big>(n*log(n))</tt> time, we can do make improvements
+with respect to two points:
+<ol class='notes'>
+<li>
+The "create the heap" portion of the code can actually be done in linear time,
+<tt><big>O</big>(n)</tt>,
+instead of 
+<tt><big>O</big>(n*log(n))</tt>
+as currently written. The replacement code is the <tt>buildHeap</tt> operation 
+described in the next section.
+</li>
+<li>
+The auxiliary heap, <tt>H</tt>, is not necessary as the heap structure can
+be held within the array <tt>A</tt> itself, thus reducing the
+<tt><big>O</big>(n)</tt>
+extra memory requirement
+to <tt><big>O</big>(1)</tt> extra memory.
+</li>
+</ol>
+
+<h3><a name="buildHeap"></a>The buildHeap operation</h3>
+
+We will see that heapSort and other operations give us the raw data in the
+array and expect us to "heapify" this as the initial step. 
+Although we can create the initial heap by a sequence of add operations,
+it turns out to be more efficient to use the separate
+<tt>buildHeap</tt> operation which is not part of the standard
+<tt>PriorityQueue</tt>. 
+<p></p>
+The <tt>buildHeap</tt> process effectively goes row-by-row, starting 
+from the second-to-last row and does a percolateDown operation, thus 
+making the subtree a heap.
+Here is a depiction of the  process (a "worst-case" situation):
+<ol class="notes" type="a">
+<li>
+The raw array dara is of <tt>size</tt> 13 is
+<pre class="n">[13, 11, 12, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6]</pre> 
+Putting these directly in order into the tree gives:
+<div class="n">
+<img src="images/plots/bh-a.png" />
+</div>
+</li>
+<li>
+The process starts at node 6 (<tt>size/2</tt>) and works backward.
+After nodes 6, 5, 4 are done we have:
+<div class="n">
+<img src="images/plots/bh-b.png" />
+</div>
+</li>
+<li>
+After nodes 3, 2 are done we have:
+<div class="n">
+<img src="images/plots/bh-c.png" />
+</div>
+</li>
+<li>
+Finally, after node 1 is done:
+<div class="n">
+<img src="images/plots/bh-d.png" />
+</div>
+</li>
+
+</ol>
+Here is the code from <tt>BinaryHeap</tt>:
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw1">public</span> <span class="kw4">void</span> buildHeap<span class="br0">&#40;</span>E<span class="br0">&#91;</span><span class="br0">&#93;</span> a<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  size <span class="sy0">=</span> a.<span class="me1">length</span><span class="sy0">;</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span>size <span class="sy0">&gt;</span> capacity<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    capacity <span class="sy0">=</span> size<span class="sy0">;</span>
+    data <span class="sy0">=</span> <span class="br0">&#40;</span>E<span class="br0">&#91;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="kw1">new</span> <span class="kw3">Object</span><span class="br0">&#91;</span>capacity<span class="sy0">+</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> a.<span class="me1">length</span><span class="sy0">;</span> <span class="sy0">++</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    data<span class="br0">&#91;</span>i<span class="sy0">+</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> i <span class="sy0">=</span> size<span class="sy0">/</span><span class="nu0">2</span><span class="sy0">;</span> i <span class="sy0">&gt;</span> <span class="nu0">0</span><span class="sy0">;</span> <span class="sy0">--</span>i<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw4">int</span> hole <span class="sy0">=</span> i<span class="sy0">;</span>
+    E elt <span class="sy0">=</span> data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span><span class="sy0">;</span>
+    hole <span class="sy0">=</span> percolateDown<span class="br0">&#40;</span>hole, elt<span class="br0">&#41;</span><span class="sy0">;</span>
+    data<span class="br0">&#91;</span>hole<span class="br0">&#93;</span> <span class="sy0">=</span> elt<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre></div>
+
+Here is a test program you can use to see the <tt>buildHeap</tt> operation 
+isolated:
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo_Demo/src/prioqueuedemo/MainTestBuildHeap.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainTestBuildHeap</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+As discussed in the book, this operation runs in 
+<b>linear</b> time on the number of nodes. This can be proved
+from two facts about a perfect binary tree (all levels full):
+<ul>
+<li>the total number of nodes is <tt>2<sup>h+1</sup>&#150; 1</tt>
+</li>
+<li>the sum of the heights of all the nodes is 
+<tt>2<sup>h+1</sup>&#150; 1 &#150; (h + 1)</tt>
+</li>
+</ul>
+The total amount of work can be seen, in the worst case, as a constant times
+the sum of the heights of all nodes. If the tree were perfect, we
+express:
+<pre class="n">
+n = 2<sup>h+1</sup>&#150; 1
+</pre>
+then <tt>log(n+1) = h + 1</tt> and 
+and the sum of the heights would be
+<pre class="n">
+n &#150; log(n+1) &lt; n
+</pre>
+If the tree is complete, 
+but not necessarily perfect, we can see, from the first point above that 
+<div class="n">
+<table cellpadding="0">
+<tr>
+<td>
+the number of nodes in a<br /> 
+<u>perfect</u> tree of height <tt>h+1</tt>
+</td>
+<td> &nbsp; &lt; &nbsp; <tt>2</tt> &nbsp; <tt>*</tt> &nbsp;
+</td>
+<td>
+the number of nodes in a<br /><u>perfect</u> tree of height <tt>h</tt>
+</td>
+</tr>
+</table>
+</div>
+And so, making a complete tree perfect will not 
+quite double the number of nodes.
+Therefore,
+<div class="n">
+<table cellpadding="0">
+<tr>
+<td>the sum of the heights in a<br /><u>complete</u> tree with <tt>n</tt> nodes
+</td>
+<td> &nbsp; &le; &nbsp; 
+</td>
+<td>the sum of the heights of the next<br /><u>perfect</u> tree (with
+fewer than <tt>2*n</tt> nodes)
+</td>
+<td> &nbsp; &le; &nbsp; 
+</td>
+<td> &nbsp;<tt> 2 * n</tt>
+</td>
+</tr>
+</table>
+</div>
+We conclude that the time to do a <tt>buildHeap</tt> operation is linear.
+
+
+<h3><a name="heapsort"></a>HeapSort</h3>
+
+The heapsort algorithm uses a binary heap to do its work.
+The heap is built as a <b>max</b> heap, using a reverse comparator.
+The program below indicates the heapsort behavior which works in two phases:
+<ol class="notes" type="a">
+<li><b>convert the array into a MAX heap</b>:
+run the <tt>buildHeap</tt> operation on the original array
+</li>
+<li>
+<b>remove (maximum) and put into position</b>:
+one at a time, remove from the heap, 
+re-inserting the elements into the array from last (largest) to first (smallest)
+</li>
+</ol>
+The time per phase for an array of size <tt>n</tt> is:
+<ol class="notes" type="a">
+<li><tt>O(n)</tt>
+</li>
+<li><tt>O(n*log(n))</tt> since there are <tt>n</tt> removals, and
+a removal counts <tt>O(log(n))</tt>
+</li>
+</ol>
+Thus the total time is the optimal <tt>O(n*log(n))</tt>.
+<p></p>
+A key point is that the <tt>heapSort</tt> algorithm uses the array itself 
+as a MAX Heap and does not need a heap structure separate
+from the array (as depicted in our demo version below).
+Thus heapsort has a worst-case time of
+<tt>O(log(n))</tt> like mergeSort; but unlike mergeSort, it requires
+only <tt>O(1)</tt> extra memory. However, it is not stable because
+the heap provides no guarantees that equal elements will rise to the
+top in the order that they appear in the array.
+
+<p></p>
+The technical difficulty in writing the real <tt>heapSort</tt> 
+algorithm has to do with translating the array index range 
+<tt>fromIndex:toIndex</tt>" into the range "<tt>1:size+1</tt>" 
+which is natural for a complete binary tree.
+<p></p>
+Here is a simplified version of the <tt>heapSort</tt> algorithm
+which uses a separate heap. Much of the code is dedicated to creating the 
+output depicted in a way which suggests what happens
+in the <i>real</i> <tt>heapSort</tt> algorithm.
+
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="PrioQueueDemo_Demo/src/prioqueuedemo/MainHeapsort.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainHeapsort</span>
+<a href="/~rkline/ds/showhide/target/heaps">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+A sample run (with annotations) indicates the correct ideas:
+<pre>
+to sort: [5, 3, 7, 1, 4, 8, 2]
+
+************************ buildHeap restructures the array:
+[8, 4, 7, 1, 3, 5, 2]
+|         2              this output
+|      7 		 indicates the 
+|         5		 structure
+|   8			 of the heap
+|         3		 
+|      4
+|         1
+------------------------ remove() = 8
+[7, 4, 5, 1, 3, 2][8]
+|      5	         the removed element (max)
+|         2	         goes into the top of 
+|   7		 	 array, which is precisely
+|         3		 the position vacated
+|      4		 by the remove operation
+|         1
+------------------------ remove() = 7
+[5, 4, 2, 1, 3][7, 8]
+|      2
+|   5
+|         3
+|      4
+|         1
+------------------------ remove() = 5
+[4, 3, 2, 1][5, 7, 8]
+|      2
+|   4
+|      3
+|         1
+------------------------ remove() = 4
+[3, 1, 2][4, 5, 7, 8]
+|      2
+|   3
+|      1
+------------------------ remove() = 3
+[2, 1][3, 4, 5, 7, 8]
+|   2
+|      1
+------------------------ remove() = 2
+[1][2, 3, 4, 5, 7, 8]
+|   1			 no more removals necessary
+
+sorted: [1, 2, 3, 4, 5, 7, 8]
+</pre>
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>
