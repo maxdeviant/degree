@@ -1,0 +1,364 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<title>Data Structures - ShellSort &amp; Comparisons</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css" />
+<link rel="stylesheet" type="text/css" href="css/init.css" />
+<link href="images/favicon.ico" rel="shortcut icon" type="image/icon" />
+<link href="css/java.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css" media="print">
+/* override other settings to make print-friendly appearance */
+body { padding: 10px 20px; }
+.print_hide { display: none; }
+div.print_only { display: block; }
+#header { margin-top: 0px; height: 30px; }
+#content { margin-top: 25px; }
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2 style='margin:0'>
+ShellSort &amp; Comparisons</h2>
+<div id="mtime">last modified: Apr 22, 2013</div>
+
+<div id="toggle_all" class='print_hide'>
+<a href="#">
+toggle show-hides
+</a>
+</div>
+
+
+
+<div id="sections" class='print_hide'>
+<select name="sections">
+<option value="">--- select a section ---</option>
+<option value="#shellsort">Shellsort</option>
+<option value="#comparisons">Empricial Comparisons</option>
+<option value="#shell-analysis">ShellSort Analysis</option>
+</select>
+</div>
+
+</div>
+
+<div id="content">
+
+<h3>Sorting algorithm comparisons</h3>
+
+Sorting algorithms provide the ability to impress another computer scientist 
+with his or her knowledge of algorithmic understanding.
+First of all, 
+<tt><i><big>O</big></i>(n*log n)</tt>
+acts as a lower bound to how quickly we can sort using a
+<i>comparison-based</i> sorting algorithm. 
+This does not mean we cannot sort faster than that in certain special cases.
+Here is a comparison of algorithms which might be considered
+part of the so-called "fast" algorithm group:
+<div style='margin:15px;'>
+<table cellpadding="5px" style="border: solid 1px black;">
+<tr align='left'>
+<th>algorithm</th>
+<th align='center'>&iquest;stable?</th>
+<th>average time</th>
+<th>worst time</th>
+<th>extra memory</th>
+</tr>
+
+<tr>
+<td>shellsort</td>
+<td align='center'>no</td>
+<td><tt>O(n<sup>1.25</sup>)</tt><sup>&dagger;</sup></td>
+<td><tt>O(n<sup>1.5</sup>)</tt></td>
+<td><tt>O(1)</tt></td>
+</tr>
+
+<tr>
+<td>quicksort</td>
+<td align='center'>no</td>
+<td><tt>O(n*log(n))</tt></td>
+<td><tt>O(n<sup>2</sup>)</tt></td>
+<td><tt>O(log(n))</tt></td>
+</tr>
+
+<tr>
+<td>mergesort</td>
+<td align='center'>yes</td>
+<td><tt>O(n*log(n))</tt></td>
+<td><tt>O(n*log(n))</tt>
+</td>
+<td><tt>O(n)</tt>
+<sup style='visibility:hidden'>&dagger;</sup>
+</td>
+</tr>
+
+
+<tr>
+<td>heapsort</td>
+<td align='center'>no</td>
+<td><tt>O(n*log(n))</tt></td>
+<td><tt>O(n*log(n))</tt></td>
+<td><tt>O(1)</tt>
+<sup style='visibility:hidden'>&dagger;</sup>
+</td>
+</tr>
+
+
+</table>
+</div>
+
+<sup>&dagger;</sup> conjectured
+<br style='margin:5px' />
+<p></p>
+Quicksort is considered the fastest algorithm on random array
+even though it can have quadratic worst-case time. 
+The things which differentiate the sorting algorithms are
+<ul class='notes'>
+<li>what are their order classes?</li>
+<li>for algorithms which have the same order class,
+what are their "big-O order constants"?</li>
+<li>what are the worst-case behavior times and scenarios?</li>
+<li>what are their memory requirements?</li>
+</ul>
+The Shellsort algorithm mentioned in this group uses the so-called
+<i>Hibbard increments</i> (see below).
+Although Shellsort is not theoretically as fast as others,
+it is still comparable in speed when arrays are not huge
+when enhanced versions are used.
+
+<h3><a name="shellsort"></a>Shellsort</h3>
+
+Shellsort, named after its inventor, Donald Shell, relies upon
+the fact that insertion sort does very well if the array is
+nearly sorted. Another way of saying this, is that insertion sort does
+well if it does not have to move each item "too far".
+
+The idea is to repeatedly do
+insertion sort on all elements at fixed, decreasing distances apart:
+<tt>h<sub style="padding-right:0">k</sub>, h<sub style="padding-right:0">k-1</sub>, ..., h<sub>1</sub>= 1</tt>.
+The choice of increments turns out to be crucial. 
+It turns out that a good choice of increments are these:
+<pre class="n">
+h<sub>1</sub>= 1, h<sub>2</sub>= 3, h<sub>3</sub>= 7, ..., h<sub>k</sub>= 2<sup>k</sup>&#150;1
+</pre>
+These increments are termed the <i>Hibbard</i> increments. The original
+increments suggested by the algorithm's inventor were simple powers
+of 2, but the Hibbard increments do provably much better.
+To be able to use the <tt>h<sub>k</sub></tt> increment, you 
+need an array of size at least <tt>h<sub>k</sub>+1</tt>.
+
+<h4>Psuedo-code</h4>
+The psuedo-code for shellSort using the Hibbard increments is as follows: 
+<pre class="lh3 n">
+find k<sub>0</sub> so that 2<sup>k<sub>0</sub></sup>- 1 &lt; size
+for (k = k<sub>0</sub>; k &gt; 0; --k) {  // from larger incements to smaller
+  inc = 2<sup>k</sup>- 1
+  for (i = 0; i &lt; inc; ++i) {
+    Sort the elements ( a[i], a[i+inc], a[i+2*inc], ...) using insertionSort
+  }
+}
+</pre>
+The fact that the last increment in the sequence is 1 means
+that regular insertion sort is done at the last step and therefore
+the array is guaranteed to be sorted by this procedure. 
+
+The point is that when the increments are larger, there are
+fewer elements and they will be moved further than simply interchanging
+adjacent elements.
+At the last step, we do regular insertion sort and hopefully the
+array is "nearly sorted" which makes insertion sort come close to
+its best case behavior of running in linear time.
+
+<p></p>
+The notion that this is an speed improvement seems initially far-fetched. 
+There are two enclosing <tt>for</tt> loops to get to an insertion sort, thus 
+this algorithm has <b>four enclosing loops</b>. 
+<h4>Demo</h4>
+The following is a demo of the sorting process of an array of size 11.
+Only 4 subarrays of 7 elements apart fit.
+<pre class='n'>
+   0  1  2  3  4  5  6  7  8  9  10
+   -  -  -  -  -  -  -  -  -  -  --
+A=[6, 7, 8, 6, 9, 7, 2, 2, 2, 9, 8]
+   ^                    ^          
+  [2, 7, 8, 6, 9, 7, 2, 6, 2, 9, 8]
+      ^                    ^       
+  [2, 2, 8, 6, 9, 7, 2, 6, 7, 9, 8]
+         ^                    ^    
+  [2, 2, 8, 6, 9, 7, 2, 6, 7, 9, 8]
+            ^                    ^ 
+
+  [2, 2, 8, 6, 9, 7, 2, 6, 7, 9, 8]  7's now sorted
+   ^        ^        ^        ^      ---- 4 elements 3 apart
+  [2, 2, 8, 2, 9, 7, 6, 6, 7, 9, 8]
+      ^        ^        ^        ^   ---- 4 elements 3 apart
+  [2, 2, 8, 2, 6, 7, 6, 8, 7, 9, 9] 
+         ^        ^        ^         ---- 3 elements 3 apart
+
+  [2, 2, 7, 2, 6, 7, 6, 8, 8, 9, 9]  3's now sorted
+
+  [2, 2, 2, 6, 6, 7, 7, 8, 8, 9, 9]  regular insertion sort
+</pre>
+
+
+<h3>Java ShellSort Code</h3>
+
+Here is the code:
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts_Demo/src/mysorts/ShellSortArrays.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+shellSort code</span>
+<a href="/~rkline/ds/showhide/target/shell-comparison">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+To get a sense of how it works, test it in <tt>mainShowSorts</tt> by setting 
+<pre class="n">
+WHICH = ShowAlgorithms.SHELL
+</pre>
+Our code permits the user to specify the increments which the algorithms uses. 
+If none are specified, the Hibbard increments are used by default.
+You can compare the behavior using a different set of increments by creating 
+your own <tt>LinkedList</tt> of increments. 
+For example, to use Shell's original 
+increments (1, 2, 4, 8, ...), add this code prior to the call:
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="co1">// suppose you want to sort A in the range fromIndex to toIndex</span>
+&nbsp;
+WHICH <span class="sy0">=</span> ShowAlgorithms.<span class="me1">SHELL</span><span class="sy0">;</span>
+size <span class="sy0">=</span> toIndex <span class="sy0">-</span> fromIndex<span class="sy0">;</span>
+LinkedList<span class="sy0">&lt;</span>Integer<span class="sy0">&gt;</span> shellIncrements <span class="sy0">=</span> <span class="kw1">new</span> LinkedList<span class="sy0">&lt;</span>Integer<span class="sy0">&gt;</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw4">int</span> inc <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> inc <span class="sy0">&lt;</span> size<span class="sy0">;</span> inc <span class="sy0">=</span> <span class="nu0">2</span> <span class="sy0">*</span> inc<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+   shellIncrements.<span class="me1">add</span><span class="br0">&#40;</span>inc<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+ShowAlgorithms.<span class="me1">setShellSortIncrements</span><span class="br0">&#40;</span>shellIncrements<span class="br0">&#41;</span><span class="sy0">;</span></pre></div>
+
+<h3><a name="comparisons"></a>Empricial Comparisons</h3>
+
+The two valuable empirical measures of an sorting algorithm are
+<ul class='notes'>
+<li>how long it takes to execute (real time)
+<li>home many operations,
+i.e. comparisons and data movements, that it requires (abstract time).
+</ul>
+This main program is meant to be dropped into the
+<tt class="file">MySorts</tt> project Main class 
+to make a timing comparison among sorting algorithms.
+<div class='n'>
+<div class='file_display show_hide'>
+<form action="#">
+<input type='hidden' name='path' value="MySorts_Demo/src/mysorts/MainTimeSorts.java" />
+<input type='hidden' name='lang' value="java" />
+<input type='hidden' name='status' value="0" />
+<input type='hidden' name='can_select' value="1" />
+<span class='show_hide_label'>
+mainTimeSorts</span>
+<a href="/~rkline/ds/showhide/target/shell-comparison">(click to show)</a>
+</form>
+<div></div>
+</div>
+</div>
+
+The comparison options are these (showing the default values)
+
+<div class='format_display'>
+<span></span>
+<pre class="java"><span class="kw3">String</span> choices<span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="br0">&#123;</span><span class="st0">&quot;select&quot;</span>, <span class="st0">&quot;insert&quot;</span>, <span class="st0">&quot;shell&quot;</span><span class="br0">&#125;</span><span class="sy0">;</span>
+<span class="kw1">final</span> <span class="kw4">int</span> SIZE <span class="sy0">=</span> <span class="coMULTI">/* appropriate size */</span>
+<span class="kw1">final</span> <span class="kw4">int</span> RANGE <span class="sy0">=</span> SIZE <span class="sy0">*</span> <span class="nu0">10</span><span class="sy0">;</span>
+<span class="kw1">final</span> <span class="kw4">int</span> NUM_TRIALS <span class="sy0">=</span> <span class="coMULTI">/* appropriate number of trials */</span></pre></div>
+This indicates that we are comparing these the three sorts:
+<tt>selectionSort</tt>, <tt>insertionSort</tt> and <tt>shellSort</tt>. The choices
+available for sorting algorithms are those employed by the <tt>Sorter</tt> class:
+<pre class='n lh3'>
+"select"       <span class="ssf">(selection sort)</span>
+"insert"       <span class="ssf">(insertion sort)</span>
+"shell"        <span class="ssf">(shell sort)</span>
+"quick"        <span class="ssf">(quick sort)</span>
+"merge"        <span class="ssf">(merge sort)</span>
+"heap"         <span class="ssf">(heap sort)</span>
+"java"         <span class="ssf">(Java's built-in sort)</span>
+</pre>
+
+
+<h3><a name="shell-analysis"></a>ShellSort Analysis</h3>
+
+It is relatively easy to argue that this new version,
+even with four enclosing loops, is still
+<tt><i><big>O</big></i>(n<sup>2</sup>)</tt>:
+<ul class="notes">
+<li>let <tt>h<sub>k</sub></tt> stand for the k<sup>th</sup> increment,
+which corresponds to the variable <tt>gap</tt> in
+our implementation</li>
+<li>let <tt>n</tt> = the array size</li>
+<li>the two inner loops perform an insertion sort on at most 
+ <tt>n/h<sub>k</sub></tt> elements, costing
+<tt><i><big>O</big></i>((n/h<sub>k</sub>)<sup>2</sup>)</tt>
+</li>
+<li>the next loop out goes <tt>h<sub>k</sub></tt> times, costing
+<tt><i><big>O</big></i>(h<sub>k</sub>* (n/h<sub>k</sub>)<sup>2</sup>)
+= <i><big>O</big></i>(n<sup>2</sup>/h<sub>k</sub>)
+</tt>
+</li>
+</ul>
+
+Using the order constant, <tt>C</tt>, and considering the
+the outermost loop, this then becomes an upper bound:
+<pre class="n">
+<big>&sum;</big><sub>k=1,2,&hellip;</sub> C * (n<sup>2</sup>/h<sub>k</sub>) = C * n<sup>2</sup> * <big>&sum;</big><sub>k=1,2,&hellip;</sub> (1/h<sub>k</sub>)
+                     = C * n<sup>2</sup> * <big>&sum;</big><sub>k=1,2,&hellip;</sub> (1/(2<sup>k</sup>&#150;1))
+                     = C * n<sup>2</sup> * ( 1 + <big>&sum;</big><sub>k=2,&hellip;</sub> (1/(2<sup>k</sup>&#150;1)) )
+                     &le; C * n<sup>2</sup> * ( 1 + <big>&sum;</big><sub>k=2,&hellip;</sub> (1/(2<sup>k&#150;1</sup>)) )     ( 2<sup>k</sup>&#150;1 &gt; 2<sup>k&#150;1</sup> )
+                     &le; C * n<sup>2</sup> * ( 1 + 1 )  =  2 * C * n<sup>2</sup>
+</pre>
+In particular, we can guarantee quadratic time when the increments are based on
+a power sequence, such as straight powers of 2. However, the Hibbard increments are special
+in that these values guarantee a sub-quadratic worst-case time of
+<tt><i><big>O</big></i>(n<sup>3/2</sup>)</tt> = 
+<tt><i><big>O</big></i>(n<sup>1.5</sup>)</tt>. 
+As can be expected, the proof of this fact is quite a bit more difficult.
+The textbook remarks that the average case time is unknown although
+conjectured to be 
+<tt><i><big>O</big></i>(n<sup>5/4</sup>)</tt>  =
+<tt><i><big>O</big></i>(n<sup>1.25</sup>)</tt>. 
+The textbook
+also mentions other increment sequences which have been studied and 
+seen to produce even better performance.
+
+<h4>Stability</h4>
+
+Shellsort is <b>not</b> stable. It can be readily demonstrated with an
+array of size 4 (the smallest possible). Instability
+is to be expected because the increment-based sorts
+move elements distances without examining of elements in between.
+</div><!--content-->
+
+
+<script type="text/javascript" src="/javascript/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="/~rkline/js/init.js"></script>
+
+
+
+
+<p></p>
+<div style="font-size:80%;line-height:13px;padding-bottom:5px;">
+<hr />
+<span style='float:right'>&copy; Robert M. Kline</span>
+<div class='print_hide'>
+&nbsp;
+<div>
+</div>
+
+</body>
+</html>
