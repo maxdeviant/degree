@@ -12,7 +12,7 @@ public class ProblemFour {
 
 		for (int n = 2; n < 7; n++) {
 			System.out.println(n + "\t" + Functions.T(n) + "\t\t"
-					+ df.format(T(n)) + "\t" + df.format(O(n)));
+					+ C(n) + "\t" + df.format(O(n)));
 		}
 	}
 
@@ -20,7 +20,7 @@ public class ProblemFour {
 		return n * (Math.log(n) / Math.log(2));
 	}
 
-	public static double T(int n) {
-		return O(1);
+	public static int C(int n) {
+		return Functions.T(n) / n;
 	}
 }
