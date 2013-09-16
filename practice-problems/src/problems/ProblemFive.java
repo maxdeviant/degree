@@ -21,6 +21,6 @@ public class ProblemFive {
 	}
 	
 	public static int C(int n) {
-		return Functions.T(n) / n;
+		return Functions.U(n) / n;
 	}
 }
