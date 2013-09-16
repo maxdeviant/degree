@@ -11,12 +11,16 @@ public class ProblemFive {
 		System.out.println("n\tU(n)\t<=\tC\tn^2 * log(n)");
 
 		for (int n = 2; n < 7; n++) {
-			System.out.println(n + "\t" + Functions.U(n) + "\t\t" + O(1) / 2
-					+ "\t" + df.format(O(n)));
+			System.out.println(n + "\t" + Functions.U(n) + "\t\t"
+					+ C(n) + "\t" + df.format(O(n)));
 		}
 	}
 
 	public static double O(int n) {
 		return (n * n) * (Math.log(n) / Math.log(2));
+	}
+	
+	public static int C(int n) {
+		return Functions.T(n) / n;
 	}
 }
