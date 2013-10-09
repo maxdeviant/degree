@@ -1,9 +1,11 @@
 package dsprog1; // Derived from the project name
 
 import java.util.*;
+
 import tree.SearchTreeSet;
 
 public class DSProg1 {
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
 		NavigableSet<Integer> set = new TreeSet<Integer>();
 		// NavigableSet<Integer> set = new SearchTreeSet<Integer>();

@@ -3,6 +3,7 @@ package set;
 import java.util.*;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class SetAdapter<E> implements Cloneable, Set<E>, Serializable {
 
 	// Iterable
