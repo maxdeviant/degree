@@ -2,6 +2,7 @@ package set;
 
 import java.util.*;
 
+@SuppressWarnings("serial")
 public class NavSetAdapter<E> extends SetAdapter<E> implements NavigableSet<E> {
 	// SortedSet interface
 
