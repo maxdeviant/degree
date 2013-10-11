@@ -281,11 +281,6 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 			root = root.left;
 		}
 		
-//		if (root.left != null) {
-//			root = root.left;
-//		}
-		
-//		System.out.println(root.data);
 		return root.data;
 	}
 
@@ -328,6 +323,18 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 	@Override
 	public E floor(E elt) {
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		
+		while (root != null) {
+			if (myCompare(root.data, elt) < 0) {
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+		}
+		
+		return (root != null) ? root.data : null;
 	}
 }
