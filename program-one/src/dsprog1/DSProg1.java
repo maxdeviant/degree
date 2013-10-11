@@ -7,8 +7,8 @@ import tree.SearchTreeSet;
 public class DSProg1 {
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
-		NavigableSet<Integer> set = new TreeSet<Integer>();
-		// NavigableSet<Integer> set = new SearchTreeSet<Integer>();
+//		NavigableSet<Integer> set = new TreeSet<Integer>();
+		NavigableSet<Integer> set = new SearchTreeSet<Integer>();
 
 		final int RANGE = 20; // random number range
 		final int NUM = 12; // make this 0 to create an empty set
@@ -17,9 +17,9 @@ public class DSProg1 {
 		// Uncomment only the group that you're developing.
 		Set<String> todo = new HashSet<String>();
 		todo.add("first-last");
-		todo.add("pollFirst");
-		todo.add("headSet");
-		todo.add("floor");
+//		todo.add("pollFirst");
+//		todo.add("headSet");
+//		todo.add("floor");
 
 		Random rand = new Random();
 		for (int i = 0; i < NUM; ++i) {
@@ -28,7 +28,7 @@ public class DSProg1 {
 		}
 
 		System.out.println("\n");
-		System.out.println("set  = " + set);
+		System.out.println("set = " + set);
 		System.out.println("set.size() = " + set.size());
 
 		if (set instanceof SearchTreeSet) {

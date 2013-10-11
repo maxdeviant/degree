@@ -273,17 +273,47 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	// added by Marshall
 	@Override
 	public E first() {
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		
+		while (root.left != null) {
+			root = root.left;
+		}
+		
+//		if (root.left != null) {
+//			root = root.left;
+//		}
+		
+//		System.out.println(root.data);
+		return root.data;
 	}
 
 	@Override
 	public E last() {
-		return null;
+		System.out.println(root.data);
+		if (isEmpty()) {
+			return null;
+		}
+		
+		while (root.right != null) {
+			root = root.right;
+		}
+		
+		return root.data;
 	}
 
 	@Override
 	public E pollFirst() {
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		
+		while (root.left != null) {
+			root = root.left;
+		}
+		
+		return root.data;
 	}
 
 	@Override
