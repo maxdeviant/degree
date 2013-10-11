@@ -291,8 +291,14 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 			return null;
 		}
 		
-		while (root.right != null) {
-			root = root.right;
+//		while (root.right != null) {
+//			root = root.right;
+//		}
+		
+		if (root.left != null && root.right != null) {
+			if (myCompare(root.left.data, root.right.data) < 0) {
+				root = root.right;
+			}
 		}
 		
 		return root.data;
