@@ -307,11 +307,15 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 			return null;
 		}
 		
-		while (root.left != null) {
-			root = root.left;
+		Node currNode = root;
+		
+		while (currNode.left != null) {
+			currNode = currNode.left;
 		}
 		
-		return root.data;
+		remove(currNode.data);
+		
+		return currNode.data;
 	}
 
 	@Override
