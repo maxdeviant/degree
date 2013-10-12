@@ -17,9 +17,9 @@ public class DSProg1 {
 		// Uncomment only the group that you're developing.
 		Set<String> todo = new HashSet<String>();
 //		todo.add("first-last");
-		todo.add("pollFirst");
+//		todo.add("pollFirst");
 //		todo.add("headSet");
-//		todo.add("floor");
+		todo.add("floor");
 
 		Random rand = new Random();
 		for (int i = 0; i < NUM; ++i) {
