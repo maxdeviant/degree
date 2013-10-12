@@ -16,8 +16,8 @@ public class DSProg1 {
 		// These "todo" keys are meant to focus your efforts.
 		// Uncomment only the group that you're developing.
 		Set<String> todo = new HashSet<String>();
-		todo.add("first-last");
-//		todo.add("pollFirst");
+//		todo.add("first-last");
+		todo.add("pollFirst");
 //		todo.add("headSet");
 //		todo.add("floor");
 
