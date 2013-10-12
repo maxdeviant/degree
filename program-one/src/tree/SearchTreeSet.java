@@ -270,22 +270,23 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 		return Arrays.asList((E[]) toArray()).listIterator();
 	}
 
-	// added by Marshall
+	// added by Marshall Bowers
+
 	@Override
 	public E first() {
 		// Return null if the set is empty
 		if (isEmpty()) {
 			return null;
 		}
-		
+
 		// Set the current node to root
 		Node currNode = root;
-		
+
 		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
 			currNode = currNode.left;
 		}
-		
+
 		// Return the value of the current node
 		return currNode.data;
 	}
@@ -296,15 +297,15 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 		if (isEmpty()) {
 			return null;
 		}
-		
+
 		// Set the current node to root
 		Node currNode = root;
-		
+
 		// While the right hand side of the current node is not null
 		while (currNode.right != null) {
 			currNode = currNode.right;
 		}
-		
+
 		// Return the value of the current node
 		return currNode.data;
 	}
@@ -315,18 +316,18 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 		if (isEmpty()) {
 			return null;
 		}
-		
+
 		// Set the current node to root
 		Node currNode = root;
-		
+
 		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
 			currNode = currNode.left;
 		}
-		
+
 		// Remove the current node from the set
 		remove(currNode.data);
-		
+
 		// Return the value of the current node
 		return currNode.data;
 	}
@@ -346,6 +347,41 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 	@Override
 	public E floor(E elt) {
-		return null;
+		Node n = floor(root, elt);
+		if (n == null) {
+			return null;
+		} else {
+			return n.data;
+		}
+	}
+	
+	private Node floor(Node n, E elt) {
+		// Check if node is null
+		if (n == null) {
+			return null;
+		}
+		
+		// Compare argument and the value of the node
+		int cmp = myCompare(elt, n.data);
+		
+		// If the current node is less than the argument
+		if (cmp < 0) {
+			return floor(n.left, elt);
+		// If the current node is the same as the argument
+		} else if (cmp == 0) {
+			return n;
+		}
+		
+		// If the current node is greater than the argument
+		// Create a new node equal to the largest element on the right
+		Node r = floor(n.right, elt);
+		
+		// Return this node if it is not null
+		if (r != null) {
+			return r;
+		// Return the current node
+		} else {
+			return n;
+		}
 	}
 }
