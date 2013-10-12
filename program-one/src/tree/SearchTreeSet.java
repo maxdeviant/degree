@@ -277,31 +277,28 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 			return null;
 		}
 		
-		while (root.left != null) {
-			root = root.left;
+		Node currNode = root;
+		
+		while (currNode.left != null) {
+			currNode = currNode.left;
 		}
 		
-		return root.data;
+		return currNode.data;
 	}
 
 	@Override
 	public E last() {
-		System.out.println(root.data);
 		if (isEmpty()) {
 			return null;
 		}
 		
-//		while (root.right != null) {
-//			root = root.right;
-//		}
+		Node currNode = root;
 		
-		if (root.left != null && root.right != null) {
-			if (myCompare(root.left.data, root.right.data) < 0) {
-				root = root.right;
-			}
+		while (currNode.right != null) {
+			currNode = currNode.right;
 		}
 		
-		return root.data;
+		return currNode.data;
 	}
 
 	@Override
