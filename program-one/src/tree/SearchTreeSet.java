@@ -273,48 +273,61 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	// added by Marshall
 	@Override
 	public E first() {
+		// Return null if the set is empty
 		if (isEmpty()) {
 			return null;
 		}
 		
+		// Set the current node to root
 		Node currNode = root;
 		
+		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
 			currNode = currNode.left;
 		}
 		
+		// Return the value of the current node
 		return currNode.data;
 	}
 
 	@Override
 	public E last() {
+		// Return null if the set is empty
 		if (isEmpty()) {
 			return null;
 		}
 		
+		// Set the current node to root
 		Node currNode = root;
 		
+		// While the right hand side of the current node is not null
 		while (currNode.right != null) {
 			currNode = currNode.right;
 		}
 		
+		// Return the value of the current node
 		return currNode.data;
 	}
 
 	@Override
 	public E pollFirst() {
+		// Return null if the set is empty
 		if (isEmpty()) {
 			return null;
 		}
 		
+		// Set the current node to root
 		Node currNode = root;
 		
+		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
 			currNode = currNode.left;
 		}
 		
+		// Remove the current node from the set
 		remove(currNode.data);
 		
+		// Return the value of the current node
 		return currNode.data;
 	}
 
@@ -326,22 +339,13 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	}
 
 	private void headSet(Node n, E before, SortedSet<E> set) {
+		if (myCompare(n.data, before) < 0) {
+			
+		}
 	}
 
 	@Override
 	public E floor(E elt) {
-		if (isEmpty()) {
-			return null;
-		}
-		
-		while (root != null) {
-			if (myCompare(root.data, elt) < 0) {
-				root = root.left;
-			} else {
-				root = root.right;
-			}
-		}
-		
-		return (root != null) ? root.data : null;
+		return null;
 	}
 }
