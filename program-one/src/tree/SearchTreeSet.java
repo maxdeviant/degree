@@ -4,7 +4,6 @@ import java.util.*;
 
 import util.Mutable;
 
-@SuppressWarnings("serial")
 public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	private class Node {
 		E data;
@@ -253,8 +252,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 	@Override
 	public Object[] toArray() {
-		Object[] arr = new Comparable[size]; // new Object[size] causes
-												// problems!
+		Object[] arr = new Comparable[size]; // new Object[size] causes problems!
 		toArray(arr, 0, root);
 		return arr;
 	}
@@ -264,7 +262,6 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 		return java.util.Arrays.toString(toArray());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Iterator<E> iterator() {
 		return Arrays.asList((E[]) toArray()).listIterator();
@@ -411,8 +408,8 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 		if (cmp < 0) {
 			// Recall floor on the left hand side
 			return floor(n.left, elt);
-			// If the current node is the same as the argument
 		} else if (cmp == 0) {
+			// If the current node is the same as the argument
 			// Return the current node
 			return n;
 		}
