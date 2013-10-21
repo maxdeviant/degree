@@ -284,6 +284,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
+			// Set the current node equal to the left node
 			currNode = currNode.left;
 		}
 
@@ -303,6 +304,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 		// While the right hand side of the current node is not null
 		while (currNode.right != null) {
+			// Set the current node equal to the right node
 			currNode = currNode.right;
 		}
 
@@ -322,6 +324,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 		// While the left hand side of the current node is not null
 		while (currNode.left != null) {
+			// Set the current node equal to the left node
 			currNode = currNode.left;
 		}
 
@@ -334,53 +337,95 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 
 	@Override
 	public SortedSet<E> headSet(E before) {
+		// Create a new SortedSet
 		SortedSet<E> set = new SearchTreeSet<E>();
-		headSet(root, before, set);
+
+		// Return the empty set if the tree is empty
+		if (isEmpty()) {
+			return set;
+		}
+
+		// Compare the argument with the first node in the tree
+		int cmp = myCompare(before, first());
+
+		// If the first node is smaller than the argument
+		if (cmp > 0) {
+			// Call the helper function
+			headSet(root, before, set);
+		}
+
+		// Else: no nodes smaller than the argument
+		// Return the empty set
 		return set;
 	}
 
+	// headSet helper function
 	private void headSet(Node n, E before, SortedSet<E> set) {
-		if (myCompare(n.data, before) < 0) {
-			
+		// Compare the argument with the current node
+		int cmp = myCompare(before, n.data);
+
+		// If the current node is smaller than the argument
+		if (cmp > 0) {
+			// Add the current node to the set
+			set.add(n.data);
+
+			// Check if the right hand side exists
+			if (n.right != null) {
+				// Recall the helper function on the right node
+				headSet(n.right, before, set);
+			}
+		}
+
+		// Check if the left hand side exists
+		if (n.left != null) {
+			// Recall the helper function on the left node
+			headSet(n.left, before, set);
 		}
 	}
 
 	@Override
 	public E floor(E elt) {
+		// Create a new node equal to the result of floor
 		Node n = floor(root, elt);
+
+		// If the result was null, return null
 		if (n == null) {
 			return null;
 		} else {
+			// Otherwise, return the data value of the current node
 			return n.data;
 		}
 	}
-	
+
+	// floor helper function
 	private Node floor(Node n, E elt) {
-		// Check if node is null
+		// Return null if the current node is null
 		if (n == null) {
 			return null;
 		}
-		
+
 		// Compare argument and the value of the node
 		int cmp = myCompare(elt, n.data);
-		
+
 		// If the current node is less than the argument
 		if (cmp < 0) {
+			// Recall floor on the left hand side
 			return floor(n.left, elt);
-		// If the current node is the same as the argument
+			// If the current node is the same as the argument
 		} else if (cmp == 0) {
+			// Return the current node
 			return n;
 		}
-		
+
 		// If the current node is greater than the argument
 		// Create a new node equal to the largest element on the right
 		Node r = floor(n.right, elt);
-		
+
 		// Return this node if it is not null
 		if (r != null) {
 			return r;
-		// Return the current node
 		} else {
+			// Return the current node
 			return n;
 		}
 	}
