@@ -15,8 +15,8 @@ public class DSProg2 {
 	}
 
 	public static void main(String[] args) {
-		 Map<String, Integer> map = new TreeMap<String, Integer>();
-//		Map<String, Integer> map = new SearchTreeMap<String, Integer>();
+//		Map<String, Integer> map = new TreeMap<String, Integer>();
+		Map<String, Integer> map = new SearchTreeMap<String, Integer>();
 
 		String data[] = { "MM", "GG", "SS", "DD", "LL", "NN", "UU", "FF", "JJ",
 				"PP", "RR", "QQ", "II", "KK" };
@@ -28,6 +28,9 @@ public class DSProg2 {
 		}
 
 		show(map);
+		
+//		String s = "VV";
+//		System.out.println("remove(" + s + ") = " + map.remove(s));
 
 		for (String s : new String[] { "MM", "GG", "KK", "RR", "MM" }) {
 			System.out.println("remove(" + s + ") = " + map.remove(s));
