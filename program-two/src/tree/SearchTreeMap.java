@@ -218,7 +218,8 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		addToKeySet(n.right, kset);
 	}
 
-	private String indentString = "   ";
+//	private String indentString = "   ";
+	private String indentString = "\t";
 
 	public void setIndentString(String indentString) {
 		this.indentString = indentString;
@@ -231,6 +232,7 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 	private void reverseInorderOutput(Node n, int level) {
 		if (n != null) {
 			reverseInorderOutput(n.right, level + 1);
+
 			System.out.println(repeat(indentString, level) + n.key + "="
 					+ n.value);
 			reverseInorderOutput(n.left, level + 1);
@@ -240,11 +242,49 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 	private static String repeat(String str, int times) {
 		return new String(new char[times]).replace("\0", str);
 	}
-	
+
 	// added by Marshall Bowers
-	
+
 	@Override
 	public V remove(Object obj) {
-		return null;
+		return remove(root, (K) obj);
+	}
+
+	private V remove(Node p, K key) {
+		if (p == null) {
+			return null;
+		}
+
+		Node currNode = p;
+
+		int cmp = myCompare(p.key, key);
+		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
+
+		// p < key
+		if (cmp < 0) {
+			currNode = currNode.right;
+			// remove(p.right, key);
+		}
+		if (cmp > 0) {
+			currNode = currNode.left;
+			// remove(p.left, key);
+		}
+		if (cmp == 0) {
+			System.out.println("found!");
+			System.out.println("p.value: " + p.value);
+			return p.value;
+		}
+
+		return remove(currNode, key);
+
+		// System.out.println("found!");
+		// System.out.println("p.value: " + p.value);
+		// return p.value;
+
+		/*
+		 * if (p.key == key) { return p.value; }
+		 */
+
+		// return null;
 	}
 }
