@@ -252,11 +252,11 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 			return null;
 		}
 
-		// Create two Mutable objects to hold the found and oldValue variables
+		// Create two Mutable objects to hold the found and old value variables
 		Mutable<Boolean> found = new Mutable<Boolean>(false);
 		Mutable<V> oldV = new Mutable<V>();
 
-		// Set the root Node to the result of calling the remove method on root
+		// Set root to the result of calling the remove method on root
 		root = remove(root, (K) obj, oldV, found);
 
 		// If the key was found in the tree, decrement the size
@@ -264,7 +264,7 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 			--size;
 		}
 
-		// Return the oldValue, which corresponds to the key passed in
+		// Return the old value, which corresponds to the key passed in
 		return oldV.get();
 	}
 
@@ -283,16 +283,16 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 		// If the argument comes before the current node
 		if (cmp < 0) {
-			// Set the LHS to the result of calling the remove method on the
-			// LHS, then return
+			// Set the LHS to the result of calling the remove method
+			// on the LHS, then return
 			n.left = remove(n.left, key, value, found);
 			return n;
 		}
 
 		// If the argument comes after the current node
 		if (cmp > 0) {
-			// Set the LHS to the result of calling the remove method on the
-			// LHS, then return
+			// Set the RHS to the result of calling the remove method
+			// on the RHS, then return
 			n.right = remove(n.right, key, value, found);
 			return n;
 		}
@@ -350,8 +350,8 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 			// Return the LHS
 			return n.left;
 		} else {
-			// Set the RHS to the result of calling removeMax on the RHS,
-			// then return
+			// Set the RHS to the result of calling removeMax
+			// on the RHS, then return
 			n.right = removeMax(n.right, saveK, saveV);
 			return n;
 		}
@@ -368,8 +368,8 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 			// Return the RHS
 			return n.right;
 		} else {
-			// Set the LHS to the result of calling removeMax on the LHS,
-			// then return
+			// Set the LHS to the result of calling removeMax
+			// on the LHS, then return
 			n.left = removeMin(n.left, saveK, saveV);
 			return n;
 		}
