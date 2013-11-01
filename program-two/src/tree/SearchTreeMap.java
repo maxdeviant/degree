@@ -282,12 +282,22 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		}
 		return remove(currNode, key, p.key);
 	}
-	
+
 	private Node removeMin(Node n) {
-		return null;
+		if (n.left == null) {
+			return n.left;
+		} else {
+			n.left = removeMax(n.left);
+			return n;
+		}
 	}
 
 	private Node removeMax(Node n) {
-		return null;
+		if (n.right == null) {
+			return n.left;
+		} else {
+			n.right = removeMax(n.right);
+			return n;
+		}
 	}
 }
