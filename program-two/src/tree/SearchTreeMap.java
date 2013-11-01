@@ -248,68 +248,75 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
-		Node foo = remove(root, (K) obj);
-
-		// root = foo;
-
-		return foo.value;
-
-		// return root.value;
-	}
-
-	private Node remove(Node p, K key) {
-		if (p == null) {
+		if (isEmpty()) {
 			return null;
 		}
-		
-		int cmp = myCompare(key, p.key);
-		
-		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
-		
-		if (cmp < 0) {
-			p.left = remove(p.left, key);
-		} else if (cmp > 0) {
-			p.right = remove(p.right, key);
-		} else {
-			if (p.right == null) {
-				return p.left;
-			}
-			if (p.left == null) {
-				return p.right;
-			}
-			
-			Node t = p;
-			
-			p = min(t.right);
-			p.right = removeMin(t.right);
-			p.left = t.left;
+		K key = (K) obj;
+		Mutable<Boolean> found = new Mutable<Boolean>();
+		Mutable<V> oldValue = new Mutable<V>();
+		root = remove(root, key, oldValue, found);
+		if (found.get()) {
+			--size;
 		}
-		
-		return p;
+		return oldValue.get();
 	}
 
-	private Node min(Node n) {
-		if (n.left == null) {
-			return n;
-		} else {
-			return min(n.left);
-		}
-	}
+	private Random flipACoin = new Random();
 
-	private Node removeMax(Node n) {
-		if (n.right == null) {
-			return n.left;
-		} else {
-			n.right = removeMax(n.right);
+	private Node remove(Node n, K key, Mutable<V> value, Mutable<Boolean> found) {
+		if (n == null) {
+			found.set(false);
+			return null;
+		}
+		int comp = myCompare(key, n.key);
+		if (comp < 0) {
+			n.left = remove(n.left, key, value, found);
 			return n;
 		}
-	}
-
-	private Node removeMin(Node n) {
+		if (comp > 0) {
+			n.right = remove(n.right, key, value, found);
+			return n;
+		}
+		found.set(true);
+		value.set(n.value);
 		if (n.left == null) {
 			return n.right;
 		}
-		n.left = removeMin(n.left);
+		if (n.right == null) {
+			return n.left;
+		}
+		Mutable<K> saveKey = new Mutable<K>();
+		Mutable<V> saveValue = new Mutable<V>();
+		boolean choose_min = (flipACoin.nextInt(2) == 1);
+		if (choose_min) {
+			n.right = removeMin(n.right, saveKey, saveValue);
+		} else {
+			n.left = removeMax(n.left, saveKey, saveValue);
+		}
+		n.key = saveKey.get();
+		n.value = saveValue.get();
 		return n;
+	}
+
+	private Node removeMax(Node n, Mutable<K> saveKey, Mutable<V> saveValue) {
+		if (n.right == null) {
+			saveKey.set(n.key);
+			saveValue.set(n.value);
+			return n.left;
+		} else {
+			n.right = removeMax(n.right, saveKey, saveValue);
+			return n;
+		}
+	}
+
+	private Node removeMin(Node n, Mutable<K> saveKey, Mutable<V> saveValue) {
+		if (n.left == null) {
+			saveKey.set(n.key);
+			saveValue.set(n.value);
+			return n.right;
+		} else {
+			n.left = removeMin(n.left, saveKey, saveValue);
+			return n;
+		}
 	}
 }
