@@ -28,9 +28,6 @@ public class DSProg2 {
 		}
 
 		show(map);
-		
-//		String s = "VV";
-//		System.out.println("remove(" + s + ") = " + map.remove(s));
 
 		for (String s : new String[] { "MM", "GG", "KK", "RR", "MM" }) {
 			System.out.println("remove(" + s + ") = " + map.remove(s));
