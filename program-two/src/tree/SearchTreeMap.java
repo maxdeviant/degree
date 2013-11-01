@@ -247,44 +247,38 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
-		return remove(root, (K) obj);
+		root = remove(root, (K) obj);
+		
+		return (V) "foo";
 	}
 
-	private V remove(Node p, K key) {
+	private Node remove(Node p, K key) {
 		if (p == null) {
 			return null;
 		}
-
-		Node currNode = p;
-
-		int cmp = myCompare(p.key, key);
-		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
-
-		// p < key
-		if (cmp < 0) {
-			currNode = currNode.right;
-			// remove(p.right, key);
-		}
-		if (cmp > 0) {
-			currNode = currNode.left;
-			// remove(p.left, key);
-		}
+		
+		int cmp = myCompare(key, p.key);
+		
+		System.out.printf("p.key: %s, key: %s, cmp: %d\n", p.key, key, cmp);
+		
 		if (cmp == 0) {
-			System.out.println("found!");
-			System.out.println("p.value: " + p.value);
-			return p.value;
+			if (p.left == null && p.right == null) {
+				return null;
+			}
+			if (p.left == null) {
+				return p.right;
+			}
+			if (p.right == null) {
+				return p.left;
+			}
+			
+			return p;
+		} else if (cmp < 0) {
+			p.left = remove(p.left, key);
+			return p;
+		} else {
+			p.right = remove(p.right, key);
+			return p;
 		}
-
-		return remove(currNode, key);
-
-		// System.out.println("found!");
-		// System.out.println("p.value: " + p.value);
-		// return p.value;
-
-		/*
-		 * if (p.key == key) { return p.value; }
-		 */
-
-		// return null;
 	}
 }
