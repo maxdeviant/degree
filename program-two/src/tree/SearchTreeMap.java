@@ -248,41 +248,40 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
-		return remove(root, (K) obj, null);
+		root = remove(root, (K) obj);
+		
+		return root.value;
 
 		// return root.value;
 	}
 
-	private V remove(Node p, K key, Node parent) {
-		if (p == null) {
+	private Node remove(Node p, K key) {
+		if (p == null)
 			return null;
+		int cmp = myCompare(key, p.key);
+		if (cmp < 0)
+			p.left = remove(p.left, key);
+		else if (cmp > 0)
+			p.right = remove(p.right, key);
+		else {
+			if (p.right == null)
+				return p.left;
+			if (p.left == null)
+				return p.right;
+			Node t = p;
+			p = min(t.right); // See page 313.
+			p.right = removeMin(t.right);
+			p.left = t.left;
 		}
+		return p;
 
-		Node currNode = p;
+	}
 
-		int cmp = myCompare(p.key, key);
-		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
-		if (parent != null) {
-			System.out.println("parent of current node:" + currNode.key
-					+ " is " + parent.key);
-		}
-		// p < key
-		if (cmp < 0) {
-			currNode = currNode.right;
-			// remove(p.right, key);
-		}
-		if (cmp > 0) {
-			currNode = currNode.left;
-			// remove(p.left, key);
-		}
-		if (cmp == 0) {
-			System.out.println("found!");
-			System.out.println("p.value: " + p.value);
-			// remove
-			removeMax(currNode);
-			return p.value;
-		}
-		return remove(currNode, key, p);
+	private Node min(Node x) {
+		if (x.left == null)
+			return x;
+		else
+			return min(x.left);
 	}
 
 	private Node removeMax(Node n) {
@@ -294,12 +293,11 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		}
 	}
 
-	private Node removeMin(Node n) {
-		if (n.left == null) {
-			return n.right;
-		} else {
-			n.left = removeMin(n.left);
-			return n;
-		}
+	private Node removeMin(Node p) {
+		if (p.left == null)
+			return p.right;
+		p.left = removeMin(p.left);
+		// p.N = size(p.left) + size(p.right) + 1;
+		return p;
 	}
 }
