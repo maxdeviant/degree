@@ -218,7 +218,7 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		addToKeySet(n.right, kset);
 	}
 
-//	private String indentString = "   ";
+	// private String indentString = "   ";
 	private String indentString = "\t";
 
 	public void setIndentString(String indentString) {
@@ -247,38 +247,38 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
-		root = remove(root, (K) obj);
-		
-		return (V) "foo";
+		return remove(root, (K) obj, null);
+
+		// return root.value;
 	}
 
-	private Node remove(Node p, K key) {
+	private V remove(Node p, K key, K parent) {
 		if (p == null) {
 			return null;
 		}
-		
-		int cmp = myCompare(key, p.key);
-		
-		System.out.printf("p.key: %s, key: %s, cmp: %d\n", p.key, key, cmp);
-		
-		if (cmp == 0) {
-			if (p.left == null && p.right == null) {
-				return null;
-			}
-			if (p.left == null) {
-				return p.right;
-			}
-			if (p.right == null) {
-				return p.left;
-			}
-			
-			return p;
-		} else if (cmp < 0) {
-			p.left = remove(p.left, key);
-			return p;
-		} else {
-			p.right = remove(p.right, key);
-			return p;
+
+		Node currNode = p;
+
+		int cmp = myCompare(p.key, key);
+		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
+
+		System.out.println("parent of current node:" + currNode.key + " is "
+				+ parent);
+		// p < key
+		if (cmp < 0) {
+			currNode = currNode.right;
+			// remove(p.right, key);
 		}
+		if (cmp > 0) {
+			currNode = currNode.left;
+			// remove(p.left, key);
+		}
+		if (cmp == 0) {
+			System.out.println("found!");
+			System.out.println("p.value: " + p.value);
+			// USE PARENT VALUE HERE TO DO MAGIC REMOVAL STUFF
+			return p.value;
+		}
+		return remove(currNode, key, p.key);
 	}
 }
