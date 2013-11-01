@@ -219,8 +219,7 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		addToKeySet(n.right, kset);
 	}
 
-	// private String indentString = "   ";
-	private String indentString = "\t";
+	private String indentString = "   ";
 
 	public void setIndentString(String indentString) {
 		this.indentString = indentString;
@@ -248,74 +247,130 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
+		// If the tree is empty, return null
 		if (isEmpty()) {
 			return null;
 		}
-		K key = (K) obj;
-		Mutable<Boolean> found = new Mutable<Boolean>();
-		Mutable<V> oldValue = new Mutable<V>();
-		root = remove(root, key, oldValue, found);
+
+		// Create two Mutable objects to hold the found and oldValue variables
+		Mutable<Boolean> found = new Mutable<Boolean>(false);
+		Mutable<V> oldV = new Mutable<V>();
+
+		// Set the root Node to the result of calling the remove method on root
+		root = remove(root, (K) obj, oldV, found);
+
+		// If the key was found in the tree, decrement the size
 		if (found.get()) {
 			--size;
 		}
-		return oldValue.get();
+
+		// Return the oldValue, which corresponds to the key passed in
+		return oldV.get();
 	}
 
+	// Create a new RNG to 'flip a coin' to prevent skewing of the tree
 	private Random flipACoin = new Random();
 
+	// remove helper function
 	private Node remove(Node n, K key, Mutable<V> value, Mutable<Boolean> found) {
+		// If the current node is null, return null
 		if (n == null) {
-			found.set(false);
 			return null;
 		}
-		int comp = myCompare(key, n.key);
-		if (comp < 0) {
+
+		// Compare the argument key with the key of the current node
+		int cmp = myCompare(key, n.key);
+
+		// If the argument comes before the current node
+		if (cmp < 0) {
+			// Set the LHS to the result of calling the remove method on the
+			// LHS, then return
 			n.left = remove(n.left, key, value, found);
 			return n;
 		}
-		if (comp > 0) {
+
+		// If the argument comes after the current node
+		if (cmp > 0) {
+			// Set the LHS to the result of calling the remove method on the
+			// LHS, then return
 			n.right = remove(n.right, key, value, found);
 			return n;
 		}
+
+		// If the argument equals the current node
+
+		// Denote that we have found the matching node and store the value
 		found.set(true);
 		value.set(n.value);
+
+		// If the LHS is null, return the RHS
 		if (n.left == null) {
 			return n.right;
 		}
+
+		// If the RHS is null, return the LHS
 		if (n.right == null) {
 			return n.left;
 		}
-		Mutable<K> saveKey = new Mutable<K>();
-		Mutable<V> saveValue = new Mutable<V>();
-		boolean choose_min = (flipACoin.nextInt(2) == 1);
-		if (choose_min) {
-			n.right = removeMin(n.right, saveKey, saveValue);
+
+		// Create two Mutable objects to hold the key and value variables
+		Mutable<K> saveK = new Mutable<K>();
+		Mutable<V> saveV = new Mutable<V>();
+
+		// Get a new random value to eliminate possible skewing
+		boolean chooseMin = (flipACoin.nextInt(2) == 1);
+
+		if (chooseMin) {
+			// Set the RHS to the result of calling
+			// the removeMin method on the RHS
+			n.right = removeMin(n.right, saveK, saveV);
 		} else {
-			n.left = removeMax(n.left, saveKey, saveValue);
+			// Set the LHS to the result of calling
+			// the removeMin method on the LHS
+			n.left = removeMax(n.left, saveK, saveV);
 		}
-		n.key = saveKey.get();
-		n.value = saveValue.get();
+
+		// Set the key and value of the current node to the values stored in
+		// their respective Mutable objects
+		n.key = saveK.get();
+		n.value = saveV.get();
+
+		// Return the current node
 		return n;
 	}
 
-	private Node removeMax(Node n, Mutable<K> saveKey, Mutable<V> saveValue) {
+	// Remove the right-most node in a subset of the tree, starting at Node n
+	private Node removeMax(Node n, Mutable<K> saveK, Mutable<V> saveV) {
+		// Once the right-most node (max) has been reached
 		if (n.right == null) {
-			saveKey.set(n.key);
-			saveValue.set(n.value);
+			// Save the key and value of the current node
+			saveK.set(n.key);
+			saveV.set(n.value);
+
+			// Return the LHS
 			return n.left;
 		} else {
-			n.right = removeMax(n.right, saveKey, saveValue);
+			// Set the RHS to the result of calling removeMax on the RHS,
+			// then return
+			n.right = removeMax(n.right, saveK, saveV);
 			return n;
 		}
 	}
 
-	private Node removeMin(Node n, Mutable<K> saveKey, Mutable<V> saveValue) {
+	// Remove the left-most node in a subset of the tree, starting at Node n
+	private Node removeMin(Node n, Mutable<K> saveK, Mutable<V> saveV) {
+		// Once the left-most node (min) has been reached
 		if (n.left == null) {
-			saveKey.set(n.key);
-			saveValue.set(n.value);
+			// Save the key and value of the current node
+			saveK.set(n.key);
+			saveV.set(n.value);
+
+			// Return the RHS
 			return n.right;
 		} else {
-			n.left = removeMin(n.left, saveKey, saveValue);
+			// Set the LHS to the result of calling removeMax on the LHS,
+			// then return
+			n.left = removeMin(n.left, saveK, saveV);
 			return n;
 		}
 	}
