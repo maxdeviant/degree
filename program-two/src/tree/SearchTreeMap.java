@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.*;
+
 import set.SetAdapter;
 import util.Mutable;
 
@@ -218,7 +219,7 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		addToKeySet(n.right, kset);
 	}
 
-//	private String indentString = "   ";
+	// private String indentString = "   ";
 	private String indentString = "\t";
 
 	public void setIndentString(String indentString) {
@@ -247,10 +248,12 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 	@Override
 	public V remove(Object obj) {
-		return remove(root, (K) obj);
+		return remove(root, (K) obj, null);
+
+		// return root.value;
 	}
 
-	private V remove(Node p, K key) {
+	private V remove(Node p, K key, Node parent) {
 		if (p == null) {
 			return null;
 		}
@@ -259,7 +262,10 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 
 		int cmp = myCompare(p.key, key);
 		System.out.println("p: " + p.key + ", k: " + key + ", cmp: " + cmp);
-
+		if (parent != null) {
+			System.out.println("parent of current node:" + currNode.key
+					+ " is " + parent.key);
+		}
 		// p < key
 		if (cmp < 0) {
 			currNode = currNode.right;
@@ -272,19 +278,28 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 		if (cmp == 0) {
 			System.out.println("found!");
 			System.out.println("p.value: " + p.value);
+			// remove
+			removeMax(currNode);
 			return p.value;
 		}
+		return remove(currNode, key, p);
+	}
 
-		return remove(currNode, key);
+	private Node removeMax(Node n) {
+		if (n.right == null) {
+			return n.left;
+		} else {
+			n.right = removeMax(n.right);
+			return n;
+		}
+	}
 
-		// System.out.println("found!");
-		// System.out.println("p.value: " + p.value);
-		// return p.value;
-
-		/*
-		 * if (p.key == key) { return p.value; }
-		 */
-
-		// return null;
+	private Node removeMin(Node n) {
+		if (n.left == null) {
+			return n.right;
+		} else {
+			n.left = removeMin(n.left);
+			return n;
+		}
 	}
 }
