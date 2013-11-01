@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.*;
+
 import set.SetAdapter;
 import util.Mutable;
 
@@ -280,5 +281,13 @@ public class SearchTreeMap<K, V> extends map.NavMapAdapter<K, V> {
 			return p.value;
 		}
 		return remove(currNode, key, p.key);
+	}
+	
+	private Node removeMin(Node n) {
+		return null;
+	}
+
+	private Node removeMax(Node n) {
+		return null;
 	}
 }
