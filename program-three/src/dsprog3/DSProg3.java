@@ -35,7 +35,7 @@ public class DSProg3 {
 
 		while (match.find()) {
 			String word = match.group().toLowerCase();
-			System.out.println(word);
+			// System.out.println(word);
 
 			// Check if word is in the skip set
 			if (!skip.contains(word)) {
@@ -49,7 +49,7 @@ public class DSProg3 {
 		}
 		System.out.println(words);
 
-		class WordFrequency {
+		class WordFrequency implements Comparable<Object> {
 			String word;
 			Integer numocc;
 
@@ -57,30 +57,50 @@ public class DSProg3 {
 				this.word = word;
 				this.numocc = numocc;
 			}
+
+			@Override
+			public int compareTo(Object compareWord) {
+				int occ = ((WordFrequency) compareWord).numocc;
+
+				return occ - this.numocc;
+			}
 		}
 
-		Set<WordFrequency> sortable = null;
+		ArrayList<WordFrequency> sortable = new ArrayList<WordFrequency>();
 
-		Iterator i = words.entrySet().iterator();
+		Iterator it = words.entrySet().iterator();
 
-		while (i.hasNext()) {
-			Map.Entry e = (Map.Entry) i.next();
-			System.out.println(e.getKey() + " " + e.getValue());
-//			sortable.add(new WordFrequency((String) e.getKey(), (Integer) e.getValue()));
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry) it.next();
+
+			sortable.add(new WordFrequency((String) e.getKey(), (Integer) e
+					.getValue()));
 		}
 
-		// for (int i = 0; i < sortable.size(); i++) {
-		// sortable[i] = words.get;
+		Collections.sort(sortable);
+
+		// Debugging
+		// for (WordFrequency w : sortable) {
+		// System.out.println(w.word + " " + w.numocc);
 		// }
 
-		// TODO Iterate through words and store map entry pairs
+		for (WordFrequency w : sortable) {
+			total += w.numocc;
+		}
 
-		// TODO Create a comparator for WordFrequency, then sort by occurrence
+		// Print number of total words (counting duplicates)
+		System.out.println("Total Words: " + total);
 
-		// TODO Print: Total words in list
+		// Print number of distinct words (ignoring duplicates)
+		System.out.println("Distinct Words: " + sortable.size());
 
-		// TODO Print: Number of distinct words
-
-		// TODO Print: Up to maxPairs, words with highest occurrence
+		// Print words with highest occurrences (up to maxPairs)
+		System.out.println("Max Pairs:");
+		
+		// Create maximum index to account for when list size < maxPairs
+		int max = sortable.size() > maxPairs ? maxPairs : sortable.size();
+		for (int i = 0; i < max; i++) {
+			System.out.println(sortable.get(i).word + ": " + sortable.get(i).numocc);
+		}
 	}
 }
