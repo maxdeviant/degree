@@ -273,7 +273,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	public E first() {
 		// Return null if the set is empty
 		if (isEmpty()) {
-			return null;
+			throw new NoSuchElementException();
 		}
 
 		// Set the current node to root
@@ -293,7 +293,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	public E last() {
 		// Return null if the set is empty
 		if (isEmpty()) {
-			return null;
+			throw new NoSuchElementException();
 		}
 
 		// Set the current node to root
@@ -313,7 +313,7 @@ public class SearchTreeSet<E> extends set.NavSetAdapter<E> {
 	public E pollFirst() {
 		// Return null if the set is empty
 		if (isEmpty()) {
-			return null;
+			throw new NoSuchElementException();
 		}
 
 		// Set the current node to root
