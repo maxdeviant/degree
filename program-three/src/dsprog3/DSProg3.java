@@ -51,6 +51,9 @@ public class DSProg3 {
 					// occurrence of 1
 					words.put(word, 1);
 				}
+				
+				// Update the number of total words
+				total++;
 			}
 		}
 
@@ -91,11 +94,6 @@ public class DSProg3 {
 
 		// Sort the list
 		Collections.sort(sortable);
-
-		// Update the number of total words
-		for (WordFrequency w : sortable) {
-			total += w.numocc;
-		}
 
 		// Print number of total words (counting duplicates)
 		System.out.println("Total Words: " + total);
