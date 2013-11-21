@@ -1,3 +1,7 @@
+/**
+ *	@author Marshall Bowers
+ */
+
 package dsprog3;
 
 import java.util.*;
@@ -11,9 +15,8 @@ public class DSProg3 {
 		final int maxPairs = 30;
 
 		String url;
-		// url = "http://www.maxdeviant.com/about";
-		 url = "http://en.wikipedia.org/wiki/Jimi_Hendrix";
-//		url = "http://www.cs.wcupa.edu/~rkline/prog3test.html";
+		url = "http://en.wikipedia.org/wiki/Jimi_Hendrix";
+		// url = "http://www.cs.wcupa.edu/~rkline/prog3test.html";
 
 		String word_pattern = "[A-Za-z]{5,}";
 
@@ -83,8 +86,7 @@ public class DSProg3 {
 			Map.Entry<String, Integer> e = it.next();
 
 			// Add the word and its occurrences to the sortable list
-			sortable.add(new WordFrequency((String) e.getKey(), (Integer) e
-					.getValue()));
+			sortable.add(new WordFrequency((String) e.getKey(), (Integer) e.getValue()));
 		}
 
 		// Sort the list
@@ -107,8 +109,7 @@ public class DSProg3 {
 		// Create maximum index to account for when list size < maxPairs
 		int max = sortable.size() > maxPairs ? maxPairs : sortable.size();
 		for (int i = 0; i < max; i++) {
-			System.out.println(sortable.get(i).word + ": "
-					+ sortable.get(i).numocc);
+			System.out.println(sortable.get(i).word + ": " + sortable.get(i).numocc);
 		}
 	}
 }
