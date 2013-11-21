@@ -1,6 +1,7 @@
 package dsprog3;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.regex.*;
 
 import util.WebDoc;
@@ -11,8 +12,8 @@ public class DSProg3 {
 
 		String url;
 		// url = "http://www.maxdeviant.com/about";
-		// url = "http://en.wikipedia.org/wiki/Jimi_Hendrix";
-		url = "http://www.cs.wcupa.edu/~rkline/prog3test.html";
+		 url = "http://en.wikipedia.org/wiki/Jimi_Hendrix";
+//		url = "http://www.cs.wcupa.edu/~rkline/prog3test.html";
 
 		String word_pattern = "[A-Za-z]{5,}";
 
@@ -35,19 +36,20 @@ public class DSProg3 {
 
 		while (match.find()) {
 			String word = match.group().toLowerCase();
-			// System.out.println(word);
 
 			// Check if word is in the skip set
 			if (!skip.contains(word)) {
-				// If the
+				// If the word is already is already in the map then increment
+				// the number of occurrences
 				if (words.containsKey(word)) {
 					words.put(word, words.get(word) + 1);
 				} else {
+					// If the world is not in the map, add it to the map with
+					// occurrence of 1
 					words.put(word, 1);
 				}
 			}
 		}
-		System.out.println(words);
 
 		class WordFrequency implements Comparable<Object> {
 			String word;
@@ -66,24 +68,27 @@ public class DSProg3 {
 			}
 		}
 
-		ArrayList<WordFrequency> sortable = new ArrayList<WordFrequency>();
+		// Create a new ArrayList to hold the information for sorting.
+		// Set initial capacity to the size of the map to avoid additional overhead
+		ArrayList<WordFrequency> sortable = new ArrayList<WordFrequency>(words.size());
 
-		Iterator it = words.entrySet().iterator();
+		// Create a new Iterator for the words map
+		Iterator<Entry<String, Integer>> it = words.entrySet().iterator();
 
+		// Iterate over the entries of the map
 		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry) it.next();
+			// Get the next entry
+			Map.Entry<String, Integer> e = it.next();
 
+			// Add the word and its occurrences to the sortable list
 			sortable.add(new WordFrequency((String) e.getKey(), (Integer) e
 					.getValue()));
 		}
 
+		// Sort the list
 		Collections.sort(sortable);
 
-		// Debugging
-		// for (WordFrequency w : sortable) {
-		// System.out.println(w.word + " " + w.numocc);
-		// }
-
+		// Update the number of total words
 		for (WordFrequency w : sortable) {
 			total += w.numocc;
 		}
@@ -96,11 +101,12 @@ public class DSProg3 {
 
 		// Print words with highest occurrences (up to maxPairs)
 		System.out.println("Max Pairs:");
-		
+
 		// Create maximum index to account for when list size < maxPairs
 		int max = sortable.size() > maxPairs ? maxPairs : sortable.size();
 		for (int i = 0; i < max; i++) {
-			System.out.println(sortable.get(i).word + ": " + sortable.get(i).numocc);
+			System.out.println(sortable.get(i).word + ": "
+					+ sortable.get(i).numocc);
 		}
 	}
 }
