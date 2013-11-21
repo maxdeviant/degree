@@ -62,8 +62,10 @@ public class DSProg3 {
 
 			@Override
 			public int compareTo(Object compareWord) {
+				// Get the occurrences for the compared word
 				int occ = ((WordFrequency) compareWord).numocc;
 
+				// Return difference of the two occurrences
 				return occ - this.numocc;
 			}
 		}
