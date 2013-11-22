@@ -15,7 +15,7 @@ My research will come from a variety sources. I will rely heavily on various tec
 ##Documentation
 
 
-I will be documenting my findings with The Chicago Manual of Style, in line with the IEEE Computer Society’s Style Guide specifications [1]. Documents will be written using LATEX.
+I will be documenting my findings with The Chicago Manual of Style, in line with the IEEE Computer Society’s Style Guide specifications.
 
 ##Product
 
