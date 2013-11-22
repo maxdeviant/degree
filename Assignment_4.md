@@ -19,3 +19,10 @@ My audience is anyone who uses computers, but I will specifically target those w
 I will be documenting my findings with The Chicago Manual of Style, in line with the IEEE Computer Society’s Style Guide specifications [1]. Documents will be written using LATEX.##Product
 
 The final product will be an informational piece on the dangers of internet phishing, and what steps individuals can take to protect themselves in the face of these threats. The final product may incorporate a user-friendly deliverable, such as a brochure.
+
+##Timeline
+
+Task | Due Date
+:--- | :---
+A4 Final Draft Due | Monday, Nov. 4
+Begin Research | Monday, Nov. 4
