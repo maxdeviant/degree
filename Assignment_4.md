@@ -26,3 +26,11 @@ Task | Due Date
 :--- | :---
 A4 Final Draft Due | Monday, Nov. 4
 Begin Research | Monday, Nov. 4
+Begin Drafting A5 | Wednesday, Nov. 15
+Finalize Bibliography | Friday, Nov. 15
+A5 Final Draft Due | Monday, Nov. 18
+A6 Rough Draft Due | Monday, Nov. 25
+A6 Final Draft Ready For Proofing | Wednesday, Dec. 4
+A6 Final Draft Due | Friday, Dec. 6
+A7 Completed | Monday, Dec. 9
+A7 Presentation Due | Wednesday, Dec. 11
