@@ -1,8 +1,5 @@
 #Research Proposal
 
-Marshall Bowers<br>
-November 4, 2013
-
 ##Overview
 
 I plan to research the dangers of phishing online and present them in a clear and coherent way to those who are not aware of the issue. Seeing as almost everyone comes into contact with computers in some form every day, I believe that this information will be beneficial to a vast number of people.
