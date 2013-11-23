@@ -21,3 +21,11 @@ The first instance of phishing dates back to September 1995, when phishers began
 The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
 
 If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
+
+##Bibliography
+
+1. Seidman, Andrew. “No ‘Phishing’: Banks Try to Sink Scammers.” *The Wall Street Journal.* August 17, 2012.
+2. Hong, Jason. “The State of Phishing Attacks.” *Communications of the ACM* 55 (2012): 74-81. doi:10.1145/2063176.2063197.
+3. Dhamija, Rachna, Tygar, J. D., and Hearst, Marti. “Why Phishing Works.” Paper presented for the annual Conference on Human Factors in Computing Systems, 2006.
+4. Stavroulkas, Peter and Stump, Mark. *Handbook of Information and Communication Security.* Heidelberg: Springer, 2010.
+5. Langberg, Mike. “AOL Acts to Thwart Hackers.” *San Jose Mercury News.* September 8, 1995.
