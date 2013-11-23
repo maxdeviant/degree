@@ -44,6 +44,19 @@ Finally, the third stage is the monetization of the phish by the phishers.
 
 Once the victim has handed over their personal information, the phishing attempt is almost a success. All that remains is to make proper use of the acquired credentials. Depending on the nature of the information obtained, phishers can do anything from logging into corresponding accounts, transferring money out of the victim’s account, or even stealing the victim’s identity.
 
+##Vulnerability
+
+When broached on the subject of phishing, many people will assure themselves that “it could never happen to me, I’m too smart to fall for that.”
+
+However, phishing has been shown to be effective against all sorts of people for four reasons:
+
+> “First, people tend to judge a website’s 
+legitimacy by its “look and feel,” which attackers can easily replicate. Second, many users do not understand or trust the security indicators in web browsers. Third, although some consumers are aware of phishing, this awareness does not reduce their vulnerability or provide useful strategies for identifying phishing attacks. Fourth, the perceived severity of the consequences of phishing does not predict users’ behavior.”
+> 
+> “Who Falls For Phish?”
+
+While there are some people who are more adept at resisting phishing than others, it is safe to assume that no one is completely immune to these types of attacks.
+
 ##Background
 
 The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
@@ -58,8 +71,9 @@ As phishing has developed as an ever-increasing problem over the years, corporat
 
 ##Bibliography
 
-1. Seidman, Andrew. “No ‘Phishing’: Banks Try to Sink Scammers.” *The Wall Street Journal.* August 17, 2012.
+1. Dhamija, Rachna; Tygar, J. D.; and Hearst, Marti. “Why Phishing Works.” Paper presented for the annual Conference on Human Factors in Computing Systems, 2006.
 2. Hong, Jason. “The State of Phishing Attacks.” *Communications of the ACM* 55 (2012): 74-81. doi:10.1145/2063176.2063197.
-3. Dhamija, Rachna, Tygar, J. D., and Hearst, Marti. “Why Phishing Works.” Paper presented for the annual Conference on Human Factors in Computing Systems, 2006.
-4. Stavroulkas, Peter and Stump, Mark. *Handbook of Information and Communication Security.* Heidelberg: Springer, 2010.
-5. Langberg, Mike. “AOL Acts to Thwart Hackers.” *San Jose Mercury News.* September 8, 1995.
+3. Langberg, Mike. “AOL Acts to Thwart Hackers.” *San Jose Mercury News.* September 8, 1995.
+4. Seidman, Andrew. “No ‘Phishing’: Banks Try to Sink Scammers.” *The Wall Street Journal.* August 17, 2012.
+5. Sheng, Steve; Holbrook, Mindy; Kumaraguru, Ponnurangam; Cranor, Lorie; and Downs, Julie. “Who Falls for Phish?” Paper presented for the annual Conference on Human Factors in Computing Systems, Atlanta, Georgia, April 10-15, 2010.
+6. Stavroulkas, Peter and Stump, Mark. *Handbook of Information and Communication Security.* Heidelberg: Springer, 2010.
