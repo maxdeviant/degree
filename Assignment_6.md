@@ -22,7 +22,7 @@ Phishing attacks have become a very attractive exploit for hackers, as they must
 > 
 > “The State of Phishing Attacks,” *Communications of the ACM.*
 
-A typical attack consists of three distinct stages.
+A typical phishing attempt consists of three distinct stages.
 
 ###Stage One – Hook
 
@@ -44,6 +44,14 @@ Finally, the third stage is the monetization of the phish by the phishers.
 
 Once the victim has handed over their personal information, the phishing attempt is almost a success. All that remains is to make proper use of the acquired credentials. Depending on the nature of the information obtained, phishers can do anything from logging into corresponding accounts, transferring money out of the victim’s account, or even stealing the victim’s identity.
 
+##Background
+
+The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
+
+The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
+
+If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
+
 ##Vulnerability
 
 When broached on the subject of phishing, many people will assure themselves that “it could never happen to me, I’m too smart to fall for that.”
@@ -57,17 +65,23 @@ legitimacy by its “look and feel,” which attackers can easily replicate. Sec
 
 While there are some people who are more adept at resisting phishing than others, it is safe to assume that no one is completely immune to these types of attacks.
 
-##Background
-
-The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
-
-The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
-
-If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
-
 ##Prevention
 
 As phishing has developed as an ever-increasing problem over the years, corporate entities have begun taking steps to ensure the safety of their users and their personal information.
+
+One method of phishing prevention becoming increasingly more prominent is two-factor authentication. This form of user authentication has existed for a long time in the form of account PINs. When withdrawing money from an ATM or using a debit card, a 4-digit pin is required before the transaction can complete. This way, in order for an account to be compromised, the attacker must have both the card and the PIN.
+
+Other methods of two-factor authentication have been designed specifically for the prevention of phishing. On many financial institution web sites, users now select a unique image that will be displayed at the login screen. If the user does not see their unique image, then they know that the page they are viewing is not legitimate. This prevents phishing attempts in the form of web pages designed to mislead users into thinking they are on the legitimate site that the phisher claims to be representing.
+
+In an article from *The Wall Street Journal,* it was revealed that American Express, Capital One, J.P. Morgan Chase, Barclays PLC, Bank of America, and Citigroup have been buying up institution-specific domain names to use for their websites. A site belonging to Citigroup, for example, would have the web extension `.citi`. A measure like this would protect users further by improving the ability to judge the authenticity of a web site by its extension rather than its appearance.
+
+According to James Greenwood, a digital and mobile platform architect at Barclays, 
+
+> "For customers to be duped, someone must be convinced that [the site is] Barclays. It's far more difficult to pose as Barclays if [the phishers] can't be part of the ecosystem that we've created."
+>
+> “No 'Phishing': Banks Try to Sink Scammers,” *The Wall Street Journal*
+
+This comes as retaliation to the vast amount of phishing attempts that have plagued financial institutions in recent years. In 2011 alone, fifty-percent of all phishing attacks were targeted at the financial-services industry, says Anti-Phishing Working Group.
 
 ##Bibliography
 
