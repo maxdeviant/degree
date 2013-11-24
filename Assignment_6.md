@@ -2,7 +2,7 @@
 
 ##Overview
 
-This report is designed to convey the dangers of internet phishing and to inform readers on how best to protect themselves.
+This report is designed to convey the dangers of internet phishing and to inform readers on how best to protect themselves. A background of phishing will be included, as well as a breakdown of current phishing attacks used to compromise users. This report will also discuss the steps that companies and organizations are taking to protect their users from possible phishing attempts.
 
 ##Phishing
 
@@ -75,13 +75,23 @@ Other methods of two-factor authentication have been designed specifically for t
 
 In an article from *The Wall Street Journal,* it was revealed that American Express, Capital One, J.P. Morgan Chase, Barclays PLC, Bank of America, and Citigroup have been buying up institution-specific domain names to use for their websites. A site belonging to Citigroup, for example, would have the web extension `.citi`. A measure like this would protect users further by improving the ability to judge the authenticity of a web site by its extension rather than its appearance.
 
+Currently, phishers can easily replicate existing websites, not only in design, but also all the way down to the web address. Addresses extremely similar to those belonging to the institution in question are available for sale through many internet retailers. An attacker could easily purchase `bankatamerica.com` in order to fool `bankofamerica.com` users who may not be looking at every character in the address bar.
+
 According to James Greenwood, a digital and mobile platform architect at Barclays, 
 
 > "For customers to be duped, someone must be convinced that [the site is] Barclays. It's far more difficult to pose as Barclays if [the phishers] can't be part of the ecosystem that we've created."
 >
 > “No 'Phishing': Banks Try to Sink Scammers,” *The Wall Street Journal*
 
-This comes as retaliation to the vast amount of phishing attempts that have plagued financial institutions in recent years. In 2011 alone, fifty-percent of all phishing attacks were targeted at the financial-services industry, says Anti-Phishing Working Group.
+This comes as retaliation to the vast amount of phishing attempts that have plagued financial institutions in recent years. In 2011 alone, almost fifty-percent of all phishing attacks were targeted at the financial-services industry, says Anti-Phishing Working Group.
+
+However, some banks, namely Wells Fargo, have not bought into this new trend, saying that the investment costs are too high and that they do not want to risk diluting their online brand, `wellsfargo.com`.
+
+##Awareness
+
+No matter what steps are taken by companies to protect their constituents online, these measure are only as effective as the weakest link: the users themselves.
+
+As such, the best option to combat phishing is to work to raise user awareness and online incredulity.
 
 ##Bibliography
 
