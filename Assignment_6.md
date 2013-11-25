@@ -2,7 +2,7 @@
 
 ##Overview
 
-This report is designed to convey the dangers of internet phishing and to inform readers on how best to protect themselves. A background of phishing will be included, as well as a breakdown of current phishing attacks used to compromise users. This report will also discuss the steps that companies and organizations are taking to protect their users from possible phishing attempts.
+This report is designed to convey the dangers of internet phishing and to inform readers on how best to protect themselves. A background of phishing will be included, as well as a breakdown of current phishing attacks used to compromise users and which demographic of people have been found to be the most vulnerable to phishing. Finally, this report will also discuss the steps that companies and organizations are taking to protect their users from possible phishing attempts.
 
 ##Phishing
 
@@ -44,6 +44,10 @@ Finally, the third stage is the monetization of the phish by the phishers.
 
 Once the victim has handed over their personal information, the phishing attempt is almost a success. All that remains is to make proper use of the acquired credentials. Depending on the nature of the information obtained, phishers can do anything from logging into corresponding accounts, transferring money out of the victim’s account, or even stealing the victim’s identity.
 
+Once the phish reaches this stage, it becomes much more difficult to stop and revert the damage. Credit cards and accounts need to be frozen. Passwords for the compromised services need to be changed, as well as any other passwords which may be the same or similar.
+
+Of course, these steps can only be taken if the victim realizes that a phish has transpired. If not alerted to the oddity of the request or the lack of followup following the compromise of information, then the victim may not realize this until it is too late to remedy.
+
 ##Background
 
 The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
@@ -51,6 +55,8 @@ The first instance of phishing dates back to September 1995, when phishers began
 The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
 
 If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
+
+It was not until 2003 that phishing broke into the financial sector, with the first known attack on a bank taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
 
 ##Vulnerability
 
@@ -64,6 +70,10 @@ legitimacy by its “look and feel,” which attackers can easily replicate. Sec
 > “Who Falls For Phish?”
 
 While there are some people who are more adept at resisting phishing than others, it is safe to assume that no one is completely immune to these types of attacks.
+
+In a 2010 study on phishing conducted by a number of researchers from Carnegie Mellon University in conjunction with the Indraprastha Institute of Information Technology, it was found that women are more likely to fall for phishing attempts than men, and users in the age range of 18-25 were more likely to fall prey to phishers than older users.
+
+Now, it may seem rather odd that the young, tech-savvy individuals are the ones who are falling for these types of scams, but it balances itself out when knowing that these users are the biggest internet consumers, and therefore more likely to be exposed to it than someone in their 40-50s.
 
 ##Prevention
 
@@ -89,15 +99,31 @@ However, some banks, namely Wells Fargo, have not bought into this new trend, sa
 
 ##Awareness
 
-No matter what steps are taken by companies to protect their constituents online, these measure are only as effective as the weakest link: the users themselves.
+No matter what steps are taken by companies to protect their constituents online, these measure are only as effective as the weakest link: the users themselves. As such, the best option to combat phishing is to work to raise user awareness and online incredulity.
 
-As such, the best option to combat phishing is to work to raise user awareness and online incredulity.
+Users need to be proactive about their online security and take steps to ensure that the emails they reply to and the websites they enter sensitive information on are legitimate. In most cases finding out this information is very straightforward, such as checking the address an email was sent from and making sure it matches up with known email addresses from the same sender or looking at the web address to a site and verifying that it is legitimate.
+
+Other simple steps to check website authenticity may involve checking for the presence of an `https` connection, or a valid SSL key, both of which would not be present on a phishing website.
+
+Studies, such as the one performed by Carnegie Mellon University, have shown that the users who had formal instruction on phishing and how to protect themselves had a much higher chance of successfully identifying a phishing attempt and taking the necessary precautions to protect themselves online. In these types of situations information is key, and they more that awareness can be raised on the subject of phishing, the safer users can be.
+
+##Recommendations
+
+Phishing is a dangerous and widespread problem which needs to be addressed forthwith on both an individual and a organizational level. Measures such as two-factor authentication or custom domain names would go a long way in ensuring that users are able to quickly pass judgement on whether or not a website is legitimate.
+
+Likewise, users should be checking anything that looks or sounds suspicious, and should always be wary when asked to enter sensitive information. Individuals also need to be informed about the various forms of phishing attacks and how to identify them, as this is the first step in prevention on a per-individual basis.
+
+For even greater protection, security firms and analysts can continue work on finding dangerous sites and flagging them for users. Internet browsers such as Google Chrome or Mozilla Firefox will redirect users to confirmation pages warning them that the address about to be loaded could be dangerous, and also offer the option of turning back. Even if the user decides to proceed, this interruption still creates a point where the user must process the events taking place and perhaps even realize that a phish might be occurring.
+
+The problem is not going to disappear and the phishers will not easily give up, hence the importance of taking preventative measures to combat phishing. A joint effort of all those involved is required in order to keep the phishers at bay, and perhaps even put a stop to them in the future.
 
 ##Bibliography
 
 1. Dhamija, Rachna; Tygar, J. D.; and Hearst, Marti. “Why Phishing Works.” Paper presented for the annual Conference on Human Factors in Computing Systems, 2006.
 2. Hong, Jason. “The State of Phishing Attacks.” *Communications of the ACM* 55 (2012): 74-81. doi:10.1145/2063176.2063197.
 3. Langberg, Mike. “AOL Acts to Thwart Hackers.” *San Jose Mercury News.* September 8, 1995.
-4. Seidman, Andrew. “No ‘Phishing’: Banks Try to Sink Scammers.” *The Wall Street Journal.* August 17, 2012.
-5. Sheng, Steve; Holbrook, Mindy; Kumaraguru, Ponnurangam; Cranor, Lorie; and Downs, Julie. “Who Falls for Phish?” Paper presented for the annual Conference on Human Factors in Computing Systems, Atlanta, Georgia, April 10-15, 2010.
-6. Stavroulkas, Peter and Stump, Mark. *Handbook of Information and Communication Security.* Heidelberg: Springer, 2010.
+4. Rasmussen, Rod and Aaron, Greg. *Global Phishing Survey: Trends and Domain 
+Name Use in 1H2013.* Lexington: APWG, 2013.
+5. Seidman, Andrew. “No ‘Phishing’: Banks Try to Sink Scammers.” *The Wall Street Journal.* August 17, 2012.
+6. Sheng, Steve; Holbrook, Mindy; Kumaraguru, Ponnurangam; Cranor, Lorie; and Downs, Julie. “Who Falls for Phish?” Paper presented for the annual Conference on Human Factors in Computing Systems, Atlanta, Georgia, April 10-15, 2010.
+7. Stavroulkas, Peter and Stump, Mark. *Handbook of Information and Communication Security.* Heidelberg: Springer, 2010.
