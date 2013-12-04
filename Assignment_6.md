@@ -62,11 +62,13 @@ The individuals performing these attacks were using an application called ‘AOH
 
 If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
 
-It was not until 2003 that phishing broke into the financial sector, with the first known attack on a bank taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
+It was not until 2003 that phishing broke into the financial sector, with the first known attacks on multiple banks taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
 
 ##Trends
 
-A number of phishing trends have popped up in 2013 alone:
+In the first half of 2013 alone, there were over 72,758 unique phishing attacks worldwide, according to the Anti-Phishing Work Group (APWG). While this number is substantially less than the 123,486 recorded attacks in the second half of 2012, the average uptime of the attacks has nearly doubled to 44 hours and 39 minutes.
+
+Security analysts at the APWG have drawn a number of additional trends from their collected data:
 
 ###Internationalized Domain Names
 
@@ -116,7 +118,9 @@ Now, it may seem rather odd that the young, tech-savvy individuals are the ones 
 
 As phishing has developed as an ever-increasing problem over the years, corporate entities have begun taking steps to ensure the safety of their users and their personal information.
 
-One method of phishing prevention becoming increasingly more prominent is two-factor authentication. This form of user authentication has existed for a long time in the form of account PINs. When withdrawing money from an ATM or using a debit card, a 4-digit pin is required before the transaction can complete. This way, in order for an account to be compromised, the attacker must have both the card and the PIN.
+One method of phishing prevention becoming increasingly more prominent is two-factor authentication, also known as two-step authentication. This form of user authentication has existed for a long time in the form of account PINs. When withdrawing money from an ATM or using a debit card, a 4-digit PIN is required before the transaction can complete. This way, in order for an account to be compromised, the attacker must have both the card and the PIN.
+
+A similar system exists on credit cards in the form of a 3-digit verification ID number (CIV). A CIV protects a credit card from online theft the same way a PIN protects a debit card from physical theft. That is, the thief would need both the CIV and the credit card number in order to use the card itself.
 
 Other methods of two-factor authentication have been designed specifically for the prevention of phishing. On many financial institution web sites, users now select a unique image that will be displayed at the login screen. If the user does not see their unique image, then they know that the page they are viewing is not legitimate. This prevents phishing attempts in the form of web pages designed to mislead users into thinking they are on the legitimate site that the phisher claims to be representing.
 
