@@ -15,7 +15,7 @@ body {
 }
 
 .wrapper {
-	width: 640px;
+	width: 700px;
 	margin: 0 auto;
 	padding-left: 50px;
 }
@@ -33,7 +33,10 @@ p {
 }
 
 .quote {
-	margin: 5px 20px 20px 20px;
+	margin: 20px 20px 20px 20px;
+	padding: 5px;
+	outline: dotted;
+	outline-color: #e5e5e5;
 }
 
 .sidebar {
@@ -57,8 +60,25 @@ ul li li {
 	margin-left: 10px;
 }
 
+ol {
+	margin-top: 15px;
+}
+
+ol li {
+	padding: 5px;
+}
+
 a {
 	color: #000000;
+}
+
+hr {
+	border: 0;
+	background: #e37373;
+	margin-top: 20px;
+	margin-left: 20%;
+	margin-right: 20%;
+	padding: 5px;
 }
 
 h1 {
@@ -80,4 +100,5 @@ h3 > a {
 .code {
 	font-family: 'Source Code Pro', sans-serif;
 	font-weight: 400;
+	background: #e5e5e5;
 }
