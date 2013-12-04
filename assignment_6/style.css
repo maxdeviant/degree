@@ -83,6 +83,11 @@ ol li {
 
 a {
 	color: #f2f1ed;
+	text-decoration: none;
+}
+
+.sidebar a:hover {
+	opacity: .8;
 }
 
 h1 {
