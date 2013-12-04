@@ -89,6 +89,8 @@ URL Shorteners have become a new trend on the internet, allowing users to compac
 
 However, they have also become another tool for phishers to trick their targets. Shortened addresses are impossible to critique at a quick glance, requiring the user to hover over the link to see the full address that it redirects to. Even then, this often requires a compatible browser or URL shortening service to see the true location the link goes to.
 
+For example, the shortened URL `bit.ly/1hxb7uJ` might redirect to `google.com`.
+
 Thankfully, the use of URL shorteners has decreased this year:
 
 > “Phishers continue to use “URL shortening” services to obfuscate phishing URLs, but such use plummeted to only 270 attacks in 1H2013, sharply down from 785 in 2H2012.
