@@ -2,21 +2,23 @@
 
 ##Overview
 
+Phishing is a dangerous reality, one that many users are either not aware of or deem themselves too smart to be entrapped by. However, phishers are quite cunning and able to engineer some of the most effective types of cyber attacks today. While companies and organizations are doing their best to try and mitigate the damage of these attacks, there are some very simple steps that end users can take to protect themselves.
+
 This report is designed to convey the dangers of internet phishing and to inform readers on how best to protect themselves. A background of phishing will be included, as well as a breakdown of current phishing attacks used to compromise users and which demographic of people have been found to be the most vulnerable to phishing. Finally, this report will also discuss the steps that companies and organizations are taking to protect their users from possible phishing attempts.
 
 ##Phishing
 
 Phishing is defined by the Merriam-Webster dictionary as, “a scam by which an e-mail user is duped into revealing personal or confidential information which the scammer can use illicitly.” Now, this definition specifically cites emails as the only form of phishing, when in reality this is just the traditional form.
 
-Today, phishing can take a variety of forms, but the one element that they all have in common is that the phisher is masquerading as someone they are not. According to computer security expert Zulfikar Ramzan:
+Today, phishing can take a variety of forms, but the one element that all such attempts have in common is that the phisher is masquerading as someone they are not. According to computer security expert Zulfikar Ramzan:
 
 > “The last few years has seen a rise in the frequency with which people have conducted meaningful transactions online; from making simple purchases to paying bills to banking, and even getting a mortgage or car loan or paying their taxes. This rise in online transactions has unfortunately been accompanied by a rise in attacks”
 > 
 > *Handbook of Information and Communication Security*.
 
-In line with other forms of cyber attacks, phishing has evolved over the years in order to stay relevant to the current trends in computing. This means that phishers, as the attackers are called, are becoming increasingly more crafty in their approaches to compromise user information.
+In line with other forms of cyber attacks, phishing has evolved over the years in order to stay relevant to the current trends in computing. This means that phishers, as the attackers are called, are becoming increasingly crafty in their approaches to compromise user information.
 
-Phishing attacks have become a very attractive exploit for hackers, as they must only be convincing enough to fool a user, rather than having to fool the vast amounts of security and antivirus software safeguarding a computer or network.
+Phishing attacks have become a very attractive venue for hackers, as they must only be convincing enough to fool a user, rather than having to fool the vast amounts of security and antivirus software safeguarding a computer or network.
 
 > “It doesn't matter how many firewalls, encryption software, certificates, or two-factor authentication mechanisms an organization has if the person behind the keyboard falls for a phish.”
 > 
@@ -32,9 +34,9 @@ The first stage is when the target first receives the phish. The phish is most o
 
 The second stage is when the target acts on the phish. Once this occurs, the target has almost certainly been convinced that the phish is legitimate. It is during this stage that the target makes the transition to victim, as they are now playing into the hands of the phishers. In this step, the now-victim will follow through with the instructions given in stage one.
 
-Traditionally, this step is compromised of having the victim reply to the phish with the sensitive information that is being requested, such as account passwords, bank account numbers or PINs, or the answers to account recovery questions.
+Traditionally, this step is composed of having the victim reply to the phish with the sensitive information that is being requested, such as account passwords, bank account numbers or PINs, or the answers to account recovery questions.
 
-In more advanced phishing attempts, rather than replying to the email directly, as many users have been warned against, the victim will be prompted to go to a website to perform the same task. These websites are carefully constructed to look as similar to their legitimate counterparts as possible, with the differences nigh-invisible to someone not looking for discrepancies on the page.
+Due to users being warned about replying to suspicious emails, more advanced phishing attempts will prompt victims to navigate to a website to perform the same task. These websites are carefully constructed to look as similar to their legitimate counterparts as possible, with the differences nigh-invisible to someone not looking for discrepancies on the page.
 
 Once the victim has been successfully directed to the page, the phishers will request the same kind of information from the victim, but instead of simply replying to an email, the victim will fill out some form on the site, which will hand over the requested information on submission.
 
@@ -60,7 +62,7 @@ It was not until 2003 that phishing broke into the financial sector, with the fi
 
 ##Vulnerability
 
-When broached on the subject of phishing, many people will assure themselves that “it could never happen to me, I’m too smart to fall for that.”
+When it comes to phishing, many people will assure themselves that “it could never happen to me, I’m too smart to fall for that.”
 
 However, phishing has been shown to be effective against all sorts of people for four reasons:
 
@@ -83,7 +85,7 @@ One method of phishing prevention becoming increasingly more prominent is two-fa
 
 Other methods of two-factor authentication have been designed specifically for the prevention of phishing. On many financial institution web sites, users now select a unique image that will be displayed at the login screen. If the user does not see their unique image, then they know that the page they are viewing is not legitimate. This prevents phishing attempts in the form of web pages designed to mislead users into thinking they are on the legitimate site that the phisher claims to be representing.
 
-In an article from *The Wall Street Journal,* it was revealed that American Express, Capital One, J.P. Morgan Chase, Barclays PLC, Bank of America, and Citigroup have been buying up institution-specific domain names to use for their websites. A site belonging to Citigroup, for example, would have the web extension `.citi`. A measure like this would protect users further by improving the ability to judge the authenticity of a web site by its extension rather than its appearance.
+An article from *The Wall Street Journal* reveals that American Express, Capital One, J.P. Morgan Chase, Barclays PLC, Bank of America, and Citigroup have been buying up institution-specific domain names to use for their websites. A site belonging to Citigroup, for example, would have the web extension `.citi`. A measure like this would protect users further by improving the ability to judge the authenticity of a web site by its extension rather than its appearance, which can easily be duplicated.
 
 Currently, phishers can easily replicate existing websites, not only in design, but also all the way down to the web address. Addresses extremely similar to those belonging to the institution in question are available for sale through many internet retailers. An attacker could easily purchase `bankatamerica.com` in order to fool `bankofamerica.com` users who may not be looking at every character in the address bar.
 
@@ -103,7 +105,7 @@ No matter what steps are taken by companies to protect their constituents online
 
 Users need to be proactive about their online security and take steps to ensure that the emails they reply to and the websites they enter sensitive information on are legitimate. In most cases finding out this information is very straightforward, such as checking the address an email was sent from and making sure it matches up with known email addresses from the same sender or looking at the web address to a site and verifying that it is legitimate.
 
-Other simple steps to check website authenticity may involve checking for the presence of an `https` connection, or a valid SSL key, both of which would not be present on a phishing website.
+Other simple steps to check website authenticity may involve checking for the presence of an `https` connection in the address bar or a valid SSL (Secure Sockets Layer) key, often indicated by a lock in the status or search bar. Either one of these elements is practically impossible to fake, and as such their presence ensures a legitimate site.
 
 Studies, such as the one performed by Carnegie Mellon University, have shown that the users who had formal instruction on phishing and how to protect themselves had a much higher chance of successfully identifying a phishing attempt and taking the necessary precautions to protect themselves online. In these types of situations information is key, and they more that awareness can be raised on the subject of phishing, the safer users can be.
 
