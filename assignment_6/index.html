@@ -18,11 +18,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="blue.css">
 </head>
 <body>
-	<h1>Dangers of Phishing</h1>
-	<hr>
+	<div class="header">
+		<h1>Dangers of Phishing</h1>
+	</div>
 	<div class="sidebar">
 		<ul>
 			<li><a href="#">Dangers of Phishing</a></li>
@@ -88,114 +88,115 @@
 				<p>
 					A typical phishing attempt consists of three distinct stages.
 				</p>
+			</div>
+			<br>
+			<h3><a id="Hook">Stage One &mdash; Hook</a></h3>
+			<div class="section">
+				<p>
+					The first stage is when the target first receives the phish. The phish is most often an email, claiming to be from a trusted entity, such as a financial institution or a friend. The email will always contain a call to action for the target, with the call to action often being of relative importance and incredibly time sensitive. The email will do its best to convince the reader of its purported legitimacy in order for the second stage to be followed through without hesitation.
+				</p>
+				<p>
+					When phishing attempts are publicized, reports will often refer to this stage, as it is the identifying piece of a phish. Famous examples of hooks include the Nigerian scams, which often instructed users to make a deposit to a bank account in order for a larger sum of money to be released, of which the user would receive a cut.
+				</p>
+				<p>
+					The hook is also the stage that most preventative measures target, as a user familiar with the idiosyncrasies of a particular variety of phish will be less likely to fall for it.
+				</p>
+			</div>
+			<h3><a id="Line">Stage Two &mdash; Line</a></h3>
+			<div class="section">
+				<p>
+					The second stage is when the target acts on the phish. Once this occurs, the target has almost certainly been convinced that the phish is legitimate. It is during this stage that the target makes the transition to victim, as they are now playing into the hands of the phishers. In this step, the now-victim will follow through with the instructions given in stage one.
+				</p>
+				<p>
+					Traditionally, this step is composed of having the victim reply to the phish with the sensitive information that is being requested, such as account passwords, bank account numbers or PINs, or the answers to account recovery questions.
+				</p>
+				<p>
+					Due to users being warned about replying to suspicious emails, more advanced phishing attempts will prompt victims to navigate to a website to perform the same task. These websites are carefully constructed to look as similar to their legitimate counterparts as possible, with the differences nigh-invisible to someone not looking for discrepancies on the page.
+				</p>
+				<p>
+					Once the victim has been successfully directed to the page, the phishers will request the same kind of information from the victim, but instead of simply replying to an email, the victim will fill out some form on the site, which will hand over the requested information on submission.
+				</p>
+			</div>
+			<h3><a id="Sinker">Stage Three &mdash; Sinker</a></h3>
+			<div class="section">
+				<p>
+					Finally, the third stage is the monetization of the phish by the phishers.
+				</p>
+				<p>
+					Once the victim has handed over their personal information, the phishing attempt is almost a success. All that remains is to make proper use of the acquired credentials. Depending on the nature of the information obtained, phishers can do anything from logging into corresponding accounts, transferring money out of the victim’s account, or even stealing the victim’s identity.
+				</p>
+				<p>
+					Once the phish reaches this stage, it becomes much more difficult to stop and revert the damage. Credit cards and accounts need to be frozen. Passwords for the compromised services need to be changed, as well as any other passwords which may be the same or similar.
+				</p>
+				<p>
+					Of course, these steps can only be taken if the victim realizes that a phish has transpired. If not alerted to the oddity of the request or the lack of followup following the compromise of information, then the victim may not realize this until it is too late to remedy.
+				</p>
+			</div>
+			<h2><a id="Background">Background</a></h2>
+			<div class="section">
+				<p>
+					The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
+				</p>
+				<p>
+					The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
+				</p>
+				<p>
+					If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
+				</p>
+				<p>
+					It was not until 2003 that phishing broke into the financial sector, with the first known attacks on multiple banks taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
+				</p>
+			</div>
+			<h2><a id="Trends">Trends</a></h2>
+			<div class="section">
+				<p>
+					In the first half of 2013 alone, there were over 72,758 unique phishing attacks worldwide, according to the Anti-Phishing Working Group (APWG). While this number is substantially less than the 123,486 recorded attacks in the second half of 2012, the average uptime of the attacks has nearly doubled to 44 hours and 39 minutes.
+				<p>
+				<p>
+					Security analysts at the APWG have drawn a number of additional trends from their collected data:
+				</p>
 				<br>
-				<h3><a id="Hook">Stage One &mdash; Hook</a></h3>
+				<h3><a id="IDNs">IDNs</a></h3>
 				<div class="section">
 					<p>
-						The first stage is when the target first receives the phish. The phish is most often an email, claiming to be from a trusted entity, such as a financial institution or a friend. The email will always contain a call to action for the target, with the call to action often being of relative importance and incredibly time sensitive. The email will do its best to convince the reader of its purported legitimacy in order for the second stage to be followed through without hesitation.
+						Internationalized Domain Names (IDNs) are domain names that contain one or more characters that are not valid in common web addresses. Characters such as accented letters or characters from Asian scripts, such as Chinese characters, would fall under this category.
 					</p>
 					<p>
-						When phishing attempts are publicized, reports will often refer to this stage, as it is the identifying piece of a phish. Famous examples of hooks include the Nigerian scams, which often instructed users to make a deposit to a bank account in order for a larger sum of money to be released, of which the user would receive a cut.
+						The <em>Global Phishing Survey</em> reports that three attacks in the spring of 2013 made use of IDNs. These attacks took a common address, such as <span class="code">paypal.com</span> or <span class="code">itunes.eu</span>, and turned it into an international equivalent. For example, <span class="code">paypal.com</span> became <span class="code">paypàl.com</span> and <span class="code">itunes.eu</span> was transformed into <span class="code">îtunes.eu</span>.
 					</p>
 					<p>
-						The hook is also the stage that most preventative measures target, as a user familiar with the idiosyncrasies of a particular variety of phish will be less likely to fall for it.
+						These attacks were only mildly effective for two reasons:
+					</p>
+					<p class="quote">
+						1. Phishers don’t need to resort to such attacks. As noted elsewhere in this report, the domain name itself usually does not matter to a phisher.
+						2. By default, some browser manufacturers show the puny code version of the domain name (such as <span class="code">xn—hotmail-t9a.net</span>) in the address bar, instead of the native-character version. Users of those browsers therefore cannot see homographic attacks.
+						<br><br>
+						<em>Global Phishing Survey 1H2013</em>
 					</p>
 				</div>
-				<h3><a id="Line">Stage Two &mdash; Line</a></h3>
+				<h3><a id="URL_Shorteners">URL Shorteners</a></h3>
 				<div class="section">
 					<p>
-						The second stage is when the target acts on the phish. Once this occurs, the target has almost certainly been convinced that the phish is legitimate. It is during this stage that the target makes the transition to victim, as they are now playing into the hands of the phishers. In this step, the now-victim will follow through with the instructions given in stage one.
+						URL Shorteners have become a new trend on the internet, allowing users to compact long web addresses to shorter, easier to remember ones.
 					</p>
 					<p>
-						Traditionally, this step is composed of having the victim reply to the phish with the sensitive information that is being requested, such as account passwords, bank account numbers or PINs, or the answers to account recovery questions.
+						However, they have also become another tool for phishers to trick their targets. Shortened addresses are impossible to critique at a quick glance, requiring the user to hover over the link to see the full address that it redirects to. Even then, this often requires a compatible browser or URL shortening service to see the true location the link goes to.
 					</p>
 					<p>
-						Due to users being warned about replying to suspicious emails, more advanced phishing attempts will prompt victims to navigate to a website to perform the same task. These websites are carefully constructed to look as similar to their legitimate counterparts as possible, with the differences nigh-invisible to someone not looking for discrepancies on the page.
+						For example, the shortened URL <span class="code">bit.ly/1hxb7uJ</span> might redirect to <span class="code">google.com</span>.
 					</p>
 					<p>
-						Once the victim has been successfully directed to the page, the phishers will request the same kind of information from the victim, but instead of simply replying to an email, the victim will fill out some form on the site, which will hand over the requested information on submission.
+						Thankfully, the use of URL shorteners has decreased this year:
+					</p>
+					<p class="quote">
+						Phishers continue to use “URL shortening” services to obfuscate phishing URLs, but such use plummeted to only 270 attacks in 1H2013, sharply down from 785 in 2H2012.
+						<br><br>
+						<em>Global Phishing Survey 1H2013</em>
+					</p>
+					<p>
+						Analysts attribute this decrease to the supposed crackdown by URL shortening services on malicious links, but there is not an abundance of hard evidence to support this theory.
 					</p>
 				</div>
-				<h3><a id="Sinker">Stage Three &mdash; Sinker</a></h3>
-				<div class="section">
-					<p>
-						Finally, the third stage is the monetization of the phish by the phishers.
-					</p>
-					<p>
-						Once the victim has handed over their personal information, the phishing attempt is almost a success. All that remains is to make proper use of the acquired credentials. Depending on the nature of the information obtained, phishers can do anything from logging into corresponding accounts, transferring money out of the victim’s account, or even stealing the victim’s identity.
-					</p>
-					<p>
-						Once the phish reaches this stage, it becomes much more difficult to stop and revert the damage. Credit cards and accounts need to be frozen. Passwords for the compromised services need to be changed, as well as any other passwords which may be the same or similar.
-					</p>
-					<p>
-						Of course, these steps can only be taken if the victim realizes that a phish has transpired. If not alerted to the oddity of the request or the lack of followup following the compromise of information, then the victim may not realize this until it is too late to remedy.
-					</p>
-				</div>
-				<h2><a id="Background">Background</a></h2>
-				<div class="section">
-					<p>
-						The first instance of phishing dates back to September 1995, when phishers began asking users of America Online Inc. (AOL) for their passwords. The attackers would pose as AOL employees and ask the user to reveal their password, which would then be used to compromise the account.
-					</p>
-					<p>
-						The individuals performing these attacks were using an application called ‘AOHell,’ which would allow the attacker to clear all the messages in a chat room in order to make their messages more prominent, download large files without paying AOL for the bandwidth, and, most dangerously, allow the attacker to pose as an AOL official.
-					</p>
-					<p>
-						If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
-					</p>
-					<p>
-						It was not until 2003 that phishing broke into the financial sector, with the first known attacks on multiple banks taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
-					</p>
-				</div>
-				<h2><a id="Trends">Trends</a></h2>
-				<div class="section">
-					<p>
-						In the first half of 2013 alone, there were over 72,758 unique phishing attacks worldwide, according to the Anti-Phishing Working Group (APWG). While this number is substantially less than the 123,486 recorded attacks in the second half of 2012, the average uptime of the attacks has nearly doubled to 44 hours and 39 minutes.
-					<p>
-					<p>
-						Security analysts at the APWG have drawn a number of additional trends from their collected data:
-					</p>
-					<br>
-					<h3><a id="IDNs">IDNs</a></h3>
-					<div class="section">
-						<p>
-							Internationalized Domain Names (IDNs) are domain names that contain one or more characters that are not valid in common web addresses. Characters such as accented letters or characters from Asian scripts, such as Chinese characters, would fall under this category.
-						</p>
-						<p>
-							The <em>Global Phishing Survey</em> reports that three attacks in the spring of 2013 made use of IDNs. These attacks took a common address, such as <span class="code">paypal.com</span> or <span class="code">itunes.eu</span>, and turned it into an international equivalent. For example, <span class="code">paypal.com</span> became <span class="code">paypàl.com</span> and <span class="code">itunes.eu</span> was transformed into <span class="code">îtunes.eu</span>.
-						</p>
-						<p>
-							These attacks were only mildly effective for two reasons:
-						</p>
-						<p class="quote">
-							1. Phishers don’t need to resort to such attacks. As noted elsewhere in this report, the domain name itself usually does not matter to a phisher.
-							2. By default, some browser manufacturers show the puny code version of the domain name (such as <span class="code">xn—hotmail-t9a.net</span>) in the address bar, instead of the native-character version. Users of those browsers therefore cannot see homographic attacks.
-							<br><br>
-							<em>Global Phishing Survey 1H2013</em>
-						</p>
-					</div>
-					<h3><a id="URL_Shorteners">URL Shorteners</a></h3>
-					<div class="section">
-						<p>
-							URL Shorteners have become a new trend on the internet, allowing users to compact long web addresses to shorter, easier to remember ones.
-						</p>
-						<p>
-							However, they have also become another tool for phishers to trick their targets. Shortened addresses are impossible to critique at a quick glance, requiring the user to hover over the link to see the full address that it redirects to. Even then, this often requires a compatible browser or URL shortening service to see the true location the link goes to.
-						</p>
-						<p>
-							For example, the shortened URL <span class="code">bit.ly/1hxb7uJ</span> might redirect to <span class="code">google.com</span>.
-						</p>
-						<p>
-							Thankfully, the use of URL shorteners has decreased this year:
-						</p>
-						<p class="quote">
-							Phishers continue to use “URL shortening” services to obfuscate phishing URLs, but such use plummeted to only 270 attacks in 1H2013, sharply down from 785 in 2H2012.
-							<br><br>
-							<em>Global Phishing Survey 1H2013</em>
-						</p>
-						<p>
-							Analysts attribute this decrease to the supposed crackdown by URL shortening services on malicious links, but there is not an abundance of hard evidence to support this theory.
-						</p>
-					</div>
 				<h2><a id="Vulnerability">Vulnerability</a></h2>
 				<div class="section">
 					<p>
@@ -299,5 +300,8 @@
 			</div>
 		</div>
 	</div>
+<div class="footer">
+	&copy; 2013 Marshall Bowers
+</div>
 </body>
 </html>

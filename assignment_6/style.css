@@ -11,7 +11,8 @@ html, body {
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
-	background: #f5f5f5;
+	color: #444;
+	background: #f2f1ed;
 }
 
 .wrapper {
@@ -36,7 +37,19 @@ p {
 	margin: 20px 20px 20px 20px;
 	padding: 5px;
 	outline: dotted;
-	outline-color: #e5e5e5;
+	outline-color: #de5a51;
+}
+
+.header {
+	height: 125px;
+	background: #de5a51;
+}
+
+.footer {
+	height: 75px;
+	background: #de5a51;
+	text-align: center;
+	padding-top: 50px;
 }
 
 .sidebar {
@@ -49,7 +62,7 @@ p {
 
 div.sidebar {
 	padding: 30px;
-	background: #d63333;
+	background: #de5a51;
 }
 
 ul {
@@ -69,32 +82,23 @@ ol li {
 }
 
 a {
-	color: #000000;
-}
-
-hr {
-	border: 0;
-	background: #e37373;
-	margin-top: 20px;
-	margin-left: 20%;
-	margin-right: 20%;
-	padding: 5px;
+	color: #f2f1ed;
 }
 
 h1 {
 	font-size: 70px;
-	color: #d63333;
+	color: #444;
 	text-align: center;
 }
 
 h2 > a {
 	font-size: 50px;
-	color: #d63333;
+	color: #666;
 }
 
 h3 > a {
 	font-size: 30px;
-	color: #d63333;
+	color: #666;
 }
 
 .code {
