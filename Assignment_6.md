@@ -10,7 +10,7 @@ This report is designed to convey the dangers of internet phishing and to inform
 
 Phishing is defined by the Merriam-Webster dictionary as, “a scam by which an e-mail user is duped into revealing personal or confidential information which the scammer can use illicitly.” Now, this definition specifically cites emails as the only form of phishing, when in reality this is just the traditional form.
 
-Today, phishing can take a variety of forms, but the one element that all such attempts have in common is that the phisher is masquerading as someone they are not. According to computer security expert Zulfikar Ramzan:
+Today, phishing can take a variety of forms, but the one element that all such attempts have in common is that the phisher masquerades as someone they are not. According to computer security expert Zulfikar Ramzan:
 
 > “The last few years has seen a rise in the frequency with which people have conducted meaningful transactions online; from making simple purchases to paying bills to banking, and even getting a mortgage or car loan or paying their taxes. This rise in online transactions has unfortunately been accompanied by a rise in attacks”
 > 
@@ -29,6 +29,10 @@ A typical phishing attempt consists of three distinct stages.
 ###Stage One – Hook
 
 The first stage is when the target first receives the phish. The phish is most often an email, claiming to be from a trusted entity, such as a financial institution or a friend. The email will always contain a call to action for the target, with the call to action often being of relative importance and incredibly time sensitive. The email will do its best to convince the reader of its purported legitimacy in order for the second stage to be followed through without hesitation.
+
+When phishing attempts are publicized, reports will often refer to this stage, as it is the identifying piece of a phish. Famous examples of hooks include the Nigerian scams, which often instructed users to make a deposit to a bank account in order for a larger sum of money to be released, of which the user would receive a cut.
+
+The hook is also the stage that most preventative measures target, as a user familiar with the idiosyncrasies of a particular variety of phish will be less likely to fall for it.
 
 ###Stage Two – Line
 
@@ -59,6 +63,37 @@ The individuals performing these attacks were using an application called ‘AOH
 If a user unwittingly handed over their password to a phisher, they would find themselves faced with the attacker changing it, thus locking the account, or even having credit card numbers tied to the account stolen.
 
 It was not until 2003 that phishing broke into the financial sector, with the first known attack on a bank taking place. Only a year later, phishing became recognized as a part of the crime economy, with many more attacks taking place.
+
+##Trends
+
+A number of phishing trends have popped up in 2013 alone:
+
+###Internationalized Domain Names
+
+Internationalized Domain Names (IDNs) are domain names that contain one or more characters that are not valid in common web addresses. Characters such as accented letters or characters from Asian scripts, such as Chinese characters, would fall under this category.
+
+The *Global Phishing Survey* reports that three attacks in the spring of 2013 made use of IDNs. These attacks took a common address, such as `paypal.com` or `itunes.eu`, and turned it into an international equivalent. For example, `paypal.com` became `paypàl.com` and `itunes.eu` was transformed into `îtunes.eu`.
+
+These attacks were only mildly effective for two reasons:
+
+> 1. Phishers don’t need to resort to such attacks. As noted elsewhere in this report, the domain name itself usually does not matter to a phisher.
+> 2. By default, some browser manufacturers show the puny code version of the domain name (such as `xn—hotmail-t9a.net`) in the address bar, instead of the native-character version. Users of those browsers therefore cannot see homographic attacks.
+> 
+> *Global Phishing Survey 1H2013*
+
+###URL Shorteners
+
+URL Shorteners have become a new trend on the internet, allowing users to compact long web addresses to shorter, easier to remember ones.
+
+However, they have also become another tool for phishers to trick their targets. Shortened addresses are impossible to critique at a quick glance, requiring the user to hover over the link to see the full address that it redirects to. Even then, this often requires a compatible browser or URL shortening service to see the true location the link goes to.
+
+Thankfully, the use of URL shorteners has decreased this year:
+
+> “Phishers continue to use “URL shortening” services to obfuscate phishing URLs, but such use plummeted to only 270 attacks in 1H2013, sharply down from 785 in 2H2012.
+> 
+> *Global Phishing Survey 1H2013*
+
+Analysts attribute this decrease to the supposed crackdown by URL shortening services on malicious links, but there is not an abundance of hard evidence to support this theory.
 
 ##Vulnerability
 
