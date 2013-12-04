@@ -87,18 +87,21 @@ a {
 
 h1 {
 	font-size: 70px;
-	color: #444;
+	font-weight: 400;
+	color: #f2f1ed;
 	text-align: center;
 }
 
 h2 > a {
 	font-size: 50px;
-	color: #666;
+	font-weight: 400;
+	color: #666666;
 }
 
 h3 > a {
 	font-size: 30px;
-	color: #666;
+	font-weight: 400;
+	color: #666666;
 }
 
 .code {
