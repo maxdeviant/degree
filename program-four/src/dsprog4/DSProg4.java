@@ -1,3 +1,7 @@
+/**
+ *	@author Marshall Bowers
+ */
+
 package dsprog4;
 
 import java.util.*;
@@ -138,7 +142,7 @@ public class DSProg4 {
 		Algorithms.mergeSort(A, cmp);
 		System.out.println("merge,full: " + Arrays.toString(A));
 		
-		// quickSort
+		/*
 		// Create a new array to hold all pairs
 		MyPair[] P = new MyPair[B.length];
 		// Iterate over B and create pairs with samples and indices
@@ -155,6 +159,10 @@ public class DSProg4 {
 		}
 		
 		System.out.println("quick,full: " + Arrays.toString(B));
+		*/
+		
+		Algorithms.stableQuickSort(B, cmp);
+		System.out.println("stbqk,full: " + Arrays.toString(B));
 		System.out.println();
 
 		int low = 3, high = Q.length - 3;
@@ -165,6 +173,7 @@ public class DSProg4 {
 		System.out.println("merge," + low + "-" + high + ": "
 				+ Arrays.toString(C));
 
+		/*
 		// Create a new array to hold pairs in array slice
 		MyPair[] slice = new MyPair[high - low + 1];
 		int index = 0;
@@ -182,12 +191,16 @@ public class DSProg4 {
 		index = 0;
 		// Replace sliced elements in D with sorted equivalents
 		for (int i = low; i <= high; i++) {
-			D[i] = P[index].sample;
+			D[i] = slice[index].sample;
 			index++;
 		}
 		
 		System.out.println("quick," + low + "-" + high + ": "
 				+ Arrays.toString(D));
+		*/
+		
+		Algorithms.stableQuickSort(D, low, high, cmp);
+		System.out.println("stbqk," + low + "-" + high + ": " + Arrays.toString(D));
 	}
 
 	public static void mainTimeSorts(String[] args) {
