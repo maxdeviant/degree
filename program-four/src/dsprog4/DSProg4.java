@@ -138,13 +138,18 @@ public class DSProg4 {
 		Algorithms.mergeSort(A, cmp);
 		System.out.println("merge,full: " + Arrays.toString(A));
 		
+		// quickSort
+		// Create a new array to hold all pairs
 		MyPair[] P = new MyPair[B.length];
+		// Iterate over B and create pairs with samples and indices
 		for (int i = 0; i < B.length; i++) {
 			P[i] = new MyPair(B[i], i);
 		}
 		
+		// Sort the new list with sort_cmp
 		Algorithms.quickSort(P, sort_cmp);
 		
+		// Replace elements in B with sorted equivalents
 		for (int i = 0; i < P.length; i++) {
 			B[i] = P[i].sample;
 		}
@@ -160,17 +165,22 @@ public class DSProg4 {
 		System.out.println("merge," + low + "-" + high + ": "
 				+ Arrays.toString(C));
 
-		MyPair[] slice = new MyPair[10];
+		// Create a new array to hold pairs in array slice
+		MyPair[] slice = new MyPair[high - low + 1];
 		int index = 0;
 
+		// Iterate over the sliced indices
 		for (int i = low; i <= high; i++) {
+			// Push new pair of designated sample and index to slice array
 			slice[index] = new MyPair(D[i], index);
 			index++;
 		}
 
+		// Sort the slice
 		Algorithms.quickSort(slice, sort_cmp);
 
 		index = 0;
+		// Replace sliced elements in D with sorted equivalents
 		for (int i = low; i <= high; i++) {
 			D[i] = P[index].sample;
 			index++;
