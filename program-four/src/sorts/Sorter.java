@@ -19,6 +19,7 @@ public class Sorter {
 		sorts.put("merge", new Merge());
 		sorts.put("heap", new Heap());
 		sorts.put("java", new Java());
+		sorts.put("stableQuick", new StableQuick());
 	}
 
 	public Choice getSorter(String choice) {
@@ -110,6 +111,19 @@ public class Sorter {
 		@Override
 		public void sort(Object[] a, int fromIndex, int toIndex) {
 			Arrays.sort(a, fromIndex, toIndex);
+		}
+	}
+	
+	// -------------- added by Marshall Bowers
+	private class StableQuick implements Choice {
+		@Override
+		public void sort(Object[] a) {
+			Algorithms.stableQuickSort(a);
+		}
+
+		@Override
+		public void sort(Object[] a, int fromIndex, int toIndex) {
+			Algorithms.stableQuickSort(a, fromIndex, toIndex);
 		}
 	}
 }
