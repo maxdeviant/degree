@@ -456,8 +456,7 @@ public class Algorithms {
 	}
 
 	// stableQuickSort -------------- added by Marshall Bowers
-	public static <E> void stableQuickSort(E[] a, int fromIndex, int toIndex,
-			final Comparator<? super E> c) {
+	public static <E> void stableQuickSort(E[] a, int fromIndex, int toIndex, final Comparator<? super E> c) {
 		class MyPair {
 			E sample;
 			int index;

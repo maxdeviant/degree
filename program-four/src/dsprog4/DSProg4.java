@@ -9,8 +9,8 @@ import sorts.*;
 
 public class DSProg4 {
 	public static void main(String[] args) {
-		// mainCheckStability(args);
-		 mainMakeStableQuickSort(args);
+		mainCheckStability(args);
+		// mainMakeStableQuickSort(args);
 		// mainTimeSorts(args);
 	}
 
@@ -161,6 +161,7 @@ public class DSProg4 {
 		System.out.println("quick,full: " + Arrays.toString(B));
 		*/
 		
+		// Run stableQuickSort
 		Algorithms.stableQuickSort(B, cmp);
 		System.out.println("stbqk,full: " + Arrays.toString(B));
 		System.out.println();
@@ -170,8 +171,7 @@ public class DSProg4 {
 		System.out.println("array:\t" + Arrays.toString(Q) + "\n");
 
 		Algorithms.mergeSort(C, low, high, cmp);
-		System.out.println("merge," + low + "-" + high + ": "
-				+ Arrays.toString(C));
+		System.out.println("merge," + low + "-" + high + ": " + Arrays.toString(C));
 
 		/*
 		// Create a new array to hold pairs in array slice
@@ -199,6 +199,7 @@ public class DSProg4 {
 				+ Arrays.toString(D));
 		*/
 		
+		// Run stableQuickSort
 		Algorithms.stableQuickSort(D, low, high, cmp);
 		System.out.println("stbqk," + low + "-" + high + ": " + Arrays.toString(D));
 	}
@@ -210,9 +211,12 @@ public class DSProg4 {
 		// the random number max (RANGE)
 		// the number of accumulated trials (NUM_TRIALS)
 
-		String choices[] = { "select", "insert", "shell" };
+		// String choices[] = { "select", "insert", "shell" };
+		String choices[] = { "quick", "merge", "stableQuick", "java" };
 		final int SIZE = 6000;
+		// final int SIZE = 80000;
 		final int RANGE = SIZE * 10;
+		// final int RANGE = SIZE * 100;
 		final int NUM_TRIALS = 10;
 
 		Sorter sorter = new Sorter();
