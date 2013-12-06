@@ -454,21 +454,64 @@ public class Algorithms {
 	public static void heapSort(Object[] a) {
 		heapSort(a, 0, a.length);
 	}
-	
+
 	// stableQuickSort -------------- added by Marshall Bowers
-	public static <E> void stableQuickSort(E[] a, int fromIndex, int toIndex, Comparator<? super E> c) {
+	public static <E> void stableQuickSort(E[] a, int fromIndex, int toIndex,
+			final Comparator<? super E> c) {
+		class MyPair {
+			E sample;
+			int index;
+
+			MyPair(E sample, int index) {
+				this.sample = sample;
+				this.index = index;
+			}
+		}
+
+		Comparator<MyPair> sort_cmp = new Comparator<MyPair>() {
+			@Override
+			public int compare(MyPair lhs, MyPair rhs) {
+				if (c.compare(lhs.sample, rhs.sample) == 0) {
+					return lhs.index - rhs.index;
+				}
+
+				return c.compare(lhs.sample, rhs.sample);
+			}
+		};
 		
+		MyPair[] P = new MyPair[(toIndex - fromIndex)];
+		int index = 0;
+
+		for (int i = fromIndex; i <= toIndex - 1; i++) {
+			P[index] = new MyPair(a[i], index);
+			index++;
+		}
+
+		quickSort(P, sort_cmp);
+
+		index = 0;
+		for (int i = fromIndex; i <= toIndex - 1; i++) {
+			a[i] = P[index].sample;
+			index++;
+		}
 	}
-	
+
 	public static <E> void stableQuickSort(E[] a, Comparator<? super E> c) {
-		
+		stableQuickSort(a, 0, a.length, c);
 	}
-	
+
 	public static void stableQuickSort(Object[] a, int fromIndex, int toIndex) {
+		Comparator<Object> c = new Comparator<Object>() {
+			@Override
+			public int compare(Object lhs, Object rhs) {
+				return ((Comparable) lhs).compareTo(rhs);
+			}
+		};
 		
+		stableQuickSort(a, fromIndex, toIndex, c);
 	}
-	
+
 	public static void stableQuickSort(Object[] a) {
-		
+		stableQuickSort(a, 0, a.length);
 	}
 }
