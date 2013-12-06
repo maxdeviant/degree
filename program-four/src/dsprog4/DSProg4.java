@@ -6,7 +6,7 @@ import sorts.*;
 public class DSProg4 {
 	public static void main(String[] args) {
 		mainCheckStability(args);
-		// mainMakeStableQuickSort(args);
+		 mainMakeStableQuickSort(args);
 		// mainTimeSorts(args);
 	}
 
@@ -131,15 +131,24 @@ public class DSProg4 {
 			}
 		};
 		
-
 		Algorithms.setQuicksortCutoff(5);
 
 		System.out.println("array:\t" + Arrays.toString(Q) + "\n");
 
 		Algorithms.mergeSort(A, cmp);
 		System.out.println("merge,full: " + Arrays.toString(A));
-
-		Algorithms.quickSort(B, cmp);
+		
+		MyPair[] P = new MyPair[B.length];
+		for (int i = 0; i < B.length; i++) {
+			P[i] = new MyPair(B[i], i);
+		}
+		
+		Algorithms.quickSort(P, sort_cmp);
+		
+		for (MyPair pair : P) {
+			B[pair.index] = pair.sample;
+		}
+		
 		System.out.println("quick,full: " + Arrays.toString(B));
 		System.out.println();
 
