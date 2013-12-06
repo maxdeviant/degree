@@ -454,4 +454,21 @@ public class Algorithms {
 	public static void heapSort(Object[] a) {
 		heapSort(a, 0, a.length);
 	}
+	
+	// stableQuickSort -------------- added by Marshall Bowers
+	public static <E> void stableQuickSort(E[] a, int fromIndex, int toIndex, Comparator<? super E> c) {
+		
+	}
+	
+	public static <E> void stableQuickSort(E[] a, Comparator<? super E> c) {
+		
+	}
+	
+	public static void stableQuickSort(Object[] a, int fromIndex, int toIndex) {
+		
+	}
+	
+	public static void stableQuickSort(Object[] a) {
+		
+	}
 }
