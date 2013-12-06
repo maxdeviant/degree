@@ -160,22 +160,26 @@ public class DSProg4 {
 		System.out.println("merge," + low + "-" + high + ": "
 				+ Arrays.toString(C));
 
-		// Algorithms.quickSort(D, low, high, cmp);
-		MyPair[] slice = new MyPair[high - low + 1];
-		int index = 0;
-
-		for (int i = low; i <= high; i++) {
-			slice[index] = new MyPair(D[i], index);
-			index++;
-		}
-
-		Algorithms.quickSort(slice, sort_cmp);
-
-		index = 0;
-		for (int i = low; i <= high; i++) {
-			D[i] = P[index].sample;
-			index++;
-		}
+		 Algorithms.quickSort(D, low, high, cmp);
+//		MyPair[] slice = new MyPair[10];
+//		int index = 0;
+//
+//		for (int i = low; i <= high; i++) {
+//			slice[index] = new MyPair(D[i], index);
+//			System.out.print("(" + D[i].int_part + ", " + D[i].chr_part + "), ");
+//			index++;
+//		}
+//		System.out.println();
+//
+//		Algorithms.quickSort(slice, sort_cmp);
+//
+//		index = 0;
+//		for (int i = low; i <= high; i++) {
+//			D[i] = P[index].sample;
+//			System.out.print(P[index].sample + ", ");
+//			index++;
+//		}
+//		System.out.println();
 		
 		System.out.println("quick," + low + "-" + high + ": "
 				+ Arrays.toString(D));
