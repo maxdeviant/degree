@@ -12,7 +12,7 @@ Heap Sort | No | `O(n)` | `O(n * log(n))` | `O(n * log(n))` | `O(1)`
 
 ##Selection Sort
 
-```
+```javascript
 function selection_sort(a) {
     for (var i = 0; i < a.length; i++) {
         var min = i;
@@ -38,7 +38,7 @@ function swap(a, b) {
 
 ##Insertion Sort
 
-```
+```javascript
 function insertion_sort(a) {
     for (var i = 1; i < a.length; i++) {
         var insert = a[i];
@@ -58,7 +58,7 @@ function insertion_sort(a) {
 
 ##Quick Sort
 
-```
+```javascript
 var CUTOFF = 10;
 
 function quick_sort(a, from, to) {
@@ -70,7 +70,7 @@ function quick_sort(a, from, to) {
 
 ##Merge Sort
 
-```
+```javascript
 function merge_sort(a, from, mid, to) {
     if (a.length === 1) {
         return;
