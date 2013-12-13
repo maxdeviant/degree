@@ -12,15 +12,45 @@ Heap Sort | No | `O(n)` | `O(n * log(n))` | `O(n * log(n))` | `O(1)`
 
 ##Selection Sort
 
+```
+for (var i = 0; i < a.length; i++) {
+    var min = i;
+    
+    for (var j = i + 1; j < a.length; j++) {
+        if (a[j] < a[min]) {
+            min = j;
+        }
+    }
+    
+    if (min == i) {
+        swap(a[i], a[min]);
+    }
+}
+
+function swap(a, b) {
+    var temp = a;
+    a = b;
+    b = temp;
+}
+```
+
 ##Insertion Sort
 
-`for (var i = 1; i < a.length; i++) {
-
-}`
+```
+for (var i = 1; i < a.length; i++) {
+    var insert = a[i];
+    var hole = i;
+    
+    while (hole > 0 && insert < a[hole - 1]) {
+        a[hole] = a[hole - 1];
+        hole = hole - 1;
+    }
+    
+    a[hole] = insert;
+}
+```
 
 ##Shell Sort
-
-``
 
 ##Quick Sort
 
