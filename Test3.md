@@ -23,7 +23,7 @@ function selection_sort(a) {
             }
         }
         
-        if (min == i) {
+        if (min === i) {
             swap(a[i], a[min]);
         }
     }
@@ -87,5 +87,46 @@ function merge_sort(a, from, mid, to) {
 ##Heap Sort
 
 ```javascript
+function heap_sort(a) {
+    build_heap(a);
+    
+    var end = a.length - 1;
+    
+    while (end > 0) {
+        swap (a[end], a[0]);
+        end = end - 1;
+        sift_up(a, 0, end);
+    }
+}
 
+function build_heap(a) {
+    var end = 1;
+    var count = a.length;
+    
+    while (end < count) {
+        sift_up(a, 0, end);
+        end = end + 1;
+    }
+}
+
+function sift_up(a, start, end) {
+    var child = end;
+    
+    while (child > start) {
+        parent = Math.floor((child - 1) / 2);
+        
+        if (a[parent] < a[child]) {
+            swap(a[parent], a[child]);
+            child = parent;
+        } else { 
+            return;
+        }
+    }
+}
+
+function swap(a, b) {
+    var temp = a;
+    a = b;
+    b = temp;
+}
 ```
