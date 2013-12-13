@@ -5,12 +5,10 @@ Algorithm | Stable | Best Time | Average Time | Worst Time | Extra Memory
 :-------: | :----: | :-------: | :----------: | :--------: | :---------:
 Selection Sort | No | `O(n^2)` | `O(n^2)` | `O(n^2)` | `O(1)`
 Insertion Sort | Yes | `O(n)` | `O(n^2)` | `O(n^2)` | `O(1)`
-Shell Sort | No | `O(n * log(n))` | `O(n^1.25)†` | `O(n^1.5)` | `O(1)`
+Shell Sort | No | `O(n * log(n))` | `O(n^1.25)` | `O(n^1.5)` | `O(1)`
 Quick Sort | No | `O(n * log(n))` | `O(n * log(n))` | `O(n^2)` | `O(log(n))`
 Merge Sort | Yes | `O(n * log(n))` | `O(n * log(n))` | `O(n * log(n))` | `O(n)`
 Heap Sort | No | `O(n)` | `O(n * log(n))` | `O(n * log(n))` | `O(1)`
-
-`† conjectured`
 
 ##Selection Sort
 
@@ -77,12 +75,28 @@ function quick_sort(a, from, to) {
 ##Merge Sort
 
 ```javascript
-function merge_sort(a, from, mid, to) {
-    if (a.length === 1) {
-        return;
+var b;
+
+function merge_sort(a) {
+    for (var i = 0; i < a.length; i++) {
+        for (int j = 0; j < a.length; j = j + 2 * i) {
+            merge_up(a, i, Math.floor(j + i, a.length), Math.floor(j + 2 * i, a.length))
+        }
+        
+        a = b;
     }
-    
-    
+}
+
+function merge_up(a, left, right, end) {
+    for (var i = left; i < end; i++) {
+       if (left < right && (right >= end || a[left] <= a[right])) {
+           b[i] = a[left];
+           left = left + 1;
+       } else {
+           b[i] = a[right];
+           right = right + 1;
+       }
+    }
 }
 ```
 
