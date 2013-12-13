@@ -56,6 +56,10 @@ function insertion_sort(a) {
 
 ##Shell Sort
 
+```javascript
+
+```
+
 ##Quick Sort
 
 ```javascript
@@ -82,6 +86,6 @@ function merge_sort(a, from, mid, to) {
 
 ##Heap Sort
 
-```
+```javascript
 
 ```
