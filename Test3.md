@@ -13,17 +13,19 @@ Heap Sort | No | `O(n)` | `O(n * log(n))` | `O(n * log(n))` | `O(1)`
 ##Selection Sort
 
 ```
-for (var i = 0; i < a.length; i++) {
-    var min = i;
-    
-    for (var j = i + 1; j < a.length; j++) {
-        if (a[j] < a[min]) {
-            min = j;
+function selection_sort(a) {
+    for (var i = 0; i < a.length; i++) {
+        var min = i;
+        
+        for (var j = i + 1; j < a.length; j++) {
+            if (a[j] < a[min]) {
+                min = j;
+            }
         }
-    }
-    
-    if (min == i) {
-        swap(a[i], a[min]);
+        
+        if (min == i) {
+            swap(a[i], a[min]);
+        }
     }
 }
 
@@ -37,16 +39,18 @@ function swap(a, b) {
 ##Insertion Sort
 
 ```
-for (var i = 1; i < a.length; i++) {
-    var insert = a[i];
-    var hole = i;
-    
-    while (hole > 0 && insert < a[hole - 1]) {
-        a[hole] = a[hole - 1];
-        hole = hole - 1;
+function insertion_sort(a) {
+    for (var i = 1; i < a.length; i++) {
+        var insert = a[i];
+        var hole = i;
+        
+        while (hole > 0 && insert < a[hole - 1]) {
+            a[hole] = a[hole - 1];
+            hole = hole - 1;
+        }
+        
+        a[hole] = insert;
     }
-    
-    a[hole] = insert;
 }
 ```
 
@@ -54,6 +58,30 @@ for (var i = 1; i < a.length; i++) {
 
 ##Quick Sort
 
+```
+var CUTOFF = 10;
+
+function quick_sort(a, from, to) {
+    if (to - from <= CUTOFF) {
+        insertion_sort(a);
+    }
+}
+```
+
 ##Merge Sort
 
+```
+function merge_sort(a, from, mid, to) {
+    if (a.length === 1) {
+        return;
+    }
+    
+    
+}
+```
+
 ##Heap Sort
+
+```
+
+```
