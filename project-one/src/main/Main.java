@@ -1,6 +1,12 @@
 package main;
 
+import models.Actor;
+import models.Model;
+
 import javax.swing.*;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -22,6 +28,10 @@ public class Main {
 
     public static void dbTest() {
         mysql.DataHandler data = new mysql.DataHandler();
+
+        for (Object o : data.read().values()) {
+            System.out.println(o.toString());
+        }
     }
 }
 
