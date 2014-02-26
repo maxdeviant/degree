@@ -1,11 +1,11 @@
 package mysql;
 
-import models.Model;
+import models.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class DataHandler {
@@ -27,14 +27,31 @@ public class DataHandler {
         this.database = database;
     }
 
-    public Set<Model> read() {
-        try {
-            
-        } catch (Exception e) {
+    public HashMap<Integer, Object> read() {
+        HashMap<Integer, Object> results = new HashMap<Integer, Object>();
 
+        try {
+            // Load the MySQL driver
+            Class.forName(driver);
+
+            connect = DriverManager.getConnection(database, "root", "");
+
+            statement = connect.createStatement();
+
+            resultSet = statement.executeQuery("select * from actor;");
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                int birthYear = resultSet.getInt("birth_year");
+
+                results.put(id, new Actor(id, name, birthYear));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             close();
-            return null;
+            return results;
         }
     }
 
