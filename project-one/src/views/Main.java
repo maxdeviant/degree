@@ -1,4 +1,4 @@
-package main;
+package views;
 
 import models.Actor;
 import models.Model;
@@ -15,23 +15,26 @@ public class Main {
     private JTextArea info;
     private JTable movies;
 
-    public static void main(String[] args) {
+    public Main() {
         // Form initialization
         JFrame frame = new JFrame("Main");
-        frame.setContentPane(new Main().window);
+        frame.setContentPane(window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-        dbTest();
     }
 
-    public static void dbTest() {
-        mysql.DataHandler data = new mysql.DataHandler();
-
-        for (Object o : data.read().values()) {
-            System.out.println(o.toString());
-        }
+    public static void main(String[] args) {
+        new Main();
+//        dbTest();
     }
+
+//    public static void dbTest() {
+//        mysql.DataHandler data = new mysql.DataHandler();
+//
+//        for (Object o : data.read().values()) {
+//            System.out.println(o.toString());
+//        }
+//    }
 }
 
