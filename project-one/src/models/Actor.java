@@ -8,6 +8,10 @@ public class Actor extends Model {
     private String name;
     private int birthYear;
 
+    public String getName() {
+        return name;
+    }
+
     public Actor(int id, String name, int birthYear) {
         this.id = id;
         this.name = name;
