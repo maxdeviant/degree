@@ -1,6 +1,6 @@
 package models;
 
-public class Movie {
+public class Movie extends Model {
     private int id;
     private String title;
     private int year;
