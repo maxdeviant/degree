@@ -2,9 +2,12 @@ package views;
 
 import controllers.ActorController;
 import controllers.MovieController;
+import models.Actor;
 import mysql.DataHandler;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Frame extends javax.swing.JFrame {
     private JPanel window;
@@ -38,8 +41,8 @@ public class Frame extends javax.swing.JFrame {
 
         actorController = new ActorController(db);
 
-        for (String s : actorController.getActorNames()) {
-            actorModel.addElement(s);
+        for (Actor a : actorController.getActors()) {
+            actorModel.addElement(a);
         }
 
         movieModel = new DefaultListModel();
@@ -50,6 +53,13 @@ public class Frame extends javax.swing.JFrame {
         for (String s : movieController.getMovieTitles()) {
             movieModel.addElement(s);
         }
+
+        actors.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
+                System.out.println(actorController.getJoined(actor));
+            }
+        });
 
         db.close();
     }
