@@ -4,7 +4,7 @@ import models.Actor;
 import mysql.DataHandler;
 
 import java.sql.ResultSet;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class ActorController {
     private DataHandler db;
@@ -13,8 +13,8 @@ public class ActorController {
         this.db = db;
     }
 
-    public HashSet<Actor> getActors(ResultSet results) {
-        HashSet<Actor> set = new HashSet<Actor>();
+    public LinkedHashSet<Actor> getActors(ResultSet results) {
+        LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
 
         try {
             while (results.next()) {
@@ -32,8 +32,8 @@ public class ActorController {
     }
 
     public String[] getActorNames() {
-        ResultSet results = db.read();
-        HashSet<Actor> set = new HashSet<Actor>();
+        ResultSet results = db.read("select * from actor;");
+        LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
 
         try {
             while (results.next()) {
@@ -51,22 +51,21 @@ public class ActorController {
 
         int index = 0;
         for (Actor a : set) {
-            System.out.println(a.getName());
             names[index] = a.getName();
-        }
-
-        String[] test = {"a"};
-        return test;
-    }
-
-    public String[] getActorNames(HashSet<Actor> set) {
-        String[] names = new String[set.size()];
-
-        int index = 0;
-        for (Actor a : set) {
-            names[index] = a.getName();
+            index++;
         }
 
         return names;
     }
+
+//    public String[] getActorNames(HashSet<Actor> set) {
+//        String[] names = new String[set.size()];
+//
+//        int index = 0;
+//        for (Actor a : set) {
+//            names[index] = a.getName();
+//        }
+//
+//        return names;
+//    }
 }

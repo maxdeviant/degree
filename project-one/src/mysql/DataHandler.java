@@ -27,7 +27,7 @@ public class DataHandler {
         this.database = database;
     }
 
-    public ResultSet read() {
+    public ResultSet read(String query) {
         try {
             // Load the MySQL driver
             Class.forName(driver);
@@ -36,11 +36,11 @@ public class DataHandler {
 
             statement = connect.createStatement();
 
-            resultSet = statement.executeQuery("select * from actor;");
+            resultSet = statement.executeQuery(query);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            close();
+//            close();
         }
 
         return resultSet;
@@ -74,7 +74,7 @@ public class DataHandler {
 //        }
 //    }
 
-    private void close() {
+    public void close() {
         try {
             if (resultSet != null) {
                 resultSet.close();
