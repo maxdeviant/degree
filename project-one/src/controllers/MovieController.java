@@ -9,6 +9,7 @@ import models.Actor;
 import models.Movie;
 import mysql.DataHandler;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -36,6 +37,7 @@ public class MovieController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;
@@ -73,13 +75,14 @@ public class MovieController {
                 while (actor.next()) {
                     int id = actor.getInt("id");
                     String name = actor.getString("name");
-                    int birthYear = actor.getInt("birth_year");
+                    int birthYear = actor.getInt("birthYear");
 
                     set.add(new Actor(id, name, birthYear));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;
