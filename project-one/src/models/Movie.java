@@ -6,9 +6,12 @@ public class Movie extends Model {
     private int year;
     private String description;
 
+    public int getID() { return id; }
     public String getTitle() {
         return title;
     }
+    public int getYear() { return year; }
+    public String getDescription() { return description; }
 
     public Movie(int id, String title, int year, String description) {
         this.id = id;
@@ -18,6 +21,6 @@ public class Movie extends Model {
     }
 
     public String toString() {
-        return String.format("ID: %s, Title: %s, Year: %s Description: %s", id, title, year, description);
+        return String.format("%s (%d)", title, year);
     }
 }
