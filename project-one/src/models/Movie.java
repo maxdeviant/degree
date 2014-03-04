@@ -6,6 +6,7 @@ public class Movie extends Model {
     private int year;
     private String description;
 
+    public int getID() { return id; }
     public String getTitle() {
         return title;
     }

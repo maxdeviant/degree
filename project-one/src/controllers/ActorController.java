@@ -57,22 +57,21 @@ public class ActorController {
 
         String query = String.format("select * from actor_movie where actor_id = %d", actor.getID());
         ResultSet results = db.read(query);
-        ResultSet movie;
 
         try {
             while (results.next()) {
                 int movieID = results.getInt("movie_id");
 
-                movie = db.read(String.format("select * from movie where id=%d;", movieID));
-//                System.out.println(String.format("select * from movie where id = %d", movieID));
+                ResultSet movie = db.read(String.format("select * from movie where id = %d;", movieID));
 
-                movie.next();
-                int id = movie.getInt("id");
-                String title = movie.getString("title");
-                int year = movie.getInt("year");
-                String description = movie.getString("description");
+                while (movie.next()) {
+                    int id = movie.getInt("id");
+                    String title = movie.getString("title");
+                    int year = movie.getInt("year");
+                    String description = movie.getString("description");
 
-                set.add(new Movie(id, title, year, description));
+                    set.add(new Movie(id, title, year, description));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

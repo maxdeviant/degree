@@ -3,11 +3,13 @@ package views;
 import controllers.ActorController;
 import controllers.MovieController;
 import models.Actor;
+import models.Movie;
 import mysql.DataHandler;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedHashSet;
 
 public class Frame extends javax.swing.JFrame {
     private JPanel window;
@@ -45,19 +47,38 @@ public class Frame extends javax.swing.JFrame {
             actorModel.addElement(a);
         }
 
+        actors.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
+                LinkedHashSet<Movie> joined = actorController.getJoined(actor);
+
+                movies.clearSelection();
+
+                for (Movie m : joined) {
+                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
+                }
+            }
+        });
+
         movieModel = new DefaultListModel();
         movies.setModel(movieModel);
 
         movieController = new MovieController(db);
 
-        for (String s : movieController.getMovieTitles()) {
-            movieModel.addElement(s);
+        for (Movie m : movieController.getMovies()) {
+            movieModel.addElement(m);
         }
 
-        actors.addMouseListener(new MouseAdapter() {
+        movies.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
-                System.out.println(actorController.getJoined(actor));
+                Movie movie = (Movie) movieModel.getElementAt(movies.getSelectedIndex());
+                LinkedHashSet<Actor> joined = movieController.getJoined(movie);
+
+                actors.clearSelection();
+
+                for (Actor a : joined) {
+                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
+                }
             }
         });
 
