@@ -21,6 +21,14 @@ public class ActorController {
         this.db = db;
     }
 
+    public int addActor(String name, int birthYear) {
+        return db.insert(String.format("insert into actor (id, name, birthYear) values (null, '%s', '%d');", name, birthYear));
+    }
+
+    public void removeActor(int id) {
+        db.execute(String.format("delete from actor where id = %d;", id));
+    }
+
     public LinkedHashSet<Actor> getActors() {
         LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
 
@@ -40,22 +48,6 @@ public class ActorController {
         }
 
         return set;
-    }
-
-    public String[] getActorNames() {
-        LinkedHashSet<Actor> set = getActors();
-
-        ResultSet results = db.read("select * from actor;");
-
-        String[] names = new String[set.size()];
-
-        int index = 0;
-        for (Actor a : set) {
-            names[index] = a.getName();
-            index++;
-        }
-
-        return names;
     }
 
     public LinkedHashSet<Movie> getJoined(Actor actor) {

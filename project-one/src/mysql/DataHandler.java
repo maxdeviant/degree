@@ -27,12 +27,20 @@ public class DataHandler {
         this.database = database;
     }
 
-    public ResultSet read(String query) {
+    private void connect() {
         try {
-            // Load the MySQL driver
             Class.forName(driver);
 
             connect = DriverManager.getConnection(database, "root", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public ResultSet read(String query) {
+        try {
+            connect();
 
             statement = connect.createStatement();
 
@@ -45,6 +53,41 @@ public class DataHandler {
         }
 
         return resultSet;
+    }
+
+    public void execute(String query) {
+        try {
+            connect();
+
+            statement = connect.createStatement();
+
+            statement.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public int insert(String query) {
+        try {
+            connect();
+
+            preparedStatement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.execute();
+
+            ResultSet keys = preparedStatement.getGeneratedKeys();
+
+            if (keys.next()) {
+                System.out.println(keys.getInt(1));
+                return keys.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return -1;
     }
 
     public void close() {
