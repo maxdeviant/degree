@@ -65,17 +65,8 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Description"/>
+          <text value=" "/>
         </properties>
-      </component>
-      <component id="d379b" class="javax.swing.JTextPane" binding="info">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-          <gridbag weightx="0.1" weighty="0.1"/>
-        </constraints>
-        <properties/>
       </component>
       <component id="6f62c" class="javax.swing.JLabel" binding="joinedLabel">
         <constraints>
@@ -83,18 +74,37 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Movie Actors"/>
+          <text value=" "/>
         </properties>
       </component>
-      <component id="d79ba" class="javax.swing.JList" binding="joined">
+      <scrollpane id="a4d68">
         <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.1" weighty="0.1"/>
         </constraints>
         <properties/>
-      </component>
+        <border type="none"/>
+        <children>
+          <component id="d379b" class="javax.swing.JTextPane" binding="info">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="50817">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.1" weighty="0.1"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="d79ba" class="javax.swing.JList" binding="joined">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

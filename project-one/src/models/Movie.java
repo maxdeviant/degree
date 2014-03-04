@@ -1,3 +1,8 @@
+/*
+ *  Marshall Bowers
+ *  CSC 417
+ */
+
 package models;
 
 public class Movie extends Model {
