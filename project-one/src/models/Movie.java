@@ -6,6 +6,10 @@ public class Movie extends Model {
     private int year;
     private String description;
 
+    public String getTitle() {
+        return title;
+    }
+
     public Movie(int id, String title, int year, String description) {
         this.id = id;
         this.title = title;
