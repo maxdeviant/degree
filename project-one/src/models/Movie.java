@@ -21,6 +21,6 @@ public class Movie extends Model {
     }
 
     public String toString() {
-        return title;
+        return String.format("%s (%d)", title, year);
     }
 }
