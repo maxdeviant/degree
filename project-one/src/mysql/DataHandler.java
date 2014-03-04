@@ -46,34 +46,6 @@ public class DataHandler {
         return resultSet;
     }
 
-//    public HashMap<Integer, Object> read() {
-//        HashMap<Integer, Object> results = new HashMap<Integer, Object>();
-//
-//        try {
-//            // Load the MySQL driver
-//            Class.forName(driver);
-//
-//            connect = DriverManager.getConnection(database, "root", "");
-//
-//            statement = connect.createStatement();
-//
-//            resultSet = statement.executeQuery("select * from actor;");
-//
-//            while (resultSet.next()) {
-//                int id = resultSet.getInt("id");
-//                String name = resultSet.getString("name");
-//                int birthYear = resultSet.getInt("birth_year");
-//
-//                results.put(id, new Actor(id, name, birthYear));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            close();
-//            return results;
-//        }
-//    }
-
     public void close() {
         try {
             if (resultSet != null) {

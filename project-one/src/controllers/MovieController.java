@@ -13,8 +13,7 @@ public class MovieController {
         this.db = db;
     }
 
-    public String[] getMovieTitles() {
-
+    public LinkedHashSet<Movie> getMovies() {
         ResultSet results = db.read("select * from movie;");
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
 
@@ -30,6 +29,13 @@ public class MovieController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return set;
+    }
+
+    public String[] getMovieTitles() {
+        ResultSet results = db.read("select * from movie;");
+        LinkedHashSet<Movie> set = getMovies();
 
         String[] names = new String[set.size()];
 
