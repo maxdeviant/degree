@@ -1,9 +1,11 @@
 package controllers;
 
+import models.Actor;
 import models.Movie;
 import mysql.DataHandler;
 
 import java.sql.ResultSet;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class MovieController {
@@ -14,8 +16,9 @@ public class MovieController {
     }
 
     public LinkedHashSet<Movie> getMovies() {
-        ResultSet results = db.read("select * from movie;");
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
+
+        ResultSet results = db.read("select * from movie;");
 
         try {
             while (results.next()) {
@@ -34,8 +37,9 @@ public class MovieController {
     }
 
     public String[] getMovieTitles() {
-        ResultSet results = db.read("select * from movie;");
         LinkedHashSet<Movie> set = getMovies();
+
+        ResultSet results = db.read("select * from movie;");
 
         String[] names = new String[set.size()];
 
@@ -46,5 +50,33 @@ public class MovieController {
         }
 
         return names;
+    }
+
+    public LinkedHashSet<Actor> getJoined(Movie movie) {
+        LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
+        HashSet<Integer> list = new HashSet<Integer>();
+
+        String query = String.format("select * from actor_movie where movie_id = %d", movie.getID());
+        ResultSet results = db.read(query);
+
+        try {
+            while (results.next()) {
+                int actorID = results.getInt("actor_id");
+
+                ResultSet actor = db.read(String.format("select * from actor where id = %d;", actorID));
+
+                while (actor.next()) {
+                    int id = actor.getInt("id");
+                    String name = actor.getString("name");
+                    int birthYear = actor.getInt("birth_year");
+
+                    set.add(new Actor(id, name, birthYear));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return set;
     }
 }
