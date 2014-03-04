@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.Frame">
   <grid id="27dc6" binding="window" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="3" y="1" width="99" height="415"/>
+      <xy x="3" y="1" width="169" height="415"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -59,6 +59,42 @@
           </component>
         </children>
       </scrollpane>
+      <component id="e2e78" class="javax.swing.JLabel" binding="infoLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Description"/>
+        </properties>
+      </component>
+      <component id="d379b" class="javax.swing.JTextPane" binding="info">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag weightx="0.1" weighty="0.1"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="6f62c" class="javax.swing.JLabel" binding="joinedLabel">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Movie Actors"/>
+        </properties>
+      </component>
+      <component id="d79ba" class="javax.swing.JList" binding="joined">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag weightx="0.1" weighty="0.1"/>
+        </constraints>
+        <properties/>
+      </component>
     </children>
   </grid>
 </form>
