@@ -15,10 +15,15 @@ public class Frame extends javax.swing.JFrame {
     private JPanel window;
     private JLabel actorsLabel;
     private JLabel moviesLabel;
+    private JLabel infoLabel;
+    private JLabel joinedLabel;
     private JList actors;
     private JList movies;
+    private JTextPane info;
+    private JList joined;
     private DefaultListModel actorModel;
     private DefaultListModel movieModel;
+    private DefaultListModel joinedModel;
     private ActorController actorController;
     private MovieController movieController;
 
@@ -39,9 +44,15 @@ public class Frame extends javax.swing.JFrame {
         DataHandler db = new DataHandler();
 
         actorModel = new DefaultListModel();
+        movieModel = new DefaultListModel();
+        joinedModel = new DefaultListModel();
+
         actors.setModel(actorModel);
+        movies.setModel(movieModel);
+        joined.setModel(joinedModel);
 
         actorController = new ActorController(db);
+        movieController = new MovieController(db);
 
         for (Actor a : actorController.getActors()) {
             actorModel.addElement(a);
@@ -53,17 +64,18 @@ public class Frame extends javax.swing.JFrame {
                 LinkedHashSet<Movie> joined = actorController.getJoined(actor);
 
                 movies.clearSelection();
+                joinedModel.clear();
+
+                infoLabel.setText("Information");
+                joinedLabel.setText("Filmography");
+                info.setText(String.format("Name: %s\nBorn: %d", actor.getName(), actor.getBirthYear()));
 
                 for (Movie m : joined) {
                     movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
+                    joinedModel.addElement(m);
                 }
             }
         });
-
-        movieModel = new DefaultListModel();
-        movies.setModel(movieModel);
-
-        movieController = new MovieController(db);
 
         for (Movie m : movieController.getMovies()) {
             movieModel.addElement(m);
@@ -75,9 +87,15 @@ public class Frame extends javax.swing.JFrame {
                 LinkedHashSet<Actor> joined = movieController.getJoined(movie);
 
                 actors.clearSelection();
+                joinedModel.clear();
+
+                infoLabel.setText("Description");
+                joinedLabel.setText("Cast List");
+                info.setText(movie.getDescription());
 
                 for (Actor a : joined) {
                     actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
+                    joinedModel.addElement(a);
                 }
             }
         });

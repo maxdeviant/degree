@@ -12,6 +12,7 @@ public class Actor extends Model {
     public String getName() {
         return name;
     }
+    public int getBirthYear() { return birthYear; }
 
     public Actor(int id, String name, int birthYear) {
         this.id = id;
