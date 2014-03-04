@@ -1,12 +1,11 @@
+/*
+ *  Marshall Bowers
+ *  CSC 417
+ */
+
 package mysql;
 
-import models.*;
-
 import java.sql.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class DataHandler {
     private Connection connect = null;
@@ -63,5 +62,4 @@ public class DataHandler {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,3 +1,8 @@
+/*
+ *  Marshall Bowers
+ *  CSC 417
+ */
+
 package views;
 
 import controllers.ActorController;
@@ -13,6 +18,9 @@ import java.util.LinkedHashSet;
 
 public class Frame extends javax.swing.JFrame {
     private JPanel window;
+    private JMenuBar menuBar;
+    private JMenu actorMenu;
+    private JMenu movieMenu;
     private JLabel actorsLabel;
     private JLabel moviesLabel;
     private JLabel infoLabel;
@@ -34,6 +42,31 @@ public class Frame extends javax.swing.JFrame {
         frame.setSize(640, 480);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Begin menu
+        menuBar = new JMenuBar();
+        actorMenu = new JMenu("Actor");
+        movieMenu = new JMenu("Movie");
+
+        menuBar.add(actorMenu);
+        menuBar.add(movieMenu);
+
+        JMenuItem addActor = new JMenuItem("Add Actor");
+        JMenuItem removeActor = new JMenuItem("Remove Actor");
+
+        actorMenu.add(addActor);
+        actorMenu.add(removeActor);
+
+        JMenuItem addMovie = new JMenuItem("Add Movie");
+        JMenuItem modifyMovie = new JMenuItem("Modify Description");
+        JMenuItem removeMovie = new JMenuItem("Remove Movie");
+
+        movieMenu.add(addMovie);
+        movieMenu.add(modifyMovie);
+        movieMenu.add(removeMovie);
+
+        frame.setJMenuBar(menuBar);
+        // End menu
 
         init();
 
