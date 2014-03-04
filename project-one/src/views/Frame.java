@@ -26,7 +26,7 @@ public class Frame extends javax.swing.JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         init();
-//        frame.pack();
+
         frame.setVisible(true);
     }
 
