@@ -18,6 +18,7 @@ public class Movie extends Model {
     }
 
     public String toString() {
-        return String.format("ID: %s, Title: %s, Year: %s Description: %s", id, title, year, description);
+//        return String.format("ID: %s, Title: %s, Year: %s Description: %s", id, title, year, description);
+        return title;
     }
 }

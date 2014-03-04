@@ -1,9 +1,11 @@
 package controllers;
 
 import models.Actor;
+import models.Movie;
 import mysql.DataHandler;
 
 import java.sql.ResultSet;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class ActorController {
@@ -14,8 +16,9 @@ public class ActorController {
     }
 
     public LinkedHashSet<Actor> getActors() {
-        ResultSet results = db.read("select * from actor;");
         LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
+
+        ResultSet results = db.read("select * from actor;");
 
         try {
             while (results.next()) {
@@ -33,8 +36,9 @@ public class ActorController {
     }
 
     public String[] getActorNames() {
-        ResultSet results = db.read("select * from actor;");
         LinkedHashSet<Actor> set = getActors();
+
+        ResultSet results = db.read("select * from actor;");
 
         String[] names = new String[set.size()];
 
@@ -45,5 +49,35 @@ public class ActorController {
         }
 
         return names;
+    }
+
+    public LinkedHashSet<Movie> getJoined(Actor actor) {
+        LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
+        HashSet<Integer> list = new HashSet<Integer>();
+
+        String query = String.format("select * from actor_movie where actor_id = %d", actor.getID());
+        ResultSet results = db.read(query);
+        ResultSet movie;
+
+        try {
+            while (results.next()) {
+                int movieID = results.getInt("movie_id");
+
+                movie = db.read(String.format("select * from movie where id=%d;", movieID));
+//                System.out.println(String.format("select * from movie where id = %d", movieID));
+
+                movie.next();
+                int id = movie.getInt("id");
+                String title = movie.getString("title");
+                int year = movie.getInt("year");
+                String description = movie.getString("description");
+
+                set.add(new Movie(id, title, year, description));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return set;
     }
 }

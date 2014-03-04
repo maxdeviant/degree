@@ -8,6 +8,7 @@ public class Actor extends Model {
     private String name;
     private int birthYear;
 
+    public int getID() { return id; }
     public String getName() {
         return name;
     }
@@ -37,6 +38,6 @@ public class Actor extends Model {
     }
 
     public String toString() {
-        return String.format("ID: %s, Name: %s, Birth Year: %s", id, name, birthYear);
+        return name;
     }
 }

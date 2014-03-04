@@ -14,8 +14,9 @@ public class MovieController {
     }
 
     public LinkedHashSet<Movie> getMovies() {
-        ResultSet results = db.read("select * from movie;");
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
+
+        ResultSet results = db.read("select * from movie;");
 
         try {
             while (results.next()) {
@@ -34,8 +35,9 @@ public class MovieController {
     }
 
     public String[] getMovieTitles() {
-        ResultSet results = db.read("select * from movie;");
         LinkedHashSet<Movie> set = getMovies();
+
+        ResultSet results = db.read("select * from movie;");
 
         String[] names = new String[set.size()];
 
