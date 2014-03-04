@@ -65,7 +65,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Description"/>
+          <text value=" "/>
         </properties>
       </component>
       <component id="d379b" class="javax.swing.JTextPane" binding="info">
@@ -83,7 +83,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Movie Actors"/>
+          <text value=" "/>
         </properties>
       </component>
       <component id="d79ba" class="javax.swing.JList" binding="joined">
