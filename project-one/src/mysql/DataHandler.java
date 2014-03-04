@@ -5,6 +5,7 @@
 
 package mysql;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class DataHandler {
@@ -38,6 +39,7 @@ public class DataHandler {
             resultSet = statement.executeQuery(query);
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
 //            close();
         }
@@ -60,6 +62,7 @@ public class DataHandler {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

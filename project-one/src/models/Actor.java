@@ -5,6 +5,7 @@
 
 package models;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.util.HashSet;
 
@@ -32,12 +33,13 @@ public class Actor extends Model {
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
-                int birthYear = results.getInt("birth_year");
+                int birthYear = results.getInt("birthYear");
 
                 set.add(new Actor(id, name, birthYear));
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;
