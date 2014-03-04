@@ -12,6 +12,8 @@ import models.Movie;
 import mysql.DataHandler;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedHashSet;
@@ -43,32 +45,10 @@ public class Frame extends javax.swing.JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Begin menu
-        menuBar = new JMenuBar();
-        actorMenu = new JMenu("Actor");
-        movieMenu = new JMenu("Movie");
-
-        menuBar.add(actorMenu);
-        menuBar.add(movieMenu);
-
-        JMenuItem addActor = new JMenuItem("Add Actor");
-        JMenuItem removeActor = new JMenuItem("Remove Actor");
-
-        actorMenu.add(addActor);
-        actorMenu.add(removeActor);
-
-        JMenuItem addMovie = new JMenuItem("Add Movie");
-        JMenuItem modifyMovie = new JMenuItem("Modify Description");
-        JMenuItem removeMovie = new JMenuItem("Remove Movie");
-
-        movieMenu.add(addMovie);
-        movieMenu.add(modifyMovie);
-        movieMenu.add(removeMovie);
-
-        frame.setJMenuBar(menuBar);
-        // End menu
-
         init();
+
+        menu(frame);
+        frame.setJMenuBar(menuBar);
 
         frame.setVisible(true);
     }
@@ -134,6 +114,49 @@ public class Frame extends javax.swing.JFrame {
         });
 
         db.close();
+    }
+
+    private void menu(final JFrame parent) {
+        menuBar = new JMenuBar();
+        actorMenu = new JMenu("Actor");
+        movieMenu = new JMenu("Movie");
+
+        menuBar.add(actorMenu);
+        menuBar.add(movieMenu);
+
+        JMenuItem addActor = new JMenuItem("Add Actor");
+        JMenuItem removeActor = new JMenuItem("Remove Actor");
+
+        actorMenu.add(addActor);
+        actorMenu.add(removeActor);
+
+        addActor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddActor dialog = new AddActor(actorController, actorModel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(parent);
+                dialog.setVisible(true);
+            }
+        });
+
+        removeActor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                RemoveActor dialog = new RemoveActor();
+//                dialog.pack();
+//                dialog.setLocationRelativeTo(parent);
+//                dialog.setVisible(true);
+            }
+        });
+
+        JMenuItem addMovie = new JMenuItem("Add Movie");
+        JMenuItem modifyMovie = new JMenuItem("Modify Description");
+        JMenuItem removeMovie = new JMenuItem("Remove Movie");
+
+        movieMenu.add(addMovie);
+        movieMenu.add(modifyMovie);
+        movieMenu.add(removeMovie);
     }
 
     public static void main(String[] args) {
