@@ -25,8 +25,8 @@ public class ActorController {
         return db.insert(String.format("insert into actor (id, name, birthYear) values (null, '%s', '%d');", name, birthYear));
     }
 
-    public void removeActor(int id) {
-        db.execute(String.format("delete from actor where id = %d;", id));
+    public void removeActor(String name) {
+        db.execute(String.format("delete from actor where name = '%s';", name));
     }
 
     public LinkedHashSet<Actor> getActors() {
