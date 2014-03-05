@@ -6,6 +6,7 @@
 package views;
 
 import controllers.ActorController;
+import controllers.JoinedController;
 import controllers.MovieController;
 import models.Actor;
 import models.Movie;
@@ -37,6 +38,7 @@ public class Frame extends javax.swing.JFrame {
     private DefaultListModel joinedModel;
     private ActorController actorController;
     private MovieController movieController;
+    private JoinedController joinedController;
 
     public Frame() {
         // Form initialization
@@ -77,6 +79,7 @@ public class Frame extends javax.swing.JFrame {
         // Instantiate the controllers with the database
         actorController = new ActorController(db);
         movieController = new MovieController(db);
+        joinedController = new JoinedController(db);
 
         // Initialize the Actor list with elements from the database
         for (Actor a : actorController.getActors()) {
@@ -284,6 +287,27 @@ public class Frame extends javax.swing.JFrame {
 
         // Add options to the joined menu
         menuBar.add(joinedState);
+
+        joinedState.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!(actors.getSelectedIndex() == -1 || movies.getSelectedIndex() == -1)) {
+                    if (joinedState.getState()) {
+                        int a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex())).getID();
+                        int m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex())).getID();
+
+                        joinedController.join(a, m);
+                    } else {
+                        int a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex())).getID();
+                        int m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex())).getID();
+                        
+                        joinedController.unjoin(a, m);
+                    }
+                } else {
+                    joinedState.setState(joinedState.getState() ? false : true);
+                }
+            }
+        });
 
     }
 
