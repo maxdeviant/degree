@@ -159,7 +159,7 @@ public class Frame extends javax.swing.JFrame {
         });
 
         JMenuItem addMovie = new JMenuItem("Add Movie");
-        JMenuItem modifyMovie = new JMenuItem("Modify Description");
+        JMenuItem modifyMovie = new JMenuItem("Edit Description");
         JMenuItem removeMovie = new JMenuItem("Remove Movie");
 
         movieMenu.add(addMovie);
@@ -173,6 +173,21 @@ public class Frame extends javax.swing.JFrame {
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
                 dialog.setVisible(true);
+            }
+        });
+
+        modifyMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (movies.getSelectedValue() != null) {
+                    String input = JOptionPane.showInputDialog(parent, String.format("Description: "), "Edit Description", JOptionPane.NO_OPTION);
+                    Movie m = (Movie) movies.getSelectedValue();
+                    movieController.updateMovie(m.getID(), input);
+                    m = new Movie(m.getID(), m.getTitle(), m.getYear(), input);
+                    movieModel.setElementAt(m, movies.getSelectedIndex());
+                    info.setText(m.getDescription());
+                    dispose();
+                }
             }
         });
 
