@@ -41,6 +41,7 @@ public class ActorController {
      */
     public void removeActor(int id) {
         db.execute(String.format("delete from actor where id = %d;", id));
+        db.execute(String.format("delete from actor_movie where actor_id = %d;", id));
     }
 
     /**
