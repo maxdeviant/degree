@@ -9,6 +9,7 @@ import models.Actor;
 import models.Movie;
 import mysql.DataHandler;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -20,6 +21,14 @@ public class ActorController {
         this.db = db;
     }
 
+    public int addActor(String name, int birthYear) {
+        return db.insert(String.format("insert into actor (id, name, birthYear) values (null, '%s', '%d');", name, birthYear));
+    }
+
+    public void removeActor(int id) {
+        db.execute(String.format("delete from actor where id = %d;", id));
+    }
+
     public LinkedHashSet<Actor> getActors() {
         LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
 
@@ -29,31 +38,16 @@ public class ActorController {
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
-                int birthYear = results.getInt("birth_year");
+                int birthYear = results.getInt("birthYear");
 
                 set.add(new Actor(id, name, birthYear));
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;
-    }
-
-    public String[] getActorNames() {
-        LinkedHashSet<Actor> set = getActors();
-
-        ResultSet results = db.read("select * from actor;");
-
-        String[] names = new String[set.size()];
-
-        int index = 0;
-        for (Actor a : set) {
-            names[index] = a.getName();
-            index++;
-        }
-
-        return names;
     }
 
     public LinkedHashSet<Movie> getJoined(Actor actor) {
@@ -80,6 +74,7 @@ public class ActorController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;

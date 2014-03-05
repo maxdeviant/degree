@@ -9,6 +9,7 @@ import models.Actor;
 import models.Movie;
 import mysql.DataHandler;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -18,6 +19,18 @@ public class MovieController {
 
     public MovieController(DataHandler db) {
         this.db = db;
+    }
+
+    public int addMovie(String title, int year) {
+        return db.insert(String.format("insert into movie (id, title, year, description) values (null, '%s', '%d', '');", title, year));
+    }
+
+    public void updateMovie(int id, String description) {
+        db.execute(String.format("update movie set description = '%s' where id = %d;", description, id));
+    }
+
+    public void removeMovie(int id) {
+        db.execute(String.format("delete from movie where id = %d;", id));
     }
 
     public LinkedHashSet<Movie> getMovies() {
@@ -36,6 +49,7 @@ public class MovieController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;
@@ -73,13 +87,14 @@ public class MovieController {
                 while (actor.next()) {
                     int id = actor.getInt("id");
                     String name = actor.getString("name");
-                    int birthYear = actor.getInt("birth_year");
+                    int birthYear = actor.getInt("birthYear");
 
                     set.add(new Actor(id, name, birthYear));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return set;

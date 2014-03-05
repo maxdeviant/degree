@@ -12,6 +12,8 @@ import models.Movie;
 import mysql.DataHandler;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedHashSet;
@@ -43,32 +45,10 @@ public class Frame extends javax.swing.JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Begin menu
-        menuBar = new JMenuBar();
-        actorMenu = new JMenu("Actor");
-        movieMenu = new JMenu("Movie");
-
-        menuBar.add(actorMenu);
-        menuBar.add(movieMenu);
-
-        JMenuItem addActor = new JMenuItem("Add Actor");
-        JMenuItem removeActor = new JMenuItem("Remove Actor");
-
-        actorMenu.add(addActor);
-        actorMenu.add(removeActor);
-
-        JMenuItem addMovie = new JMenuItem("Add Movie");
-        JMenuItem modifyMovie = new JMenuItem("Modify Description");
-        JMenuItem removeMovie = new JMenuItem("Remove Movie");
-
-        movieMenu.add(addMovie);
-        movieMenu.add(modifyMovie);
-        movieMenu.add(removeMovie);
-
-        frame.setJMenuBar(menuBar);
-        // End menu
-
         init();
+
+        menu(frame);
+        frame.setJMenuBar(menuBar);
 
         frame.setVisible(true);
     }
@@ -104,7 +84,7 @@ public class Frame extends javax.swing.JFrame {
                 info.setText(String.format("Name: %s\nBorn: %d", actor.getName(), actor.getBirthYear()));
 
                 for (Movie m : joined) {
-                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
+//                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
                 }
             }
@@ -127,13 +107,107 @@ public class Frame extends javax.swing.JFrame {
                 info.setText(movie.getDescription());
 
                 for (Actor a : joined) {
-                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
+//                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
                 }
             }
         });
 
         db.close();
+    }
+
+    private void menu(final JFrame parent) {
+        menuBar = new JMenuBar();
+        actorMenu = new JMenu("Actor");
+        movieMenu = new JMenu("Movie");
+
+        menuBar.add(actorMenu);
+        menuBar.add(movieMenu);
+
+        JMenuItem addActor = new JMenuItem("Add Actor");
+        JMenuItem removeActor = new JMenuItem("Remove Actor");
+
+        actorMenu.add(addActor);
+        actorMenu.add(removeActor);
+
+        addActor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddActor dialog = new AddActor(actorController, actorModel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(parent);
+                dialog.setVisible(true);
+            }
+        });
+
+        removeActor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (actors.getSelectedValue() != null) {
+                    int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", actors.getSelectedValue()), "Remove Actor", JOptionPane.WARNING_MESSAGE);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        Actor a = (Actor) actors.getSelectedValue();
+                        actorController.removeActor(a.getID());
+                        actorModel.removeElement(actorModel.getElementAt(actors.getSelectedIndex()));
+                        dispose();
+                    } else {
+                        dispose();
+                    }
+                }
+            }
+        });
+
+        JMenuItem addMovie = new JMenuItem("Add Movie");
+        JMenuItem modifyMovie = new JMenuItem("Edit Description");
+        JMenuItem removeMovie = new JMenuItem("Remove Movie");
+
+        movieMenu.add(addMovie);
+        movieMenu.add(modifyMovie);
+        movieMenu.add(removeMovie);
+
+        addMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddMovie dialog = new AddMovie(movieController, movieModel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(parent);
+                dialog.setVisible(true);
+            }
+        });
+
+        modifyMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (movies.getSelectedValue() != null) {
+                    String input = JOptionPane.showInputDialog(parent, String.format("Description: "), "Edit Description", JOptionPane.NO_OPTION);
+                    Movie m = (Movie) movies.getSelectedValue();
+                    movieController.updateMovie(m.getID(), input);
+                    m = new Movie(m.getID(), m.getTitle(), m.getYear(), input);
+                    movieModel.setElementAt(m, movies.getSelectedIndex());
+                    info.setText(m.getDescription());
+                    dispose();
+                }
+            }
+        });
+
+        removeMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (movies.getSelectedValue() != null) {
+                    int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", movies.getSelectedValue()), "Remove Movie", JOptionPane.WARNING_MESSAGE);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        Movie m = (Movie) movies.getSelectedValue();
+                        movieController.removeMovie(m.getID());
+                        movieModel.removeElement(movieModel.getElementAt(movies.getSelectedIndex()));
+                        dispose();
+                    } else {
+                        dispose();
+                    }
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
