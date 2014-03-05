@@ -21,6 +21,10 @@ public class MovieController {
         this.db = db;
     }
 
+    public int addMovie(String title, int year) {
+        return db.insert(String.format("insert into movie (id, title, year, description) values (null, '%s', '%d', '');", title, year));
+    }
+
     public LinkedHashSet<Movie> getMovies() {
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
 

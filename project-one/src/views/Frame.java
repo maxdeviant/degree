@@ -165,6 +165,16 @@ public class Frame extends javax.swing.JFrame {
         movieMenu.add(addMovie);
         movieMenu.add(modifyMovie);
         movieMenu.add(removeMovie);
+
+        addMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddMovie dialog = new AddMovie(movieController, movieModel);
+                dialog.pack();
+                dialog.setLocationRelativeTo(parent);
+                dialog.setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
