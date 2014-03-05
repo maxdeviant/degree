@@ -25,6 +25,10 @@ public class MovieController {
         return db.insert(String.format("insert into movie (id, title, year, description) values (null, '%s', '%d', '');", title, year));
     }
 
+    public void updateMovie(int id, String description) {
+        db.execute(String.format("update movie set description = '%s' where id = %d;", description, id));
+    }
+
     public void removeMovie(int id) {
         db.execute(String.format("delete from movie where id = %d;", id));
     }
