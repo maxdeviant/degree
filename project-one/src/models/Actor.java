@@ -20,31 +20,22 @@ public class Actor extends Model {
     }
     public int getBirthYear() { return birthYear; }
 
+    /**
+     * Creates a new Actor with the given information.
+     * @param id The ID of the Actor.
+     * @param name The name of the Actor.
+     * @param birthYear The birth year of the Actor.
+     */
     public Actor(int id, String name, int birthYear) {
         this.id = id;
         this.name = name;
         this.birthYear = birthYear;
     }
 
-    public HashSet<Actor> load(ResultSet results) {
-        HashSet<Actor> set = new HashSet<Actor>();
-
-        try {
-            while (results.next()) {
-                int id = results.getInt("id");
-                String name = results.getString("name");
-                int birthYear = results.getInt("birthYear");
-
-                set.add(new Actor(id, name, birthYear));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-        return set;
-    }
-
+    /**
+     * Returns a String representation of the Actor. Note: This method is used to represent an Actor object in a JList, hence why it only returns the Actor's name.
+     * @return A String representation of the Actor.
+     */
     public String toString() {
         return name;
     }
