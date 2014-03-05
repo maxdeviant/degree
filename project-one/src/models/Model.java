@@ -15,4 +15,5 @@ public abstract class Model<T> {
 
     void insert() {}
     void update() {}
+    void remove() {}
 }
