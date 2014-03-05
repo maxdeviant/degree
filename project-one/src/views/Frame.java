@@ -23,6 +23,7 @@ public class Frame extends javax.swing.JFrame {
     private JMenuBar menuBar;
     private JMenu actorMenu;
     private JMenu movieMenu;
+    private JCheckBoxMenuItem joinedState;
     private JLabel actorsLabel;
     private JLabel moviesLabel;
     private JLabel infoLabel;
@@ -96,15 +97,24 @@ public class Frame extends javax.swing.JFrame {
                 joinedLabel.setText("Filmography");
                 info.setText(String.format("Name: %s\nBorn: %d", actor.getName(), actor.getBirthYear()));
 
+                int mIndex = movies.getSelectedIndex();
+                joinedState.setState(false);
+
                 // Populate the Filmography list
                 for (Movie m : joined) {
 //                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
+
+                    if (mIndex != -1) {
+                        if (m.getID() == ((Movie) movieModel.getElementAt(mIndex)).getID()) {
+                            joinedState.setState(true);
+                        }
+                    }
                 }
             }
         });
 
-        // Initialize the Movie list with elemetns from the database
+        // Initialize the Movie list with elements from the database
         for (Movie m : movieController.getMovies()) {
             movieModel.addElement(m);
         }
@@ -123,10 +133,19 @@ public class Frame extends javax.swing.JFrame {
                 joinedLabel.setText("Cast List");
                 info.setText(movie.getDescription());
 
+                int aIndex = actors.getSelectedIndex();
+                joinedState.setState(false);
+
                 // Populate the Cast list
                 for (Actor a : joined) {
 //                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
+
+                    if (aIndex != -1) {
+                        if (a.getID() == ((Actor) actorModel.getElementAt(aIndex)).getID()) {
+                            joinedState.setState(true);
+                        }
+                    }
                 }
             }
         });
@@ -259,6 +278,13 @@ public class Frame extends javax.swing.JFrame {
                 }
             }
         });
+
+        // Declare options for the joined menu
+        joinedState = new JCheckBoxMenuItem("Joined");
+
+        // Add options to the joined menu
+        menuBar.add(joinedState);
+
     }
 
     public static void main(String[] args) {
