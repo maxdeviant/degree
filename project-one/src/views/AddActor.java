@@ -23,6 +23,11 @@ public class AddActor extends JDialog {
     private ActorController actorController;
     private DefaultListModel actorModel;
 
+    /**
+     * Creates a new AddActor dialog.
+     * @param actorController An ActorController instance used to add the actor to the database.
+     * @param actorModel The DefaultListModel corresponding to the actors JList.
+     */
     public AddActor(ActorController actorController, DefaultListModel actorModel) {
         this.actorController = actorController;
         this.actorModel = actorModel;
@@ -58,6 +63,9 @@ public class AddActor extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Called when the OK button is clicked.
+     */
     private void onOK() {
         if (!(nameField.getText().equals("") || birthYearField.getText().equals(""))) {
             String name = nameField.getText();
@@ -79,6 +87,9 @@ public class AddActor extends JDialog {
         dispose();
     }
 
+    /**
+     * Called when the Cancel button is clicked.
+     */
     private void onCancel() {
         dispose();
     }
