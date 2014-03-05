@@ -25,6 +25,10 @@ public class MovieController {
         return db.insert(String.format("insert into movie (id, title, year, description) values (null, '%s', '%d', '');", title, year));
     }
 
+    public void removeMovie(int id) {
+        db.execute(String.format("delete from movie where id = %d;", id));
+    }
+
     public LinkedHashSet<Movie> getMovies() {
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
 
