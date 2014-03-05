@@ -91,10 +91,12 @@ public class Frame extends javax.swing.JFrame {
 //                movies.clearSelection();
                 joinedModel.clear();
 
+                // Change labels and set actor information
                 infoLabel.setText("Information");
                 joinedLabel.setText("Filmography");
                 info.setText(String.format("Name: %s\nBorn: %d", actor.getName(), actor.getBirthYear()));
 
+                // Populate the Filmography list
                 for (Movie m : joined) {
 //                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
@@ -102,10 +104,12 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Initialize the Movie list with elemetns from the database
         for (Movie m : movieController.getMovies()) {
             movieModel.addElement(m);
         }
 
+        // Add a mouse listener for the Movie list
         movies.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 Movie movie = (Movie) movieModel.getElementAt(movies.getSelectedIndex());
@@ -114,10 +118,12 @@ public class Frame extends javax.swing.JFrame {
 //                actors.clearSelection();
                 joinedModel.clear();
 
+                // Change labels and set movie description
                 infoLabel.setText("Description");
                 joinedLabel.setText("Cast List");
                 info.setText(movie.getDescription());
 
+                // Populate the Cast list
                 for (Actor a : joined) {
 //                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
@@ -126,23 +132,33 @@ public class Frame extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Initialize and handle input to the menu.
+     * @param parent The parent JFrame.
+     */
     private void menu(final JFrame parent) {
+        // Declare the menus
         menuBar = new JMenuBar();
         actorMenu = new JMenu("Actor");
         movieMenu = new JMenu("Movie");
 
+        // Add the submenus to the main menu
         menuBar.add(actorMenu);
         menuBar.add(movieMenu);
 
+        // Declare options for the Actor menu
         JMenuItem addActor = new JMenuItem("Add Actor");
         JMenuItem removeActor = new JMenuItem("Remove Actor");
 
+        // Add options to the Actor menu
         actorMenu.add(addActor);
         actorMenu.add(removeActor);
 
+        // Add an action listener for the 'Add Actor' option
         addActor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Show the AddActor dialog
                 AddActor dialog = new AddActor(actorController, actorModel);
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
@@ -150,15 +166,22 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Add an action listener for the 'Remove Actor' option
         removeActor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Make sure an Actor is selected
                 if (actors.getSelectedValue() != null) {
+                    // Confirm the deletion
                     int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", actors.getSelectedValue()), "Remove Actor", JOptionPane.WARNING_MESSAGE);
 
+                    // If the user chose OK
                     if (result == JOptionPane.YES_OPTION) {
+                        // Remove the Actor from the table
                         Actor a = (Actor) actors.getSelectedValue();
                         actorController.removeActor(a.getID());
+
+                        // Update the view
                         actorModel.removeElement(actorModel.getElementAt(actors.getSelectedIndex()));
                         dispose();
                     } else {
@@ -168,17 +191,21 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Declare options for the Movie menu
         JMenuItem addMovie = new JMenuItem("Add Movie");
         JMenuItem modifyMovie = new JMenuItem("Edit Description");
         JMenuItem removeMovie = new JMenuItem("Remove Movie");
 
+        // Add options to the Movie menu
         movieMenu.add(addMovie);
         movieMenu.add(modifyMovie);
         movieMenu.add(removeMovie);
 
+        // Add an action listener for the 'Add Movie' option
         addMovie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Show the AddMovie dialog
                 AddMovie dialog = new AddMovie(movieController, movieModel);
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
@@ -186,13 +213,20 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Add an action listener for the 'Edit Description' option
         modifyMovie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Make sure a Movie is selected
                 if (movies.getSelectedValue() != null) {
+                    // Show the input dialog
                     String input = JOptionPane.showInputDialog(parent, String.format("Description: "), "Edit Description", JOptionPane.NO_OPTION);
+
+                    // Modify the movie description
                     Movie m = (Movie) movies.getSelectedValue();
                     movieController.updateMovie(m.getID(), input);
+
+                    // Update the view
                     m = new Movie(m.getID(), m.getTitle(), m.getYear(), input);
                     movieModel.setElementAt(m, movies.getSelectedIndex());
                     info.setText(m.getDescription());
@@ -201,15 +235,22 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Add an action listener for the 'Remove Movie' option
         removeMovie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Make sure a Movie is selected
                 if (movies.getSelectedValue() != null) {
+                    // Confirm the deletion
                     int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", movies.getSelectedValue()), "Remove Movie", JOptionPane.WARNING_MESSAGE);
 
+                    // If the user chose OK
                     if (result == JOptionPane.YES_OPTION) {
+                        // Remove the Movie from the table
                         Movie m = (Movie) movies.getSelectedValue();
                         movieController.removeMovie(m.getID());
+
+                        // Update the view
                         movieModel.removeElement(movieModel.getElementAt(movies.getSelectedIndex()));
                         dispose();
                     } else {
@@ -221,6 +262,7 @@ public class Frame extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
+        // Create a new application instance
         new Frame();
     }
 }

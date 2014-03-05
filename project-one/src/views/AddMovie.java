@@ -1,3 +1,8 @@
+/*
+ *  Marshall Bowers
+ *  CSC 417
+ */
+
 package views;
 
 import controllers.MovieController;
@@ -18,6 +23,11 @@ public class AddMovie extends JDialog {
     MovieController movieController;
     DefaultListModel movieModel;
 
+    /**
+     * Creates a new AddMovie dialog.
+     * @param movieController A MovieController instance used to add the movie to the database.
+     * @param movieModel The DefaultListModel corresponding to the movies JList.
+     */
     public AddMovie(MovieController movieController, DefaultListModel movieModel) {
         this.movieController = movieController;
         this.movieModel = movieModel;
@@ -53,6 +63,9 @@ public class AddMovie extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Called when the OK button is clicked.
+     */
     private void onOK() {
         if (!(titleField.getText().length() < 3 || yearField.getText().equals(""))) {
             String title = titleField.getText();
@@ -74,6 +87,9 @@ public class AddMovie extends JDialog {
         dispose();
     }
 
+    /**
+     * Called when the Cancel button is clicked.
+     */
     private void onCancel() {
         dispose();
     }
