@@ -84,7 +84,7 @@ public class Frame extends javax.swing.JFrame {
                 info.setText(String.format("Name: %s\nBorn: %d", actor.getName(), actor.getBirthYear()));
 
                 for (Movie m : joined) {
-                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
+//                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
                 }
             }
@@ -107,7 +107,7 @@ public class Frame extends javax.swing.JFrame {
                 info.setText(movie.getDescription());
 
                 for (Actor a : joined) {
-                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
+//                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
                 }
             }
@@ -143,10 +143,18 @@ public class Frame extends javax.swing.JFrame {
         removeActor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                RemoveActor dialog = new RemoveActor();
-//                dialog.pack();
-//                dialog.setLocationRelativeTo(parent);
-//                dialog.setVisible(true);
+                if (actors.getSelectedValue() != null) {
+                    int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", actors.getSelectedValue()), "Remove Actor", JOptionPane.WARNING_MESSAGE);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        Actor a = (Actor) actors.getSelectedValue();
+                        actorController.removeActor(a.getName());
+                        actorModel.removeElement(actorModel.getElementAt(actors.getSelectedIndex()));
+                        dispose();
+                    } else {
+                        dispose();
+                    }
+                }
             }
         });
 
