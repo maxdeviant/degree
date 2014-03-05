@@ -67,14 +67,21 @@ public class AddActor extends JDialog {
      * Called when the OK button is clicked.
      */
     private void onOK() {
+        // If both fields are not empty
         if (!(nameField.getText().equals("") || birthYearField.getText().equals(""))) {
+            // Get the form values
             String name = nameField.getText();
             int birthYear = Integer.parseInt(birthYearField.getText());
 
+            // Get the current year
             int currYear = Calendar.getInstance().get(Calendar.YEAR);
 
+            // Check if the birth year is in bounds
             if (birthYear >= 1800 && birthYear <= currYear) {
+                // Add the Actor to the table
                 int id = actorController.addActor(name, birthYear);
+
+                // Update the view
                 actorModel.addElement(new Actor(id, name, birthYear));
                 dispose();
             } else {
