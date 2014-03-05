@@ -23,6 +23,11 @@ public class AddActor extends JDialog {
     private ActorController actorController;
     private DefaultListModel actorModel;
 
+    /**
+     * Creates a new AddActor dialog.
+     * @param actorController An ActorController instance used to add the actor to the database.
+     * @param actorModel The DefaultListModel corresponding to the actors JList.
+     */
     public AddActor(ActorController actorController, DefaultListModel actorModel) {
         this.actorController = actorController;
         this.actorModel = actorModel;
@@ -58,15 +63,25 @@ public class AddActor extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Called when the OK button is clicked.
+     */
     private void onOK() {
+        // If both fields are not empty
         if (!(nameField.getText().equals("") || birthYearField.getText().equals(""))) {
+            // Get the form values
             String name = nameField.getText();
             int birthYear = Integer.parseInt(birthYearField.getText());
 
+            // Get the current year
             int currYear = Calendar.getInstance().get(Calendar.YEAR);
 
+            // Check if the birth year is in bounds
             if (birthYear >= 1800 && birthYear <= currYear) {
+                // Add the Actor to the table
                 int id = actorController.addActor(name, birthYear);
+
+                // Update the view
                 actorModel.addElement(new Actor(id, name, birthYear));
                 dispose();
             } else {
@@ -79,6 +94,9 @@ public class AddActor extends JDialog {
         dispose();
     }
 
+    /**
+     * Called when the Cancel button is clicked.
+     */
     private void onCancel() {
         dispose();
     }

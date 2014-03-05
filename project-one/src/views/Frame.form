@@ -43,7 +43,9 @@
         <children>
           <component id="fcf1c" class="javax.swing.JList" binding="actors">
             <constraints/>
-            <properties/>
+            <properties>
+              <selectionMode value="0"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
@@ -57,7 +59,9 @@
         <children>
           <component id="abe55" class="javax.swing.JList" binding="movies">
             <constraints/>
-            <properties/>
+            <properties>
+              <selectionMode value="0"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
