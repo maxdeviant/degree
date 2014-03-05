@@ -9,7 +9,7 @@
     <children>
       <component id="7aee9" class="javax.swing.JLabel" binding="actorsLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -18,13 +18,13 @@
       </component>
       <hspacer id="8b3c6">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </hspacer>
       <component id="7de35" class="javax.swing.JLabel" binding="moviesLabel">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -33,10 +33,12 @@
       </component>
       <scrollpane id="641be">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.1" weighty="0.1"/>
         </constraints>
-        <properties/>
+        <properties>
+          <horizontalScrollBarPolicy value="30"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="fcf1c" class="javax.swing.JList" binding="actors">
@@ -47,7 +49,7 @@
       </scrollpane>
       <scrollpane id="c6e7">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.1" weighty="0.1"/>
         </constraints>
         <properties/>
@@ -61,7 +63,7 @@
       </scrollpane>
       <component id="e2e78" class="javax.swing.JLabel" binding="infoLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -70,7 +72,7 @@
       </component>
       <component id="6f62c" class="javax.swing.JLabel" binding="joinedLabel">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -79,7 +81,7 @@
       </component>
       <scrollpane id="a4d68">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.1" weighty="0.1"/>
         </constraints>
         <properties/>
@@ -93,7 +95,7 @@
       </scrollpane>
       <scrollpane id="50817">
         <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.1" weighty="0.1"/>
         </constraints>
         <properties/>
@@ -105,6 +107,36 @@
           </component>
         </children>
       </scrollpane>
+      <hspacer id="88476">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="19c17">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="a9002">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="6de2b">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="bcd62">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>

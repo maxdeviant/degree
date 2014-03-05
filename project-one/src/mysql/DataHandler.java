@@ -17,6 +17,9 @@ public class DataHandler {
     private String driver;
     private String database;
 
+    /**
+     * Establishes a database connection with the default driver and database path.
+     */
     public DataHandler() {
         this.driver = "com.mysql.jdbc.Driver";
         this.database = "jdbc:mysql://localhost/mymdb";
@@ -24,11 +27,19 @@ public class DataHandler {
         connect();
     }
 
+    /**
+     * Establishes a connection with the specified driver and database..
+     * @param driver The database driver to use.
+     * @param database The database to connect to.
+     */
     public DataHandler(String driver, String database) {
         this.driver = driver;
         this.database = database;
     }
 
+    /**
+     * Connects to the database as root.
+     */
     private void connect() {
         try {
             Class.forName(driver);
@@ -40,6 +51,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Returns the results of an SQL query.
+     * @param query The SQL query to be executed.
+     * @return The ResultSet for the query.
+     */
     public ResultSet read(String query) {
         try {
             statement = connect.createStatement();
@@ -53,6 +69,10 @@ public class DataHandler {
         return resultSet;
     }
 
+    /**
+     * Executes an SQL query string.
+     * @param query The SQL query to be executed.
+     */
     public void execute(String query) {
         try {
             statement = connect.createStatement();
@@ -64,6 +84,11 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Executes an SQL query string and returns the keys.
+     * @param query The SQL query to be executed.
+     * @return The primary keys for the item(s) inserted.
+     */
     public int insert(String query) {
         try {
             preparedStatement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -84,6 +109,9 @@ public class DataHandler {
         return -1;
     }
 
+    /**
+     * Closes the connection to the database.
+     */
     public void close() {
         try {
             if (resultSet != null) {

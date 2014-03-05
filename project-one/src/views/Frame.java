@@ -45,38 +45,50 @@ public class Frame extends javax.swing.JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Initialize the form elements
         init();
 
+        // Add the menu to the frame
         menu(frame);
         frame.setJMenuBar(menuBar);
 
+        // Make the frame visible
         frame.setVisible(true);
     }
 
+    /**
+     * Initializes all of the form elements.
+     */
     private void init() {
+        // Instantiate a new DataHandler for accessing the database
         DataHandler db = new DataHandler();
 
+        // Declare the JList models
         actorModel = new DefaultListModel();
         movieModel = new DefaultListModel();
         joinedModel = new DefaultListModel();
 
+        // Associate the models with their respective lists
         actors.setModel(actorModel);
         movies.setModel(movieModel);
         joined.setModel(joinedModel);
 
+        // Instantiate the controllers with the database
         actorController = new ActorController(db);
         movieController = new MovieController(db);
 
+        // Initialize the Actor list with elements from the database
         for (Actor a : actorController.getActors()) {
             actorModel.addElement(a);
         }
 
+        // Add a mouse listener for the Actor list
         actors.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
                 LinkedHashSet<Movie> joined = actorController.getJoined(actor);
 
-                movies.clearSelection();
+//                movies.clearSelection();
                 joinedModel.clear();
 
                 infoLabel.setText("Information");
@@ -99,7 +111,7 @@ public class Frame extends javax.swing.JFrame {
                 Movie movie = (Movie) movieModel.getElementAt(movies.getSelectedIndex());
                 LinkedHashSet<Actor> joined = movieController.getJoined(movie);
 
-                actors.clearSelection();
+//                actors.clearSelection();
                 joinedModel.clear();
 
                 infoLabel.setText("Description");
