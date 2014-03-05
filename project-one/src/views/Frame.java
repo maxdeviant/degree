@@ -148,7 +148,7 @@ public class Frame extends javax.swing.JFrame {
 
                     if (result == JOptionPane.YES_OPTION) {
                         Actor a = (Actor) actors.getSelectedValue();
-                        actorController.removeActor(a.getName());
+                        actorController.removeActor(a.getID());
                         actorModel.removeElement(actorModel.getElementAt(actors.getSelectedIndex()));
                         dispose();
                     } else {
@@ -173,6 +173,24 @@ public class Frame extends javax.swing.JFrame {
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
                 dialog.setVisible(true);
+            }
+        });
+
+        removeMovie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (movies.getSelectedValue() != null) {
+                    int result = JOptionPane.showConfirmDialog(parent, String.format("Are you sure you wish to delete %s?", movies.getSelectedValue()), "Remove Movie", JOptionPane.WARNING_MESSAGE);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        Movie m = (Movie) movies.getSelectedValue();
+                        movieController.removeMovie(m.getID());
+                        movieModel.removeElement(movieModel.getElementAt(movies.getSelectedIndex()));
+                        dispose();
+                    } else {
+                        dispose();
+                    }
+                }
             }
         });
     }
