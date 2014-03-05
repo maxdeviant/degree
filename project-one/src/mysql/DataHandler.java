@@ -20,6 +20,8 @@ public class DataHandler {
     public DataHandler() {
         this.driver = "com.mysql.jdbc.Driver";
         this.database = "jdbc:mysql://localhost/mymdb";
+
+        connect();
     }
 
     public DataHandler(String driver, String database) {
@@ -40,16 +42,12 @@ public class DataHandler {
 
     public ResultSet read(String query) {
         try {
-            connect();
-
             statement = connect.createStatement();
 
             resultSet = statement.executeQuery(query);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-//            close();
         }
 
         return resultSet;
@@ -57,8 +55,6 @@ public class DataHandler {
 
     public void execute(String query) {
         try {
-            connect();
-
             statement = connect.createStatement();
 
             statement.execute(query);
@@ -70,8 +66,6 @@ public class DataHandler {
 
     public int insert(String query) {
         try {
-            connect();
-
             preparedStatement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.execute();

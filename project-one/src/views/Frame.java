@@ -112,8 +112,6 @@ public class Frame extends javax.swing.JFrame {
                 }
             }
         });
-
-        db.close();
     }
 
     private void menu(final JFrame parent) {
