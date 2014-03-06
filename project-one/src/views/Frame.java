@@ -44,6 +44,10 @@ public class Frame extends javax.swing.JFrame {
     private enum ViewState {
         NONE, ACTOR, MOVIE
     }
+    private SortType movieSort = SortType.TITLE;
+    private enum SortType {
+        TITLE, YEAR
+    }
 
     public Frame() {
         // Form initialization
@@ -122,7 +126,7 @@ public class Frame extends javax.swing.JFrame {
         });
 
         // Initialize the Movie list with elements from the database
-        for (Movie m : movieController.getMovies()) {
+        for (Movie m : movieController.getMovies(movieSort.ordinal())) {
             movieModel.addElement(m);
         }
 
@@ -152,6 +156,24 @@ public class Frame extends javax.swing.JFrame {
                             joinedState.setState(true);
                         }
                     }
+                }
+            }
+        });
+
+        moviesLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (movieSort == SortType.TITLE) {
+                    movieSort = SortType.YEAR;
+                    moviesLabel.setText("Movies (Sort by Year)");
+                } else {
+                    movieSort = SortType.TITLE;
+                    moviesLabel.setText("Movies (Sort by Title)");
+                }
+
+                movieModel.clear();
+                for (Movie m : movieController.getMovies(movieSort.ordinal())) {
+                    movieModel.addElement(m);
                 }
             }
         });
@@ -231,7 +253,7 @@ public class Frame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Show the AddMovie dialog
-                AddMovie dialog = new AddMovie(movieController, movieModel);
+                AddMovie dialog = new AddMovie(movieController, movieModel, movieSort.ordinal());
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
                 dialog.setVisible(true);
@@ -336,7 +358,17 @@ public class Frame extends javax.swing.JFrame {
                 infoLabel.setText("");
                 joinedLabel.setText("");
                 info.setText("");
-                joinedModel.removeAllElements();
+                joinedModel.clear();
+
+                if (movieSort == SortType.YEAR) {
+                    movieSort = SortType.TITLE;
+                    moviesLabel.setText("Movies (Sort by Title)");
+
+                    movieModel.clear();
+                    for (Movie m : movieController.getMovies(movieSort.ordinal())) {
+                        movieModel.addElement(m);
+                    }
+                }
             }
         });
     }
