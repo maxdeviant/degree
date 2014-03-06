@@ -9,6 +9,7 @@ import controllers.ActorController;
 import controllers.JoinedController;
 import controllers.MovieController;
 import models.Actor;
+import models.Model;
 import models.Movie;
 import mysql.DataHandler;
 
@@ -322,19 +323,18 @@ public class Frame extends javax.swing.JFrame {
 
                     if (joinedState.getState()) {
                         joinedController.join(a.getID(), m.getID());
-
-                        if (viewState == ViewState.ACTOR) {
-                            joinedModel.addElement(m);
-                        } else {
-                            joinedModel.addElement(a);
-                        }
                     } else {
                         joinedController.unjoin(a.getID(), m.getID());
+                    }
 
-                        if (viewState == ViewState.ACTOR) {
-                            joinedModel.removeElement(m);
-                        } else {
-                            joinedModel.removeElement(a);
+                    joinedModel.clear();
+                    if (viewState == ViewState.ACTOR) {
+                        for (Movie o : actorController.getJoined(a)) {
+                            joinedModel.addElement(o);
+                        }
+                    } else {
+                        for (Actor o : movieController.getJoined(m)) {
+                            joinedModel.addElement(o);
                         }
                     }
                 } else {
