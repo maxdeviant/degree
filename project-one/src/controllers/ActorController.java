@@ -51,7 +51,7 @@ public class ActorController {
     public LinkedHashSet<Actor> getActors() {
         LinkedHashSet<Actor> set = new LinkedHashSet<Actor>();
 
-        ResultSet results = db.read("select * from actor;");
+        ResultSet results = db.read("select * from actor order by name asc;");
 
         try {
             while (results.next()) {

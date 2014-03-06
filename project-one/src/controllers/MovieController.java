@@ -57,10 +57,16 @@ public class MovieController {
      * Gets all of the entries from the movie table.
      * @return A set of Movies.
      */
-    public LinkedHashSet<Movie> getMovies() {
+    public LinkedHashSet<Movie> getMovies(int sort) {
         LinkedHashSet<Movie> set = new LinkedHashSet<Movie>();
 
-        ResultSet results = db.read("select * from movie;");
+        ResultSet results;
+
+        if (sort == 0) {
+            results = db.read("select * from movie order by title asc;");
+        } else {
+            results = db.read("select * from movie order by year asc;");
+        }
 
         try {
             while (results.next()) {

@@ -82,7 +82,12 @@ public class AddActor extends JDialog {
                 int id = actorController.addActor(name, birthYear);
 
                 // Update the view
-                actorModel.addElement(new Actor(id, name, birthYear));
+                actorModel.clear();
+
+                for (Actor a : actorController.getActors()) {
+                    actorModel.addElement(a);
+                }
+
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, String.format("Birth Year not in range. Must be between 1800 and %d", currYear), "Warning: Add Actor", JOptionPane.WARNING_MESSAGE);
