@@ -6,8 +6,10 @@
 package views;
 
 import controllers.ActorController;
+import controllers.JoinedController;
 import controllers.MovieController;
 import models.Actor;
+import models.Model;
 import models.Movie;
 import mysql.DataHandler;
 
@@ -24,6 +26,7 @@ public class Frame extends javax.swing.JFrame {
     private JMenu actorMenu;
     private JMenu movieMenu;
     private JCheckBoxMenuItem joinedState;
+    private JButton clearState;
     private JLabel actorsLabel;
     private JLabel moviesLabel;
     private JLabel infoLabel;
@@ -37,6 +40,15 @@ public class Frame extends javax.swing.JFrame {
     private DefaultListModel joinedModel;
     private ActorController actorController;
     private MovieController movieController;
+    private JoinedController joinedController;
+    private ViewState viewState = ViewState.NONE;
+    private enum ViewState {
+        NONE, ACTOR, MOVIE
+    }
+    private SortType movieSort = SortType.TITLE;
+    private enum SortType {
+        TITLE, YEAR
+    }
 
     public Frame() {
         // Form initialization
@@ -77,6 +89,7 @@ public class Frame extends javax.swing.JFrame {
         // Instantiate the controllers with the database
         actorController = new ActorController(db);
         movieController = new MovieController(db);
+        joinedController = new JoinedController(db);
 
         // Initialize the Actor list with elements from the database
         for (Actor a : actorController.getActors()) {
@@ -89,8 +102,8 @@ public class Frame extends javax.swing.JFrame {
                 Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
                 LinkedHashSet<Movie> joined = actorController.getJoined(actor);
 
-//                movies.clearSelection();
                 joinedModel.clear();
+                viewState = ViewState.ACTOR;
 
                 // Change labels and set actor information
                 infoLabel.setText("Information");
@@ -102,7 +115,6 @@ public class Frame extends javax.swing.JFrame {
 
                 // Populate the Filmography list
                 for (Movie m : joined) {
-//                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
 
                     if (mIndex != -1) {
@@ -115,7 +127,7 @@ public class Frame extends javax.swing.JFrame {
         });
 
         // Initialize the Movie list with elements from the database
-        for (Movie m : movieController.getMovies()) {
+        for (Movie m : movieController.getMovies(movieSort.ordinal())) {
             movieModel.addElement(m);
         }
 
@@ -125,8 +137,8 @@ public class Frame extends javax.swing.JFrame {
                 Movie movie = (Movie) movieModel.getElementAt(movies.getSelectedIndex());
                 LinkedHashSet<Actor> joined = movieController.getJoined(movie);
 
-//                actors.clearSelection();
                 joinedModel.clear();
+                viewState = ViewState.MOVIE;
 
                 // Change labels and set movie description
                 infoLabel.setText("Description");
@@ -138,7 +150,6 @@ public class Frame extends javax.swing.JFrame {
 
                 // Populate the Cast list
                 for (Actor a : joined) {
-//                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
 
                     if (aIndex != -1) {
@@ -146,6 +157,24 @@ public class Frame extends javax.swing.JFrame {
                             joinedState.setState(true);
                         }
                     }
+                }
+            }
+        });
+
+        moviesLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (movieSort == SortType.TITLE) {
+                    movieSort = SortType.YEAR;
+                    moviesLabel.setText("Movies (Sort by Year)");
+                } else {
+                    movieSort = SortType.TITLE;
+                    moviesLabel.setText("Movies (Sort by Title)");
+                }
+
+                movieModel.clear();
+                for (Movie m : movieController.getMovies(movieSort.ordinal())) {
+                    movieModel.addElement(m);
                 }
             }
         });
@@ -225,7 +254,7 @@ public class Frame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Show the AddMovie dialog
-                AddMovie dialog = new AddMovie(movieController, movieModel);
+                AddMovie dialog = new AddMovie(movieController, movieModel, movieSort.ordinal());
                 dialog.pack();
                 dialog.setLocationRelativeTo(parent);
                 dialog.setVisible(true);
@@ -285,6 +314,63 @@ public class Frame extends javax.swing.JFrame {
         // Add options to the joined menu
         menuBar.add(joinedState);
 
+        joinedState.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!(actors.getSelectedIndex() == -1 || movies.getSelectedIndex() == -1)) {
+                    Actor a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex()));
+                    Movie m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex()));
+
+                    if (joinedState.getState()) {
+                        joinedController.join(a.getID(), m.getID());
+                    } else {
+                        joinedController.unjoin(a.getID(), m.getID());
+                    }
+
+                    joinedModel.clear();
+                    if (viewState == ViewState.ACTOR) {
+                        for (Movie o : actorController.getJoined(a)) {
+                            joinedModel.addElement(o);
+                        }
+                    } else {
+                        for (Actor o : movieController.getJoined(m)) {
+                            joinedModel.addElement(o);
+                        }
+                    }
+                } else {
+                    joinedState.setState(joinedState.getState() ? false : true);
+                }
+            }
+        });
+
+        // Declare options for the clear state button
+        clearState = new JButton("Clear");
+
+        // Add clear state button to the menu
+        menuBar.add(clearState);
+
+        clearState.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                joinedState.setState(false);
+                actors.clearSelection();
+                movies.clearSelection();
+                infoLabel.setText("");
+                joinedLabel.setText("");
+                info.setText("");
+                joinedModel.clear();
+
+                if (movieSort == SortType.YEAR) {
+                    movieSort = SortType.TITLE;
+                    moviesLabel.setText("Movies (Sort by Title)");
+
+                    movieModel.clear();
+                    for (Movie m : movieController.getMovies(movieSort.ordinal())) {
+                        movieModel.addElement(m);
+                    }
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
