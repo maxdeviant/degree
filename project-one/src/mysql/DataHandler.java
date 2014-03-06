@@ -21,20 +21,10 @@ public class DataHandler {
      * Establishes a database connection with the default driver and database path.
      */
     public DataHandler() {
-        this.driver = "com.mysql.jdbc.Driver";
-        this.database = "jdbc:mysql://localhost/mymdb";
+        this.driver = Properties.getDriver();
+        this.database = Properties.getDatabase();
 
         connect();
-    }
-
-    /**
-     * Establishes a connection with the specified driver and database..
-     * @param driver The database driver to use.
-     * @param database The database to connect to.
-     */
-    public DataHandler(String driver, String database) {
-        this.driver = driver;
-        this.database = database;
     }
 
     /**
@@ -44,7 +34,7 @@ public class DataHandler {
         try {
             Class.forName(driver);
 
-            connect = DriverManager.getConnection(database, "root", "");
+            connect = DriverManager.getConnection(database, Properties.getUsername(), Properties.getPassword());
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
