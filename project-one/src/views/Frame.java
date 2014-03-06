@@ -51,7 +51,7 @@ public class Frame extends javax.swing.JFrame {
 
     public Frame() {
         // Form initialization
-        JFrame frame = new JFrame("Frame");
+        JFrame frame = new JFrame("MyMDB");
         frame.setContentPane(window);
         frame.setSize(640, 480);
         frame.setLocationRelativeTo(null);
@@ -234,6 +234,8 @@ public class Frame extends javax.swing.JFrame {
                     } else {
                         dispose();
                     }
+                } else {
+                    JOptionPane.showMessageDialog(parent, "Please choose an actor to remove.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -278,6 +280,8 @@ public class Frame extends javax.swing.JFrame {
                     movieModel.setElementAt(m, movies.getSelectedIndex());
                     info.setText(m.getDescription());
                     dispose();
+                } else {
+                    JOptionPane.showMessageDialog(parent, "Please choose a movie to modify.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -303,6 +307,8 @@ public class Frame extends javax.swing.JFrame {
                     } else {
                         dispose();
                     }
+                } else {
+                    JOptionPane.showMessageDialog(parent, "Please choose a movie to remove.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -338,6 +344,7 @@ public class Frame extends javax.swing.JFrame {
                     }
                 } else {
                     joinedState.setState(joinedState.getState() ? false : true);
+                    JOptionPane.showMessageDialog(parent, "Please choose an actor and a movie to join.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
