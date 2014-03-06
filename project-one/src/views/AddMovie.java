@@ -20,17 +20,20 @@ public class AddMovie extends JDialog {
     private JLabel yearLabel;
     private JFormattedTextField titleField;
     private JFormattedTextField yearField;
-    MovieController movieController;
-    DefaultListModel movieModel;
+    private MovieController movieController;
+    private DefaultListModel movieModel;
+    private int sortType;
 
     /**
      * Creates a new AddMovie dialog.
      * @param movieController A MovieController instance used to add the movie to the database.
      * @param movieModel The DefaultListModel corresponding to the movies JList.
+     * @param sortType The desired way for the list to be sorted.
      */
-    public AddMovie(MovieController movieController, DefaultListModel movieModel) {
+    public AddMovie(MovieController movieController, DefaultListModel movieModel, int sortType) {
         this.movieController = movieController;
         this.movieModel = movieModel;
+        this.sortType = sortType;
 
         setContentPane(contentPane);
         setModal(true);
@@ -82,7 +85,12 @@ public class AddMovie extends JDialog {
                 int id = movieController.addMovie(title, year);
 
                 // Update the view
-                movieModel.addElement(new Movie(id, title, year, ""));
+                movieModel.clear();
+
+                for (Movie m : movieController.getMovies(sortType)) {
+                    movieModel.addElement(m);
+                }
+
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, String.format("Year not in range. Must be between 1900 and %d", currYear), "Warning: Add Movie", JOptionPane.WARNING_MESSAGE);

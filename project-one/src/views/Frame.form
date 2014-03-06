@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.Frame">
   <grid id="27dc6" binding="window" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="3" y="1" width="169" height="415"/>
+      <xy x="3" y="1" width="215" height="415"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -28,7 +28,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Movies"/>
+          <text value="Movies (Sort by Title)"/>
         </properties>
       </component>
       <scrollpane id="641be">

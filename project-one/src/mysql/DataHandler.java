@@ -98,7 +98,6 @@ public class DataHandler {
             ResultSet keys = preparedStatement.getGeneratedKeys();
 
             if (keys.next()) {
-                System.out.println(keys.getInt(1));
                 return keys.getInt(1);
             }
         } catch (Exception e) {
