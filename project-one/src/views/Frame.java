@@ -9,7 +9,6 @@ import controllers.ActorController;
 import controllers.JoinedController;
 import controllers.MovieController;
 import models.Actor;
-import models.Model;
 import models.Movie;
 import mysql.DataHandler;
 
