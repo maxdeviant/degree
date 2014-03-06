@@ -5,10 +5,6 @@
 
 package models;
 
-import javax.swing.*;
-import java.sql.ResultSet;
-import java.util.HashSet;
-
 public class Actor extends Model {
     private int id;
     private String name;
