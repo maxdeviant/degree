@@ -25,6 +25,7 @@ public class Frame extends javax.swing.JFrame {
     private JMenu actorMenu;
     private JMenu movieMenu;
     private JCheckBoxMenuItem joinedState;
+    private JButton clearState;
     private JLabel actorsLabel;
     private JLabel moviesLabel;
     private JLabel infoLabel;
@@ -39,6 +40,10 @@ public class Frame extends javax.swing.JFrame {
     private ActorController actorController;
     private MovieController movieController;
     private JoinedController joinedController;
+    private ViewState viewState = ViewState.NONE;
+    private enum ViewState {
+        NONE, ACTOR, MOVIE
+    }
 
     public Frame() {
         // Form initialization
@@ -92,8 +97,8 @@ public class Frame extends javax.swing.JFrame {
                 Actor actor = (Actor) actorModel.getElementAt(actors.getSelectedIndex());
                 LinkedHashSet<Movie> joined = actorController.getJoined(actor);
 
-//                movies.clearSelection();
                 joinedModel.clear();
+                viewState = ViewState.ACTOR;
 
                 // Change labels and set actor information
                 infoLabel.setText("Information");
@@ -105,7 +110,6 @@ public class Frame extends javax.swing.JFrame {
 
                 // Populate the Filmography list
                 for (Movie m : joined) {
-//                    movies.getSelectionModel().addSelectionInterval(m.getID() - 1, m.getID() - 1);
                     joinedModel.addElement(m);
 
                     if (mIndex != -1) {
@@ -128,8 +132,8 @@ public class Frame extends javax.swing.JFrame {
                 Movie movie = (Movie) movieModel.getElementAt(movies.getSelectedIndex());
                 LinkedHashSet<Actor> joined = movieController.getJoined(movie);
 
-//                actors.clearSelection();
                 joinedModel.clear();
+                viewState = ViewState.MOVIE;
 
                 // Change labels and set movie description
                 infoLabel.setText("Description");
@@ -141,7 +145,6 @@ public class Frame extends javax.swing.JFrame {
 
                 // Populate the Cast list
                 for (Actor a : joined) {
-//                    actors.getSelectionModel().addSelectionInterval(a.getID() - 1, a.getID() - 1);
                     joinedModel.addElement(a);
 
                     if (aIndex != -1) {
@@ -292,16 +295,25 @@ public class Frame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!(actors.getSelectedIndex() == -1 || movies.getSelectedIndex() == -1)) {
-                    if (joinedState.getState()) {
-                        int a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex())).getID();
-                        int m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex())).getID();
+                    Actor a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex()));
+                    Movie m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex()));
 
-                        joinedController.join(a, m);
+                    if (joinedState.getState()) {
+                        joinedController.join(a.getID(), m.getID());
+
+                        if (viewState == ViewState.ACTOR) {
+                            joinedModel.addElement(m);
+                        } else {
+                            joinedModel.addElement(a);
+                        }
                     } else {
-                        int a = ((Actor) actorModel.getElementAt(actors.getSelectedIndex())).getID();
-                        int m = ((Movie) movieModel.getElementAt(movies.getSelectedIndex())).getID();
-                        
-                        joinedController.unjoin(a, m);
+                        joinedController.unjoin(a.getID(), m.getID());
+
+                        if (viewState == ViewState.ACTOR) {
+                            joinedModel.removeElement(m);
+                        } else {
+                            joinedModel.removeElement(a);
+                        }
                     }
                 } else {
                     joinedState.setState(joinedState.getState() ? false : true);
@@ -309,6 +321,24 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
+        // Declare options for the clear state button
+        clearState = new JButton("Clear");
+
+        // Add clear state button to the menu
+        menuBar.add(clearState);
+
+        clearState.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                joinedState.setState(false);
+                actors.clearSelection();
+                movies.clearSelection();
+                infoLabel.setText("");
+                joinedLabel.setText("");
+                info.setText("");
+                joinedModel.removeAllElements();
+            }
+        });
     }
 
     public static void main(String[] args) {
