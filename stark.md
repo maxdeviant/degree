@@ -1,0 +1,1 @@
+![Logo](stark.png)
