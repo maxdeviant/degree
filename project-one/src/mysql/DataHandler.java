@@ -48,6 +48,7 @@ public class DataHandler {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
     }
 
