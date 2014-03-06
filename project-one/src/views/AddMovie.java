@@ -28,6 +28,7 @@ public class AddMovie extends JDialog {
      * Creates a new AddMovie dialog.
      * @param movieController A MovieController instance used to add the movie to the database.
      * @param movieModel The DefaultListModel corresponding to the movies JList.
+     * @param sortType The desired way for the list to be sorted.
      */
     public AddMovie(MovieController movieController, DefaultListModel movieModel, int sortType) {
         this.movieController = movieController;
