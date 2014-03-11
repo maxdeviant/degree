@@ -42,7 +42,15 @@
 /* -- CONTENT -- */
 
 .content {
-	padding-top: 75px;
+	padding: 75px 0 75px 0;
 }
 
 /* -- FOOTER -- */
+.footer {
+	height: 320px;
+	background: #dd4b39;
+}
+
+.links {
+	/*float: left;*/
+}
