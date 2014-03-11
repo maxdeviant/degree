@@ -2,3 +2,47 @@
 	margin: 0;
 	padding: 0;
 }
+
+.wrapper {
+	margin: 0 auto;
+	width: 960px;
+}
+
+/* -- HEADER -- */
+
+.header {
+	height: 75px;
+	width: 100%;
+	background: #dd4b39;
+	position: fixed;
+}
+
+.header a {
+	color: #000;
+	font-size: 24px;
+	text-decoration: none;
+}
+
+#brand {
+	margin: 25px;
+	display: inline-block;
+}
+
+.navigation {
+	margin: 25px;
+	float: right;
+	text-decoration: none;
+}
+
+.navigation li {
+	padding: 10px;
+	display: inline;
+}
+
+/* -- CONTENT -- */
+
+.content {
+	padding-top: 75px;
+}
+
+/* -- FOOTER -- */
