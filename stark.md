@@ -5,8 +5,8 @@ stark
 >A clearer path to the software development process.
 
 #Table of Contents
-I. [Overview](#overview)
-II. [Principles](#principles)
+1. [Overview](#overview)  
+2. [Principles](#principles)
 
 #Overview
 
