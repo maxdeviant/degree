@@ -2,15 +2,11 @@
 <body>
 	<div class="container">
 		<div id="storefront" class="sixteen columns">
-			<h1>Store</h1>
+			<h1>Login</h1>
 
 			<?php include "include/navigation.php"; ?>
 
 			<hr />
-
-			<?php foreach ($items as $item): ?>
-
-			<?php endforeach; ?>
 		</div>
 	</div>
 </body>

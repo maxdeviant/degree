@@ -1,7 +1,16 @@
+h1 {
+	text-transform: uppercase;
+}
+
 .navigation {
 	text-transform: uppercase;
 }
 
 .navigation li {
 	display: inline;
+	padding-right: 10px;
+}
+
+.right {
+	float: right;
 }
