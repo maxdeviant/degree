@@ -14,3 +14,18 @@ h1 {
 .right {
 	float: right;
 }
+
+img {
+	float: left;
+	padding-right: 25px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.item {
+	min-width: 25%;
+	height: 150px;
+	float: left;
+}

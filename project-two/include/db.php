@@ -30,7 +30,7 @@
 			$dbname = 'phpstore';
 			$username = 'root';
 			$password = '';
-			$url = 'mysql:host=$host;dbname=$dbname';
+			$url = "mysql:host=$host;dbname=$dbname";
 
 			return array(
 				'db' => 'mysql',
