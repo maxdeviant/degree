@@ -1,0 +1,7 @@
+.navigation {
+	text-transform: uppercase;
+}
+
+.navigation li {
+	display: inline;
+}
