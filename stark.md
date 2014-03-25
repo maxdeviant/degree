@@ -7,7 +7,7 @@ stark
 #Table of Contents
 1. [Overview](#overview)  
 2. [Principles](#principles)
-3. [Planning](##process script)
+3. [Process](##process)
 
 #Overview
 
