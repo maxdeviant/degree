@@ -7,6 +7,7 @@ stark
 #Table of Contents
 1. [Overview](#overview)  
 2. [Principles](#principles)
+3. [Planning](#planning)
 
 #Overview
 
@@ -28,3 +29,15 @@ Do not commit to master. That's an order! All major changes start with a branch.
 ##4. Keep it clean.
 
 No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
+
+Planning | 
+-----------
+1) Project Manager is chosen
+2) Establish methods of communication
+3) Create goals and completion time for weekly sprint
+4) Divide tasks
+5) Iteration Commencement
+6) Acceptance Phase
+7) Repeat 3-7 until completion
+
+
