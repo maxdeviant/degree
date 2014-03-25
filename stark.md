@@ -61,9 +61,13 @@ The Hand of the King (Hand) is second in command on the development team. The Ha
 
 It is up to the Hand to pay attention to the development process, both in and out of small council meetings, and advise the king in his decision making.
 
+The Hand does not have to be a senior developer. In fact, choosing a Hand who contrasts the current king in terms of knowledge, expertise, and even personality may be beneficial. This will allow the Hand to advise the king on areas he may not be familiar with.
+
 ##Small Council
 
-The small council is chaired by the king, Hand, as well as key individuals from the development team. The small council is responsible for discussing any issues or concerns that have arisen during the course of development.
+The small council is chaired by the king, Hand, key individuals from the development team, and from other teams in the company, such as marketing. The small council is responsible for discussing project updates, deadlines, and any other issues or concerns that have arisen during the course of development.
+
+The size of the small council may vary, but an ideal number of members is seven.
 
 It is advised that the small council meet regularly for maximum efficiency.
 
