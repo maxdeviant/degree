@@ -1,2 +1,2 @@
-Standards of Compliance
+Compliance Standards
 ==========
