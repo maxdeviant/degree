@@ -7,7 +7,7 @@ stark
 #Table of Contents
 1. [Overview](#overview)  
 2. [Principles](#principles)
-3. [Planning](#planning)
+3. [Planning](|planning)
 
 #Overview
 
@@ -39,5 +39,11 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |5) | Iteration Commencement |
 |6) | Acceptance Phase |
 |7) | Repeat 3-7 until completion |
+
+|Design|
+|------:|
+|1)| 
+|2)|
+|3)|
 
 
