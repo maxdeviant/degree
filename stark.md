@@ -45,18 +45,27 @@ Planning should be the first task in every software iteration.
 ##2. Work your plan.
 
 #Roles
+>"Individually, we are one drop. Together, we are an ocean." – Ryunosuke Satoro
 
 ##King
 
 The highest position in Stark is that of the king. The king is responsible for all executive decisions in the development process and is responsible for working closely with marketing and business teams, as well as shareholders and users.
 
+While other team members, specifically the Hand, are allowed to give their counsel to the king, all decisions ultimately lie with him.
+
+This role may be static or fluid, with one member – such as a senior developer – being made the permanent king, or having the king chosen at the beginning of each iteration.
+
 ##Hand of the King
 
-The Hand of the King (Hand) is second in command on the development team. The Hand is responsible for making critical decisions on the king's behalf. This frees up the hierarchy and prevents the king from being too overwhelmed with managerial tasks. This also enables development to continue even in the king's absence. 
+The Hand of the King (Hand) is second in command on the development team. The Hand is responsible for making critical decisions on the king's behalf. This frees up the hierarchy and prevents the king from being too overwhelmed with managerial tasks. This also enables development to continue even in the king's absence.
+
+It is up to the Hand to pay attention to the development process, both in and out of small council meetings, and advise the king in his decision making.
 
 ##Small Council
 
-The small council is chaired by the king, Hand, as well as key individuals from the development team. The small council is responsible for discussing any issues or concerns that have arisen during the course of development. It is advised that the small council meet regularly for maximum efficiency.
+The small council is chaired by the king, Hand, as well as key individuals from the development team. The small council is responsible for discussing any issues or concerns that have arisen during the course of development.
+
+It is advised that the small council meet regularly for maximum efficiency.
 
 #Execution
 >"Our job is to execute." – Mark V. Hurd
