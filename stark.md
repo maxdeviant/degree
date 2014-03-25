@@ -31,7 +31,7 @@ Do not commit to master. That's an order! All major changes start with a branch.
 No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
 
 |Planning | |
-|-----------|---------|
+|-----------:|---------|
 |1) | Project Manager is chosen |
 |2) | Establish methods of communication |
 |3) | Create goals and completion time for weekly sprint |
