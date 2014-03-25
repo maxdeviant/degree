@@ -32,12 +32,12 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 
 |Planning |
 |-----------|
-|1) Project Manager is chosen |
-|2) Establish methods of communication |
-|3) Create goals and completion time for weekly sprint |
-|4) Divide tasks |
-|5) Iteration Commencement |
-|6) Acceptance Phase |
-|7) Repeat 3-7 until completion |
+|1) | Project Manager is chosen |
+|2) | Establish methods of communication |
+|3) | Create goals and completion time for weekly sprint |
+|4) | Divide tasks |
+|5) | Iteration Commencement |
+|6) | Acceptance Phase |
+|7) | Repeat 3-7 until completion |
 
 
