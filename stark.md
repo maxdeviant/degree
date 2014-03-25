@@ -1,6 +1,6 @@
 ![Logo](stark.png)
 
-stark
+Stark
 -----
 >A clearer path to the software development process.
 
@@ -78,5 +78,11 @@ It is advised that the small council meet regularly for maximum efficiency.
 #Compliance
 >"All I want is compliance with my wishes, after reasonable discussion." – Winston Churchill
 
+Each developer is to be held to the defined standards for compliance. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
+
+All standards for compliance can be found in the [compliance](/compliance/index.md) docs.
+
 #Debriefing
 >"It is easy to be wise after the event." – Arthur Conan Doyle
+
+At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
