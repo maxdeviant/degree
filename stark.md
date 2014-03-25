@@ -7,6 +7,10 @@ stark
 #Table of Contents
 1. [Overview](#overview)  
 2. [Principles](#principles)
+3. [Planning](#planning)
+4. [Roles](#roles)
+5. [Execution](#execution)
+6. [Review](#review)
 
 #Overview
 
@@ -33,6 +37,26 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 
 #Planning
 >"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
+
+##1. Plan your work.
+
+Planning should be the first task in every software iteration.
+
+##2. Work your plan.
+
+#Roles
+
+##King
+
+The highest position in Stark is that of the king. The king is responsible for all executive decisions in the development process and is responsible for working closely with marketing and business teams, as well as shareholders and users.
+
+##Hand of the King
+
+The Hand of the King (Hand) is second in command on the development team. The Hand is responsible for making critical decisions on the king's behalf. This frees up the hierarchy and prevents the king from being too overwhelmed with managerial tasks. This also enables development to continue even in the king's absence. 
+
+##Small Council
+
+The small council is chaired by the king, Hand, as well as key individuals from the development team. The small council is responsible for discussing any issues or concerns that have arisen during the course of development. It is advised that the small council meet regularly for maximum efficiency.
 
 #Execution
 >"Our job is to execute." – Mark V. Hurd
