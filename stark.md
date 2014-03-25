@@ -1,6 +1,6 @@
 ![Logo](stark.png)
 
-stark
+Stark
 -----
 >A clearer path to the software development process.
 
@@ -10,7 +10,8 @@ stark
 3. [Planning](#planning)
 4. [Roles](#roles)
 5. [Execution](#execution)
-6. [Review](#review)
+6. [Compliance](#compliance)
+7. [Debriefing](#debriefing)
 
 #Overview
 
@@ -57,7 +58,7 @@ This role may be static or fluid, with one member – such as a senior developer
 
 ##Hand of the King
 
-The Hand of the King (Hand) is second in command on the development team. The Hand is responsible for making critical decisions on the king's behalf. This frees up the hierarchy and prevents the king from being too overwhelmed with managerial tasks. This also enables development to continue even in the king's absence.
+The Hand of the King is second in command on the development team. The Hand is responsible for making critical decisions on the king's behalf. This frees up the hierarchy and prevents the king from being too overwhelmed with managerial tasks. This also enables development to continue even in the king's absence.
 
 It is up to the Hand to pay attention to the development process, both in and out of small council meetings, and advise the king in his decision making.
 
@@ -74,5 +75,14 @@ It is advised that the small council meet regularly for maximum efficiency.
 #Execution
 >"Our job is to execute." – Mark V. Hurd
 
-#Review
+#Compliance
+>"All I want is compliance with my wishes, after reasonable discussion." – Winston Churchill
+
+Each developer is to be held to the defined standards for compliance. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
+
+All standards for compliance can be found in the [compliance](/compliance/index.md) docs.
+
+#Debriefing
 >"It is easy to be wise after the event." – Arthur Conan Doyle
+
+At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
