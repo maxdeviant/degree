@@ -13,6 +13,8 @@ stark
 Stark aims to be the process of choice for developers looking for a clear and low-hassle approach to software development. Clear, common-sense principles combined with deep Git integration creates a compelling workflow to write code in.
 
 #Principles
+>"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
+
 ##1. Commit early, commit often.
 
 This adage – borrowed from Git – is ingrained heavily in the Stark process. Commits cost nothing to make, which means there is no excuse for not committing on a regular basis. A habit of committing after adding or changing any piece of code makes it simple to track changes over a longer period.
@@ -28,3 +30,6 @@ Do not commit to master. That's an order! All major changes start with a branch.
 ##4. Keep it clean.
 
 No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
+
+#Planning
+>"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
