@@ -10,7 +10,7 @@
 		<div id="storefront" class="sixteen columns">
 			<h1>Store</h1>
 
-			<?php include "include/navigation.php"; ?>
+			<?php require_once "include/navigation.php"; ?>
 
 			<hr />
 

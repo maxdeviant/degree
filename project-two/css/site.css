@@ -15,11 +15,6 @@ h1 {
 	float: right;
 }
 
-img {
-	float: left;
-	padding-right: 25px;
-}
-
 .bold {
 	font-weight: bold;
 }
@@ -28,4 +23,8 @@ img {
 	min-width: 25%;
 	height: 150px;
 	float: left;
+}
+
+input {
+	min-width: 200px;
 }
