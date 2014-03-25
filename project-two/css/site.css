@@ -14,3 +14,17 @@ h1 {
 .right {
 	float: right;
 }
+
+.bold {
+	font-weight: bold;
+}
+
+.item {
+	min-width: 25%;
+	height: 150px;
+	float: left;
+}
+
+input {
+	min-width: 200px;
+}
