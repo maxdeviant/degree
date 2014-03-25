@@ -33,3 +33,9 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 
 #Planning
 >"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
+
+#Execution
+>"Our job is to execute." – Mark V. Hurd
+
+#Review
+>"It is easy to be wise after the event." – Arthur Conan Doyle
