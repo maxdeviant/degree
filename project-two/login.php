@@ -3,10 +3,10 @@
 
 	$session = new Session();
 
-	// if (isset($session->user)) {
-	// 	require_once("index.php");
-	// 	exit();
-	// }
+	if (isset($session->user)) {
+		require_once("index.php");
+		exit();
+	}
 
 	$message = $session->message;
 	unset($session->message);
@@ -22,16 +22,14 @@
 
 			<hr />
 
-			<div class="one column">
-				<form action="auth.php" method="post" autocomplete="off">
-					Username: <input type="text" name="username" placeholder="Username" />
-					Password: <input type="password" name="password" placeholder="Password" />
+			<form action="auth.php" method="post" autocomplete="off">
+				Username: <input type="text" name="username" placeholder="Username" />
+				Password: <input type="password" name="password" placeholder="Password" />
 
-					<button type="submit">Login</button>
-				</form>
+				<button type="submit">Login</button>
+			</form>
 
-				<?php echo $message; ?>
-			</div>
+			<?php echo $message; ?>
 		</div>
 	</div>
 </body>
