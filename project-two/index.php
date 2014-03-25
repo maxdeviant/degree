@@ -16,7 +16,7 @@
 
 			<?php foreach ($items as $item): ?>
 				<div class="five columns">
-					<h5><?php echo $item['name']; ?></h5>
+					<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
 					<hr />
 					<!-- <img src="<?php echo $item['image']; ?>"> -->
 					<div class="item" style="background: url(<?php echo $item['image']; ?>) no-repeat 0 center;"></div>
