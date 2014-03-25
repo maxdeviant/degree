@@ -1,4 +1,4 @@
-![Logo](stark.png)
+![Logo](/images/stark.png)
 
 Stark
 -----
@@ -78,9 +78,9 @@ It is advised that the small council meet regularly for maximum efficiency.
 #Compliance
 >"All I want is compliance with my wishes, after reasonable discussion." – Winston Churchill
 
-Each developer is to be held to the defined standards for compliance. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
+Each developer is to be held to the defined compliance standards. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
 
-All standards for compliance can be found in the [compliance](/compliance/index.md) docs.
+All compliance standards can be found in the [compliance](/compliance/index.md) docs.
 
 #Debriefing
 >"It is easy to be wise after the event." – Arthur Conan Doyle
