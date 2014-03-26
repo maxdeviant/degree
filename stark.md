@@ -55,6 +55,20 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |3)| Code is inspected to ensure that the content meets the standard requirements|
 |4)| Code is reviewed: Programmer(s) makes a review checklist, error tacking log, and code inspection script for each week |
 
+|Quality Assurance||
+|---:|----|
+|1)| Quality assurance team will be established
+|2)| Unit tests will be documented. Each test will contain the intended functionality of the design based on the iteration and user goals
+|3)| Security Analyst involvement: performs tests halfway through and at the end of each iteration
+|4)| Customer Involvement: Customer will be consulted at the end of each iteration to ensure the project is moving in the direction they desire
+|5)| Produce the final product that contains the least amount of errors possible and is cost efficient to the consumer
+
+|Process Modification|
+|---:|----|
+| | Quality Assurance team will determine if process needs modifications based off feedback from the development team, management, data assessment, and SEI Input|
+|1)|Development teams and management will record written concerns about current process and changes to process will be recorded|
+|2)|Data Assessment - examins the tends pertaining to time-till-completion and defect injection/removal |
+|3)|SEI Input follows any changes enforced by the Institute|
 
 
 
