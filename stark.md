@@ -63,7 +63,7 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |4)| Customer Involvement: Customer will be consulted at the end of each iteration to ensure the project is moving in the direction they desire
 |5)| Produce the final product that contains the least amount of errors possible and is cost efficient to the consumer
 
-|Process Modification|
+|Process Modification||
 |---:|----|
 | | Quality Assurance team will determine if process needs modifications based off feedback from the development team, management, data assessment, and SEI Input|
 |1)|Development teams and management will record written concerns about current process and changes to process will be recorded|
