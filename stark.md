@@ -70,5 +70,11 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |2)|Data Assessment - examins the tends pertaining to time-till-completion and defect injection/removal |
 |3)|SEI Input follows any changes enforced by the Institute|
 
+###Project Manager (Hand of the King) is chosen
 
+Depending on the neccessity, at the beginning of the project a project manager is to be selected. Durring the first meeting the development team (small council) will decide if a manager is neccessary or not, and in the case that one is needed, elect a person to fill this role. It is the duty of the Project manager to ensure that all work is completed on time and is do not try to handle too many tasks at once. This individual should be a person that is familiar with the process and is capable of managing workloads and time-estimates for completion. As the main organiser for the team, the project manager should be able to keep the development team is following the proper guidelines and is comfortable going to the manager with any questons or concerns they might have.
+
+In addition to managing workloads, the project manager is also responsible for keeping the project on schedule. At the end of every iteration the Project Manager should collect progress forms and backlogs stating what tasks were completed and when. Using these logs, the Manager should adjust the 
+
+In the case that The Hand does not satisfy the requirements, then the small council will convene and reach a majority vote whether or not the hand should be replaced. Should this occur, the Hand will be executed and replaced with a more suitable paw...I mean member.
 
