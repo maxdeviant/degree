@@ -42,9 +42,19 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |7) | Repeat 3-7 until completion |
 
 |Design|
-|------:|
-|1)| 
-|2)|
-|3)|
+|------:| ---- |
+|1)| Develop working code |
+|2)| Implement security aspects
+|3)| Fix bugs/errors that occur
+|4)| Refractoring
+
+|Implementation|
+|---:| ----- |
+|1)| Coding standards are agreed upon by the team | 
+|2)| Code is written individually or in pairs depending on the level of the programmer|
+|3)| Code is inspected to ensure that the content meets the standard requirements|
+|4)| Code is reviewed: Programmer(s) makes a review checklist, error tacking log, and code inspection script for each week |
+
+
 
 
