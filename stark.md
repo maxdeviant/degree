@@ -41,14 +41,14 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 |6) | Acceptance Phase |
 |7) | Repeat 3-7 until completion |
 
-|Design|
+|Design| |
 |------:| ---- |
 |1)| Develop working code |
 |2)| Implement security aspects
 |3)| Fix bugs/errors that occur
 |4)| Refractoring
 
-|Implementation|
+|Implementation| |
 |---:| ----- |
 |1)| Coding standards are agreed upon by the team | 
 |2)| Code is written individually or in pairs depending on the level of the programmer|
