@@ -85,6 +85,20 @@ In addition to managing workloads, the project manager is also responsible for k
 
 In the case that The Hand does not satisfy the requirements, then the small council will convene and reach a majority vote whether or not the hand should be replaced. Should this occur, the Hand will be executed and replaced with a more suitable paw...I mean member.
 
+###Goal Setting Meeting
+
+At the beginning of the project a goal setting meeting will be held with the Project Manager(Should there be one, otherwise the Development team will be present instead) and the Customer. Durring this meeting major goals for the project will be determined and user stories will be created. This includes what the functionality of the project will be, features that should be included, and establishing a rough completion time that the project will be complete. The Customer should also be informed of any costs that might be incured durring the development of the projects, and should be made aware that the timeline and prices may change over the development of the project.
+
+After the initial goal setting meeting, smaller additional goal setting meetings will occur after 3-4 iterations to refocus the team and analyse the project timeline. Any goals set durring these meetings should be restricted to things that can be completed within four or five iterations to aviod taking on tasks that are too far in the future.
+
+In addition to creating user stories and setting goals, the methods of communication will also be set durring the first Goal Setting meeting. Methods of communication should change depending on the work environmnet the teamis working with. Smaller evironments may be able to run fine using post-it notes or some similar medium. Larger environments or environments that have the development team spilt over a large area may be required to use e-mail or messenger arrow.
+
+The decision of the main method of communication should be documneted, in addition all notes and inqueries should be logged to keep a history of interaction between team memebers. This will allow a timeline to be established when issues occur and allow members to track how past issues that were similar to be solved.
+
+###Create User Stories
+
+
+
 #Planning
 >"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
 
