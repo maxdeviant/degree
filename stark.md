@@ -176,4 +176,4 @@ Durring debriefing, team members should discuss what they have done durring the 
 
 Developers should be comfortable explaining why some features were implemented the way they were, but should not be required to explain the entire process. The purpose of the debriefing period should be used to explain to the rest of the team what that individual did durring the last iteration. The use of this time should be spent to clearly list what each member feels is working and is ready to be presented to the customer, or to give a report on the progress for a task that might not yet be ready. In addition the Project Manager should keep a log of all debriefs for each member.
 
-After every member has been debriefed, the Project Manager should then move on to the next iteration.
+After every member has been debriefed, the Project Manager should then move on to planning the next iteration.
