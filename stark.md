@@ -121,6 +121,10 @@ The size of the small council may vary, but an ideal number of members is seven.
 
 It is advised that the small council meet regularly for maximum efficiency.
 
+##Lord Commander
+
+##Kingsguard
+
 #Execution
 >"Our job is to execute." – Mark V. Hurd
 
