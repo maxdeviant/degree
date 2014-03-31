@@ -21,8 +21,8 @@
       * Discuss Features of the Program
       * Discuss the proposed userbase for program
       * Design the Program
-      * Small Council is Formed
-      * Consult with Kingsguard on Program and Security
+    * Small Council is Formed
+    * Consult with Kingsguard on Program and Security
   * Design
     * Sprint Planning (Picking features to develop)
     * Development period (2-4 weeks)
