@@ -39,7 +39,7 @@ No one wants to look at messy code. Ensure that all code is properly formatted, 
 
 ##Process Script
 Planning||
----|---
+---:|---
 1| Project Manager is chosen
 2| Establish methods of communication
 3| Create goals and completion time for weekly sprint
@@ -49,21 +49,21 @@ Planning||
 7| Repeat 3-7 until completion
 
 Design||
----|---
+---:|---
 1| Develop working code
 2| Implement security aspects
 3| Fix bugs/errors that occur
 4| Refactoring
 
 Implementation||
----|---
+---:|---
 1| Coding standards are agreed upon by the team
 2| Code is written individually or in pairs depending on the level of the programmer
 3| Code is inspected to ensure that the content meets the standard requirements
 4| Code is reviewed: Programmer(s) makes a review checklist, error tacking log, and code inspection script for each week
 
 Quality Assurance||
----|---
+---:|---
 1| Quality assurance team will be established
 2| Unit tests will be documented. Each test will contain the intended functionality of the design based on the iteration and ser goals
 3| Security Analyst involvement: performs tests halfway through and at the end of each iteration
@@ -71,7 +71,7 @@ Quality Assurance||
 5| Produce the final product that contains the least amount of errors possible and is cost efficient to the consumer
 
 |Process Modification||
----|---
+---:|---
 || Quality Assurance team will determine if process needs modifications based off feedback from the development team, management, data assessment, and SEI Input|
 1| Development teams and management will record written concerns about current process and changes to process will be recorded|
 2| Data Assessment - examins the tends pertaining to time-till-completion and defect injection/removal |
@@ -113,7 +113,13 @@ Each iteration should be between two-four weeks long. In order to keep the proje
 
 The iteration should should begin by a team meeting in which all facets of the project must attend. (Customer, Project Manager, Development Team, ect.) Durring this meeting everyone on the development team should present how far they are on thier individual tasks and report on the progress. Durring this time developers should inform the rest of the group if each task is on track to be finished by the end of the iteration. If the task is not on schedule, then a period of time dedicated to resolving any issues the developer is having can be utilized. Should the case be that group effort cannot resolve the issue with the task, the project manager can choose to reassign the task to someone else, or discuss with the customer about alternatives.
 
+To keep the project on track, the project manager should keep a detailed log book to track the project's progress. This log will show the amount of tasks completed per iteration, and will be used to determine if the project is on track or if there are too many tasks being attempted at once. If threre are too many tasks being attempted at once, the project manager will need to set up a meeting with the customer to establish which tasks have priority and which tasks must be delayed until the next iteration.
 
+###Acceptance Phase
+
+After each iteration, the tasks that were completed will go through an acceptance test. Durring this test, the customer will test each task to make sure that the completed task meets thier requirements and is acceptable. Should any changes need to be made the task will go back into development and will be presented to the customer again. Until all tasks have passed the acceptance phase, the next iteration cannot start. In the event that a task can not be accepted by the customer after a week, it will be placed into the next iteration and presented again at the end of that iteration.
+
+If all tasks pass the acceptance phase, the next iteration will begin and new tasks will be selected for completion.
 
 #Planning
 >"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
@@ -165,3 +171,9 @@ All compliance standards can be found in the [compliance](/compliance/index.md) 
 >"It is easy to be wise after the event." – Arthur Conan Doyle
 
 At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
+
+Durring debriefing, team members should discuss what they have done durring the past iteration. This may be for explaining how (s)he found/fixed an error in code, what they have actually completed, or whether they consider the task complete or not. Team members should avoid directly going over code, unless there is an issue that is trying to be corrected, as all code should be properly documneted by the developer durring the development stage.
+
+Developers should be comfortable explaining why some features were implemented the way they were, but should not be required to explain the entire process. The purpose of the debriefing period should be used to explain to the rest of the team what that individual did durring the last iteration. The use of this time should be spent to clearly list what each member feels is working and is ready to be presented to the customer, or to give a report on the progress for a task that might not yet be ready. In addition the Project Manager should keep a log of all debriefs for each member.
+
+After every member has been debriefed, the Project Manager should then move on to the next iteration.
