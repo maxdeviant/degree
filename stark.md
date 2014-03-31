@@ -81,7 +81,7 @@ Quality Assurance||
 
 Depending on the neccessity, at the beginning of the project a project manager is to be selected. Durring the first meeting the development team (small council) will decide if a manager is neccessary or not, and in the case that one is needed, elect a person to fill this role. It is the duty of the Project manager to ensure that all work is completed on time and is do not try to handle too many tasks at once. This individual should be a person that is familiar with the process and is capable of managing workloads and time-estimates for completion. As the main organiser for the team, the project manager should be able to keep the development team is following the proper guidelines and is comfortable going to the manager with any questons or concerns they might have.
 
-In addition to managing workloads, the project manager is also responsible for keeping the project on schedule. At the end of every iteration the Project Manager should collect progress forms and backlogs stating what tasks were completed and when. Using these logs, the Manager should adjust the 
+In addition to managing workloads, the project manager is also responsible for keeping the project on schedule. At the end of every iteration the Project Manager should collect progress forms and backlogs stating what tasks were completed and when. Using these logs, the Manager should adjust the amount of work that each team member takes on in order to ensure that everyone is working efficiently.
 
 In the case that The Hand does not satisfy the requirements, then the small council will convene and reach a majority vote whether or not the hand should be replaced. Should this occur, the Hand will be executed and replaced with a more suitable paw...I mean member.
 
@@ -96,6 +96,22 @@ In addition to creating user stories and setting goals, the methods of communica
 The decision of the main method of communication should be documneted, in addition all notes and inqueries should be logged to keep a history of interaction between team memebers. This will allow a timeline to be established when issues occur and allow members to track how past issues that were similar to be solved.
 
 ###Create User Stories
+
+This process is left solely to the customer for creation and development. This is because the user stories should be the major functions of the project that the customer wants incorperated. The user stories should be presented in a manner that keeps them short and simple for fast development. Whether to use a digital or paper medium is up to be decided between the customer and the Project Manager. After the user stories are presented, they will be presented to the development team and distributed.
+
+In order to keep development of the project flowing more important user stories will be handled first. These include base functionality of the project and ensures that the project works, even if it is not user friendly. Secondary tasks, such as making the project user friendly or navigation will be handled after all base functions work. Additional tasks, such as layout and aesthetic choices will be handeled last.
+
+###Devide Tasks
+
+Different members of the development team will select a number of tasks that they are to complete by the end of the iteration. The number of tasks that each memeber selects will be based on individual skill and the judgement of the Project Manager. In order to avoid overworking a member early in the project, members will be restricted to three tasks for the first iteration. After that, the Project Manager should work with the development team to maximize the efficiency of each member.
+
+Task will be selected from the user stories created by the customer, and will be rewritten by the developer to explain exactly what they will be developing. This new definition of the user story will be confirmed by the customer to ensure that the developer and the customer are on the same page.
+
+###Iteration Commencement
+
+Each iteration should be between two-four weeks long. In order to keep the project moving, each developer should be assigned tasks that they can complete within this timeframe. After each iteration there should be a team meeting to assign new tasks to the developers and ensure everyone has an acceptable amount of work.
+
+The iteration should should begin by a team meeting in which all facets of the project must attend. (Customer, Project Manager, Development Team, ect.) Durring this meeting everyone on the development team should present how far they are on thier individual tasks and report on the progress. Durring this time developers should inform the rest of the group if each task is on track to be finished by the end of the iteration. If the task is not on schedule, then a period of time dedicated to resolving any issues the developer is having can be utilized. Should the case be that group effort cannot resolve the issue with the task, the project manager can choose to reassign the task to someone else, or discuss with the customer about alternatives.
 
 
 
