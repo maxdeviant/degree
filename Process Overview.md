@@ -1,23 +1,3 @@
-![Logo](/images/stark.png)
-
-Stark
------
->A clearer path to the software development process.
-
-#Table of Contents
-1. [Overview](#overview)  
-2. [Principles](#principles)
-3. [Process](#process-script)
-4. [Planning](#planning)
-5. [Roles](#roles)
-6. [Execution](#execution)
-7. [Compliance](#compliance)
-8. [Debriefing](#debriefing)
-
-#Overview
-
-See [Purpose](/purpose.md)
-
 #Principles
 >"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
 
@@ -37,62 +17,6 @@ Do not commit to master. That's an order! All major changes start with a branch.
 
 No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
 
-##Process Script
-Planning||
----|---
-1| Project Manager is chosen
-2| Establish methods of communication
-3| Create goals and completion time for weekly sprint
-4| Divide tasks
-5| Iteration Commencement
-6| Acceptance Phase
-7| Repeat 3-7 until completion
-
-Design||
----|---
-1| Develop working code
-2| Implement security aspects
-3| Fix bugs/errors that occur
-4| Refactoring
-
-Implementation||
----|---
-1| Coding standards are agreed upon by the team
-2| Code is written individually or in pairs depending on the level of the programmer
-3| Code is inspected to ensure that the content meets the standard requirements
-4| Code is reviewed: Programmer(s) makes a review checklist, error tacking log, and code inspection script for each week
-
-Quality Assurance||
----|---
-1| Quality assurance team will be established
-2| Unit tests will be documented. Each test will contain the intended functionality of the design based on the iteration and ser goals
-3| Security Analyst involvement: performs tests halfway through and at the end of each iteration
-4| Customer Involvement: Customer will be consulted at the end of each iteration to ensure the project is moving in the direction they desire
-5| Produce the final product that contains the least amount of errors possible and is cost efficient to the consumer
-
-|Process Modification||
----|---
-|| Quality Assurance team will determine if process needs modifications based off feedback from the development team, management, data assessment, and SEI Input|
-1| Development teams and management will record written concerns about current process and changes to process will be recorded|
-2| Data Assessment - examins the tends pertaining to time-till-completion and defect injection/removal |
-3| SEI Input follows any changes enforced by the Institute|
-
-###Project Manager (Hand of the King) is chosen
-
-Depending on the neccessity, at the beginning of the project a project manager is to be selected. Durring the first meeting the development team (small council) will decide if a manager is neccessary or not, and in the case that one is needed, elect a person to fill this role. It is the duty of the Project manager to ensure that all work is completed on time and is do not try to handle too many tasks at once. This individual should be a person that is familiar with the process and is capable of managing workloads and time-estimates for completion. As the main organiser for the team, the project manager should be able to keep the development team is following the proper guidelines and is comfortable going to the manager with any questons or concerns they might have.
-
-In addition to managing workloads, the project manager is also responsible for keeping the project on schedule. At the end of every iteration the Project Manager should collect progress forms and backlogs stating what tasks were completed and when. Using these logs, the Manager should adjust the 
-
-In the case that The Hand does not satisfy the requirements, then the small council will convene and reach a majority vote whether or not the hand should be replaced. Should this occur, the Hand will be executed and replaced with a more suitable paw...I mean member.
-
-#Planning
->"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
-
-##1. Plan your work.
-
-Planning should be the first task in every software iteration.
-
-##2. Work your plan.
 
 #Roles
 >"Individually, we are one drop. Together, we are an ocean." – Ryunosuke Satoro
@@ -133,17 +57,20 @@ The Lord Commander is a key position within the corporation, and is not designat
 
 The kingsguard is a small group chaired by the Lord Commander whose task is to assist the small council with the security aspects of development. Their role in development is to analyze any code that is committed for potential security risks.
 
-#Execution
->"Our job is to execute." – Mark V. Hurd
+#Planning
 
-#Compliance
->"All I want is compliance with my wishes, after reasonable discussion." – Winston Churchill
+* Crown a King and Hand of the King (If deemed necessary)
+* Form the Small Council
+* Meet with the Client
+* Consult with Kingsguard on Security
 
-Each developer is to be held to the defined compliance standards. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
+#Design
 
-All compliance standards can be found in the [compliance](/compliance/index.md) docs.
+* The Hand and Small Council convene to discuss features for next sprint
+* Sprints can last from around 2-4 weeks
 
-#Debriefing
+#Debriefing (Review)
 >"It is easy to be wise after the event." – Arthur Conan Doyle
 
-At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
+At the end of each iteration, some time should be allotted for debriefing team members and the client on the completed iteration.
+
