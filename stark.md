@@ -16,7 +16,7 @@ Stark
 
 #Overview
 
-See [Purpose](/purpose.md)
+See [Purpose](/Purpose.md)
 
 #Principles
 >"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
