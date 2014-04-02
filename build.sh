@@ -8,8 +8,10 @@ pdftk \
 	objectives.pdf \
 	responsibilities.pdf \
 	overview.pdf \
+	planning.pdf \
 	design.pdf \
+	review.pdf \
 	implementation.pdf \
 	qa.pdf \
-	review.pdf \
-	cat output team_project.pdf \
+	appendix.pdf \
+	cat output team_project.pdf
