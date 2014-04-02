@@ -16,7 +16,7 @@ Stark
 
 #Overview
 
-Stark aims to be the process of choice for developers looking for a clear and low-hassle approach to software development. Clear, common-sense principles combined with deep Git integration creates a compelling workflow to write code in.
+See [Purpose](/Purpose.md)
 
 #Principles
 >"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
@@ -151,11 +151,23 @@ The Hand does not have to be a senior developer. In fact, choosing a Hand who co
 
 ##Small Council
 
-The small council is chaired by the king, Hand, key individuals from the development team, and from other teams in the company, such as marketing. The small council is responsible for discussing project updates, deadlines, and any other issues or concerns that have arisen during the course of development.
+The small council is chaired by the King, Hand, key individuals from the development team, and from other teams in the company, such as marketing. The small council is responsible for discussing project updates, deadlines, and any other issues or concerns that have arisen during the course of development.
 
 The size of the small council may vary, but an ideal number of members is seven.
 
 It is advised that the small council meet regularly for maximum efficiency.
+
+##Lord Commander
+
+The Lord Commander is second in command on the security team.  The Lord Commander is reponsible for managing the kingsguard, and reports to the King in regards to the project's security status. 
+
+It is the Lord Commander's role to oversee the review and security analysis of the project, which is performed by the kingsguard. The Commander is responsible for giving reports at each debriefing on defects and security flaws found during the iteration.
+
+The Lord Commander is a key position within the corporation, and is not designated per project. In addition the Kingsguard, this is assigned to all projects currently held by the corporation with the sole task of monitoring security.
+
+##Kingsguard
+
+The kingsguard is a small group chaired by the Lord Commander whose task is to assist the small council with the security aspects of development. Their role in development is to analyze any code that is committed for potential security risks.
 
 #Execution
 >"Our job is to execute." – Mark V. Hurd
@@ -170,6 +182,9 @@ All compliance standards can be found in the [compliance](/compliance/index.md) 
 #Debriefing
 >"It is easy to be wise after the event." – Arthur Conan Doyle
 
+<<<<<<< HEAD
+At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration. This will allow the small council to identify areas that caused issues during the iteration and look for areas of improvement.
@@ -190,3 +205,4 @@ After every member has been debriefed, the Project Manager should then move on t
 =======
 After every member has been debriefed, the Project Manager should then move on to planning the next iteration.
 >>>>>>> FETCH_HEAD
+>>>>>>> master
