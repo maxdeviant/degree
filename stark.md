@@ -1,8 +1,10 @@
 ![Logo](./images/stark.png)
 
 Stark
------
+=====
 >A clearer path to the software development process.
+
+>Envisioned by: `Marshall Bowers` `Stephen Deveaney` `Matthew Wallace`
 
 #Table of Contents
 1. [Overview](#overview)  
