@@ -69,8 +69,3 @@ The kingsguard is a small group chaired by the Lord Commander whose task is to a
 * The Hand and Small Council convene to discuss features for next sprint
 * Sprints can last from around 2-4 weeks
 
-#Debriefing (Review)
->"It is easy to be wise after the event." – Arthur Conan Doyle
-
-At the end of each iteration, some time should be allotted for debriefing team members and the client on the completed iteration.
-

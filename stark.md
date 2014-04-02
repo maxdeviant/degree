@@ -14,29 +14,6 @@ Stark
 7. [Compliance](#compliance)
 8. [Debriefing](#debriefing)
 
-#Overview
-
-See [Purpose](/Purpose.md)
-
-#Principles
->"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
-
-##1. Commit early, commit often.
-
-This adage – borrowed from Git – is ingrained heavily in the Stark process. Commits cost nothing to make, which means there is no excuse for not committing on a regular basis. A habit of committing after adding or changing any piece of code makes it simple to track changes over a longer period.
-
-##2. Code over comments.
-
-Documentation and comments have their place in code, and go a long way in enabling other developers to easily understand the interactions of a particular subroutine or complex logic gate. However, comments should not be prioritized when working on a new feature. No reason in writing perfectly good comments that will be scrapped before a merge.
-
-##3. Branch out.
-
-Do not commit to master. That's an order! All major changes start with a branch. Name it something intelligent, such as the feature being added. Once a branch is created, use commits to manage small changes within the branch. And if the implentation of a sub-feature may end up being incredibly messy, make a seperate branch for that as well. Much like commits, branches are free: use them.
-
-##4. Keep it clean.
-
-No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
-
 ##Process Script
 Planning||
 ---:|---
@@ -178,16 +155,3 @@ The kingsguard is a small group chaired by the Lord Commander whose task is to a
 Each developer is to be held to the defined compliance standards. This serves to establish a uniform process across the entire development process and ultimately lead to high-quality code.
 
 All compliance standards can be found in the [compliance](/compliance/index.md) docs.
-
-#Debriefing
->"It is easy to be wise after the event." – Arthur Conan Doyle
-
-At the end of each iteration, some time should be allotted for debriefing team members on the completed iteration.
-
-An emphasis should be placed on time management and a general assessment for how well each developer performs his task in the time allotted. Through the use of the time management sheets – assuming they have been filled out diligently – an accurate picture of each developer's tasks during the iteration can be seen.
-
-Durring debriefing, team members should discuss what they have done durring the past iteration. This may be for explaining how (s)he found/fixed an error in code, what they have actually completed, or whether they consider the task complete or not. Team members should avoid directly going over code, unless there is an issue that is trying to be corrected, as all code should be properly documneted by the developer durring the development stage.
-
-Developers should be comfortable explaining why some features were implemented the way they were, but should not be required to explain the entire process. The purpose of the debriefing period should be used to explain to the rest of the team what that individual did durring the last iteration. The use of this time should be spent to clearly list what each member feels is working and is ready to be presented to the customer, or to give a report on the progress for a task that might not yet be ready. In addition the Project Manager should keep a log of all debriefs for each member.
-
-After every member has been debriefed, the Project Manager should then move on to planning the next iteration.
