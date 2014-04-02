@@ -4,6 +4,7 @@ gimli -r -o ./build
 cd ./build
 pdftk \
 	stark.pdf \
+	toc.pdf \
 	purpose.pdf \
 	objectives.pdf \
 	responsibilities.pdf \
@@ -12,4 +13,5 @@ pdftk \
 	implementation.pdf \
 	qa.pdf \
 	review.pdf \
-	cat output team_project.pdf \
+	appendix.pdf \
+	cat output team_project.pdf
