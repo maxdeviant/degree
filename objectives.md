@@ -1,7 +1,12 @@
 ##Objectives
 
+####Main Objectives
+The use of this process is to help shape good teamwork and habits for working on group projects. Rather than force people into a defined method of doing things, Stark is meant to take the individuals and guide them into habits that are easily learned and used in other environments. 
+
 ####Primary Responsibilites
 It is the responsibility of each team member to ensure that they are completing thier goals by the end of each iteration. To help speed up completion development team members should complete all tasks that they take on as quickly as possible (without sacrificing quality of course) and then offer assistance to other team members. This does not mean take over that task completely, but rather offer ideas and help the team member find solutions to problems.
+
+Team Members are also responsible for keeping up to date with the rest of the team. Sometimes there are circumstances that cause one member to fall out of sync with the other members. These could include, but are not limited to, illness, accidents, delays, and other reasons that a member might not complete thier assigned tasks or make a meeting. In such a case, it is up to the individual to make sure that they are on the same page as everyone else on the team. Methods of contacting people should have been set up durring the first few meetings of the project. Ignoring the need to contact others on the team to understand what is going on means that everyone else on the team has no idea who is doing exactly what. By ensuring that people are on the same page, the project will run smoother and more reliably.
 
 ####Project Planning and Commits
 One of the main goals for using the Stark Process is to ensure that the development team is cooperating in a fashion that accelerates the completion of the project. Ensuring that everyone on the team is aware of what the other members are working on and when they are expected to finish. Sticking to the schedule set at team and goal setting meetings should be taken very seriously in order to ensure that the project is completed in  timely fashion. By giving each goal an estimated cost and completion time, the customer is able to see how thier project is developing rather than blindly trusting the developers or setting a completion date that may be unrealistic.
