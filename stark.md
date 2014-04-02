@@ -4,17 +4,19 @@ Stark
 =====
 >A clearer path to the software development process.
 
->Envisioned by: `Marshall Bowers` `Stephen Deveaney` `Matthew Wallace`
+>Envisioned by `Marshall Bowers` `Stephen Deveaney` `Matthew Wallace`
 
 #Table of Contents
-1. [Overview](#overview)  
-2. [Principles](#principles)
-3. [Process](#process-script)
-4. [Planning](#planning)
-5. [Roles](#roles)
-6. [Execution](#execution)
-7. [Compliance](#compliance)
-8. [Debriefing](#debriefing)
+1. Purpose
+2. Objectives
+3. Responsibilities
+4. Overview
+5. Planning
+6. Design
+7. Review
+8. Implementation
+9. QA & Testing
+10. Appendix
 
 ##Process Script
 Planning||
