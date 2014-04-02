@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##Objectives
 
 ####Main Objectives
@@ -15,3 +16,6 @@ The Stark Process wants to make sure that the customer is always involved with t
 
 ####Quality Assurance
 In order to assure the customer that the product they are recieving will work according to thier standards, the development team should take extra care insuring that the code is defect and bug free. By using teams seperate from the development team to ensure that there is a fresh perspective using the project, Stark aims to give the customer a program that meets all the criteria stated in the customer created user stories. 
+=======
+#Objectives
+>>>>>>> master
