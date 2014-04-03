@@ -1,4 +1,4 @@
-#Planning
+#5. Planning
 >"In preparing for battle I have always found that plans are useless, but planning is indispensable." – Dwight D. Eisenhower
 
 ##Project Planning
