@@ -23,3 +23,11 @@ It is often tempting to not communicate when making good progress or when making
 Developers must handle themselves in a manner conducive to a safe and productive workplace.
 
 Any developer may be suspended on proven or plausible grounds of deplorable behaviors including, but not limited to, racism, sexism, inappropriate comments, theft, physical or sexual assault, etc.
+
+Maintaining an environment of safety and civility amongst coworkers fosters greater productivity. After all, it is extremely hard to get any work done if living in the fear of being harassed in some way by others in the workplace.
+
+###4. Independence
+
+Developers are expected to be largely independent in their work. While the occassional need for assistance is to be expected, developers should not expect to have someone looking over their shoulder at all times.
+
+As a result, developers need to maintain their focus and drive throughout the course of the sprint. This enables managers and other team members to focus on their assigned tasks, rather than having to hound developers to stay focused on theirs.
