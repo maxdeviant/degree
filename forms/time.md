@@ -1,7 +1,8 @@
-Time Management
+Time Management Form
 =====
 
-Week of:
+Week of:  
+Hours Worked: 
 
 | ACTIVITY 	| SUN 	| MON 	| TUE 	| WED 	| THU 	| FRI 	| SAT 	|
 |------		|-----	|-----	|-----	|-----	|-----	|-----	|-----	|
