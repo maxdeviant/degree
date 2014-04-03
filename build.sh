@@ -15,5 +15,9 @@ pdftk \
 	qa.pdf \
 	appendix.pdf \
 	time.pdf \
+	sample_time.pdf \
 	coding.pdf \
+	code_review.pdf \
+	sample_code_review.pdf \
+	debriefing.pdf \
 	cat output team_project.pdf
