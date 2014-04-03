@@ -16,4 +16,4 @@ If Git is a new tool in the company workflow all developers will need to be trai
 
 ##Responsibility Allocation
 
-Developers need to be aware of their personal responsibilities so that they can follow them. Have each developer review the 'Responsibilities' section and encourage them to voice any questions or concerns that may arise after reading through the document.
+Developers need to be aware of their personal responsibilities so that they can follow them. Have each developer review the Responsibilities section and encourage them to voice any questions or concerns that may arise after reading through the document.
