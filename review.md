@@ -1,4 +1,4 @@
-#Review
+#7. Review
 >"It is easy to be wise after the event." – Arthur Conan Doyle
 
 At the end of each iteration, some time should be allotted for debriefing team members and the client on the completed iteration.
