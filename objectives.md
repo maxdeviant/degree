@@ -2,22 +2,42 @@
 
 Stark aims to help shape good teamwork habits for developers working on group projects. Rather than force developers into a defined method of doing things, Stark lays a framework to guide them into important habits that are easily applied in practice and transferrable from project to project. The following objectives outline the suggested habits for developers that will increase the overall stability of the development process.
 
-// Re-evaluate the following section
+##Process Script
+Planning||
+---:|---
+1| King is is chosen
+2| Establish methods of communication
+3| Create goals and completion time for sprint
+4| Divide tasks
+5| Begin iterating on software package
+6| Check all code for compliance
+7| Repeat steps 3-7 until completion
 
-##Primary Responsibilites
+Design||
+---:|---
+1| Develop working code
+2| Implement security aspects
+3| Fix bugs/errors that occur
+4| Refactor code
 
-It is the responsibility of each developer to ensure that he is completing his goals by the end of each iteration. To help speed up completion, a team member should complete all assigned tasks as quickly as possible without compromising quality, and then offer assistance to others. This should not take the form of taking on the work assigned to others on the team, but serving the other members as needed.
+Implementation||
+---:|---
+1| Coding standards are agreed upon by the team
+2| Code is written individually or in pairs depending on the level of the programmer
+3| Code is inspected to ensure that the content meets the standard requirements
+4| Code is reviewed: Developer makes a review checklist, error tacking log, and code inspection script for each week
 
-Developers are also responsible for keeping up to date with the rest of the team. Sometimes there are circumstances that cause one member to fall out of sync with the other members. These could include, but are not limited to, illness, accidents, delays, and other reasons that a team member might not complete his assigned tasks on time or miss a meeting. In such a case, it is up to the individual to make sure that they are on the same page as everyone else on the team.
+Quality Assurance||
+---:|---
+1| Quality assurance team will be established
+2| Unit tests will be documented. Each test will contain the intended functionality of the design based on the iteration and ser goals
+3| Security Analyst involvement: performs tests halfway through and at the end of each iteration
+4| Customer Involvement: Customer will be consulted at the end of each iteration to ensure the project is moving in the direction they desire
+5| Produce the final product that contains the least amount of errors possible and is cost efficient to the consumer
 
-Methods of contact should be established during the first few meetings of the project. Ignoring the need to contact others on the team to understand what is going on means that everyone else on the team has no idea who is doing exactly what. By ensuring that all team members are on the same page, the project will ultimately run smoother and more reliably.
-
-##Project Planning
-
-One of the main goals of Stark is to ensure that the development team is cooperating in a fashion that accelerates the completion of the project. Ensuring that everyone on the team is aware of what the other members are working on and when they are expected to finish. Sticking to the schedule set at team and goal setting meetings should be taken very seriously in order to ensure that the project is completed in a timely fashion. By giving each goal an estimated cost and completion time, the client is able to see how the project is progressing in real time, deterring unrealistic expectations and deadlines.
-
-Stark aims to make sure that the client is always involved with the project. Giving clients an accessible glimpse into the development process allows for rapid iteration to meet client goals. Features that become deprecated or lose importance over the course of development can be reimagined or scrapped accordingly, causing the final software package to have as small as scope as possible to meet its purpose.
-
-##Quality Assurance
-
-In order to assure the client that the software package will meet the desired standards, regular testing should be done by developers to ensure that the software being developed is integrous at all points.
+|Process Modification||
+---:|---
+|| Quality Assurance team will determine if process needs modifications based off feedback from the development team, management, data assessment, and SEI Input|
+1| Development teams and management will record written concerns about current process and changes to process will be recorded|
+2| Data Assessment - examins the tends pertaining to time-till-completion and defect injection/removal |
+3| SEI Input follows any changes enforced by the Institute|
