@@ -43,3 +43,6 @@ Again, this creates a proactive approach to security, enabling the Kingsguard to
 
 ##Sprint Planning
 
+At the beginning of each sprint a set of features should be selected from the feature log by the members of the small council. These features may or may not be related, although having a set of integrated features is useful, as it will be easier to test the feature set as a whole for integrity.
+
+Once the feature list is decided on the sprint may continue. Developers will be assigned the features that they will work on for the rest of the sprint.
