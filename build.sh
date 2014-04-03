@@ -15,4 +15,5 @@ pdftk \
 	qa.pdf \
 	appendix.pdf \
 	time.pdf \
+	coding.pdf \
 	cat output team_project.pdf
