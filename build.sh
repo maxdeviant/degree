@@ -19,5 +19,5 @@ pdftk \
 	coding.pdf \
 	code_review.pdf \
 	sample_code_review.pdf \
-	debriefing.md \
+	debriefing.pdf \
 	cat output team_project.pdf
