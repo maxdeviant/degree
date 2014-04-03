@@ -1,4 +1,4 @@
-#Implementation
+#8. Implementation
 
 We understand that development time is incredibly important and needs to be spend wisely. This is exactly why Stark is aimed at rapid adoption and implementation into any existing workflow.
 
@@ -16,4 +16,12 @@ If Git is a new tool in the company workflow all developers will need to be trai
 
 ##Responsibility Allocation
 
-Developers need to be aware of their personal responsibilities so that they can follow them. Have each developer review the 'Responsibilities' section and encourage them to voice any questions or concerns that may arise after reading through the document.
+Developers need to be aware of their personal responsibilities so that they can follow them. Have each developer review the Responsibilities section and encourage them to voice any questions or concerns that may arise after reading through the document.
+
+##Compliance
+
+Developers will need to be familiar with all of the coding compliance documents. These dictate standards that must be adhered to during the development process in order to ensure that only high-quality code is being created and committed. This includes neatly formatted code and appropriate documentation.
+
+##Testing
+
+Developers are expected to perform appropriate unit tests on all written code to filter out bugs and defects. Additionally, once unit tests are performed developers should also test the developed features by hand to check for any other bugs in the design or implentation of that featre that may not have been turned up via unit tests.

@@ -1,4 +1,4 @@
-#Overview
+#4. Overview
 
 ##Principles
 >"Rules are not necessarily sacred, principles are." – Franklin D. Roosevelt
@@ -18,7 +18,6 @@ Do not commit to master. That's an order! All major changes start with a branch.
 ###4. Keep it clean.
 
 No one wants to look at messy code. Ensure that all code is properly formatted, documented, and commented before any and all code reviews. This will make the review process easier, as well as making the reviewed code merge-ready at the end of the review.
-
 
 ##Roles
 >"Individually, we are one drop. Together, we are an ocean." – Ryunosuke Satoro
@@ -57,16 +56,22 @@ By allowing the Lord Commander to focus solely on security, the chance that inse
 
 ###Kingsguard
 
-The Kingsguard is a group of developers under the Lord Commander's command in charge of reviewing all features for security vulnerabilities.
+The Kingsguard is a group of developers under the Lord Commander's command in charge of reviewing all features for security vulnerabilities. This group should be comprised of security experts or senior developers with a good handle on software security.
+
+At least member of the Kingsguard is to be present at each code review to scrutinize features for security flaws while they are still in the development process.
 
 ##Planning
 
-* Crown a king and Hand of the king
-* Form the small council
-* Meet with the Client
-* Consult with Kingsguard on Security
+At the beginning of a project, a king and Hand must be chosen for that project. The individuals chosen must have exemplary leadership skills as well as experience with or a good working knowledge of the technologies and platforms that will be used in the project.
+
+Once these two have been selected, the other members of the small council may be selected. At the beginning of a project, it is permitted for temporary members to be appointed to the small council, namely any clients or other individuals who may have an important say in the planning and designing process. These members may be kept on or replaced after the planning phase, depending on the nature of the project and the amount of external influence needed for its completion.
 
 ##Design
 
-* The Hand and small council convene to discuss features for next sprint
-* Sprints can last from around 2-4 weeks
+Once a small council has been selected, the designing process may begin, following the rules outlined in the Design section. This time will be spent drawing up the specifications for the software package being developed as the end result of this project, as well as breaking the package down into core components.
+
+With the help of the client, the members of the small council should work towards a projected timeline of completion, assigning complementary features to different milestones along the timeline. Ideally these milestones should mirror sprint lengths, usually a time of two to four weeks.
+
+##Execution
+
+Once the project design as a whole is finished, the actual development portion may begin. The small council members are to meet and select features to develop during the upcoming sprint. While these features may have already been selected as part of a project milestone, it is up to the small council's discretion what features are selected for this particular sprint.
