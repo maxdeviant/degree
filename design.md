@@ -1,4 +1,5 @@
 #6. Design
+>"Design is intelligence made visible." – Alina Wheeler
 
 ##1. Plan your work.
 

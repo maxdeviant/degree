@@ -1,4 +1,5 @@
 #3. Responsibilities
+>"You cannot escape the responsibility of tomorrow by evading it today." – Abraham Lincoln
 
 Stark holds each individual developer to a set of standards. These outline the responsibilities of the developers in their own personal development cycle, as well as members of the development team as a whole.
 
