@@ -49,24 +49,24 @@ It is advised that the small council meet regularly for maximum efficiency.
 
 ###Lord Commander
 
-The Lord Commander is second in command on the security team.  The Lord Commander is reponsible for managing the kingsguard, and reports to the King in regards to the project's security status. 
+The Lord Commander is in charge of security for the development process, as well as the software being developed.
 
-It is the Lord Commander's role to oversee the review and security analysis of the project, which is performed by the kingsguard. The Commander is responsible for giving reports at each debriefing on defects and security flaws found during the iteration.
+As head of the Kingsguard, the Lord Commander's responsibilites are to ensure that each code segment is undergoing the proper security processes, and ensuring feature integrity from a security standpoint.
 
-The Lord Commander is a key position within the corporation, and is not designated per project. In addition the Kingsguard, this is assigned to all projects currently held by the corporation with the sole task of monitoring security.
+By allowing the Lord Commander to focus solely on security, the chance that insecure features will be pushed through the testing and review process is greatly reduced.
 
 ###Kingsguard
 
-The kingsguard is a small group chaired by the Lord Commander whose task is to assist the small council with the security aspects of development. Their role in development is to analyze any code that is committed for potential security risks.
+The Kingsguard is a group of developers under the Lord Commander's command in charge of reviewing all features for security vulnerabilities.
 
 ##Planning
 
-* Crown a King and Hand of the King (If deemed necessary)
-* Form the Small Council
+* Crown a king and Hand of the king
+* Form the small council
 * Meet with the Client
 * Consult with Kingsguard on Security
 
 ##Design
 
-* The Hand and Small Council convene to discuss features for next sprint
+* The Hand and small council convene to discuss features for next sprint
 * Sprints can last from around 2-4 weeks
