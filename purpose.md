@@ -1,4 +1,4 @@
-#Purpose
+#1. Purpose
 >"Your purpose in life is to find your purpose and give your whole heart and soul to it." – Buddha
 
 In a landscape filled with numerous software development processes, it is often hard to settle upon one to use. Each process will claim to increase productivity, quality, and security in the software development cycle, but there are few processes which really show how they will achieve that without investing weeks and months into adopting the new process.

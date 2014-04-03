@@ -1,4 +1,4 @@
-#Objectives
+#2. Objectives
 
 Stark aims to help shape good teamwork habits for developers working on group projects. Rather than force developers into a defined method of doing things, Stark lays a framework to guide them into important habits that are easily applied in practice and transferrable from project to project. The following objectives outline the suggested habits for developers that will increase the overall stability of the development process.
 
