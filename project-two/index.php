@@ -12,15 +12,17 @@
 
 			<?php require_once "include/navigation.php"; ?>
 
-			<hr />
+			<hr>
 
-			<div id="storefront">
+			<div id="storefront" class="sixteen columns">
 				<?php foreach ($items as $item): ?>
-					<div class="five columns">
+					<div class="entry">
 						<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
-						<hr />
-						<!-- <img src="<?php echo $item['image']; ?>"> -->
-						<div class="item" style="background: url(./images/items/<?php echo $item['image']; ?>) no-repeat 0 center;"></div>
+						<br>
+						<div>
+							<img class="item" src="./images/items/<?php echo $item['image']; ?>">
+						</div>
+						<br>
 						<span>
 							<span class="bold">Price: </span>$<?php echo $item['price']; ?>
 						</span>
@@ -28,8 +30,12 @@
 						<span>
 							<span class="bold">Category: </span><?php echo $item['category']; ?>
 						</span>
-						<!-- <span>Description: <?php echo $item['description']; ?></span> -->
+						<br>
+						<span>
+							<span class="bold">Description: </span><?php echo $item['description']; ?>
+						</span>
 					</div>
+					<hr>
 				<?php endforeach; ?>
 			</div>
 		</div>
