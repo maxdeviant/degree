@@ -21,4 +21,6 @@
 	</li>
 </ul>
 
-<?php echo $session->user->name; ?>
+<?php if (isset($session->user)): ?>
+	<h4><i class="fa fa-user" style="color: #333"></i> <?php echo ucfirst($session->user->name); ?></h4>
+<?php endif ?>
