@@ -2,6 +2,10 @@
 	require_once "include/session.php";
 
 	$session = new Session();
+
+	if ($session->user->level < 1) {
+		header('location: index.php');
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
