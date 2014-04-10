@@ -19,6 +19,18 @@
 			<a href="logout.php">Logout</a>
 		<?php endif ?>
 	</li>
+	<?php if (isset($session->user)): ?>
+		<li class="right">
+			<i class="fa fa-credit-card"></i>
+			<a href="orders.php">Orders</a>
+		</li>
+		<?php if ($session->user->level > 0): ?>
+			<li class="right">
+				<i class="fa fa-cogs"></i>
+				<a href="admin.php">Admin</a>
+			</li>
+		<?php endif ?>
+	<?php endif ?>
 </ul>
 
 <?php if (isset($session->user)): ?>
