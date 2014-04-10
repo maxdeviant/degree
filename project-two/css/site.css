@@ -19,10 +19,17 @@ h1 {
 	font-weight: bold;
 }
 
+#storefront {
+	height: 500px;
+	overflow-x: scroll;
+}
+
+.entry {
+
+}
+
 .item {
-	min-width: 25%;
-	height: 150px;
-	float: left;
+	
 }
 
 input {

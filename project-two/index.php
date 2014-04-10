@@ -7,29 +7,37 @@
 <?php include "include/header.php"; ?>
 <body>
 	<div class="container">
-		<div id="storefront" class="sixteen columns">
+		<div class="sixteen columns">
 			<h1>Store</h1>
 
 			<?php require_once "include/navigation.php"; ?>
 
-			<hr />
+			<hr>
 
-			<?php foreach ($items as $item): ?>
-				<div class="five columns">
-					<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
-					<hr />
-					<!-- <img src="<?php echo $item['image']; ?>"> -->
-					<div class="item" style="background: url(<?php echo $item['image']; ?>) no-repeat 0 center;"></div>
-					<span>
-						<span class="bold">Price: </span>$<?php echo $item['price']; ?>
-					</span>
-					<br>
-					<span>
-						<span class="bold">Category: </span><?php echo $item['category']; ?>
-					</span>
-					<!-- <span>Description: <?php echo $item['description']; ?></span> -->
-				</div>
-			<?php endforeach; ?>
+			<div id="storefront" class="sixteen columns">
+				<?php foreach ($items as $item): ?>
+					<div class="entry">
+						<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
+						<br>
+						<div>
+							<img class="item" src="./images/items/<?php echo $item['image']; ?>">
+						</div>
+						<br>
+						<span>
+							<span class="bold">Price: </span>$<?php echo $item['price']; ?>
+						</span>
+						<br>
+						<span>
+							<span class="bold">Category: </span><?php echo ucfirst($item['category']); ?>
+						</span>
+						<br>
+						<!-- <span>
+							<span class="bold">Description: </span><?php echo $item['description']; ?>
+						</span> -->
+					</div>
+					<hr>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</div>
 </body>

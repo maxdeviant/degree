@@ -19,6 +19,20 @@
 			<a href="logout.php">Logout</a>
 		<?php endif ?>
 	</li>
+	<?php if (isset($session->user)): ?>
+		<li class="right">
+			<i class="fa fa-credit-card"></i>
+			<a href="orders.php">Orders</a>
+		</li>
+		<?php if ($session->user->level > 0): ?>
+			<li class="right">
+				<i class="fa fa-cogs"></i>
+				<a href="admin.php">Admin</a>
+			</li>
+		<?php endif ?>
+	<?php endif ?>
 </ul>
 
-<?php echo $session->user->name; ?>
+<?php if (isset($session->user)): ?>
+	<h4><i class="fa fa-user" style="color: #333"></i> <?php echo ucfirst($session->user->name); ?></h4>
+<?php endif ?>
