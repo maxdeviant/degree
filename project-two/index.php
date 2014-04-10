@@ -28,12 +28,12 @@
 						</span>
 						<br>
 						<span>
-							<span class="bold">Category: </span><?php echo $item['category']; ?>
+							<span class="bold">Category: </span><?php echo ucfirst($item['category']); ?>
 						</span>
 						<br>
-						<span>
+						<!-- <span>
 							<span class="bold">Description: </span><?php echo $item['description']; ?>
-						</span>
+						</span> -->
 					</div>
 					<hr>
 				<?php endforeach; ?>

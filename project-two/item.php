@@ -25,7 +25,11 @@
 				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
 			</div>
 			<br>
-			<button style="float: right;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+			<form action="add_to_cart.php">
+				<input type="text" class="fa fa-key" value="1" />
+
+				<button type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+			</form>
 		</div>
 	</div>
 </body>
