@@ -2,6 +2,10 @@
 	require_once "include/session.php";
 
 	$session = new Session();
+
+	if (!isset($session->user)) {
+		header('location: login.php');
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
