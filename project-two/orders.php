@@ -22,11 +22,31 @@
 
 			<hr />
 
-			<?php foreach ($orders as $order): ?>
-				<div>
-					<?php echo "Order #: $order->id"; ?>
-				</div>
-			<?php endforeach; ?>
+			<table>
+				<tr>
+					<th>#</th>
+					<th>Created</th>
+					<th>Details</th>
+				</tr>
+				<?php foreach ($orders as $order): ?>
+					<tr>
+						<td><?php echo $order->id; ?></td>
+						<td>
+							<?php
+								$date = new DateTime();
+								$date->setTimestamp($order->created_at);
+								echo $date->format('Y-m-d H:i:s');
+							?>
+						</td>
+						<td>
+							<?php
+
+							?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+			
 		</div>
 	</div>
 </body>
