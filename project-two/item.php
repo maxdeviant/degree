@@ -7,7 +7,7 @@
 
 	$params = (object) $_REQUEST;
 
-	$item = R::load('item', $params->item_id);
+	$item = R::findAll('item', $params->item_id);
 ?>
 <?php include "include/header.php"; ?>
 <body>
