@@ -20,6 +20,12 @@
 			<hr />
 
 			<h2><?php echo $item->name; ?></h2>
+			<br>
+			<div>
+				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
+			</div>
+			<br>
+			<button style="float: right;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 		</div>
 	</div>
 </body>
