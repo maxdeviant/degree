@@ -15,8 +15,6 @@
 		$user = R::findOne('user', 'name=?', array($username));
 	}
 
-	// $user = R::findOne('user', 'email=?', array($username)) R::findOne('user', 'name=?', array($username));
-
 	if (isset($user) && sha1($params->password) === $user->password) {
 		$session->user = (object) $user->getProperties();
 		unset($session->user->email);
