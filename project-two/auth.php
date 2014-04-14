@@ -8,7 +8,14 @@
 	$params = (object) $_REQUEST;
 
 	$username = trim($params->username);
-	$user = R::findOne('user', 'email=?', array($username));
+
+	if (strrpos($username, '@')) {
+		$user = R::findOne('user', 'email=?', array($username));
+	} else {
+		$user = R::findOne('user', 'name=?', array($username));
+	}
+
+	// $user = R::findOne('user', 'email=?', array($username)) R::findOne('user', 'name=?', array($username));
 
 	if (isset($user) && sha1($params->password) === $user->password) {
 		$session->user = (object) $user->getProperties();
