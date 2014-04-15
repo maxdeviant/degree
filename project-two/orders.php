@@ -10,7 +10,9 @@
 
 	DB::init();
 
-	$orders = R::find('order', 'user_id=?', [$session->user->id]);
+	// R::setStrictTyping(false);
+
+	$orders = R::find('order', 'user_id=?', array($session->user->id));
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -22,10 +24,10 @@
 
 			<hr />
 
-			<table>
+			<table class="table table-striped table-condensed">
 				<tr>
 					<th>#</th>
-					<th>Created</th>
+					<th style="min-width: 100px;">Created</th>
 					<th>Details</th>
 				</tr>
 				<?php foreach ($orders as $order): ?>
@@ -40,13 +42,18 @@
 						</td>
 						<td>
 							<?php
+								$ids = R::find('item_order', 'order_id=?', array($order->id));
 
+								foreach (array_keys($ids) as $key) {
+									$items[] = R::findOne('item', 'id=?', array($key))->name;
+								}
+
+								echo join(", ", $items);
 							?>
 						</td>
 					</tr>
 				<?php endforeach; ?>
 			</table>
-			
 		</div>
 	</div>
 </body>
