@@ -22,11 +22,24 @@
 
 			<hr />
 
-			<form action="auth.php" method="post" autocomplete="off">
-				Username: <input type="text" name="username" placeholder="Username" />
-				Password: <input type="password" name="password" placeholder="Password" />
-
-				<button type="submit">Login</button>
+			<form class="form-horizontal" action="auth.php" method="post" autocomplete="off">
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label">Username</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="username" placeholder="Username" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-3">
+						<input class="form-control" type="password" name="password" placeholder="Password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-10">
+						<button class="btn btn-default" type="submit">Login</button>
+					</div>
+				</div>
 			</form>
 
 			<?php echo $message; ?>
