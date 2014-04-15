@@ -48,7 +48,11 @@
 									$items[] = R::findOne('item', 'id=?', array($key))->name;
 								}
 
-								echo join(", ", $items);
+								// echo substr(join(", ", $items), 0, 50) . "...";
+
+								echo strlen(join(", ", $items)) < 125 ? join(", ", $items) : (substr(join(", ", $items), 0, 125) . "...");
+
+								// echo join(", ", $items);
 							?>
 						</td>
 					</tr>
