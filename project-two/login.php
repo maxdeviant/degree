@@ -42,7 +42,11 @@
 				</div>
 			</form>
 
-			<?php echo $message; ?>
+			<div class="col-sm-offset-2 col-sm-6">
+				<p class="text-danger">
+					<?php echo $message; ?>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>
