@@ -5,6 +5,8 @@
 	$session = new Session();
 	DB::init();
 
+	R::setStrictTyping(false);
+
 	if (isset($session->user)) {
 		$date = new DateTime();
 
@@ -18,7 +20,7 @@
 		foreach ($session->cart as $key => $value) {
 			$item = R::findOne('item', 'id=?', array($key));
 
-			$joined = R::dispense('joined');
+			$joined = R::dispense('item_order');
 			print_r($joined);
 
 			$joined->item_id = $key;
