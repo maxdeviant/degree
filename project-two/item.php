@@ -7,12 +7,12 @@
 
 	$params = (object) $_REQUEST;
 
-	$item = R::findAll('item', $params->item_id);
+	$item = R::findOne('item', 'id=?', array($params->item_id));
 ?>
 <?php include "include/header.php"; ?>
 <body>
 	<div class="container">
-		<div class="sixteen columns">
+		<div class="container-fluid">
 			<h1>Item</h1>
 
 			<?php require_once "include/navigation.php"; ?>
@@ -25,8 +25,9 @@
 				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
 			</div>
 			<br>
-			<form action="add_to_cart.php">
-				<input type="text" class="fa fa-key" value="1" />
+			<form action="add.php">
+				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
+				<input type="text" class="fa fa-key" name="amount" value="1" />
 
 				<button type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 			</form>
