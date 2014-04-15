@@ -6,9 +6,6 @@
 	DB::init();
 
 	if (isset($session->user)) {
-		print_r($session->cart);
-		print_r($session->user);
-
 		$date = new DateTime();
 
 		$order = R::dispense('order');
@@ -17,6 +14,20 @@
 		$order->created_at = $date->getTimestamp();
 
 		$id = R::store($order);
+
+		foreach ($session->cart as $key => $value) {
+			$item = R::findOne('item', 'id=?', array($key));
+
+			$joined = R::dispense('joined');
+			print_r($joined);
+
+			$joined->item_id = $key;
+			$joined->order_id = $id;
+			$joined->quantity = $value;
+			$joined->price = $item->price;
+
+			$foo = R::store($joined);
+		}
 
 		$session->cart = [];
 
