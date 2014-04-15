@@ -7,20 +7,20 @@
 <?php include "include/header.php"; ?>
 <body>
 	<div class="container">
-		<div class="sixteen columns">
+		<div class="container-fluid">
 			<h1>Store</h1>
 
 			<?php require_once "include/navigation.php"; ?>
 
 			<hr>
 
-			<div id="storefront" class="sixteen columns">
+			<div id="storefront" class="container-fluid">
 				<?php foreach ($items as $item): ?>
-					<div class="entry">
+					<div class="col-md-3 entry">
 						<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
 						<br>
 						<div>
-							<img class="item" src="./images/items/<?php echo $item['image']; ?>">
+							<!-- <img class="" src="./images/items/<?php echo $item['image']; ?>"> -->
 						</div>
 						<br>
 						<span>
@@ -35,7 +35,7 @@
 							<span class="bold">Description: </span><?php echo $item['description']; ?>
 						</span> -->
 					</div>
-					<hr>
+					<!-- <hr> -->
 				<?php endforeach; ?>
 			</div>
 		</div>

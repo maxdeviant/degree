@@ -15,7 +15,7 @@
 <?php include "include/header.php"; ?>
 <body>
 	<div class="container">
-		<div class="sixteen columns">
+		<div class="container-fluid">
 			<h1>Login</h1>
 
 			<?php include "include/navigation.php"; ?>
