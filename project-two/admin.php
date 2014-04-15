@@ -10,7 +10,7 @@
 <?php include "include/header.php"; ?>
 <body>
 	<div class="container">
-		<div class="sixteen columns">
+		<div class="container-fluid">
 			<h1>Administration</h1>
 
 			<?php require_once "include/navigation.php"; ?>
