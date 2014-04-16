@@ -54,7 +54,7 @@
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $item->name; ?>" />
+						<input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $item->name; ?>" disabled />
 					</div>
 				</div>
 				<div class="form-group">
@@ -66,7 +66,7 @@
 				<div class="form-group">
 					<label for="category" class="col-sm-2 control-label">Category</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="category">
+						<select class="form-control" name="category" disabled>
 						<?php foreach($categories as $category): ?>
 							<?php if ($category['category'] === $item->category): ?>
 								<option value="<?php echo $category['category']; ?>" selected="selected"><?php echo ucfirst($category['category']); ?></option>
