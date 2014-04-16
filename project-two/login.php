@@ -26,7 +26,7 @@
 				<div class="form-group">
 					<label for="username" class="col-sm-2 control-label">Username</label>
 					<div class="col-sm-3">
-						<input class="form-control" type="text" name="username" placeholder="Username" />
+						<input class="form-control" type="text" name="username" placeholder="Username" autofocus />
 					</div>
 				</div>
 				<div class="form-group">

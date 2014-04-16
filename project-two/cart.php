@@ -4,6 +4,10 @@
 
 	$session = new Session();
 	DB::init();
+
+	if (isset($_REQUEST['id'])) {
+		$session->cart[$_REQUEST['id']] = $_REQUEST['amount'];
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -29,7 +33,7 @@
 				<tr>
 					<td><?php echo $item['name']; ?></td>
 					<td><?php echo "$ " . number_format($item->price, 2); ?></td>
-					<td><?php echo $session->cart[$entry]; ?></td>
+					<td><input type="text" id="item-<?php echo $item->id; ?>" value="<?php echo $session->cart[$entry]; ?>" onchange="update(<?php echo $item->id; ?>);" /></td>
 					<td><?php echo "$ " . number_format($session->cart[$entry] * $item->price, 2); ?></td>
 				</tr>
 				<?php endforeach; ?>
@@ -46,5 +50,12 @@
 			</form>
 		</div>
 	</div>
+	<script>
+		function update(id) {
+			var amount = $('#item-' + id).val();
+			
+			window.location = "cart.php?id=" + id + "&amount=" + amount;
+		}
+	</script>
 </body>
 </html>
