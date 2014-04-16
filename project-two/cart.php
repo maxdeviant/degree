@@ -18,6 +18,7 @@
 			<table class="table table-striped">
 				<tr>
 					<th>Item</th>
+					<th>Price</th>
 					<th>Amount</th>
 					<th>Subtotal</th>
 				</tr>
@@ -27,13 +28,14 @@
 				?>
 				<tr>
 					<td><?php echo $item['name']; ?></td>
+					<td><?php echo "$ " . number_format($item->price, 2); ?></td>
 					<td><?php echo $session->cart[$entry]; ?></td>
-					<td><?php echo "$ " . $session->cart[$entry] * $item->price; ?></td>
+					<td><?php echo "$ " . number_format($session->cart[$entry] * $item->price, 2); ?></td>
 				</tr>
 				<?php endforeach; ?>
 			</table>
 
-			<h3 class="total">Total: $<?php echo $total; ?></h3>
+			<h3 class="total">Total: $<?php echo number_format($total, 2); ?></h3>
 
 			<form class="form-group" method="post" action="submit.php">
 				<input class="btn btn-default" type="submit" value="Submit Order" />
