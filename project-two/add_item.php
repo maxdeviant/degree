@@ -64,6 +64,24 @@
 					</div>
 				</div>
 			</form>
+
+			<div class="col-sm-offset-2 col-sm-6">
+				<p class="text-success">
+					<?php
+						echo join("<br>", $session->success->create);
+						$session->success->create = [];
+					?>
+				</p>
+			</div>
+
+			<div class="col-sm-offset-2 col-sm-6">
+				<p class="text-danger">
+					<?php
+						echo join("<br>", $session->errors->create);
+						$session->errors->create = [];
+					?>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>

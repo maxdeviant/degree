@@ -6,6 +6,7 @@
 
 	if ($session->user->level < 1) {
 		header('location: index.php');
+		exit();
 	}
 
 	DB::init();
@@ -32,7 +33,7 @@
 				</tr>
 				<?php foreach ($orders as $order): ?>
 					<tr>
-						<td><?php echo $order->id; ?></td>
+						<td><a href="order_details?id=<?php echo $order->id; ?>"><?php echo $order->id; ?></a></td>
 						<td>
 							<?php
 								$date = new DateTime();
