@@ -23,6 +23,7 @@
 				</tr>
 				<?php foreach (array_keys($session->cart) as $entry):
 					$item = R::findOne('item', 'id=?', array($entry));
+					$total += $session->cart[$entry] * $item->price;
 				?>
 				<tr>
 					<td><?php echo $item['name']; ?></td>
@@ -31,6 +32,8 @@
 				</tr>
 				<?php endforeach; ?>
 			</table>
+
+			<h3 class="total">Total: $<?php echo $total; ?></h3>
 
 			<form class="form-group" method="post" action="submit.php">
 				<input class="btn btn-default" type="submit" value="Submit Order" />
