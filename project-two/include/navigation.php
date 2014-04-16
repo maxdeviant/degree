@@ -34,5 +34,5 @@
 </ul>
 
 <?php if (isset($session->user)): ?>
-	<h4><i class="fa fa-user" style="color: #333"></i> <?php echo ucfirst($session->user->name); ?></h4>
+	<h4><i class="fa fa-user" style="color: #333"></i>&nbsp;<?php echo ucfirst($session->user->name); ?></h4>
 <?php endif ?>

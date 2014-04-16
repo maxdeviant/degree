@@ -25,11 +25,22 @@
 				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
 			</div>
 			<br>
-			<form action="add.php">
+			<form class="form-horizontal col-sm-6" action="add.php">
 				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
-				<input type="text" class="fa fa-key" name="amount" value="1" />
 
-				<button type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+				<div class="form-group">
+					<label for="amount" class="col-sm-2 control-label">Amount</label>
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="amount" value="1" />
+					</div>
+				</div>
+				
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button class="btn btn-default" type="submit" name="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>
