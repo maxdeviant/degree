@@ -19,9 +19,9 @@
 			<hr />
 
 			<div class="col-sm-offset-4 col-sm-10">
-				<button class="btn btn-default" onclick="manageOrders()">Manage Orders</button>
-				<button class="btn btn-default" onclick="addItem()">Add Item</button>
-				<button class="btn btn-default" onclick="editItem()">Edit Item</button>
+				<button class="btn btn-default" onclick="manageOrders()"><i class="fa fa-envelope-o">&nbsp;Manage Orders</i></button>
+				<button class="btn btn-default" onclick="addItem()"><i class="fa fa-plus">&nbsp;Add Item</i></button>
+				<button class="btn btn-default" onclick="editItem()"><i class="fa fa-edit">&nbsp;Edit Item</i></button>
 			</div>
 		</div>
 	</div>
