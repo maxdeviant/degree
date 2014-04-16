@@ -22,23 +22,22 @@
 
 			<hr />
 
-			<form class="form" action="" method="post">
+			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
-					<label for="name" class="control-label">Name</label>
-					<div class="">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
 						<input class="form-control" type="text" name="name" placeholder="Name" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="price" class="control-label">Price</label>
-					<div class="">
-						<input class="form-control" type="text" name="price" placeholder="$ 0.00" />
+					<label for="price" class="col-sm-2 control-label">Price</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" name="price" placeholder="0.00" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="category" class="control-label">Category</label>
-					<div class="">
-						<!-- <input class="form-control" type="" name="" placeholder="" /> -->
+					<label for="category" class="col-sm-2 control-label">Category</label>
+					<div class="col-sm-10">
 						<select class="form-control">
 						<?php foreach($categories as $category): ?>
 							<option><?php echo ucfirst($category['category']); ?></option>
@@ -47,15 +46,20 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label"></label>
-					<div class="">
-						<input class="form-control" type="" name="" placeholder="" />
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" name="description" placeholder="Description"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label"></label>
-					<div class="">
-						<input class="form-control" type="" name="" placeholder="" />
+					<label for="image" class="col-sm-2 control-label">Image</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" name="image" placeholder="" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button class="btn btn-default" type="submit">Add</button>
 					</div>
 				</div>
 			</form>
