@@ -7,6 +7,7 @@
 		header('location: index.php');
 	}
 ?>
+<?php include "include/header.php"; ?>
 <body>
 	<div class="container">
 		<div class="container-fluid">
