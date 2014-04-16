@@ -50,6 +50,7 @@
 			<br><br>
 
 			<form class="form-horizontal" action="update_item.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
