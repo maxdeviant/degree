@@ -6,6 +6,7 @@
 
 	if (!isset($session->user)) {
 		header('location: login.php');
+		exit();
 	}
 
 	DB::init();
