@@ -53,6 +53,7 @@
 
 			<?php if ($session->user->level > 0): ?>
 				<form class="form-group" method="post" action="process.php">
+					<input type="hidden" name="id" value="<?php echo $id; ?>" />
 					<input class="btn btn-default" type="submit" value="Process Order" />
 				</form>
 			<?php endif; ?>
