@@ -17,8 +17,23 @@
 
 			<hr />
 
-
+			<button class="btn btn-default" onclick="manageOrders()">Manage Orders</button>
+			<button class="btn btn-default" onclick="addItem()">Add Item</button>
+			<button class="btn btn-default" onclick="editItem()">Edit Item</button>
 		</div>
 	</div>
+	<script>
+		function manageOrders() {
+			window.location = 'manage_orders.php';
+		}
+
+		function addItem() {
+			window.location = 'add_item.php';
+		}
+
+		function editItem() {
+			window.location = 'edit_item.php';
+		}
+	</script>
 </body>
 </html>
