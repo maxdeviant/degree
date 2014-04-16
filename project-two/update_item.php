@@ -8,6 +8,10 @@
 		header('location: index.php');
 	}
 
+	if (strpos($_SERVER['HTTP_REFERER'], "edit_item.php") === false) {
+		header('location: index.php');
+	}
+
 	DB::init();
 
 	$params = $_REQUEST;
