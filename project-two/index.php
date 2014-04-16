@@ -2,7 +2,35 @@
 	require_once "include/db.php";
 	DB::init();
 
-	$items = R::findall('item', '1 order by name asc');
+	if (!isset($_REQUEST['sort'])) {
+		header('location: index.php?sort=by_name_asc');
+	} else {
+		$sort = $_REQUEST['sort'];
+	}
+
+	if ($sort === 'by_name_asc') {
+		$items = R::findall('item', '1 order by name asc');
+	}
+
+	if ($sort === 'by_name_desc') {
+		$items = R::findall('item', '1 order by name desc');
+	}
+
+	if ($sort === 'by_category_asc') {
+		$items = R::findall('item', '1 order by category asc');
+	}
+
+	if ($sort === 'by_category_desc') {
+		$items = R::findall('item', '1 order by category desc');
+	}
+
+	if ($sort === 'by_price_asc') {
+		$items = R::findall('item', '1 order by price asc');
+	}
+
+	if ($sort === 'by_price_desc') {
+		$items = R::findall('item', '1 order by price desc');
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -14,31 +42,52 @@
 
 			<hr>
 
-			<div id="storefront" class="container-fluid">
+			<table class="table table-striped">
+				<tr>
+					<th class="interactive" onclick="sortName();">Name</th>
+					<th class="interactive" onclick="sortCategory();">Category</th>
+					<th class="interactive" onclick="sortPrice();">Price</th>
+				</tr>
 				<?php foreach ($items as $item): ?>
-					<div class="col-md-3 entry">
-						<h5><a href="./item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h5>
-						<br>
-						<div>
-							<!-- <img class="" src="./images/items/<?php echo $item['image']; ?>"> -->
-						</div>
-						<br>
-						<span>
-							<span class="bold">Price: </span>$<?php echo $item['price']; ?>
-						</span>
-						<br>
-						<span>
-							<span class="bold">Category: </span><?php echo ucfirst($item['category']); ?>
-						</span>
-						<br>
-						<!-- <span>
-							<span class="bold">Description: </span><?php echo $item['description']; ?>
-						</span> -->
-					</div>
-					<!-- <hr> -->
+					<tr>
+						<td><a href="item.php?item_id=<?php echo $item->id; ?>"><?php echo $item->name; ?></a></td>
+						<td><?php echo $item->category; ?></td>
+						<td><?php echo "$ " . number_format($item->price, 2); ?></td>
+					</tr>
 				<?php endforeach; ?>
-			</div>
+			</table>
 		</div>
 	</div>
+	<script>
+		function sortName() {
+			var sort = "<?php echo $sort; ?>";
+
+			if (sort === 'by_name_asc') {
+				window.location = 'index.php?sort=by_name_desc';
+			} else {
+				window.location = 'index.php?sort=by_name_asc';
+			}
+		}
+
+		function sortCategory() {
+			var sort = "<?php echo $sort; ?>";
+
+			if (sort === 'by_category_asc') {
+				window.location = 'index.php?sort=by_category_desc';
+			} else {
+				window.location = 'index.php?sort=by_category_asc';
+			}
+		}
+
+		function sortPrice() {
+			var sort = "<?php echo $sort; ?>";
+
+			if (sort === 'by_price_asc') {
+				window.location = 'index.php?sort=by_price_desc';
+			} else {
+				window.location = 'index.php?sort=by_price_asc';
+			}
+		}
+	</script>
 </body>
 </html>

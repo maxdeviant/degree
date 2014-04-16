@@ -39,3 +39,7 @@ input {
 .total {
 	float: right;
 }
+
+.interactive {
+	cursor: pointer;
+}
