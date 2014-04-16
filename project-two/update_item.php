@@ -6,10 +6,12 @@
 
 	if ($session->user->level < 1) {
 		header('location: index.php');
+		exit();
 	}
 
 	if (strpos($_SERVER['HTTP_REFERER'], "edit_item.php") === false) {
 		header('location: index.php');
+		exit();
 	}
 
 	DB::init();

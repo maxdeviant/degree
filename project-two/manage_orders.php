@@ -6,6 +6,7 @@
 
 	if ($session->user->level < 1) {
 		header('location: index.php');
+		exit();
 	}
 
 	DB::init();
