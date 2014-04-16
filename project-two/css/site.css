@@ -32,10 +32,6 @@ h1 {
 	
 }
 
-input {
-	min-width: 200px;
-}
-
 .total {
 	float: right;
 }
