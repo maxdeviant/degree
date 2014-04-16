@@ -8,7 +8,7 @@
 		header('location: index.php');
 	}
 
-	if (strpos($_SERVER['HTTP_REFERER'], "add_item.php") === false) {
+	if (strpos($_SERVER['HTTP_REFERER'], "edit_item.php") === false) {
 		header('location: index.php');
 	}
 
@@ -16,7 +16,7 @@
 
 	$params = $_REQUEST;
 
-	$item = R::dispense('item');
+	$item = R::load('item', $params['id']);
 
 	$item->name = $params['name'];
 	$item->category = $params['category'];
@@ -26,5 +26,5 @@
 
 	$id = R::store($item);
 
-	header('location: add_item.php');
+	header('location: edit_item.php?item_id=' . $id);
 ?>

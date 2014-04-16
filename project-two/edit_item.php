@@ -13,7 +13,11 @@
 	$categories = R::getAll('select distinct category from item');
 	sort($categories);
 
-	$item = R::findOne('item', 'id=?', array(22));
+	$items = R::findall('item', '1 order by name asc');
+
+	if (isset($_GET['item_id'])) {
+		$item = R::findOne('item', 'id=?', array($_GET['item_id']));
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -25,7 +29,28 @@
 
 			<hr />
 
+			<form class="form-horizontal" method="get" name="myform">
+				<div class="form-group">
+					<label for="item_id" class="col-sm-2 control-label">Item</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="item_id" onchange="myform.submit();">
+						<option>Choose an item...</option>
+						<?php foreach($items as $i): ?>
+							<?php if ($i->id === $item->id): ?>
+								<option value="<?php echo $i->id; ?>" selected="selected"><?php echo $i->name; ?></option>
+							<?php else: ?>
+								<option value="<?php echo $i->id; ?>"><?php echo $i->name; ?></option>
+							<?php endif; ?>
+						<?php endforeach; ?>
+						</select>
+					</div>
+				</div>
+			</form>
+
+			<br><br>
+
 			<form class="form-horizontal" action="update_item.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
@@ -66,7 +91,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-default" type="submit" name="submit">Add</button>
+						<button class="btn btn-default" type="submit" name="submit">Update</button>
 					</div>
 				</div>
 			</form>
