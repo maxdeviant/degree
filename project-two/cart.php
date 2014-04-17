@@ -4,6 +4,10 @@
 
 	$session = new Session();
 	DB::init();
+
+	if (isset($_REQUEST['id'])) {
+		$session->cart[$_REQUEST['id']] = $_REQUEST['quantity'];
+	}
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -18,7 +22,8 @@
 			<table class="table table-striped">
 				<tr>
 					<th>Item</th>
-					<th>Amount</th>
+					<th>Price</th>
+					<th>Quantity</th>
 					<th>Subtotal</th>
 				</tr>
 				<?php foreach (array_keys($session->cart) as $entry):
@@ -27,13 +32,14 @@
 				?>
 				<tr>
 					<td><?php echo $item['name']; ?></td>
-					<td><?php echo $session->cart[$entry]; ?></td>
-					<td><?php echo "$ " . $session->cart[$entry] * $item->price; ?></td>
+					<td><?php echo "$ " . number_format($item->price, 2); ?></td>
+					<td><input type="text" id="item-<?php echo $item->id; ?>" value="<?php echo $session->cart[$entry]; ?>" onchange="update(<?php echo $item->id; ?>);" /></td>
+					<td><?php echo "$ " . number_format($session->cart[$entry] * $item->price, 2); ?></td>
 				</tr>
 				<?php endforeach; ?>
 			</table>
 
-			<h3 class="total">Total: $<?php echo $total; ?></h3>
+			<h3 class="total">Total: $<?php echo number_format($total, 2); ?></h3>
 
 			<form class="form-group" method="post" action="submit.php">
 				<input class="btn btn-default" type="submit" value="Submit Order" />
@@ -44,5 +50,16 @@
 			</form>
 		</div>
 	</div>
+	<script>
+		function update(id) {
+			var quantity = $('#item-' + id).val();
+
+			if (quantity <= 0) {
+				quantity = 1;
+			}
+			
+			window.location = "cart.php?id=" + id + "&quantity=" + quantity;
+		}
+	</script>
 </body>
 </html>

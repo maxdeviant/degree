@@ -24,6 +24,18 @@
 	$params['description'] = trim($params['description']);
 	$params['image'] = trim($params['image']);
 
+	$valid = true;
+
+	if (!is_numeric($params['price'])) {
+		$session->errors->update[] = "Price must be a number.";
+		$valid = false;
+	}
+
+	if (!$valid) {
+		header('location: ' . $_SERVER['HTTP_REFERER']);
+		exit();
+	}
+
 	$item = R::load('item', $params['id']);
 
 	$item->name = $params['name'];
