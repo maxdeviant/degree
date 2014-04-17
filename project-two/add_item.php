@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 	require_once "include/db.php";
@@ -14,6 +15,8 @@
 	sort($categories);
 ?>
 <?php include "include/header.php"; ?>
+<title>Add Item &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">
