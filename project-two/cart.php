@@ -53,6 +53,10 @@
 	<script>
 		function update(id) {
 			var quantity = $('#item-' + id).val();
+
+			if (quantity <= 0) {
+				quantity = 1;
+			}
 			
 			window.location = "cart.php?id=" + id + "&quantity=" + quantity;
 		}

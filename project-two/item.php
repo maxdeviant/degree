@@ -25,7 +25,7 @@
 				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
 			</div>
 			<br>
-			<form class="form-horizontal col-sm-6" action="add.php">
+			<form class="form-horizontal col-sm-6" method="post" action="add.php">
 				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
 
 				<div class="form-group">
@@ -38,10 +38,19 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-default" type="submit" name="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+						<button class="btn btn-default" type="submit"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 					</div>
 				</div>
 			</form>
+
+			<div class="col-sm-offset-2 col-sm-6">
+				<p class="text-danger">
+					<?php
+						echo join("<br>", $session->errors->cart);
+						$session->errors->cart = [];
+					?>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>
