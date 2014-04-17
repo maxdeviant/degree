@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	include "site.php";
 	require_once "session.php";
@@ -13,10 +14,7 @@
 
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<!-- 
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css"> -->
+	
 	<link rel="stylesheet" href="css/site.css">
 
 	<link rel="shortcut icon" href="images/favicon.ico">
