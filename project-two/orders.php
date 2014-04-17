@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 	require_once "include/db.php";
@@ -10,8 +11,6 @@
 	}
 
 	DB::init();
-
-	// R::setStrictTyping(false);
 
 	$orders = R::find('order', 'user_id=? order by created_at desc', array($session->user->id));
 ?>
