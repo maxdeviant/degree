@@ -47,10 +47,10 @@
 						<td>
 							<?php
 								$user = R::findOne('user', 'id=?', array($order->user_id));
-								echo ucfirst($user->name);
+								echo ucfirst(htmlspecialchars($user->name));
 							?>
 						</td>
-						<td><?php echo $user->email; ?></td>
+						<td><?php echo htmlspecialchars($user->email); ?></td>
 						<td>
 							<?php
 								$items = R::find('item_order', 'order_id=?', array($order->id));

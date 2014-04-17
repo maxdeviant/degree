@@ -12,9 +12,6 @@
 
 	DB::init();
 
-	$categories = R::getAll('select distinct category from item');
-	sort($categories);
-
 	$items = R::findall('item', '1 order by name asc');
 
 	if (isset($_GET['item_id'])) {
@@ -41,9 +38,9 @@
 						<option>Choose an item...</option>
 						<?php foreach($items as $i): ?>
 							<?php if ($i->id === $item->id): ?>
-								<option value="<?php echo $i->id; ?>" selected="selected"><?php echo $i->name; ?></option>
+								<option value="<?php echo $i->id; ?>" selected="selected"><?php echo htmlspecialchars($i->name); ?></option>
 							<?php else: ?>
-								<option value="<?php echo $i->id; ?>"><?php echo $i->name; ?></option>
+								<option value="<?php echo $i->id; ?>"><?php echo htmlspecialchars($i->name); ?></option>
 							<?php endif; ?>
 						<?php endforeach; ?>
 						</select>
@@ -58,27 +55,19 @@
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo $item->name; ?>" readonly />
+						<input class="form-control" type="text" name="name" placeholder="Name" value="<?php echo htmlspecialchars($item->name); ?>" readonly />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="price" class="col-sm-2 control-label">Price</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="price" placeholder="0.00" value="<?php echo $item->price; ?>" />
+						<input class="form-control" type="text" name="price" placeholder="0.00" value="<?php echo htmlspecialchars($item->price); ?>" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="category" class="col-sm-2 control-label">Category</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="category" readonly>
-						<?php foreach($categories as $category): ?>
-							<?php if ($category['category'] === $item->category): ?>
-								<option value="<?php echo $category['category']; ?>" selected="selected"><?php echo ucfirst($category['category']); ?></option>
-							<?php else: ?>
-								<option value="<?php echo $category['category']; ?>"><?php echo ucfirst($category['category']); ?></option>
-							<?php endif; ?>
-						<?php endforeach; ?>
-						</select>
+						<input class="form-control" type="text" name="category" value="<?php echo ucfirst($item->category); ?>" readonly />
 					</div>
 				</div>
 				<div class="form-group">

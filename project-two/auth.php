@@ -20,7 +20,13 @@
 		$session->user = (object) $user->getProperties();
 		unset($session->user->email);
 		unset($session->user->password);
-		header('location: .');
+
+		if (isset($session->redirect)) {
+			header('location: ' . $session->redirect);
+			unset($session->redirect);
+		} else {
+			header('location: .');
+		}
 	} else {
 		$session->message = "Invalid username and/or password.";
 		header('location: login.php');

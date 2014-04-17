@@ -22,7 +22,7 @@
 
 			<hr />
 
-			<h2><?php echo $item->name; ?></h2>
+			<h2><?php echo htmlspecialchars($item->name); ?></h2>
 			<br>
 			<div class="col-md-6">
 				<img class="item" src="./images/items/<?php echo $item['image']; ?>">
