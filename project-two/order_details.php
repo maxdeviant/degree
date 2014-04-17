@@ -35,7 +35,8 @@
 			<table class="table table-striped">
 				<tr>
 					<th>Item</th>
-					<th>Amount</th>
+					<th>Price</th>
+					<th>Quantity</th>
 					<th>Subtotal</th>
 				</tr>
 				<?php foreach ($items as $entry):
@@ -44,8 +45,9 @@
 				?>
 				<tr>
 					<td><?php echo $item->name; ?></td>
+					<td><?php echo number_format($item->price, 2); ?></td>
 					<td><?php echo $entry->quantity; ?></td>
-					<td><?php echo "$ " . $entry->quantity * $item->price; ?></td>
+					<td><?php echo "$ " . number_format($entry->quantity * $item->price, 2); ?></td>
 				</tr>
 				<?php endforeach; ?>
 			</table>
