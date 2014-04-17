@@ -13,7 +13,7 @@
 
 	// R::setStrictTyping(false);
 
-	$orders = R::find('order', 'user_id=?', array($session->user->id));
+	$orders = R::find('order', 'user_id=? order by created_at desc', array($session->user->id));
 ?>
 <?php include "include/header.php"; ?>
 <body>
@@ -43,17 +43,16 @@
 						</td>
 						<td>
 							<?php
-								$ids = R::find('item_order', 'order_id=?', array($order->id));
+								$items = R::find('item_order', 'order_id=?', array($order->id));
 
-								foreach (array_keys($ids) as $key) {
-									$items[] = R::findOne('item', 'id=?', array($key))->name;
+								foreach ($items as $entry) {
+									$item = R::findOne('item', 'id=?', array($entry->item_id));
+									$names[] = $item->name;
 								}
 
-								// echo substr(join(", ", $items), 0, 50) . "...";
+								echo strlen(join(", ", $names)) < 125 ? join(", ", $names) : (substr(join(", ", $names), 0, 125) . "...");
 
-								echo strlen(join(", ", $items)) < 125 ? join(", ", $items) : (substr(join(", ", $items), 0, 125) . "...");
-
-								// echo join(", ", $items);
+								$names = [];
 							?>
 						</td>
 					</tr>

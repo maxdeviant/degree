@@ -110,7 +110,7 @@
 				<p class="text-danger">
 					<?php
 						echo join("<br>", $session->errors->update);
-						$session->errors->create = [];
+						$session->errors->update = [];
 					?>
 				</p>
 			</div>

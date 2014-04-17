@@ -21,7 +21,6 @@
 			$item = R::findOne('item', 'id=?', array($key));
 
 			$joined = R::dispense('item_order');
-			print_r($joined);
 
 			$joined->item_id = $key;
 			$joined->order_id = $id;
