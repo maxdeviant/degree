@@ -13,7 +13,7 @@
 
 	// R::setStrictTyping(false);
 
-	$orders = R::find('order', 'user_id=?', array($session->user->id));
+	$orders = R::find('order', 'user_id=? order by created_at desc', array($session->user->id));
 ?>
 <?php include "include/header.php"; ?>
 <body>
