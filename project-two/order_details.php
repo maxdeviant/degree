@@ -47,7 +47,7 @@
 					$total += $entry->quantity * $item->price
 				?>
 				<tr>
-					<td><?php echo $item->name; ?></td>
+					<td><?php echo htmlspecialchars($item->name); ?></td>
 					<td><?php echo number_format($item->price, 2); ?></td>
 					<td><?php echo $entry->quantity; ?></td>
 					<td><?php echo "$ " . number_format($entry->quantity * $item->price, 2); ?></td>
