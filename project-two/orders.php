@@ -15,6 +15,8 @@
 	$orders = R::find('order', 'user_id=? order by created_at desc', array($session->user->id));
 ?>
 <?php include "include/header.php"; ?>
+<title>Orders &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">

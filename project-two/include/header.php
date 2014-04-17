@@ -1,13 +1,11 @@
 <!-- Marshall Bowers -->
 <?php
-	include "site.php";
 	require_once "session.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $site; ?></title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,4 +21,3 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-</head>
