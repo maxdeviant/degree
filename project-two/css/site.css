@@ -39,3 +39,7 @@ h1 {
 .interactive {
 	cursor: pointer;
 }
+
+span {
+	font-size: 20px;
+}
