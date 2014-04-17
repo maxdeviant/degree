@@ -44,9 +44,9 @@
 
 			<table class="table table-striped">
 				<tr>
-					<th class="interactive" onclick="sortName();">Name</th>
-					<th class="interactive" onclick="sortCategory();">Category</th>
-					<th class="interactive" onclick="sortPrice();">Price</th>
+					<th id="name-header" class="interactive" onclick="sortName();">Name&nbsp;<i class="fa"></i></th>
+					<th id="category-header" class="interactive" onclick="sortCategory();">Category&nbsp;<i class="fa"></th>
+					<th id="price-header" class="interactive" onclick="sortPrice();">Price&nbsp;<i class="fa"></th>
 				</tr>
 				<?php foreach ($items as $item): ?>
 					<tr>
@@ -59,6 +59,34 @@
 		</div>
 	</div>
 	<script>
+		(function () {
+			var sort = "<?php echo $sort; ?>";
+
+			if (sort === 'by_name_asc') {
+				$('#name-header i').addClass('fa-sort-asc');
+			} else if (sort === 'by_name_desc') {
+				$('#name-header i').addClass('fa-sort-desc');
+			} else {
+				$('#name-header i').addClass('fa-sort');
+			}
+
+			if (sort === 'by_category_asc') {
+				$('#category-header i').addClass('fa-sort-asc');
+			} else if (sort === 'by_category_desc') {
+				$('#category-header i').addClass('fa-sort-desc');
+			} else {
+				$('#category-header i').addClass('fa-sort');
+			}
+
+			if (sort === 'by_price_asc') {
+				$('#price-header i').addClass('fa-sort-asc');
+			} else if (sort === 'by_price_desc') {
+				$('#price-header i').addClass('fa-sort-desc');
+			} else {
+				$('#price-header i').addClass('fa-sort');
+			}
+		})();
+
 		function sortName() {
 			var sort = "<?php echo $sort; ?>";
 
