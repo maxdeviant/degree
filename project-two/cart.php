@@ -15,6 +15,8 @@
 	}
 ?>
 <?php include "include/header.php"; ?>
+<title>Cart &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">

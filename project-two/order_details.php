@@ -23,6 +23,8 @@
 	$total = 0;
 ?>
 <?php include "include/header.php"; ?>
+<title>Order Details &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">
