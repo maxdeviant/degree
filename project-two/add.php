@@ -18,5 +18,5 @@
 		$session->cart = array($params->id => $params->quantity);
 	}
 
-	header('location: cart.php');
+	header('location: .');
 ?>
