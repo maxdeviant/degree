@@ -29,9 +29,9 @@
 				<input type="hidden" name="id" value="<?php echo $item->id; ?>" />
 
 				<div class="form-group">
-					<label for="amount" class="col-sm-2 control-label">Amount</label>
+					<label for="quantity" class="col-sm-2 control-label">Quantity</label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="amount" value="1" />
+						<input class="form-control" type="text" name="quantity" value="1" />
 					</div>
 				</div>
 				

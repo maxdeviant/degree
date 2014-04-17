@@ -6,7 +6,7 @@
 	DB::init();
 
 	if (isset($_REQUEST['id'])) {
-		$session->cart[$_REQUEST['id']] = $_REQUEST['amount'];
+		$session->cart[$_REQUEST['id']] = $_REQUEST['quantity'];
 	}
 ?>
 <?php include "include/header.php"; ?>
@@ -23,7 +23,7 @@
 				<tr>
 					<th>Item</th>
 					<th>Price</th>
-					<th>Amount</th>
+					<th>Quantity</th>
 					<th>Subtotal</th>
 				</tr>
 				<?php foreach (array_keys($session->cart) as $entry):
@@ -52,9 +52,9 @@
 	</div>
 	<script>
 		function update(id) {
-			var amount = $('#item-' + id).val();
+			var quantity = $('#item-' + id).val();
 			
-			window.location = "cart.php?id=" + id + "&amount=" + amount;
+			window.location = "cart.php?id=" + id + "&quantity=" + quantity;
 		}
 	</script>
 </body>
