@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 	require_once "include/db.php";
@@ -21,6 +22,8 @@
 	}
 ?>
 <?php include "include/header.php"; ?>
+<title>Edit Item &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">
@@ -81,7 +84,7 @@
 				<div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" name="description" placeholder="Description" rows="10"><?php echo $item->description; ?></textarea>
+						<textarea class="form-control" name="description" placeholder="Description" rows="10"><?php echo htmlspecialchars($item->description); ?></textarea>
 					</div>
 				</div>
 				<div class="form-group">

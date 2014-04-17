@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 
@@ -9,6 +10,8 @@
 	}
 ?>
 <?php include "include/header.php"; ?>
+<title>Administration &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">

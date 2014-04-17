@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 	require_once "include/db.php";
@@ -14,6 +15,8 @@
 	$orders = R::findall('order', '1 order by created_at asc');
 ?>
 <?php include "include/header.php"; ?>
+<title>Manage Orders &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">
@@ -50,13 +53,16 @@
 						<td><?php echo $user->email; ?></td>
 						<td>
 							<?php
-								$ids = R::find('item_order', 'order_id=?', array($order->id));
+								$items = R::find('item_order', 'order_id=?', array($order->id));
 
-								foreach (array_keys($ids) as $key) {
-									$items[] = R::findOne('item', 'id=?', array($key))->name;
+								foreach ($items as $entry) {
+									$item = R::findOne('item', 'id=?', array($entry->item_id));
+									$names[] = $item->name;
 								}
 
-								echo strlen(join(", ", $items)) < 75 ? join(", ", $items) : (substr(join(", ", $items), 0, 75) . "...");
+								echo strlen(join(", ", $names)) < 75 ? join(", ", $names) : (substr(join(", ", $names), 0, 75) . "...");
+
+								$names = [];
 							?>
 						</td>
 					</tr>

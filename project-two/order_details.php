@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	require_once "include/session.php";
 	require_once "include/db.php";
@@ -22,6 +23,8 @@
 	$total = 0;
 ?>
 <?php include "include/header.php"; ?>
+<title>Order Details &raquo; CSC417</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container-fluid">
@@ -55,12 +58,18 @@
 			<h3 class="total">Total: $<?php echo $total; ?></h3>
 
 			<?php if ($session->user->level > 0): ?>
-				<form class="form-group" method="post" action="process.php">
-					<input type="hidden" name="id" value="<?php echo $id; ?>" />
-					<input class="btn btn-default" type="submit" value="Process Order" />
-				</form>
+				<button class="btn btn-default" onclick="verify(<?php echo $id; ?>);">Process Order</button>
 			<?php endif; ?>
 		</div>
 	</div>
+	<script>
+		function verify(id) {
+			var response = confirm("Do you want this order to be processed?");
+
+			if (response) {
+				window.location = 'process.php?id=' + id;
+			}
+		}
+	</script>
 </body>
 </html>
