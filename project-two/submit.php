@@ -35,6 +35,7 @@
 
 		header("location: .");
 	} else {
+		$session->redirect = "cart.php";
 		header("location: login.php");
 	}
 ?>
