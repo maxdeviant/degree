@@ -2,6 +2,19 @@ h1 {
 	text-transform: uppercase;
 }
 
+span {
+	font-size: 20px;
+}
+
+.fa-times:hover {
+	cursor: pointer;
+	color: #a94442;
+}
+
+.interactive {
+	cursor: pointer;
+}
+
 .navigation {
 	text-transform: uppercase;
 }
@@ -15,36 +28,11 @@ h1 {
 	float: right;
 }
 
-.bold {
-	font-weight: bold;
-}
-
 #storefront {
 	height: 500px;
-	overflow-x: scroll;
-}
-
-.entry {
-	height: 200px;
-}
-
-.item {
-	
+	overflow-y: scroll;
 }
 
 .total {
 	float: right;
-}
-
-.interactive {
-	cursor: pointer;
-}
-
-span {
-	font-size: 20px;
-}
-
-.fa-times:hover {
-	cursor: pointer;
-	color: #a94442;
 }

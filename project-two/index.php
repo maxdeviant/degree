@@ -34,6 +34,7 @@
 	}
 ?>
 <?php include "include/header.php"; ?>
+<script src="lib/sticky-table-headers.min.js"></script>
 <title>Store &raquo; CSC417</title>
 </head>
 <body>
@@ -45,23 +46,33 @@
 
 			<hr>
 
-			<table class="table table-striped">
-				<tr>
-					<th id="name-header" class="interactive" onclick="sortName();">Name&nbsp;<i class="fa"></i></th>
-					<th id="category-header" class="interactive" onclick="sortCategory();">Category&nbsp;<i class="fa"></th>
-					<th id="price-header" class="interactive" onclick="sortPrice();">Price&nbsp;<i class="fa"></th>
-				</tr>
-				<?php foreach ($items as $item): ?>
-					<tr>
-						<td><a href="item.php?item_id=<?php echo $item->id; ?>"><?php echo $item->name; ?></a></td>
-						<td><?php echo ucfirst($item->category); ?></td>
-						<td><?php echo "$ " . number_format($item->price, 2); ?></td>
-					</tr>
-				<?php endforeach; ?>
-			</table>
+			<div id="storefront">
+				<table class="table table-striped">
+					<thead style="background: #f9f9f9;">
+						<tr>
+							<th id="name-header" class="interactive" onclick="sortName();">Name&nbsp;<i class="fa"></i></th>
+							<th id="category-header" class="interactive" onclick="sortCategory();">Category&nbsp;<i class="fa"></th>
+							<th id="price-header" class="interactive" onclick="sortPrice();">Price&nbsp;<i class="fa"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($items as $item): ?>
+							<tr>
+								<td><a href="item.php?item_id=<?php echo $item->id; ?>"><?php echo $item->name; ?></a></td>
+								<td><?php echo ucfirst($item->category); ?></td>
+								<td><?php echo "$ " . number_format($item->price, 2); ?></td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<script>
+		$(document).ready(function () {
+			$('table').stickyTableHeaders({ scrollableArea: $('#storefront') });
+		});
+
 		(function () {
 			var sort = "<?php echo $sort; ?>";
 
