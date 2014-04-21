@@ -36,7 +36,7 @@
 				</tr>
 				<?php foreach ($orders as $order): ?>
 					<tr>
-						<td><a href="order_details?id=<?php echo $order->id; ?>"><?php echo $order->id; ?></a></td>
+						<td><a href="order_details.php?id=<?php echo $order->id; ?>"><?php echo $order->id; ?></a></td>
 						<td>
 							<?php
 								$date = new DateTime();
