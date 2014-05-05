@@ -18,6 +18,13 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach ($items as $item): ?>
+							<tr>
+								<td><a href="item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></td>
+								<td><?php echo ucfirst($item['category']); ?></td>
+								<td><?php echo "$ " . number_format($item['price'], 2); ?></td>
+							</tr>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
