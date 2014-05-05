@@ -11,9 +11,5 @@
 
 			return Response::forge($view);
 		}
-
-		// public function action_404() {
-		// 	return Response::forge(ViewModel::forge('splash/404'));
-		// }
 	}
 ?>

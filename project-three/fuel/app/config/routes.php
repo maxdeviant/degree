@@ -5,6 +5,5 @@ return array(
 
 	'/'  => array('splash/index', 'name' => 'home'),
 	'items/:id' => array('items/details', 'name' => 'item_details'),
-	
-	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
+	'login' => array('users/login', 'name' => 'login'),
 );
