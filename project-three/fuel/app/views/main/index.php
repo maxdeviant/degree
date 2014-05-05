@@ -1,10 +1,10 @@
-<?php require_once(__DIR__.'/../header.php'); ?>
+<?php require_once(__DIR__ . '/../header.php'); ?>
 <body>
 	<div class="container">
 		<div class="container-fluid">
 			<h1>Store</h1>
 
-			<?php require_once(__DIR__.'/../navigation.php'); ?>
+			<?php require_once(__DIR__ . '/../navigation.php'); ?>
 
 			<hr>
 
@@ -34,6 +34,18 @@
 		$(document).ready(function () {
 			$('table').stickyTableHeaders({ scrollableArea: $('#storefront') });
 		});
+
+		function sortName() {
+
+		}
+
+		function sortCategory() {
+
+		}
+
+		function sortPrice() {
+			
+		}
 	</script>
 </body>
 </html>
