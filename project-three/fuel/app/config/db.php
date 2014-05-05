@@ -6,5 +6,12 @@
  */
 
 return array(
-
+	'default' => array(
+		'type' => 'pdo',
+		'connection'  => array(
+			'dsn'        => 'mysql:host=127.0.0.1;dbname=phpstore',
+			'username'   => 'guest',
+			'password'   => '',
+		),
+	),
 );
