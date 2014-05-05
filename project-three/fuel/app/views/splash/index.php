@@ -4,19 +4,7 @@
 		<div class="container-fluid">
 			<h1>Store</h1>
 
-			<ul class="navigation">
-				<li>
-					<i class="fa fa-home"></i>
-					<a href="./">Home</a>
-				</li>
-				<li>
-					<i class="fa fa-shopping-cart"></i>
-					<a href="cart.php">Cart</a>
-				</li>
-				<li class="right">
-					<i class="fa fa-sign-in"></i>
-				</li>
-			</ul>
+			<?php require_once(__DIR__.'/../navigation.php'); ?>
 
 			<hr>
 
@@ -30,6 +18,13 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach ($items as $item): ?>
+							<tr>
+								<td><a href="item.php?item_id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></td>
+								<td><?php echo ucfirst($item['category']); ?></td>
+								<td><?php echo "$ " . number_format($item['price'], 2); ?></td>
+							</tr>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
