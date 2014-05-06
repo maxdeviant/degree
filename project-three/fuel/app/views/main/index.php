@@ -35,16 +35,74 @@
 			$('table').stickyTableHeaders({ scrollableArea: $('#storefront') });
 		});
 
+		(function () {
+			var sort = ['<?php echo $sort[0]; ?>', '<?php echo $sort[1]; ?>'];
+
+			if (sort[0] === 'name' && sort[1] === 'asc') {
+				$('#name-header i').addClass('fa-sort-asc');
+			} else if (sort[0] === 'name' && sort[1] === 'desc') {
+				$('#name-header i').addClass('fa-sort-desc');
+			} else {
+				$('#name-header i').addClass('fa-sort');
+			}
+
+			if (sort[0] === 'category' && sort[1] === 'asc') {
+				$('#category-header i').addClass('fa-sort-asc');
+			} else if (sort[0] === 'category' && sort[1] === 'desc') {
+				$('#category-header i').addClass('fa-sort-desc');
+			} else {
+				$('#category-header i').addClass('fa-sort');
+			}
+
+			if (sort[0] === 'price' && sort[1] === 'asc') {
+				$('#price-header i').addClass('fa-sort-asc');
+			} else if (sort[0] === 'price' && sort[1] === 'desc') {
+				$('#price-header i').addClass('fa-sort-desc');
+			} else {
+				$('#price-header i').addClass('fa-sort');
+			}
+		})();
+
 		function sortName() {
-			
+			var sort = ['<?php echo $sort[0]; ?>', '<?php echo $sort[1]; ?>'];
+
+			if (sort[0] === 'name' && sort[1] === 'asc') {
+				$.post(window.location, { 'sort': ['name', 'desc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			} else {
+				$.post(window.location, { 'sort': ['name', 'asc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			}
 		}
 
 		function sortCategory() {
+			var sort = ['<?php echo $sort[0]; ?>', '<?php echo $sort[1]; ?>'];
 
+			if (sort[0] === 'category' && sort[1] === 'asc') {
+				$.post(window.location, { 'sort': ['category', 'desc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			} else {
+				$.post(window.location, { 'sort': ['category', 'asc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			}
 		}
 
 		function sortPrice() {
-			
+			var sort = ['<?php echo $sort[0]; ?>', '<?php echo $sort[1]; ?>'];
+
+			if (sort[0] === 'price' && sort[1] === 'asc') {
+				$.post(window.location, { 'sort': ['price', 'desc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			} else {
+				$.post(window.location, { 'sort': ['price', 'asc'] }, function (data) {
+					$(document.body).html(data);
+				});
+			}
 		}
 	</script>
 </body>
