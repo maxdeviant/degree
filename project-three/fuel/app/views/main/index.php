@@ -6,7 +6,7 @@
 
 			<?php require_once(__DIR__ . '/../navigation.php'); ?>
 
-			<hr>
+			<hr />
 
 			<div id="storefront">
 				<table class="table table-striped">
