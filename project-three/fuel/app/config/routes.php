@@ -1,7 +1,9 @@
 <?php
 return array(
-	'_root_'  => 'splash/index',  // The default route
-	'_404_'   => 'splash/404',    // The main 404 route
-	
-	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
+	'_root_'  => 'main/index',
+	'_404_'   => 'main/404',
+
+	'/'  => array('main/index', 'name' => 'home'),
+	'items/:id' => array('items/details', 'name' => 'item_details'),
+	'login' => array('users/login', 'name' => 'login'),
 );
