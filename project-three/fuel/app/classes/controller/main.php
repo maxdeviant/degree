@@ -3,7 +3,15 @@
 		public function action_index() {
 			$view = ViewModel::forge('main/index');
 
-			$view->items = DB::select()->from('item')->execute()->as_array();
+			$sort = ['name', 'asc'];
+
+			if (isset($_POST['sort'])) {
+				$sort = $_POST['sort'];
+			}
+
+			$view->bind('sort', $sort);
+
+			$view->items = DB::select()->from('item')->order_by($sort[0], $sort[1])->execute()->as_array();
 
 			return Response::forge($view);
 		}
