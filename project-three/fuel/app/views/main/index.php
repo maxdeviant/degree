@@ -36,7 +36,7 @@
 		});
 
 		function sortName() {
-
+			
 		}
 
 		function sortCategory() {
