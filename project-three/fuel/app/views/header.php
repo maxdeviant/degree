@@ -19,4 +19,5 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo Asset::get_file('apple-touch-icon-114x114.png', 'img'); ?>">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<?php echo Asset::js('sticky-table-headers.min.js'); ?>
 </head>

@@ -1,4 +1,4 @@
-<?php require_once(__DIR__.'/../header.php'); ?>
+<?php require_once(__DIR__ . '/../header.php'); ?>
 <body>
 	<div class="container">
 		<div class="container-fluid">
