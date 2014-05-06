@@ -9,5 +9,12 @@
 	</li>
 	<li class="right">
 		<i class="fa fa-sign-in"></i>
+			<?php
+				if (!isset($user)) {
+					echo Html::anchor(Router::get('login'), 'Login');
+				} else {
+					echo Html::anchor(Router::get('logout'), 'Logout');
+				}
+			?>
 	</li>
 </ul>
