@@ -5,7 +5,13 @@
 
 			$id = $this->param('id');
 
-			$view->item = DB::select()->from('item')->where('id', $id)->execute()->as_array()[0];
+			$item = DB::select()->from('item')->where('id', $id)->execute()->as_array();
+
+			if (count($item) > 0) {
+				$view->item = $item[0];
+			} else {
+				return Response::forge(ViewModel::forge('main/404'), 404);
+			}
 
 			$view->set('description', $view->item['description'], false);
 

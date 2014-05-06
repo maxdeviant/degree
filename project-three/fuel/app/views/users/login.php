@@ -8,7 +8,7 @@
 
 			<hr />
 
-			<form class="form-horizontal" action="auth.php" method="post" autocomplete="off">
+			<form class="form-horizontal" action="" method="post" autocomplete="off">
 				<div class="form-group">
 					<label for="username" class="col-sm-2 control-label">Username</label>
 					<div class="col-sm-3">
