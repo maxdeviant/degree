@@ -42,7 +42,10 @@
 			var response = confirm('Do you want this order to be processed?');
 
 			if (response) {
-				window.location = 'process.php?id=' + id;
+				// window.location = 'process.php?id=' + id;
+				$.post(window.location, { 'id': id }, function (data) {
+					console.log(data);
+				});
 			}
 		}
 	</script>

@@ -17,5 +17,18 @@
 
 			return Response::forge($view);
 		}
+
+		public function post_details() {
+			$id = $_POST['id'];
+			$quantity = $_POST['quantity'];
+
+			$cart = Session::get('cart');
+
+			$cart[$id] = $quantity;
+
+			Session::set('cart', $cart);
+
+			return 'Item added successfully.';
+		}
 	}
 ?>
