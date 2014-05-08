@@ -25,7 +25,7 @@
 				return Response::forge(ViewModel::forge('main/404'), 404);
 			}
 
-			if ($user['id'] !== $view->order['user_id']) {
+			if (!($user['id'] === $view->order['user_id'] || $user['level'] > 0)) {
 				return Response::forge(ViewModel::forge('main/401'), 401);
 			}
 
