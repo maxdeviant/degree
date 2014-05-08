@@ -34,5 +34,3 @@
 <?php if (isset($user)): ?>
 	<h4><i class="fa fa-user" style="color: #333"></i>&nbsp;<?php echo ucfirst($user['name']); ?></h4>
 <?php endif ?>
-
-<?php if (isset($user)) { print_r($user); } ?>
