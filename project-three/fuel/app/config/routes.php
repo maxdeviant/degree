@@ -10,4 +10,8 @@ return array(
 	'orders/:id' => array('orders/details', 'name' => 'order_details'),
 	'login' => array('users/login', 'name' => 'login'),
 	'logout' => array('users/logout', 'name' => 'logout'),
+	'admin' => array('admin/menu', 'name' => 'admin'),
+	'admin/manage_orders' => array('admin/manage', 'name' => 'manage_orders'),
+	'admin/add_item' => array('admin/add', 'name' => 'add_item'),
+	'admin/edit_item' => array('admin/edit', 'name' => 'edit_item'),
 );
