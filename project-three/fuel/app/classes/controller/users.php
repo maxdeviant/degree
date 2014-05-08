@@ -19,7 +19,8 @@
 			}
 
 			if (isset($user) && sha1($password) === $user['password']) {
-				View::bind_global('user', $user);
+				$session = Session::instance();
+				Session::set('user', $user);
 			}
 
 			$sort = ['name', 'asc'];
@@ -31,7 +32,16 @@
 		}
 
 		public function action_logout() {
+			$view = ViewModel::forge('main/index');
 
+			Session::delete('user');
+
+			$sort = ['name', 'asc'];
+			$view->bind('sort', $sort);
+
+			$view->items = DB::select()->from('item')->order_by($sort[0], $sort[1])->execute()->as_array();
+
+			return Response::forge($view);
 		}
 	}
 ?>
