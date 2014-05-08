@@ -39,7 +39,7 @@
 	</div>
 	<script>
 		function verify(id) {
-			var response = confirm("Do you want this order to be processed?");
+			var response = confirm('Do you want this order to be processed?');
 
 			if (response) {
 				window.location = 'process.php?id=' + id;
