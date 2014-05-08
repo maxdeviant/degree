@@ -63,7 +63,7 @@
 
 		function submitOrder() {
 			$.post(window.location, { 'type': 'submit' }, function (data) {
-				console.log(data);
+				window.location.reload();
 			});
 		}
 

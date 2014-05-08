@@ -3,6 +3,8 @@
 		public function action_menu() {
 			$view = ViewModel::forge('admin/menu');
 
+			$user = Session::get('user');
+
 			if (!isset($user) || $user['level'] === 0) {
 				return Response::forge(ViewModel::forge('main/401'));
 			}
@@ -12,6 +14,8 @@
 
 		public function action_manage() {
 			$view = ViewModel::forge('admin/manage');
+
+			$user = Session::get('user');
 
 			if (!isset($user) || $user['level'] === 0) {
 				return Response::forge(ViewModel::forge('main/401'));
@@ -24,6 +28,8 @@
 
 		public function action_add() {
 			$view = ViewModel::forge('admin/add');
+
+			$user = Session::get('user');
 
 			if (!isset($user) || $user['level'] === 0) {
 				return Response::forge(ViewModel::forge('main/401'));
@@ -39,6 +45,8 @@
 
 		public function action_edit() {
 			$view = ViewModel::forge('admin/edit');
+
+			$user = Session::get('user');
 
 			if (!isset($user) || $user['level'] === 0) {
 				return Response::forge(ViewModel::forge('main/401'));
