@@ -16,16 +16,22 @@
 					<th>Subtotal</th>
 					<th></th>
 				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td><input type="text" id="item-" value="" onchange="update();" /></td>
-					<td></td>
-					<td><i class="fa fa-times" onclick="removeEntry();"></i></td>
-				</tr>
+				<?php foreach (array_keys($cart) as $entry):
+					$item = DB::select()->from('item')->where('id', $entry)->execute()->as_array()[0];
+
+					$total += $cart[$entry] * $item['price'];
+				?>
+					<tr>
+						<td><?php echo $item['name']; ?></td>
+						<td><?php echo "$ " . number_format($item['price'], 2); ?></td>
+						<td><input type="text" id="item-<?php echo $item['id']; ?>" value="<?php echo $cart[$entry]; ?>" onchange="update(<?php echo $item['id']; ?>);" /></td>
+						<td><?php echo "$ " . number_format($cart[$entry] * $item['price'], 2); ?></td>
+						<td><i class="fa fa-times" onclick="removeEntry(<?php echo $item['id']; ?>);"></i></td>
+					</tr>
+				<?php endforeach; ?>
 			</table>
 
-			<h3 class="total">Total: $</h3>
+			<h3 class="total">Total: $<?php echo number_format($total, 2); ?></h3>
 
 			<form class="form-group" method="post" action="submit.php">
 				<input class="btn btn-default" type="submit" value="Submit Order" />
