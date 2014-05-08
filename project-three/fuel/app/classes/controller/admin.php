@@ -26,7 +26,7 @@
 			return Response::forge($view);
 		}
 
-		public function action_add() {
+		public function get_add() {
 			$view = ViewModel::forge('admin/add');
 
 			$user = Session::get('user');
@@ -41,6 +41,54 @@
 			$view->categories = $categories;
 
 			return Response::forge($view);
+		}
+
+		public function post_add() {
+			$view = ViewModel::forge('admin/add');
+
+			$categories = DB::query('select distinct category from item')->execute()->as_array();
+			sort($categories);
+
+			$view->categories = $categories;
+
+			if (isset($_POST['submit'])) {
+				$name = trim($_POST['name']);
+				$category = trim($_POST['category']);
+				$price = trim($_POST['price']);
+				$description = trim($_POST['name']);
+				$image = trim($_POST['image']);
+
+				$view->error = array();
+				$valid = true;
+
+				if (strlen($name) < 3) {
+					$view->error[] = 'Item name must contain at least 3 characters.';
+					$valid = false;
+				}
+
+				if (!is_numeric($price)) {
+					$view->error[] = 'Price must be a number.';
+					$valid = false;
+				}
+
+				if (!$valid) {
+					return Response::forge($view);
+				}
+
+				$id = DB::insert('item')->set(array(
+					'name' => $name,
+					'category' => $category,
+					'price' => $price,
+					'description' => $description,
+					'image' => $image
+				))->execute();
+
+				$view->success = 'Item created successfully. ID: ' . $id[0];
+
+				unset($_POST);
+
+				return Response::forge($view);
+			}
 		}
 
 		public function action_edit() {
