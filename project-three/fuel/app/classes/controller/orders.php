@@ -35,5 +35,30 @@
 
 			return Response::forge($view);
 		}
+
+		public function post_details() {
+			// $view = ViewModel::forge('orders/details');
+
+			// $id = null;
+
+			// if (isset($_POST['id'])) {
+			// 	$id = $_POST['id'];
+			// }
+
+			// $user = Session::get('user');
+
+			// if ($user['level'] === 0)) {
+			// 	return Response::forge(ViewModel::forge('main/401'), 401);
+			// } else {
+			// 	$order = DB::select()->from('order')->where('id', $id)->execute()->as_array()[0];
+			// 	$items = DB::select()->from('item_order')->where('order_id', $id)->execute()->as_array();
+
+			// 	foreach (array_keys($items) as $key => $value) {
+			// 		$entry = DB::delete('item_order')->where('')
+			// 	}
+			// }
+
+			// return Response::forge($view);
+		}
 	}
 ?>
