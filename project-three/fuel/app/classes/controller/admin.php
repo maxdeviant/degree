@@ -3,11 +3,19 @@
 		public function action_menu() {
 			$view = ViewModel::forge('admin/menu');
 
+			if (!isset($user) || $user['level'] === 0) {
+				return Response::forge(ViewModel::forge('main/401'));
+			}
+
 			return Response::forge($view);
 		}
 
 		public function action_manage() {
 			$view = ViewModel::forge('admin/manage');
+
+			if (!isset($user) || $user['level'] === 0) {
+				return Response::forge(ViewModel::forge('main/401'));
+			}
 
 			$view->orders = DB::select()->from('order')->order_by('created_at', 'asc')->execute()->as_array();
 
@@ -16,6 +24,10 @@
 
 		public function action_add() {
 			$view = ViewModel::forge('admin/add');
+
+			if (!isset($user) || $user['level'] === 0) {
+				return Response::forge(ViewModel::forge('main/401'));
+			}
 
 			$categories = DB::query('select distinct category from item')->execute()->as_array();
 			sort($categories);
@@ -27,6 +39,10 @@
 
 		public function action_edit() {
 			$view = ViewModel::forge('admin/edit');
+
+			if (!isset($user) || $user['level'] === 0) {
+				return Response::forge(ViewModel::forge('main/401'));
+			}
 
 			$view->items = DB::select()->from('item')->order_by('name', 'asc')->execute()->as_array();
 

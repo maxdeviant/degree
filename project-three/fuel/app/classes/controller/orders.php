@@ -5,6 +5,10 @@
 
 			$user = Session::get('user');
 
+			if (!isset($user)) {
+				return Response::forge(ViewModel::forge('users/login'));
+			}
+
 			$view->orders = DB::select()->from('order')->where('user_id', $user['id'])->order_by('created_at', 'desc')->execute()->as_array();
 
 			return Response::forge($view);

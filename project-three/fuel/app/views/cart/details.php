@@ -50,11 +50,15 @@
 				quantity = 1;
 			}
 			
-			window.location = "cart.php?id=" + id + "&quantity=" + quantity;
+			$.post(window.location, { 'type': 'update', 'id': id, 'quantity': quantity }, function (data) {
+				window.location.reload();
+			});
 		}
 
 		function removeEntry(id) {
-			window.location = "cart.php?remove=" + id;
+			$.post(window.location, { 'type': 'remove', 'id': id }, function (data) {
+				window.location.reload();
+			});
 		}
 	</script>
 </body>
