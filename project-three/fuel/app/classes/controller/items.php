@@ -28,7 +28,7 @@
 
 			Session::set('cart', $cart);
 
-			return 'Item added successfully.';
+			return '<br>Item(s) successfully added to cart.';
 		}
 	}
 ?>
