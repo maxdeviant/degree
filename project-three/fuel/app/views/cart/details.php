@@ -33,12 +33,12 @@
 
 			<h3 class="total">Total: $<?php echo number_format($total, 2); ?></h3>
 
-			<form class="form-group" method="post" action="submit.php">
-				<input class="btn btn-default" type="submit" value="Submit Order" />
+			<form class="form-group" method="post" action="">
+				<input class="btn btn-default" type="button" onclick="submitOrder()" value="Submit Order" />
 			</form>
 
-			<form class="form-group" method="post" action="clear.php">
-				<input class="btn btn-default" type="submit" value="Clear Cart" />
+			<form class="form-group" method="post" action="">
+				<input class="btn btn-default" type="button" onclick="clearCart()" value="Clear Cart" />
 			</form>
 		</div>
 	</div>
@@ -57,6 +57,18 @@
 
 		function removeEntry(id) {
 			$.post(window.location, { 'type': 'remove', 'id': id }, function (data) {
+				window.location.reload();
+			});
+		}
+
+		function submitOrder() {
+			$.post(window.location, { 'type': 'submit' }, function (data) {
+				console.log(data);
+			});
+		}
+
+		function clearCart() {
+			$.post(window.location, { 'type': 'clear' }, function (data) {
 				window.location.reload();
 			});
 		}
