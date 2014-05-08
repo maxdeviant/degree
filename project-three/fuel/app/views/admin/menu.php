@@ -25,7 +25,7 @@
 		}
 
 		function editItem() {
-			window.location = '<?php echo Router::get('edit_item'); ?>';
+			window.location = '<?php echo Router::get('edit_item', array('id' => 0)); ?>';
 		}
 	</script>
 </body>
