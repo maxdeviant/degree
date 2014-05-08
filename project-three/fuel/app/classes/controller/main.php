@@ -19,5 +19,9 @@
 		public function action_404() {
 			return Response::forge(ViewModel::forge('main/404'));
 		}
+
+		public function action_401() {
+			return Response::forge(ViewModel::forge('main/401'));
+		}
 	}
 ?>
