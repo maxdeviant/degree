@@ -17,6 +17,12 @@
 				}
 			?>
 	</li>
+	<?php if (!isset($user)): ?>
+		<li class="right">
+			<i class="fa fa-check-square-o"></i>
+			<?php echo Html::anchor(Router::get('register'), 'Register'); ?>
+		</li>
+	<?php endif ?>
 	<?php if (isset($user)): ?>
 		<li class="right">
 			<i class="fa fa-credit-card"></i>
