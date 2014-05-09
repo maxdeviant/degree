@@ -11,4 +11,5 @@
 *.iml
 
 # Image Folder #
-items
+**img/items/
+**images/items/

@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class Controller_Admin extends Controller {
 		public function action_menu() {
@@ -55,8 +56,16 @@
 				$name = trim($_POST['name']);
 				$category = trim($_POST['category']);
 				$price = trim($_POST['price']);
-				$description = trim($_POST['name']);
+				$description = trim($_POST['description']);
 				$image = trim($_POST['image']);
+
+				$view->sticky = array(
+					'name' => $name,
+					'category' => $category,
+					'price' => $price,
+					'description' => $description,
+					'image' => $image
+				);
 
 				$view->error = array();
 				$valid = true;
@@ -75,17 +84,24 @@
 					return Response::forge($view);
 				}
 
-				$id = DB::insert('item')->set(array(
-					'name' => $name,
-					'category' => $category,
-					'price' => $price,
-					'description' => $description,
-					'image' => $image
-				))->execute();
+				try {
+					$id = DB::insert('item')->set(array(
+						'name' => $name,
+						'category' => $category,
+						'price' => $price,
+						'description' => $description,
+						'image' => $image
+					))->execute();
 
-				$view->success = 'Item created successfully. ID: ' . $id[0];
+					$view->success = 'Item created successfully. ID: ' . $id[0];
+				} catch (Exception $e) {
+					$view->error[] = 'Name must be unique.';
+				}
 
-				unset($_POST);
+				unset($_POST['submit']);
+
+				unset($view->sticky);
+				$view->sticky = null;
 
 				return Response::forge($view);
 			}
@@ -102,13 +118,32 @@
 
 			$view->items = DB::select()->from('item')->order_by('name', 'asc')->execute()->as_array();
 
-			if (!isset($_POST['item_id'])) {
-				$id = $view->items[0]['id'];
-			} else {
+			if (isset($_POST['item_id'])) {
 				$id = $_POST['item_id'];
+			} else {
+				$id = $view->items[0]['id'];
 			}
 
-			$view->item = DB::select()->from('item')->where('id', $id)->execute()->as_array()[0];
+			$item = DB::select()->from('item')->where('id', $id)->execute()->as_array()[0];
+
+			$view->item = $item;
+
+			if (isset($_POST['submit'])) {
+				$id = $_POST['id'];
+				$name = $_POST['name'];
+				$price = trim($_POST['price']);
+				$category = $_POST['category'];
+				$description = trim($_POST['description']);
+				$image = trim($_POST['image']);
+
+				DB::update('item')->set(array(
+					'price' => $price,
+					'description' => $description,
+					'image' => $image
+				))->where('id', $id)->execute();
+
+				unset($_POST['submit']);
+			}
 
 			return Response::forge($view);
 		}

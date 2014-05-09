@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class View_Users_Register extends ViewModel {
 		public function view() {

@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class View_Cart_Details extends ViewModel {
 		public function view() {
