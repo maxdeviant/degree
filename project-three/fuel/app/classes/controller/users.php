@@ -3,6 +3,12 @@
 		public function get_register() {
 			$view = ViewModel::forge('users/register');
 
+			$user = Session::get('user');
+
+			if (isset($user)) {
+				return Response::forge(ViewModel::forge(''));
+			}
+
 			return Response::forge($view);
 		}
 
@@ -58,19 +64,14 @@
 
 				unset($_POST['submit']);
 
-				$user = DB::select()->from('user')->where('email', $email)->execute()->as_array()[0];
-
-				if (isset($user) && sha1($password) === $user['password']) {
-					$session = Session::instance();
-					Session::set('user', $user);
-				}
-
 				return Response::forge($view);
 			}
 		}
 
 		public function get_login() {
 			$view = ViewModel::forge('users/login');
+
+			$user = Session::get('user');
 
 			return Response::forge($view);
 		}

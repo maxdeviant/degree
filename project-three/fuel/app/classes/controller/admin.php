@@ -102,13 +102,32 @@
 
 			$view->items = DB::select()->from('item')->order_by('name', 'asc')->execute()->as_array();
 
-			if (!isset($_POST['item_id'])) {
-				$id = $view->items[0]['id'];
-			} else {
+			if (isset($_POST['item_id'])) {
 				$id = $_POST['item_id'];
+			} else {
+				$id = $view->items[0]['id'];
 			}
 
-			$view->item = DB::select()->from('item')->where('id', $id)->execute()->as_array()[0];
+			$item = DB::select()->from('item')->where('id', $id)->execute()->as_array()[0];
+
+			$view->item = $item;
+
+			if (isset($_POST['submit'])) {
+				$id = $_POST['id'];
+				$name = $_POST['name'];
+				$price = trim($_POST['price']);
+				$category = $_POST['category'];
+				$description = trim($_POST['description']);
+				$image = trim($_POST['image']);
+
+				DB::update('item')->set(array(
+					'price' => $price,
+					'description' => $description,
+					'image' => $image
+				))->where('id', $id)->execute();
+
+				unset($_POST['submit']);
+			}
 
 			return Response::forge($view);
 		}
