@@ -44,9 +44,9 @@
 	</div>
 	<script>
 		function update(id) {
-			var quantity = $('#item-' + id).val();
+			var quantity = Math.round($('#item-' + id).val());
 
-			if (quantity <= 0) {
+			if (quantity <= 0 || isNaN(quantity)) {
 				quantity = 1;
 			}
 			
