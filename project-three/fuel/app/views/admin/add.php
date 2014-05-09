@@ -8,7 +8,7 @@
 
 			<hr />
 
-			<form class="form-horizontal" action="create_item.php" method="post">
+			<form class="form-horizontal" action="" method="post">
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
@@ -53,7 +53,9 @@
 			<div class="col-sm-offset-2 col-sm-6">
 				<p class="text-success">
 					<?php
-						
+						if (isset($success)) {
+							echo $success;
+						}
 					?>
 				</p>
 			</div>
@@ -61,7 +63,10 @@
 			<div class="col-sm-offset-2 col-sm-6">
 				<p class="text-danger">
 					<?php
-						
+						if (isset($error)) {
+							echo join('<br>', $error);
+							$error = [];
+						}
 					?>
 				</p>
 			</div>

@@ -3,6 +3,7 @@
 		public function view() {
 			$this->title = 'Manage Orders &raquo; CSC 417';
 			$this->user = Session::get('user');
+			$this->names = [];
 		}
 	}
 ?>

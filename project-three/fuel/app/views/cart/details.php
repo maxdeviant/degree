@@ -33,28 +33,44 @@
 
 			<h3 class="total">Total: $<?php echo number_format($total, 2); ?></h3>
 
-			<form class="form-group" method="post" action="submit.php">
-				<input class="btn btn-default" type="submit" value="Submit Order" />
+			<form class="form-group" method="post" action="">
+				<input class="btn btn-default" type="button" onclick="submitOrder()" value="Submit Order" />
 			</form>
 
-			<form class="form-group" method="post" action="clear.php">
-				<input class="btn btn-default" type="submit" value="Clear Cart" />
+			<form class="form-group" method="post" action="">
+				<input class="btn btn-default" type="button" onclick="clearCart()" value="Clear Cart" />
 			</form>
 		</div>
 	</div>
 	<script>
 		function update(id) {
-			var quantity = $('#item-' + id).val();
+			var quantity = Math.round($('#item-' + id).val());
 
-			if (quantity <= 0) {
+			if (quantity <= 0 || isNaN(quantity)) {
 				quantity = 1;
 			}
 			
-			window.location = "cart.php?id=" + id + "&quantity=" + quantity;
+			$.post(window.location, { 'type': 'update', 'id': id, 'quantity': quantity }, function (data) {
+				window.location.reload();
+			});
 		}
 
 		function removeEntry(id) {
-			window.location = "cart.php?remove=" + id;
+			$.post(window.location, { 'type': 'remove', 'id': id }, function (data) {
+				window.location.reload();
+			});
+		}
+
+		function submitOrder() {
+			$.post(window.location, { 'type': 'submit' }, function (data) {
+				window.location.reload();
+			});
+		}
+
+		function clearCart() {
+			$.post(window.location, { 'type': 'clear' }, function (data) {
+				window.location.reload();
+			});
 		}
 	</script>
 </body>
