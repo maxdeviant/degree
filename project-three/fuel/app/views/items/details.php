@@ -41,14 +41,14 @@
 	</div>
 	<script>
 		function add(id) {
-			$.post(window.location, { 'id': id, 'quantity': $('#quantity').val() }, function (data) {
-				var response = JSON.parse(data);
+			var quantity = Math.round($('#quantity').val());
 
-				if (response.type === 'error') {
-					$('#response').html(response.message);
-				} else {
-					window.location = '<?php echo Router::get('cart'); ?>';
-				}
+			if (quantity <= 0 || isNaN(quantity)) {
+				quantity = 1;
+			}
+
+			$.post(window.location, { 'id': id, 'quantity': quantity }, function (data) {
+				window.location = '<?php echo Router::get('cart'); ?>';
 			});
 		}
 	</script>
