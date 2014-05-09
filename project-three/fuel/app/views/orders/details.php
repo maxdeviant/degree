@@ -43,8 +43,7 @@
 
 			if (response) {
 				$.post(window.location, { 'id': id }, function (data) {
-					// window.location.reload();
-					console.log(data)
+					window.location.reload();
 				});
 			}
 		}
