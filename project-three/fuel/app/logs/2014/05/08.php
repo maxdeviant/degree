@@ -21,3 +21,15 @@ ERROR - 2014-05-08 20:22:03 --> 23000 - SQLSTATE[23000]: Integrity constraint vi
 ERROR - 2014-05-08 20:22:33 --> Notice - Undefined variable: _POST in /Users/Marshall/Sites/csc417/project-three/fuel/core/classes/input.php on line 392
 ERROR - 2014-05-08 20:23:08 --> Parsing Error - parse error, expecting `';'' in /Users/Marshall/Sites/csc417/project-three/fuel/app/classes/controller/users.php on line 61
 ERROR - 2014-05-08 20:23:27 --> 23000 - SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Splat' for key 'name' with query: "INSERT INTO `user` (`name`, `email`, `password`, `level`) VALUES ('Splat', 'spla@t.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 0)" in /Users/Marshall/Sites/csc417/project-three/fuel/core/classes/database/pdo/connection.php on line 234
+ERROR - 2014-05-08 20:28:08 --> Error - View variable is not set: item in /Users/Marshall/Sites/csc417/project-three/fuel/core/classes/view.php on line 430
+ERROR - 2014-05-08 20:29:43 --> Parsing Error - parse error, expecting `')'' in /Users/Marshall/Sites/csc417/project-three/fuel/app/classes/controller/items.php on line 26
+ERROR - 2014-05-08 20:29:52 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:29:52 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:29:52 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:30:08 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:30:11 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:30:11 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:30:13 --> Fatal Error - Method Fuel\Core\Response::__toString() must not throw an exception in /Users/Marshall/Sites/csc417/project-three/public/index.php on line 1
+ERROR - 2014-05-08 20:34:38 --> Fatal Error - Call to undefined function int() in /Users/Marshall/Sites/csc417/project-three/fuel/app/classes/controller/items.php on line 25
+ERROR - 2014-05-08 20:34:42 --> Fatal Error - Call to undefined function int() in /Users/Marshall/Sites/csc417/project-three/fuel/app/classes/controller/items.php on line 25
+ERROR - 2014-05-08 20:34:42 --> Fatal Error - Call to undefined function int() in /Users/Marshall/Sites/csc417/project-three/fuel/app/classes/controller/items.php on line 25
