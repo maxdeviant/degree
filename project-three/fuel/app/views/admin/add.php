@@ -12,13 +12,13 @@
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="name" placeholder="Name" />
+						<input class="form-control" type="text" name="name" placeholder="Name" <?php if (isset($sticky)) { echo 'value="' . $sticky['name'] . '"'; } ?> />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="price" class="col-sm-2 control-label">Price</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="price" placeholder="0.00" />
+						<input class="form-control" type="text" name="price" placeholder="0.00" <?php if (isset($sticky)) { echo 'value="' . $sticky['price'] . '"'; } ?> />
 					</div>
 				</div>
 				<div class="form-group">
@@ -34,13 +34,13 @@
 				<div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" name="description" placeholder="Description" rows="10"></textarea>
+						<textarea class="form-control" name="description" placeholder="Description" rows="10"><?php if (isset($sticky)) { echo $sticky['description']; } ?></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="image" class="col-sm-2 control-label">Image</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" name="image" placeholder="Image" />
+						<input class="form-control" type="text" name="image" placeholder="Image" <?php if (isset($sticky)) { echo 'value="' . $sticky['image'] . '"'; } ?> />
 					</div>
 				</div>
 				<div class="form-group">
