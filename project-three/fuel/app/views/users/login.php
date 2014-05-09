@@ -30,7 +30,12 @@
 
 			<div class="col-sm-offset-2 col-sm-6">
 				<p class="text-danger">
-					
+					<?php
+						if (isset($error)) {
+							echo join('<br>', $error);
+							$error = '';
+						}
+					?>
 				</p>
 			</div>
 		</div>

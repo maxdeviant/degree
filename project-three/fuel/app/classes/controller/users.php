@@ -83,14 +83,30 @@
 			$password = trim($_POST['password']);
 
 			if (strrpos($username, '@')) {
-				$user = DB::select()->from('user')->where('email', $username)->execute()->as_array()[0];
+				$user = DB::select()->from('user')->where('email', $username)->execute()->as_array();
 			} else {
-				$user = DB::select()->from('user')->where('name', $username)->execute()->as_array()[0];
+				$user = DB::select()->from('user')->where('name', $username)->execute()->as_array();
+			}
+
+			if (count($user) > 0) {
+				$user = $user[0];
+			} else {
+				$view = ViewModel::forge('users/login');
+
+				$view->error = array('Invalid username and/or password.');
+
+				return Response::forge($view);
 			}
 
 			if (isset($user) && sha1($password) === $user['password']) {
 				$session = Session::instance();
 				Session::set('user', $user);
+			} else {
+				$view = ViewModel::forge('users/login');
+
+				$view->error = array('Invalid username and/or password.');
+
+				return Response::forge($view);
 			}
 
 			$sort = ['name', 'asc'];
