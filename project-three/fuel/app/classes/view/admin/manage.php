@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class View_Admin_Manage extends ViewModel {
 		public function view() {

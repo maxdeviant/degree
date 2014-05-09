@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php require_once(__DIR__ . '/../header.php'); ?>
 <body>
 	<div class="container">
@@ -25,7 +26,7 @@
 		}
 
 		function editItem() {
-			window.location = '<?php echo Router::get('edit_item', array('id' => 0)); ?>';
+			window.location = '<?php echo Router::get('edit_item'); ?>';
 		}
 	</script>
 </body>

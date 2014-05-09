@@ -1,7 +1,14 @@
+<!-- Marshall Bowers -->
 <?php
 	class Controller_Users extends Controller {
 		public function get_register() {
 			$view = ViewModel::forge('users/register');
+
+			$user = Session::get('user');
+
+			if (isset($user)) {
+				return Response::forge(ViewModel::forge(''));
+			}
 
 			return Response::forge($view);
 		}
@@ -58,19 +65,14 @@
 
 				unset($_POST['submit']);
 
-				$user = DB::select()->from('user')->where('email', $email)->execute()->as_array()[0];
-
-				if (isset($user) && sha1($password) === $user['password']) {
-					$session = Session::instance();
-					Session::set('user', $user);
-				}
-
 				return Response::forge($view);
 			}
 		}
 
 		public function get_login() {
 			$view = ViewModel::forge('users/login');
+
+			$user = Session::get('user');
 
 			return Response::forge($view);
 		}
@@ -82,14 +84,30 @@
 			$password = trim($_POST['password']);
 
 			if (strrpos($username, '@')) {
-				$user = DB::select()->from('user')->where('email', $username)->execute()->as_array()[0];
+				$user = DB::select()->from('user')->where('email', $username)->execute()->as_array();
 			} else {
-				$user = DB::select()->from('user')->where('name', $username)->execute()->as_array()[0];
+				$user = DB::select()->from('user')->where('name', $username)->execute()->as_array();
+			}
+
+			if (count($user) > 0) {
+				$user = $user[0];
+			} else {
+				$view = ViewModel::forge('users/login');
+
+				$view->error = array('Invalid username and/or password.');
+
+				return Response::forge($view);
 			}
 
 			if (isset($user) && sha1($password) === $user['password']) {
 				$session = Session::instance();
 				Session::set('user', $user);
+			} else {
+				$view = ViewModel::forge('users/login');
+
+				$view->error = array('Invalid username and/or password.');
+
+				return Response::forge($view);
 			}
 
 			$sort = ['name', 'asc'];
