@@ -55,8 +55,16 @@
 				$name = trim($_POST['name']);
 				$category = trim($_POST['category']);
 				$price = trim($_POST['price']);
-				$description = trim($_POST['name']);
+				$description = trim($_POST['description']);
 				$image = trim($_POST['image']);
+
+				$view->sticky = array(
+					'name' => $name,
+					'category' => $category,
+					'price' => $price,
+					'description' => $description,
+					'image' => $image
+				);
 
 				$view->error = array();
 				$valid = true;
@@ -75,17 +83,24 @@
 					return Response::forge($view);
 				}
 
-				$id = DB::insert('item')->set(array(
-					'name' => $name,
-					'category' => $category,
-					'price' => $price,
-					'description' => $description,
-					'image' => $image
-				))->execute();
+				try {
+					$id = DB::insert('item')->set(array(
+						'name' => $name,
+						'category' => $category,
+						'price' => $price,
+						'description' => $description,
+						'image' => $image
+					))->execute();
 
-				$view->success = 'Item created successfully. ID: ' . $id[0];
+					$view->success = 'Item created successfully. ID: ' . $id[0];
+				} catch (Exception $e) {
+					$view->error[] = 'Name must be unique.';
+				}
 
-				unset($_POST);
+				unset($_POST['submit']);
+
+				unset($view->sticky);
+				$view->sticky = null;
 
 				return Response::forge($view);
 			}
