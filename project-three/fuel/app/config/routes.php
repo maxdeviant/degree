@@ -8,6 +8,7 @@ return array(
 	'cart' => array('cart/details', 'name' => 'cart'),
 	'orders' => array('orders/list', 'name' => 'orders'),
 	'orders/:id' => array('orders/details', 'name' => 'order_details'),
+	'register' => array('users/register', 'name' => 'register'),
 	'login' => array('users/login', 'name' => 'login'),
 	'logout' => array('users/logout', 'name' => 'logout'),
 	'admin' => array('admin/menu', 'name' => 'admin'),

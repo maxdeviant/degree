@@ -29,7 +29,7 @@
 			<br><br>
 
 			<form class="form-horizontal" action="" method="post">
-				<!-- <input type="hidden" name="id" value="<?php echo $item['id']; ?>" /> -->
+				<input type="hidden" name="id" value="<?php echo $item['id']; ?>" />
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
