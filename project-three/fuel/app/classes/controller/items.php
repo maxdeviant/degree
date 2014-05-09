@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class Controller_Items extends Controller {
 		public function get_details() {

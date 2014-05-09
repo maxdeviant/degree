@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class View_Items_Details extends ViewModel {
 		public function view() {
