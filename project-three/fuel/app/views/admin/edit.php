@@ -62,7 +62,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button class="btn btn-default" type="button" name="submit" onclick="update(<?php echo $item['id']; ?>)">Update</button>
+						<button class="btn btn-default" type="submit" name="submit">Update</button>
 					</div>
 				</div>
 			</form>
@@ -85,8 +85,5 @@
 		</div>
 	</div>
 	<script>
-		function update(id) {
-			console.log(id);
-		}
 	</script>
 </body>
