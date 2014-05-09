@@ -1,3 +1,4 @@
+<!-- Marshall Bowers -->
 <?php
 	class Controller_Users extends Controller {
 		public function get_register() {
