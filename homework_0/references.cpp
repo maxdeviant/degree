@@ -2,6 +2,24 @@
 
 using namespace std;
 
+int square(int& i);
+int twice(int& i);
+int once(int& i);
+
+int square(int& i) {
+    return i = i * i;
+}
+
+int twice(int& i) {
+    return i = 2 * i;
+}
+
+int once (int& i) {
+    return i;
+}
+
 int main() {
-    cout << "done" << endl;
+    int x = 3;
+    int y = square(x) + twice(x) + once(x);
+    cout << y << endl;
 }
