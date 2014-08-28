@@ -1,0 +1,32 @@
+.wrapper {
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.last-name {
+    color: #aaa;
+}
+
+.list {
+    list-style: none;
+}
+
+.section {
+
+}
+
+.experience {
+    margin-left: 40px;
+}
