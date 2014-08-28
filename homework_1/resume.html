@@ -79,5 +79,40 @@
             <canvas id="canvas" width="300" height="200"></canvas>
         </div>
     </div>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        var center = {
+            x: canvas.width / 2,
+            y: canvas.height / 2
+        };
+
+        var headSize = 70,
+            eyeSize = 10,
+            mouthSize = 15;
+
+        context.lineWidth = 5;
+        context.fillStyle = '#ffcd35';
+        context.strokeStyle = '#000';
+
+        context.beginPath();
+        context.arc(center.x, center.y, headSize, 0, 2 * Math.PI, false);
+        context.fill();
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x - 30, center.y - 10, eyeSize, 0, 2 * Math.PI, false);
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x + 30, center.y - 10, eyeSize, 0, 2 * Math.PI, false);
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x, center.y + 30, mouthSize, 0, Math.PI, false);
+        context.stroke();
+    </script>
 </body>
 </html>
