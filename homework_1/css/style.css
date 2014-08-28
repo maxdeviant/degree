@@ -15,8 +15,12 @@
     font-weight: 300;
 }
 
+.subhead {
+    color: #4183c4;   
+}
+
 .last-name {
-    color: #aaa;
+    color: #bbb;
 }
 
 .list {
@@ -29,4 +33,9 @@
 
 .experience {
     margin-left: 40px;
+}
+
+.course {
+    padding-right: 20px;
+    color: #bbb;
 }
