@@ -14,7 +14,7 @@ int twice(int& i) {
     return i = 2 * i;
 }
 
-int once (int& i) {
+int once(int& i) {
     return i;
 }
 
