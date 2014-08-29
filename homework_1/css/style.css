@@ -48,6 +48,10 @@
     border: solid 1px #bbb;
 }
 
+#expertise {
+    color: #569e3d;
+}
+
 .experience {
     margin-left: 40px;
 }
@@ -69,6 +73,10 @@ div:nth-child(2) {
 
 .position {
     font-weight: bold;
+}
+
+#education {
+    color: #6f316e;
 }
 
 .course {
