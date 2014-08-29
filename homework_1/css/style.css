@@ -21,7 +21,12 @@
 }
 
 .first-name {
+    /*font-size: 18px;*/
     color: #bbb;
+}
+
+.last-name {
+    /*font-size: 30px;*/
 }
 
 .list {
