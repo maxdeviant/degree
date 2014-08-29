@@ -1,6 +1,6 @@
 .wrapper {
     background: #fff;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     color: #333;
 }
 
@@ -11,6 +11,7 @@
 }
 
 .header {
+    font-family: 'Times New Roman', serif;
     font-size: 48px;
     font-weight: 300;
 }
