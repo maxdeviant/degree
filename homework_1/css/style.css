@@ -32,6 +32,11 @@
     line-height: 48px;
 }
 
+.contact a,
+.contact a:visited {
+    color: #4183c4;
+}
+
 .section {
     margin: 20px;
     padding: 0px 20px 0px 20px;
