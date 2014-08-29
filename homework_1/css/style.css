@@ -27,12 +27,37 @@
     list-style: none;
 }
 
-.section {
+.contact {
+    line-height: 48px;
+}
 
+.section {
+    margin: 20px;
+    padding: 0px 20px 0px 20px;
+    border: solid 1px #bbb;
 }
 
 .experience {
     margin-left: 40px;
+}
+
+.experience:before {
+    content: '\27a4';
+    display: block;
+    float: left;
+    padding-right: 10px;
+}
+
+div:nth-child(2){
+    text-decoration: underline;
+}
+
+.company {
+    font-style: italic;
+}
+
+.position {
+    font-weight: bold;
 }
 
 .course {
