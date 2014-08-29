@@ -54,7 +54,7 @@
     padding-right: 10px;
 }
 
-div:nth-child(2){
+div:nth-child(2) {
     text-decoration: underline;
 }
 
