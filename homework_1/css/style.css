@@ -21,11 +21,13 @@
 }
 
 .first-name {
+    /* Commented out intentionally for aesthetic value */
     /*font-size: 18px;*/
     color: #bbb;
 }
 
 .last-name {
+    /* Commented out intentionally for aesthetic value */
     /*font-size: 30px;*/
 }
 
