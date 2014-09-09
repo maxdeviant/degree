@@ -26,8 +26,10 @@ function problemTwo(celcius) {
  *  Problem 3
  *  Write a function that takes one argument, the user's birthday year. The function shall return an array whose elements are the possible ages of the user. Only the user's birthday should be hardcoded -- not 2014. Utilize JavaScript functions to return the current calendar year (2014).
  */
-function problemThree() {
+function problemThree(birthYear) {
+    var year = new Date().getFullYear();
 
+    return prettifyArray([year - birthYear - 1, year - birthYear]);
 }
 
 /*
