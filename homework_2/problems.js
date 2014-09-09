@@ -16,8 +16,10 @@ function problemOne() {
  *  Problem 2
  *  Write a function that takes one argument, a temperature in Celsius, and returns that temperature in Fahrenheit. Print out the resulting temperature. Feel free to hard code the Celsius temperature, or if you wish accept the temperature as input via a text box.
  */
-function problemTwo() {
+function problemTwo(celcius) {
+    var fahrenheight = celcius * 9 / 5 + 32;
 
+    return '' + fahrenheight + '&nbsp;&deg;F';
 }
 
 /*
