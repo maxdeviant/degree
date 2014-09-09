@@ -82,8 +82,15 @@ function problemEight() {
  *  Problem 9
  *  Write a function that takes two arguments, an array with numeric elements and a number. The function should iterate over the array, and in-place, delete all elements in the array that are smaller than the second argument number.
  */
-function problemNine() {
+function problemNine(arr, n) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < n) {
+            arr.splice(i, 1);
+            i--;
+        }
+    }
 
+    return '[' + arr.toString().replace(/,/g, ', ') + ']';
 }
 
 /*
