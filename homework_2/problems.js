@@ -34,8 +34,10 @@ function problemThree() {
  *  Problem 4
  *  Write a function that takes one numeric argument and displays that number reversed in an alert box. (i.e. 12345 -> 54321)
  */
-function problemFour() {
+function problemFour(number) {
+    alert(number.toString().split('').reverse().join(''));
 
+    return 'Done.';
 }
 
 /*
