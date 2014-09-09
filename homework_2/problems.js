@@ -74,8 +74,15 @@ function problemSeven(arg) {
  *  Problem 8
  *  Write a function that takes an array of numbers and finds the second lowest and second greatest numbers. The function should return an object with this information.
  */
-function problemEight() {
+function problemEight(arr) {
+    arr.sort(function (a, b) {
+        return a < b;
+    });
 
+    return {
+        secondLowest: arr[1],
+        secondGreatest: arr[arr.length - 1]
+    };
 }
 
 /*
