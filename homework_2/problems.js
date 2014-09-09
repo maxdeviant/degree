@@ -3,7 +3,13 @@
  *  Create a variable to store the radius of a circle. Assign the variable some value. Calculate and display the the circle's diameter, circumference, and area.
  */
 function problemOne() {
+    var radius = 50;
 
+    var diameter = 2 * radius;
+    var circumference = Math.PI * diameter;
+    var area = Math.PI * radius * radius;
+
+    return 'Diameter: ' + diameter + '<br>Circumference: ' + circumference + '<br>Area: ' + area;
 }
 
 /*
