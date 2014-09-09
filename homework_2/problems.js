@@ -66,8 +66,8 @@ function problemSix() {
  *  Problem 7
  *  Write a function that accepts one argument and returns the typeof the argument.
  */
-function problemSeven() {
-
+function problemSeven(arg) {
+    return typeof arg;
 }
 
 /*
