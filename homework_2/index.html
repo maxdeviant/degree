@@ -3,48 +3,49 @@
 <head>
     <script src="helpers.js"></script>
     <script src="problems.js"></script>
+    <script src="input.js"></script>
 </head>
 <body>
     <button onclick="getElementById('problem-one').innerHTML = problemOne()">Problem One</button>
     <p id="problem-one"></p>
 
-    <button onclick="getElementById('problem-two').innerHTML = problemTwo(12)">Problem Two</button>
+    <button onclick="getElementById('problem-two').innerHTML = problemTwo(input[2])">Problem Two</button>
     <p id="problem-two"></p>
 
     <button onclick="getElementById('problem-three').innerHTML = problemThree()">Problem Three</button>
     <p id="problem-three"></p>
 
-    <button onclick="getElementById('problem-four').innerHTML = problemFour(12345)">Problem Four</button>
+    <button onclick="getElementById('problem-four').innerHTML = problemFour(input[4])">Problem Four</button>
     <p id="problem-four"></p>
 
     <button onclick="getElementById('problem-five').innerHTML = problemFive()">Problem Five</button>
     <p id="problem-five"></p>
 
-    <button onclick="getElementById('problem-six').innerHTML = problemSix()">Problem Six</button>
+    <button onclick="getElementById('problem-six').innerHTML = problemSix(input[6])">Problem Six</button>
     <p id="problem-six"></p>
 
-    <button onclick="getElementById('problem-seven').innerHTML = problemSeven({})">Problem Seven</button>
+    <button onclick="getElementById('problem-seven').innerHTML = problemSeven(input[7])">Problem Seven</button>
     <p id="problem-seven"></p>
 
-    <button onclick="getElementById('problem-eight').innerHTML = problemEight([32, 5, 1, 23, 3])">Problem Eight</button>
+    <button onclick="problemEight(input[8])">Problem Eight</button>
     <p id="problem-eight"></p>
 
-    <button onclick="getElementById('problem-nine').innerHTML = problemNine([1, 2, 3, 4, 5, 6, 7], 5)">Problem Nine</button>
+    <button onclick="getElementById('problem-nine').innerHTML = problemNine(input[9].arg1, input[9].arg2)">Problem Nine</button>
     <p id="problem-nine"></p>
 
-    <button onclick="getElementById('problem-ten').innerHTML = problemTen()">Problem Ten</button>
+    <button onclick="getElementById('problem-ten').innerHTML = problemTen(input[10])">Problem Ten</button>
     <p id="problem-ten"></p>
 
-    <button onclick="getElementById('problem-eleven').innerHTML = problemEleven()">Problem Eleven</button>
+    <button onclick="getElementById('problem-eleven').innerHTML = problemEleven(input[11])">Problem Eleven</button>
     <p id="problem-eleven"></p>
 
-    <button onclick="getElementById('problem-twelve').innerHTML = problemTwelve('2647522')">Problem Twelve</button>
+    <button onclick="getElementById('problem-twelve').innerHTML = problemTwelve(input[12])">Problem Twelve</button>
     <p id="problem-twelve"></p>
 
-    <button onclick="getElementById('problem-thirteen').innerHTML = problemThirteen()">Problem Thirteen</button>
+    <button onclick="getElementById('problem-thirteen').innerHTML = problemThirteen(input[13])">Problem Thirteen</button>
     <p id="problem-thirteen"></p>
 
-    <button onclick="getElementById('problem-fourteen').innerHTML = problemFourteen()">Problem Fourteen</button>
+    <button onclick="getElementById('problem-fourteen').innerHTML = problemFourteen(input[14])">Problem Fourteen</button>
     <p id="problem-fourteen"></p>
 </body>
 </html>
