@@ -147,6 +147,12 @@ function problemThirteen() {
  *  Problem 14
  *  Write a function that prints the properties of an object by iterating over them.
  */
-function problemFourteen() {
+function problemFourteen(obj) {
+    var output = '';
 
+    for (var i in obj) {
+        output += obj[i] + '<br>';
+    }
+
+    return output;
 }
