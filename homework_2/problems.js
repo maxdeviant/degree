@@ -51,7 +51,7 @@ function problemFive() {
         numbers.push(Math.floor(Math.random() * 1000) + 1);
     }
 
-    return '[' + numbers.toString().replace(/,/g, ', ') + ']<br>' + Math.max.apply(Math, numbers);
+    return prettifyArray(numbers) + '<br>' + Math.max.apply(Math, numbers);
 }
 
 /*
@@ -90,7 +90,7 @@ function problemNine(arr, n) {
         }
     }
 
-    return '[' + arr.toString().replace(/,/g, ', ') + ']';
+    return prettifyArray(arr);
 }
 
 /*
