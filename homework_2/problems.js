@@ -45,7 +45,13 @@ function problemFour(number) {
  *  Write a function that generates three random numbers and outputs the largest number.
  */
 function problemFive() {
+    var numbers = [];
 
+    for (var i = 0; i < 3; i++) {
+        numbers.push(Math.floor(Math.random() * 1000) + 1);
+    }
+
+    return '[' + numbers.toString().replace(/,/g, ', ') + ']<br>' + Math.max.apply(Math, numbers);
 }
 
 /*
