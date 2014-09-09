@@ -113,8 +113,17 @@ function problemEleven() {
  *  Problem 12
  *  Write a function that accepts a number as input and returns a numeric-like string that has "pluses" + inserted between every two even digits. (i.e. 2647522 -> 2+6+4752+2)
  */
-function problemTwelve() {
+function problemTwelve(number) {
+    var arr = number.split('');
 
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0 && arr[i - 1] % 2 === 0) {
+            arr.splice(i, 0, '+');
+            i--;
+        }
+    }
+
+    return arr.join('');
 }
 
 /*
