@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  *  Problem 1
  *  Create a variable to store the radius of a circle. Assign the variable some value. Calculate and display the the circle's diameter, circumference, and area.

@@ -1,3 +1,5 @@
+'use strict';
+
 var input = {
     2: 12,
     3: 1994,
