@@ -100,10 +100,14 @@ function problemEight(arr) {
         return a < b;
     });
 
-    return {
-        secondLowest: arr[1],
-        secondGreatest: arr[arr.length - 1]
+    var seconds = {
+        secondLowest: arr[arr.length - 2],
+        secondGreatest: arr[1]
     };
+
+    document.getElementById('problem-eight').innerHTML = prettifyArray(arr) + '<br>Second Lowest: ' + seconds.secondLowest + '<br>Second Greatest: ' + seconds.secondGreatest;
+
+    return seconds;
 }
 
 /*
