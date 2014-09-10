@@ -123,32 +123,53 @@ function problemTen(n) {
 
     return prettifyArray(numbers);
 
-    function isHappy(n) {
-        var digits = n.toString().split('');
-        var sum = 0;
-
-        for (var i in digits) {
-            sum += digits[i] * digits[i];
-        }
-
-        if (sum !== 1 && depth < maxDepth) {
-            depth++;
-
-            return isHappy(sum);
-        }
-
-        depth = 0;
-
-        return sum === 1;
-    }
-}
-
 /*
  *  Problem 11
  *  Duplicate your above function so that it also incorporates a try/catch block to check for a negative n.
  */
-function problemEleven() {
+function problemEleven(n) {
+    var depth = 0;
+    var maxDepth = 1000;
 
+    var numbers = [];
+    var num = 0;
+
+    try {
+        if (n < 0) {
+            throw 'n cannot be negative.';
+        }
+
+        while (numbers.length < n) {
+            if (isHappy(num)) {
+                numbers.push(num);
+            }
+
+            num++;
+        }
+    } catch (err) {
+        alert('Please enter a value greater than 0.');
+    }
+
+    return prettifyArray(numbers);
+}
+
+function isHappy(n) {
+    var digits = n.toString().split('');
+    var sum = 0;
+
+    for (var i in digits) {
+        sum += digits[i] * digits[i];
+    }
+
+    if (sum !== 1 && depth < maxDepth) {
+        depth++;
+
+        return isHappy(sum);
+    }
+
+    depth = 0;
+
+    return sum === 1;
 }
 
 /*
