@@ -106,8 +106,41 @@ function problemNine(arr, n) {
  *  Problem 10
  *  Write a function that takes one numeric argument, n, and outputs the first n happy numbers.
  */
-function problemTen() {
+function problemTen(n) {
+    var depth = 0;
+    var maxDepth = 1000;
 
+    var numbers = [];
+    var num = 0;
+
+    while (numbers.length < n) {
+        if (isHappy(num)) {
+            numbers.push(num);
+        }
+
+        num++;
+    }
+
+    return prettifyArray(numbers);
+
+    function isHappy(n) {
+        var digits = n.toString().split('');
+        var sum = 0;
+
+        for (var i in digits) {
+            sum += digits[i] * digits[i];
+        }
+
+        if (sum !== 1 && depth < maxDepth) {
+            depth++;
+
+            return isHappy(sum);
+        }
+
+        depth = 0;
+
+        return sum === 1;
+    }
 }
 
 /*
