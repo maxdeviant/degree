@@ -193,8 +193,30 @@ function problemTwelve(number) {
  *  Problem 13
  *  Write a function that accepts an array argument and returns the most frequent item. (i.e. [5, 'a', 'a', 'a', 3, 1, 'a', 4, 'a', 4, 4] -> "a 5")
  */
-function problemThirteen() {
+function problemThirteen(arr) {
+    var count = {};
 
+    for (var i in arr) {
+        if (count[arr[i]]) {
+            count[arr[i]]++;
+        } else {
+            count[arr[i]] = 1;
+        }
+    }
+
+    var max = {
+        key: '',
+        value: 0
+    };
+
+    for (var i in count) {
+        if (count[i] > max.value) {
+            max.key = i;
+            max.value = count[i];
+        }
+    }
+
+    return max.key + ': ' + max.value;
 }
 
 /*
