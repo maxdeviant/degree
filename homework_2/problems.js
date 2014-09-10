@@ -60,8 +60,27 @@ function problemFive() {
  *  Problem 6
  *  Write a function that generates all combinations of a given String, and returns the combinations as elements in an array. (i.e. 'bad' -> ['b','ba','bad','a','ad','d'])
  */
-function problemSix() {
+function problemSix(str) {
+    var combinations = [];
 
+    combine('', str);
+
+    combinations.sort(function (a, b) {
+        return a.length - b.length;
+    });
+
+    return prettifyArray(combinations);
+
+    function combine(pre, str) {
+        if (str.length > 0) {
+            combinations.push(pre + str[0]);
+
+            var rest = str.substring(1, str.length);
+
+            combine(pre + str[0], rest);
+            combine(pre, rest);
+        }
+    }
 }
 
 /*
