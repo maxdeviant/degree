@@ -18,30 +18,42 @@ function problemOne() {
  *  Problem 2
  *  Write a function that takes one argument, a temperature in Celsius, and returns that temperature in Fahrenheit. Print out the resulting temperature. Feel free to hard code the Celsius temperature, or if you wish accept the temperature as input via a text box.
  */
-function problemTwo(celcius) {
-    var fahrenheight = celcius * 9 / 5 + 32;
+function problemTwo(input) {
+    return '' + getFahrenheight(input) + '&nbsp;&deg;F';
 
-    return '' + fahrenheight + '&nbsp;&deg;F';
+    function getFahrenheight(celcius) {
+        return celcius * 9 / 5 + 32;
+    }
 }
 
 /*
  *  Problem 3
  *  Write a function that takes one argument, the user's birthday year. The function shall return an array whose elements are the possible ages of the user. Only the user's birthday should be hardcoded -- not 2014. Utilize JavaScript functions to return the current calendar year (2014).
  */
-function problemThree(birthYear) {
+function problemThree(input) {
     var year = new Date().getFullYear();
 
-    return prettifyArray([year - birthYear - 1, year - birthYear]);
+    return prettifyArray(birthday(input));
+
+    function birthday(birthYear) {
+        var year = new Date().getFullYear();
+
+        return [year - birthYear - 1, year - birthYear];
+    }
 }
 
 /*
  *  Problem 4
  *  Write a function that takes one numeric argument and displays that number reversed in an alert box. (i.e. 12345 -> 54321)
  */
-function problemFour(number) {
-    alert(number.toString().split('').reverse().join(''));
+function problemFour(input) {
+    alert(reverse(input));
 
     return 'Done.';
+
+    function reverse(number) {
+        return number.toString().split('').reverse().join('');
+    }
 }
 
 /*
@@ -62,25 +74,29 @@ function problemFive() {
  *  Problem 6
  *  Write a function that generates all combinations of a given String, and returns the combinations as elements in an array. (i.e. 'bad' -> ['b','ba','bad','a','ad','d'])
  */
-function problemSix(str) {
-    var combinations = [];
+function problemSix(input) {
+    return prettifyArray(generateCombinations(input));
 
-    combine('', str);
+    function generateCombinations(str) {
+        var combinations = [];
 
-    combinations.sort(function (a, b) {
-        return a.length - b.length;
-    });
+        combine('', str);
 
-    return prettifyArray(combinations);
+        combinations.sort(function (a, b) {
+            return a.length - b.length;
+        });
 
-    function combine(pre, str) {
-        if (str.length > 0) {
-            combinations.push(pre + str[0]);
+        return combinations;
 
-            var rest = str.substring(1, str.length);
+        function combine(pre, str) {
+            if (str.length > 0) {
+                combinations.push(pre + str[0]);
 
-            combine(pre + str[0], rest);
-            combine(pre, rest);
+                var rest = str.substring(1, str.length);
+
+                combine(pre + str[0], rest);
+                combine(pre, rest);
+            }
         }
     }
 }
@@ -89,27 +105,33 @@ function problemSix(str) {
  *  Problem 7
  *  Write a function that accepts one argument and returns the typeof the argument.
  */
-function problemSeven(arg) {
-    return typeof arg;
+function problemSeven(input) {
+    return getType(input);
+
+    function getType(arg) {
+        return typeof arg;
+    }
 }
 
 /*
  *  Problem 8
  *  Write a function that takes an array of numbers and finds the second lowest and second greatest numbers. The function should return an object with this information.
  */
-function problemEight(arr) {
-    arr.sort(function (a, b) {
-        return a < b;
-    });
+function problemEight(input) {
+    var seconds = findSeconds(input);
 
-    var seconds = {
-        secondLowest: arr[arr.length - 2],
-        secondGreatest: arr[1]
-    };
+    return prettifyArray(input) + '<br>Second Lowest: ' + seconds.secondLowest + '<br>Second Greatest: ' + seconds.secondGreatest;
 
-    document.getElementById('problem-eight').innerHTML = prettifyArray(arr) + '<br>Second Lowest: ' + seconds.secondLowest + '<br>Second Greatest: ' + seconds.secondGreatest;
+    function findSeconds(arr) {
+        arr.sort(function (a, b) {
+            return a < b;
+        });
 
-    return seconds;
+        return {
+            secondLowest: arr[arr.length - 2],
+            secondGreatest: arr[1]
+        };
+    }
 }
 
 /*
@@ -199,47 +221,57 @@ function isHappy(n) {
  *  Problem 12
  *  Write a function that accepts a number as input and returns a numeric-like string that has "pluses" + inserted between every two even digits. (i.e. 2647522 -> 2+6+4752+2)
  */
-function problemTwelve(number) {
-    var arr = number.split('');
+function problemTwelve(input) {
+    return insertPlus(input);
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 === 0 && arr[i - 1] % 2 === 0) {
-            arr.splice(i, 0, '+');
-            i--;
+    function insertPlus(number) {
+        var arr = number.split('');
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 === 0 && arr[i - 1] % 2 === 0) {
+                arr.splice(i, 0, '+');
+                i--;
+            }
         }
-    }
 
-    return arr.join('');
+        return arr.join('');
+    }
 }
 
 /*
  *  Problem 13
  *  Write a function that accepts an array argument and returns the most frequent item. (i.e. [5, 'a', 'a', 'a', 3, 1, 'a', 4, 'a', 4, 4] -> "a 5")
  */
-function problemThirteen(arr) {
-    var count = {};
-
-    for (var i in arr) {
-        if (count[arr[i]]) {
-            count[arr[i]]++;
-        } else {
-            count[arr[i]] = 1;
-        }
-    }
-
-    var max = {
-        key: '',
-        value: 0
-    };
-
-    for (var i in count) {
-        if (count[i] > max.value) {
-            max.key = i;
-            max.value = count[i];
-        }
-    }
+function problemThirteen(input) {
+    var max = frequent(input);
 
     return max.key + ': ' + max.value;
+
+    function frequent(arr) {
+        var count = {};
+
+        for (var i in arr) {
+            if (count[arr[i]]) {
+                count[arr[i]]++;
+            } else {
+                count[arr[i]] = 1;
+            }
+        }
+
+        var max = {
+            key: '',
+            value: 0
+        };
+
+        for (var i in count) {
+            if (count[i] > max.value) {
+                max.key = i;
+                max.value = count[i];
+            }
+        }
+
+        return max;
+    }
 }
 
 /*
