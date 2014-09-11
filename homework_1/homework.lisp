@@ -10,6 +10,6 @@
     "Documentation for my-replace."
     ())
 
-(defun fibonacci (parameters)
+(defun fibonacci (n)
     "Documentation for fibonacci."
     ())
