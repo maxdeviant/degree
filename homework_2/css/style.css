@@ -32,6 +32,7 @@
 
 .col.half {
     min-width: 480px;
+    max-width: 480px;
 }
 
 .button {
