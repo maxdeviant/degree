@@ -3,61 +3,76 @@
 <head>
     <title>Homework 2</title>
 
+    <link rel="stylesheet" href="css/style.css">
+
     <script src="helpers.js"></script>
     <script src="problems.js"></script>
     <script src="input.js"></script>
 </head>
 <body>
-    <h1>Marshall Bowers</h1>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Homework 2</h1>
+            <h2>Marshall Bowers</h2>
+        </div>
 
-    <p>Input data contained in <a href="input.js" target="_blank">input.js</a></p>
+        <div class="instructions">
+            <p>Input data contained in <a href="input.js" target="_blank">input.js</a></p>
 
-    <p>
-        Input can be changed via the console by modifying the "input" object.<br><br>
-        Ex:<br>
-        <pre>input[6] = 'good';</pre>
-    </p>
+            <p>Input can be changed via the console by modifying the "input" object.</p>
 
-    <button onclick="getElementById('problem-one').innerHTML = problemOne()">Problem One</button>
-    <p id="problem-one"></p>
+            <div class="example">
+                <p>Ex:&nbsp;<code>input[6] = 'good';</code></p>
+            </div>
+        </div>
 
-    <button onclick="getElementById('problem-two').innerHTML = problemTwo(input[2])">Problem Two</button>
-    <p id="problem-two"></p>
+        <div class="problems">
+            <div class="col half">
+                <button class="button" onclick="getElementById('problem-one').innerHTML = problemOne()">Problem One</button>
+                <p id="problem-one"></p>
 
-    <button onclick="getElementById('problem-three').innerHTML = problemThree(input[3])">Problem Three</button>
-    <p id="problem-three"></p>
+                <button class="button" onclick="getElementById('problem-two').innerHTML = problemTwo(input[2])">Problem Two</button>
+                <p id="problem-two"></p>
 
-    <button onclick="getElementById('problem-four').innerHTML = problemFour(input[4])">Problem Four</button>
-    <p id="problem-four"></p>
+                <button class="button" onclick="getElementById('problem-three').innerHTML = problemThree(input[3])">Problem Three</button>
+                <p id="problem-three"></p>
 
-    <button onclick="getElementById('problem-five').innerHTML = problemFive()">Problem Five</button>
-    <p id="problem-five"></p>
+                <button class="button" onclick="getElementById('problem-four').innerHTML = problemFour(input[4])">Problem Four</button>
+                <p id="problem-four"></p>
 
-    <button onclick="getElementById('problem-six').innerHTML = problemSix(input[6])">Problem Six</button>
-    <p id="problem-six"></p>
+                <button class="button" onclick="getElementById('problem-five').innerHTML = problemFive()">Problem Five</button>
+                <p id="problem-five"></p>
 
-    <button onclick="getElementById('problem-seven').innerHTML = problemSeven(input[7])">Problem Seven</button>
-    <p id="problem-seven"></p>
+                <button class="button" onclick="getElementById('problem-six').innerHTML = problemSix(input[6])">Problem Six</button>
+                <p id="problem-six"></p>
 
-    <button onclick="document.getElementById('problem-eight').innerHTML = problemEight(input[8])">Problem Eight</button>
-    <p id="problem-eight"></p>
+                <button class="button" onclick="getElementById('problem-seven').innerHTML = problemSeven(input[7])">Problem Seven</button>
+                <p id="problem-seven"></p>
+            </div>
 
-    <button onclick="getElementById('problem-nine').innerHTML = problemNine(input[9].arg1, input[9].arg2)">Problem Nine</button>
-    <p id="problem-nine"></p>
+            <div class="col half">
+                <button class="button" onclick="document.getElementById('problem-eight').innerHTML = problemEight(input[8])">Problem Eight</button>
+                <p id="problem-eight"></p>
 
-    <button onclick="getElementById('problem-ten').innerHTML = problemTen(input[10])">Problem Ten</button>
-    <p id="problem-ten"></p>
+                <button class="button" onclick="getElementById('problem-nine').innerHTML = problemNine(input[9].arg1, input[9].arg2)">Problem Nine</button>
+                <p id="problem-nine"></p>
 
-    <button onclick="getElementById('problem-eleven').innerHTML = problemEleven(input[11])">Problem Eleven</button>
-    <p id="problem-eleven"></p>
+                <button class="button" onclick="getElementById('problem-ten').innerHTML = problemTen(input[10])">Problem Ten</button>
+                <p id="problem-ten"></p>
 
-    <button onclick="getElementById('problem-twelve').innerHTML = problemTwelve(input[12])">Problem Twelve</button>
-    <p id="problem-twelve"></p>
+                <button class="button" onclick="getElementById('problem-eleven').innerHTML = problemEleven(input[11])">Problem Eleven</button>
+                <p id="problem-eleven"></p>
 
-    <button onclick="getElementById('problem-thirteen').innerHTML = problemThirteen(input[13])">Problem Thirteen</button>
-    <p id="problem-thirteen"></p>
+                <button class="button" onclick="getElementById('problem-twelve').innerHTML = problemTwelve(input[12])">Problem Twelve</button>
+                <p id="problem-twelve"></p>
 
-    <button onclick="getElementById('problem-fourteen').innerHTML = problemFourteen(input[14])">Problem Fourteen</button>
-    <p id="problem-fourteen"></p>
+                <button class="button" onclick="getElementById('problem-thirteen').innerHTML = problemThirteen(input[13])">Problem Thirteen</button>
+                <p id="problem-thirteen"></p>
+
+                <button class="button" onclick="getElementById('problem-fourteen').innerHTML = problemFourteen(input[14])">Problem Fourteen</button>
+                <p id="problem-fourteen"></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
