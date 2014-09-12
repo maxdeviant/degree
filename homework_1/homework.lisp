@@ -12,7 +12,8 @@
     "Documentation for sum."
     (cond
         ((not (and (typep n 'integer) (typep m 'integer))) nil)
-        (t "sum")))
+        ((not (eq n 0)) (sum (1- n) (1+ m)))
+        (t m)))
 
 ;;;=================================================================
 ;;;    NAME: 
