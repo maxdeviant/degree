@@ -4,7 +4,8 @@
     "Documentation for tests."
     (test-sum)
     (test-add-1-all)
-    "Done")
+    (test-my-replace)
+    "Tests passed.")
 
 (defun test-sum ()
     (assert (eq (sum 3 4) (+ 3 4))
@@ -28,6 +29,15 @@
         ()
         "~S not equal to ~S" (add-1-all "qwer") nil))
 
-(defun test-my-replace ())
+(defun test-my-replace ()
+    (assert (equal (my-replace '(a) '(x) '(a (a) (b (a)))) '(a (x) (b (x))))
+        ()
+        "~S not equal to ~S" (my-replace '(a) '(x) '(a (a) (b (a)))) '(a (x) (b (x))))
+    (assert (equal (my-replace '(a) '(x) '(a ((a) b (a)) b a)) '(a ((x) b (x)) b a))
+        ()
+        "~S not equal to ~S" (my-replace '(a) '(x) '(a ((a) b (a)) b a)) '(a ((x) b (x)) b a))
+    (assert (equal (my-replace 'a '(x y (z)) '(a (a b (a)) b a)) '((x y (z)) ((x y (z))) b (x y (z))))
+        ()
+        "~S not equal to ~S" (my-replace 'a (x y (z)) (a (a b (a)) b a)) '((x y (z)) ((x y (z))) b (x y (z)))))
 
 (defun test-fibonacci ())
