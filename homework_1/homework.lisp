@@ -10,7 +10,9 @@
 
 (defun sum (n m)
     "Documentation for sum."
-    ())
+    (cond
+        ((not (and (typep n 'integer) (typep m 'integer))) nil)
+        (t "sum")))
 
 ;;;=================================================================
 ;;;    NAME: 
