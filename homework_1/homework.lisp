@@ -9,10 +9,11 @@
 ;;; RETURNS: 
 
 (defun sum (n m)
-    "Documentation for sum."
+    "Returns the sum of integers n and m."
     (cond
         ((not (and (typep n 'integer) (typep m 'integer))) nil)
-        ((not (eq n 0)) (sum (1- n) (1+ m)))
+        ((and (not (eq n 0)) (> n 0)) (sum (1- n) (1+ m)))
+        ((and (not (eq n 0)) (< n 0)) (sum (1+ n) (1- m)))
         (t m)))
 
 ;;;=================================================================
