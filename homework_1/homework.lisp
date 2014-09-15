@@ -40,7 +40,10 @@
 
 (defun my-replace (e1 e2 L)
     "Documentation for my-replace."
-    ())
+    (cond
+        ((endp L) nil)
+        ((listp (first L)) "sublist")
+        (t "end")))
 
 ;;;=================================================================
 ;;;    NAME: 
