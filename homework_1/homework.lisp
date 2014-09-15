@@ -13,8 +13,11 @@
     "Returns the sum of integers n and m."
     (cond
         ((not (and (typep n 'integer) (typep m 'integer))) nil)
-        ((and (not (eq n 0)) (> n 0)) (sum (1- n) (1+ m)))
-        ((and (not (eq n 0)) (< n 0)) (sum (1+ n) (1- m)))
+        ((and (< (abs n) (abs m)) (> n 0)) (sum (1- n) (1+ m)))
+        ((and (< (abs n) (abs m)) (< n 0)) (sum (1- n) (1+ m)))
+        ((and (> (abs n) (abs m)) (> n 0)) (sum (1- m) (1+ n)))
+        ((and (> (abs n) (abs m)) (< n 0)) (sum (1- m) (1+ n)))
+        ((eq (abs n) (abs m)) (sum (1- n) (1+ m)))
         (t m)))
 
 ;;;=================================================================
