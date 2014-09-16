@@ -91,7 +91,7 @@ var SpriteSheet = new function () {
     return this;
 };
 
-var TitleScreen = function TitleScreen(title, subtitle, callback) {
+var TitleScreen = function TitleScreen(title, subtitle, callback, playerName) {
     var up = false;
 
     this.step = function (dt) {
@@ -113,6 +113,11 @@ var TitleScreen = function TitleScreen(title, subtitle, callback) {
 
         ctx.font = 'bold 20px bangers';
         ctx.fillText(subtitle, Game.width / 2, Game.height / 2 + 40);
+
+        if (playerName) {
+            ctx.font = 'bold 15px bangers';
+            ctx.fillText('Adventure awaits you ' + playerName + '!', Game.width / 2, Game.height / 2 + 80);
+        }
     };
 };
 
