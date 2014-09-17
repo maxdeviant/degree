@@ -123,24 +123,31 @@ var startGame = function () {
     Game.setBoard(3, new TitleScreen('Alien Invasion', 'fire', 'Press fire to start playing', playGame, 'Marshall'));
 };
 
-var level1 = [
-    // Start,   End, Gap,  Type,   Override
-    [ 0,      4000,  500, 'step' ],
-    [ 6000,   13000, 800, 'ltr' ],
-    [ 10000,  16000, 400, 'circle' ],
-    [ 17800,  20000, 500, 'straight', { x: 50 } ],
-    [ 18200,  20000, 500, 'straight', { x: 90 } ],
-    [ 18200,  20000, 500, 'straight', { x: 10 } ],
-    [ 22000,  25000, 400, 'wiggle', { x: 150 }],
-    [ 22000,  25000, 400, 'wiggle', { x: 100 }]
-];
+var levels = {
+    1: [
+        // Start,   End, Gap,  Type,   Override
+        [ 0,      4000,  500, 'step' ],
+        [ 6000,   13000, 800, 'ltr' ],
+        [ 10000,  16000, 400, 'circle' ],
+        [ 17800,  20000, 500, 'straight', { x: 50 } ],
+        [ 18200,  20000, 500, 'straight', { x: 90 } ],
+        [ 18200,  20000, 500, 'straight', { x: 10 } ],
+        [ 22000,  25000, 400, 'wiggle', { x: 150 }],
+        [ 22000,  25000, 400, 'wiggle', { x: 100 }]
+    ],
+    2: [
+        [ 0, 5000, 800, 'straight', { x: 25 } ],
+        [ 1000, 6000, 800, 'straight', { x: 250 } ],
+        [ 5500, 14000, 400, 'wiggle', { x: 150 }],
+    ]
+};
 
 
 var playGame = function () {
     var board = new GameBoard();
     board.add(new PlayerShip());
     board.add(new PlayerShipTwo());
-    board.add(new Level(level1, winGame));
+    board.add(new Level(levels, winGame));
     Game.setBoard(3, board);
     Game.setBoard(4, new GamePoints(0));
     Game.setBoard(5, new LevelCounter());

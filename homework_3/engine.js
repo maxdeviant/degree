@@ -234,16 +234,24 @@ Sprite.prototype.hit = function (damage) {
 };
 
 
-var Level = function (levelData, callback) {
+var Level = function (levels, callback) {
+    Game.currLevel = 2;
+    Game.levels = levels;
+
+    this.initialize(callback);
+};
+
+Level.prototype.initialize = function (callback) {
     this.levelData = [];
-    for (var i = 0; i < levelData.length; i++) {
-        this.levelData.push(Object.create(levelData[i]));
+
+    for (var i = 0; i < Game.levels[Game.currLevel].length; i++) {
+        this.levelData.push(Object.create(Game.levels[Game.currLevel][i]));
     }
     this.t = 0;
     this.callback = callback;
-};
+}
 
-Level.prototype.step = function(dt) {
+Level.prototype.step = function (dt) {
     var idx = 0, remove = [], curShip = null;
 
     this.t += dt * 1000;
@@ -272,9 +280,12 @@ Level.prototype.step = function(dt) {
     }
 
     if (this.levelData.length === 0 && this.board.cnt[OBJECT_ENEMY] === 0) {
-        if (this.callback) {
-            this.callback()
-        };
+        if (Game.levels[++Game.currLevel]) {
+            this.initialize(this.callback);
+        } else if (this.callback) {
+            Game.currLevel--;
+            this.callback();
+        }
     }
 };
 
@@ -306,8 +317,6 @@ var GamePoints = function () {
 };
 
 var LevelCounter = function () {
-    Game.currLevel = 1;
-
     this.draw = function (ctx) {
         ctx.save();
 
