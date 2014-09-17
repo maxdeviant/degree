@@ -340,7 +340,7 @@ Enemy.prototype.step = function (dt) {
 
 Enemy.prototype.hit = function (damage) {
     this.health -= damage;
-    if (this.health <=0) {
+    if (this.health <= 0) {
         if (this.board.remove(this)) {
             Game.points += this.points || 100;
             this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
