@@ -143,6 +143,7 @@ var playGame = function () {
     board.add(new Level(level1, winGame));
     Game.setBoard(3, board);
     Game.setBoard(4, new GamePoints(0));
+    Game.setBoard(5, new LevelCounter());
     Game.shipCount = 2;
 };
 

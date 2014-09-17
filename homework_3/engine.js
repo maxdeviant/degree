@@ -288,8 +288,8 @@ var GamePoints = function () {
 
     this.draw = function (ctx) {
         ctx.save();
-        ctx.font = 'bold 18px arial';
-        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 18px bangers';
+        ctx.fillStyle = '#ffffff';
 
         var txt = '' + Game.points;
         var i = pointsLength - txt.length, zeros = '';
@@ -297,10 +297,27 @@ var GamePoints = function () {
             zeros += '0';
         }
 
-        ctx.fillText(zeros + txt, 10, 20);
+        ctx.fillText(zeros + txt, 50, 30);
         ctx.restore();
     };
 
     this.step = function (dt) {
     };
 };
+
+var LevelCounter = function () {
+    Game.currLevel = 1;
+
+    this.draw = function (ctx) {
+        ctx.save();
+
+        ctx.font = 'bold 18px bangers';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('Level: ' + Game.currLevel, Game.width - 40, 30);
+
+        ctx.restore();
+    };
+
+    this.step = function (dt) {
+    };
+}
