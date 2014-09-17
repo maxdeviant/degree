@@ -331,8 +331,10 @@ Enemy.prototype.step = function (dt) {
     }
     this.reload -= dt;
 
-    if (this.y > Game.height || this.x < -this.w || this.x > Game.width) {
+    if (this.x < -this.w || this.x > Game.width) {
         this.board.remove(this);
+    } else if (this.y > Game.height) {
+        loseGame();
     }
 };
 
