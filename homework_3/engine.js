@@ -281,7 +281,7 @@ Level.prototype.step = function(dt) {
 Level.prototype.draw = function (ctx) {
 };
 
-var GamePoints = function() {
+var GamePoints = function () {
     Game.points = 0;
 
     var pointsLength = 8;
