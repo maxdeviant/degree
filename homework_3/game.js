@@ -173,7 +173,7 @@ var Starfield = function (speed, opacity, numStars, clear) {
         starCtx.fillRect(0, 0, stars.width, stars.height);
     }
 
-    starCtx.fillStyle = '#FFF';
+    starCtx.fillStyle = '#fff';
     starCtx.globalAlpha = opacity;
     for (var i = 0; i < numStars; i++) {
         starCtx.fillRect(Math.floor(Math.random() * stars.width), Math.floor(Math.random() * stars.height), 2, 2);

@@ -111,7 +111,7 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
     };
 
     this.draw = function (ctx) {
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#fff';
         ctx.textAlign = 'center';
 
         ctx.font = 'bold 40px bangers';
@@ -289,7 +289,7 @@ var GamePoints = function () {
     this.draw = function (ctx) {
         ctx.save();
         ctx.font = 'bold 18px bangers';
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#fff';
 
         var txt = '' + Game.points;
         var i = pointsLength - txt.length, zeros = '';
@@ -312,7 +312,7 @@ var LevelCounter = function () {
         ctx.save();
 
         ctx.font = 'bold 18px bangers';
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#fff';
         ctx.fillText('Level: ' + Game.currLevel, Game.width - 40, 30);
 
         ctx.restore();
