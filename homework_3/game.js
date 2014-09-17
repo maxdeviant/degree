@@ -453,5 +453,3 @@ Explosion.prototype.step = function (dt) {
         this.board.remove(this);
     }
 };
-
-
