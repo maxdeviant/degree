@@ -139,9 +139,11 @@ var level1 = [
 var playGame = function () {
     var board = new GameBoard();
     board.add(new PlayerShip());
+    board.add(new PlayerShipTwo());
     board.add(new Level(level1, winGame));
     Game.setBoard(3, board);
     Game.setBoard(4, new GamePoints(0));
+    Game.shipCount = 2;
 };
 
 var winGame = function () {
@@ -203,7 +205,7 @@ var PlayerShip = function () {
     });
 
     this.reload = this.reloadTime;
-    this.x = Game.width / 2 - this.w / 2;
+    this.x = Game.width / 2 - this.w / 2 + 20;
     this.y = Game.height - Game.playerOffset - this.h;
 
     this.step = function (dt) {
@@ -249,12 +251,68 @@ var PlayerShip = function () {
     };
 };
 
+var PlayerShipTwo = function () { 
+    this.setup('ship', {
+        vx: 0,
+        reloadTime: 0.25,
+        maxVel: 200
+    });
+
+    this.reload = this.reloadTime;
+    this.x = Game.width / 2 - this.w / 2 - 20;
+    this.y = Game.height - Game.playerOffset - this.h;
+
+    this.step = function (dt) {
+        if (Game.keys['two_left']) {
+            this.vx = -this.maxVel;
+        } else if (Game.keys['two_right']) {
+            this.vx = this.maxVel;
+        } else {
+            this.vx = 0;
+        }
+
+        this.x += this.vx * dt;
+
+        if (this.x < 0) {
+            this.x = 0;
+        } else if (this.x > Game.width - this.w) { 
+            this.x = Game.width - this.w;
+        }
+
+        this.reload -= dt;
+        if (Game.keys['two_fire'] && this.reload < 0) {
+            Game.keys['two_fire'] = false;
+            this.reload = this.reloadTime;
+
+            this.board.add(new PlayerMissile(this.x, this.y + this.h / 2));
+            this.board.add(new PlayerMissile(this.x + this.w, this.y + this.h / 2));
+        }
+    };
+};
+
 PlayerShip.prototype = new Sprite();
 PlayerShip.prototype.type = OBJECT_PLAYER;
 
 PlayerShip.prototype.hit = function (damage) {
     if (this.board.remove(this)) {
-        loseGame();
+        this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
+
+        if (--Game.shipCount === 0) {
+            loseGame();
+        }
+    }
+};
+
+PlayerShipTwo.prototype = new Sprite();
+PlayerShipTwo.prototype.type = OBJECT_PLAYER;
+
+PlayerShipTwo.prototype.hit = function (damage) {
+    if (this.board.remove(this)) {
+        this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
+
+        if (--Game.shipCount === 0) {
+            loseGame();
+        }
     }
 };
 

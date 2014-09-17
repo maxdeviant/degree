@@ -31,7 +31,10 @@ var Game = new function() {
         37: 'left',
         39: 'right',
         32: 'fire',
-        13: 'restart'
+        13: 'restart',
+        65: 'two_left',
+        68: 'two_right',
+        83: 'two_fire'
     };
 
     this.keys = {};
