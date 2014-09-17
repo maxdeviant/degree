@@ -30,7 +30,8 @@ var Game = new function() {
         40: 'down',
         37: 'left',
         39: 'right',
-        32: 'fire'
+        32: 'fire',
+        13: 'restart'
     };
 
     this.keys = {};
@@ -93,15 +94,15 @@ var SpriteSheet = new function () {
     return this;
 };
 
-var TitleScreen = function TitleScreen(title, subtitle, callback, playerName) {
+var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerName) {
     var up = false;
 
     this.step = function (dt) {
-        if (!Game.keys['fire']) {
+        if (!Game.keys[key]) {
             up = true;
         }
 
-        if (up && Game.keys['fire'] && callback) {
+        if (up && Game.keys[key] && callback) {
             callback();
         }
     };
