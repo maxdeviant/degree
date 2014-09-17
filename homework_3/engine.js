@@ -235,7 +235,7 @@ Sprite.prototype.hit = function (damage) {
 
 
 var Level = function (levels, callback) {
-    Game.currLevel = 2;
+    Game.currLevel = 1;
     Game.levels = levels;
 
     this.initialize(callback);
