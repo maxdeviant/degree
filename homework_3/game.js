@@ -215,12 +215,27 @@ var PlayerShip = function () {
             this.vx = 0;
         }
 
+        if (Game.keys['up']) {
+            this.vy = -this.maxVel;
+        } else if (Game.keys['down']) {
+            this.vy = this.maxVel;
+        } else {
+            this.vy = 0;
+        }
+
         this.x += this.vx * dt;
+        this.y += this.vy * dt;
 
         if (this.x < 0) {
             this.x = 0;
         } else if (this.x > Game.width - this.w) { 
             this.x = Game.width - this.w;
+        }
+
+        if (this.y < 0) {
+            this.y = 0;
+        } else if (this.y > Game.height - this.h) {
+            this.y = Game.height - this.h;
         }
 
         this.reload -= dt;

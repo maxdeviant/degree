@@ -26,6 +26,8 @@ var Game = new function() {
     };
 
     var KEY_CODES = {
+        38: 'up',
+        40: 'down',
         37: 'left',
         39: 'right',
         32: 'fire'
