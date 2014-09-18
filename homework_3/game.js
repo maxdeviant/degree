@@ -293,6 +293,13 @@ var PlayerShip = function () {
 
         if (invulnerability > 0) {
             this.frame = 1;
+
+            var collision = this.board.collide(this, OBJECT_ENEMY);
+
+            if (collision) {
+                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
+            }
+
             invulnerability--;
         } else {
             this.frame = 0;
@@ -339,6 +346,13 @@ var PlayerShipTwo = function () {
 
         if (invulnerability > 0) {
             this.frame = 1;
+
+            var collision = this.board.collide(this, OBJECT_ENEMY);
+
+            if (collision) {
+                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
+            }
+            
             invulnerability--;
         } else {
             this.frame = 0;
