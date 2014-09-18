@@ -64,7 +64,14 @@ var sprites = {
     },
     star_powerup: {
         sx: 12,
-        sy: 43,
+        sy: 44,
+        w: 16,
+        h: 17,
+        frames: 1
+    },
+    poison: {
+        sx: 30,
+        sy: 44,
         w: 16,
         h: 17,
         frames: 1
