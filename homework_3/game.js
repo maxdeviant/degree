@@ -8,9 +8,9 @@ var sprites = {
     },
     missile: {
         sx: 0,
-        sy: 30,
+        sy: 42,
         w: 6,
-        h: 10,
+        h: 20,
         frames: 1
     },
     enemy_purple: {
