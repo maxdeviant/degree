@@ -163,7 +163,7 @@ var levels = {
     ]
 };
 
-var invulnerability = 0;
+var invulnerability;
 
 var playGame = function () {
     var board = new GameBoard();
@@ -174,6 +174,7 @@ var playGame = function () {
     Game.setBoard(4, new GamePoints(0));
     Game.setBoard(5, new LevelCounter());
     Game.shipCount = 2;
+    invulnerability = 0;
 };
 
 var winGame = function () {
