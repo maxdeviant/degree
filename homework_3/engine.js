@@ -18,10 +18,6 @@ var Game = new function() {
 
         this.loop();
 
-        if (this.mobile) {
-            this.setBoard(4, new TouchControls());
-        }
-
         SpriteSheet.load(sprite_data, callback);
     };
 
