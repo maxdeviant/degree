@@ -163,6 +163,7 @@ var levels = {
     ]
 };
 
+var invulnerability = 0;
 
 var playGame = function () {
     var board = new GameBoard();
@@ -277,6 +278,13 @@ var PlayerShip = function () {
             this.board.add(new PlayerMissile(this.x, this.y + this.h / 2));
             this.board.add(new PlayerMissile(this.x + this.w, this.y + this.h / 2));
         }
+
+        if (invulnerability > 0) {
+            this.frame = 1;
+            invulnerability--;
+        } else {
+            this.frame = 0;
+        }
     };
 };
 
@@ -315,6 +323,13 @@ var PlayerShipTwo = function () {
 
             this.board.add(new PlayerMissile(this.x, this.y + this.h / 2));
             this.board.add(new PlayerMissile(this.x + this.w, this.y + this.h / 2));
+        }
+
+        if (invulnerability > 0) {
+            this.frame = 1;
+            invulnerability--;
+        } else {
+            this.frame = 0;
         }
     };
 };
@@ -469,6 +484,15 @@ var StarPowerup = function () {
 
     this.step = function (dt) {
         this.y += this.vy * dt;
+
+        var collision = this.board.collide(this, OBJECT_PLAYER);
+
+        if (collision) {
+            invulnerability = 5 * 30;
+            this.board.remove(this);
+        } else if (this.y > Game.height) {
+            this.board.remove(this);
+        }
     }
 }
 
