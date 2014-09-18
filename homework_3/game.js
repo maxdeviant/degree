@@ -14,35 +14,35 @@ var sprites = {
         frames: 1
     },
     enemy_purple: {
-        sx: 37,
+        sx: 74,
         sy: 0,
         w: 42,
         h: 43,
         frames: 1
     },
     enemy_bee: {
-        sx: 79,
+        sx: 116,
         sy: 0,
         w: 37,
         h: 43,
         frames: 1
     },
     enemy_ship: {
-        sx: 116,
+        sx: 153,
         sy: 0,
         w: 42,
         h: 43,
         frames: 1
     },
     enemy_circle: {
-        sx: 158,
+        sx: 195,
         sy: 0,
         w: 32,
         h: 33,
         frames: 1
     },
     enemy_pong: {
-        sx: 190,
+        sx: 227,
         sy: 0,
         w: 42,
         h: 43,
