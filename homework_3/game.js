@@ -479,13 +479,23 @@ var PoisonPill = function () {
     this.setup('poison_pill', {
         vy: 150,
         maxVel: 200,
-        y: 0
+        y: 0,
+        damage: 100
     });
 
     this.x = Math.floor(Math.random() * (Game.width - this.w)) + 0;
 
     this.step = function (dt) {
         this.y += this.vy * dt;
+
+        var collision = this.board.collide(this, OBJECT_PLAYER | OBJECT_ENEMY);
+
+        if (collision) {
+            collision.hit(this.damage);
+            this.board.remove(this);
+        } else if (this.y > Game.height) {
+            this.board.remove(this); 
+        }
     }
 }
 
