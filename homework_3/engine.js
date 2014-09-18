@@ -287,6 +287,14 @@ Level.prototype.step = function (dt) {
             this.callback();
         }
     }
+
+    if (Math.random() < 0.01) {
+        this.board.add(new StarPowerup());
+    }
+
+    if (Math.random() < 0.05) {
+        this.board.add(new PoisonPill());
+    }
 };
 
 Level.prototype.draw = function (ctx) {

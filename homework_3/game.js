@@ -69,7 +69,7 @@ var sprites = {
         h: 17,
         frames: 1
     },
-    poison: {
+    poison_pill: {
         sx: 30,
         sy: 44,
         w: 16,
@@ -457,6 +457,40 @@ EnemyMissile.prototype.step = function (dt)  {
         this.board.remove(this); 
     }
 };
+
+var StarPowerup = function () {
+    this.setup('star_powerup', {
+        vy: 75,
+        maxVel: 200,
+        y: 0
+    });
+
+    this.x = Math.floor(Math.random() * (Game.width - this.w)) + 0;
+
+    this.step = function (dt) {
+        this.y += this.vy * dt;
+    }
+}
+
+StarPowerup.prototype = new Sprite();
+StarPowerup.prototype.type = OBJECT_POWERUP;
+
+var PoisonPill = function () {
+    this.setup('poison_pill', {
+        vy: 150,
+        maxVel: 200,
+        y: 0
+    });
+
+    this.x = Math.floor(Math.random() * (Game.width - this.w)) + 0;
+
+    this.step = function (dt) {
+        this.y += this.vy * dt;
+    }
+}
+
+PoisonPill.prototype = new Sprite();
+PoisonPill.prototype.type = OBJECT_POWERUP;
 
 var Explosion = function (centerX, centerY) {
     this.setup('explosion', {
