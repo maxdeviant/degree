@@ -61,6 +61,13 @@ var sprites = {
         w: 3,
         h: 20,
         frame: 1
+    },
+    star_powerup: {
+        sx: 12,
+        sy: 43,
+        w: 16,
+        h: 17,
+        frames: 1
     }
 };
 
