@@ -338,6 +338,10 @@ PlayerShip.prototype = new Sprite();
 PlayerShip.prototype.type = OBJECT_PLAYER;
 
 PlayerShip.prototype.hit = function (damage) {
+    if (invulnerability > 0) {
+        return;
+    }
+
     if (this.board.remove(this)) {
         this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
 
@@ -351,6 +355,10 @@ PlayerShipTwo.prototype = new Sprite();
 PlayerShipTwo.prototype.type = OBJECT_PLAYER;
 
 PlayerShipTwo.prototype.hit = function (damage) {
+    if (invulnerability > 0) {
+        return;
+    }
+
     if (this.board.remove(this)) {
         this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
 
