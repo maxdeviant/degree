@@ -41,6 +41,13 @@ var sprites = {
         h: 33,
         frames: 1
     },
+    enemy_pong: {
+        sx: 190,
+        sy: 0,
+        w: 42,
+        h: 43,
+        frames: 1
+    },
     explosion: {
         sx: 0,
         sy: 64,
