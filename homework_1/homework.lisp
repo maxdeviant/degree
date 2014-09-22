@@ -5,12 +5,12 @@
 ;;; homework.lisp
 
 ;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;    NAME: sum
+;;;  ARG(S): Integers N and M
+;;; RETURNS: The sum of the two integers
 
 (defun sum (n m)
-    "Returns the sum of integers n and m."
+    "Returns the sum of integers N and M."
     (cond
         ((not (and (typep n 'integer) (typep m 'integer))) nil)
         ((and (< (abs n) (abs m)) (> n 0)) (sum (1- n) (1+ m)))
@@ -21,9 +21,9 @@
         (t m)))
 
 ;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;    NAME: add-1-all
+;;;  ARG(S): A list of integers L
+;;; RETURNS: A list of integers with every element increased by one
 
 (defun add-1-all (L)
     "Returns the list L of integers with every element increased by one."
@@ -34,12 +34,12 @@
         (t (cons (1+ (first L)) (add-1-all (rest L))))))
 
 ;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;    NAME: my-replace
+;;;  ARG(S): The element E1 to replace with E2 in the list L
+;;; RETURNS: The list with the specified elements replaced
 
 (defun my-replace (e1 e2 L)
-    "Documentation for my-replace."
+    "Returns the list L with element E1 replaced with E2."
     (cond
         ((endp L) L)
         ((equal (first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
@@ -47,24 +47,24 @@
         (t (cons (first L) (my-replace e1 e2 (rest L))))))
 
 ;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;    NAME: fibonacci
+;;;  ARG(S): An integer N
+;;; RETURNS: The Nth fibonacci number
 
 (defun fibonacci (n)
-    "Documentation for fibonacci."
+    "Returns the Nth fibonacci number."
     (cond
         ((eq n 0) 0)
         ((eq n 1) 1)
         (t (+ (fibonacci (- n 1)) (fibonacci (- n 2))))))
 
 ;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;    NAME: fibonacci-tr
+;;;  ARG(S): An integer N
+;;; RETURNS: The Nth fibonacci number
 
 (defun fibonacci-tr (n)
-    "Documentation for fibonacci-tr"
+    "Returns the Nth fibonacci number."
     (labels (
         (fibonacci-tr-aux (n a b)
             (cond
