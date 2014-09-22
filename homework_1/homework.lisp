@@ -41,9 +41,10 @@
 (defun my-replace (e1 e2 L)
     "Documentation for my-replace."
     (cond
-        ((endp L) nil)
-        ((listp (first L)) "sublist")
-        (t "end")))
+        ((endp L) L)
+        ((listp (first L)) (cons (my-replace e1 e2 (first L)) (my-replace e1 e2 (rest L))))
+        ((equal (first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
+        (t (cons (first L) (my-replace e1 e2 (rest L))))))
 
 ;;;=================================================================
 ;;;    NAME: 
