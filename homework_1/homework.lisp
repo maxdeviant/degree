@@ -65,15 +65,9 @@
 
 (defun fibonacci-tr (n)
     "Documentation for fibonacci-tr"
-    (fibonacci-tr-aux n 0 1))
-
-;;;=================================================================
-;;;    NAME: 
-;;;  ARG(S): 
-;;; RETURNS: 
-
-(defun fibonacci-tr-aux (n a b)
-    "Documentation for fibonacci-tr-aux"
-    (cond
-        ((> n 0) (fibonacci-tr-aux (- n 1) b (+ a b)))
-        (t a)))
+    (labels (
+        (fibonacci-tr-aux (n a b)
+            (cond
+                ((> n 0) (fibonacci-tr-aux (- n 1) b (+ a b)))
+                (t a))))
+        (fibonacci-tr-aux n 0 1)))
