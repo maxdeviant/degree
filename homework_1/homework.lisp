@@ -30,7 +30,7 @@
     (cond
         ((not (listp L)) nil)
         ((not (every 'integerp L)) nil)
-        ((endp L) nil)
+        ((endp L) L)
         (t (cons (1+ (first L)) (add-1-all (rest L))))))
 
 ;;;=================================================================
