@@ -36,8 +36,8 @@
     (assert (equal (my-replace '(a) '(x) '(a ((a) b (a)) b a)) '(a ((x) b (x)) b a))
         ()
         "~S not equal to ~S" (my-replace '(a) '(x) '(a ((a) b (a)) b a)) '(a ((x) b (x)) b a))
-    (assert (equal (my-replace 'a '(x y (z)) '(a (a b (a)) b a)) '((x y (z)) ((x y (z))) b (x y (z))))
+    (assert (equal (my-replace 'a '(x y (z)) '(a (a b (a)) b a)) '((x y (z)) ((x y (z)) b ((x y (z)))) b (x y (z))))
         ()
-        "~S not equal to ~S" (my-replace 'a '(x y (z)) '(a (a b (a)) b a)) '((x y (z)) ((x y (z))) b (x y (z)))))
+        "~S not equal to ~S" (my-replace 'a '(x y (z)) '(a (a b (a)) b a)) '((x y (z)) ((x y (z)) b ((x y (z)))) b (x y (z)))))
 
 (defun test-fibonacci ())
