@@ -53,4 +53,27 @@
 
 (defun fibonacci (n)
     "Documentation for fibonacci."
-    ())
+    (cond
+        ((eq n 0) 0)
+        ((eq n 1) 1)
+        (t (+ (fibonacci (- n 1)) (fibonacci (- n 2))))))
+
+;;;=================================================================
+;;;    NAME: 
+;;;  ARG(S): 
+;;; RETURNS: 
+
+(defun fibonacci-tr (n)
+    "Documentation for fibonacci-tr"
+    (fibonacci-tr-aux n 0 1))
+
+;;;=================================================================
+;;;    NAME: 
+;;;  ARG(S): 
+;;; RETURNS: 
+
+(defun fibonacci-tr-aux (n a b)
+    "Documentation for fibonacci-tr-aux"
+    (cond
+        ((> n 0) (fibonacci-tr-aux (- n 1) b (+ a b)))
+        (t a)))
