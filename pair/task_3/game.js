@@ -6,62 +6,6 @@ var sprites = {
         h: 42,
         frames: 1
     },
-    missile: {
-        sx: 0,
-        sy: 42,
-        w: 6,
-        h: 20,
-        frames: 1
-    },
-    enemy_purple: {
-        sx: 74,
-        sy: 0,
-        w: 42,
-        h: 43,
-        frames: 1
-    },
-    enemy_bee: {
-        sx: 116,
-        sy: 0,
-        w: 37,
-        h: 43,
-        frames: 1
-    },
-    enemy_ship: {
-        sx: 153,
-        sy: 0,
-        w: 42,
-        h: 43,
-        frames: 1
-    },
-    enemy_circle: {
-        sx: 195,
-        sy: 0,
-        w: 32,
-        h: 33,
-        frames: 1
-    },
-    enemy_line: {
-        sx: 227,
-        sy: 0,
-        w: 42,
-        h: 43,
-        frames: 1
-    },
-    explosion: {
-        sx: 0,
-        sy: 64,
-        w: 64,
-        h: 64,
-        frames: 12
-    },
-    enemy_missile: {
-        sx: 9,
-        sy: 42,
-        w: 3,
-        h: 20,
-        frame: 1
-    },
     star_powerup: {
         sx: 12,
         sy: 44,
@@ -69,13 +13,6 @@ var sprites = {
         h: 17,
         frames: 1
     },
-    poison_pill: {
-        sx: 30,
-        sy: 44,
-        w: 16,
-        h: 17,
-        frames: 1
-    }
 };
 
 var enemies = {
@@ -139,6 +76,8 @@ var enemies = {
     }
 };
 
+var won = false;
+
 var OBJECT_PLAYER = 1,
     OBJECT_PLAYER_PROJECTILE = 2,
     OBJECT_ENEMY = 4,
@@ -150,27 +89,35 @@ var startGame = function () {
     Game.setBoard(1, new Starfield(50, 0.6, 100));
     Game.setBoard(2, new Starfield(100, 1.0, 50));
     Game.setBoard(3, new TitleScreen('Alien Invasion', 'fire', 'Press fire to start playing', playGame, 'Marshall'));
+
+    setTimeout(function () {
+        if (!won) {
+            loseGame();
+        }
+
+        Game.timer--;
+    }, 30 * 1000);
 };
 
 var levels = {
     1: [
         // Start,   End, Gap,  Type,   Override
-        [ 0,      4000,  500, 'step' ],
-        [ 6000,   13000, 800, 'ltr' ],
-        [ 10000,  16000, 400, 'circle' ],
-        [ 12000,  17000, 1000, 'line' ],
-        [ 17800,  20000, 500, 'straight', { x: 50 } ],
-        [ 18200,  20000, 500, 'straight', { x: 90 } ],
-        [ 18200,  20000, 500, 'straight', { x: 10 } ],
-        [ 22000,  25000, 400, 'wiggle', { x: 150 }],
-        [ 22000,  25000, 400, 'wiggle', { x: 100 }]
+        // [ 0,      4000,  500, 'step' ],
+        // [ 6000,   13000, 800, 'ltr' ],
+        // [ 10000,  16000, 400, 'circle' ],
+        // [ 12000,  17000, 1000, 'line' ],
+        // [ 17800,  20000, 500, 'straight', { x: 50 } ],
+        // [ 18200,  20000, 500, 'straight', { x: 90 } ],
+        // [ 18200,  20000, 500, 'straight', { x: 10 } ],
+        // [ 22000,  25000, 400, 'wiggle', { x: 150 }],
+        // [ 22000,  25000, 400, 'wiggle', { x: 100 }]
     ],
     2: [
-        [ 0, 5000, 800, 'straight', { x: 25 } ],
-        [ 1000, 6000, 800, 'straight', { x: 250 } ],
-        [ 6000, 14000, 400, 'wiggle', { x: 150 }],
-        [ 14000, 16000, 1000, 'line' ],
-        [ 16000, 20000, 600, 'circle' ]
+        // [ 0, 5000, 800, 'straight', { x: 25 } ],
+        // [ 1000, 6000, 800, 'straight', { x: 250 } ],
+        // [ 6000, 14000, 400, 'wiggle', { x: 150 }],
+        // [ 14000, 16000, 1000, 'line' ],
+        // [ 16000, 20000, 600, 'circle' ]
     ]
 };
 
@@ -179,7 +126,6 @@ var invulnerability;
 var playGame = function () {
     var board = new GameBoard();
     board.add(new PlayerShip());
-    board.add(new PlayerShipTwo());
     board.add(new Level(levels, winGame));
     Game.setBoard(3, board);
     Game.setBoard(4, new GamePoints(0));
@@ -189,6 +135,7 @@ var playGame = function () {
 };
 
 var winGame = function () {
+    won = true;
     Game.setBoard(3, new TitleScreen('You win!', 'restart', 'Press enter to play again', playGame));
 };
 
@@ -259,16 +206,16 @@ var PlayerShip = function () {
             this.vx = 0;
         }
 
-        if (Game.keys['up']) {
-            this.vy = -this.maxVel;
-        } else if (Game.keys['down']) {
-            this.vy = this.maxVel;
-        } else {
-            this.vy = 0;
-        }
+        // if (Game.keys['up']) {
+        //     this.vy = -this.maxVel;
+        // } else if (Game.keys['down']) {
+        //     this.vy = this.maxVel;
+        // } else {
+        //     this.vy = 0;
+        // }
 
         this.x += this.vx * dt;
-        this.y += this.vy * dt;
+        // this.y += this.vy * dt;
 
         if (this.x < 0) {
             this.x = 0;
@@ -280,82 +227,6 @@ var PlayerShip = function () {
             this.y = 0;
         } else if (this.y > Game.height - this.h) {
             this.y = Game.height - this.h;
-        }
-
-        this.reload -= dt;
-        if (Game.keys['fire'] && this.reload < 0) {
-            Game.keys['fire'] = false;
-            this.reload = this.reloadTime;
-
-            this.board.add(new PlayerMissile(this.x, this.y + this.h / 2));
-            this.board.add(new PlayerMissile(this.x + this.w, this.y + this.h / 2));
-        }
-
-        if (invulnerability > 0) {
-            this.frame = 1;
-
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
-            }
-
-            invulnerability--;
-        } else {
-            this.frame = 0;
-        }
-    };
-};
-
-var PlayerShipTwo = function () { 
-    this.setup('ship', {
-        vx: 0,
-        reloadTime: 0.25,
-        maxVel: 200
-    });
-
-    this.reload = this.reloadTime;
-    this.x = Game.width / 2 - this.w / 2 - 20;
-    this.y = Game.height - Game.playerOffset - this.h;
-
-    this.step = function (dt) {
-        if (Game.keys['two_left']) {
-            this.vx = -this.maxVel;
-        } else if (Game.keys['two_right']) {
-            this.vx = this.maxVel;
-        } else {
-            this.vx = 0;
-        }
-
-        this.x += this.vx * dt;
-
-        if (this.x < 0) {
-            this.x = 0;
-        } else if (this.x > Game.width - this.w) { 
-            this.x = Game.width - this.w;
-        }
-
-        this.reload -= dt;
-        if (Game.keys['two_fire'] && this.reload < 0) {
-            Game.keys['two_fire'] = false;
-            this.reload = this.reloadTime;
-
-            this.board.add(new PlayerMissile(this.x, this.y + this.h / 2));
-            this.board.add(new PlayerMissile(this.x + this.w, this.y + this.h / 2));
-        }
-
-        if (invulnerability > 0) {
-            this.frame = 1;
-
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
-            }
-            
-            invulnerability--;
-        } else {
-            this.frame = 0;
         }
     };
 };
@@ -377,140 +248,10 @@ PlayerShip.prototype.hit = function (damage) {
     }
 };
 
-PlayerShipTwo.prototype = new Sprite();
-PlayerShipTwo.prototype.type = OBJECT_PLAYER;
-
-PlayerShipTwo.prototype.hit = function (damage) {
-    if (invulnerability > 0) {
-        return;
-    }
-
-    if (this.board.remove(this)) {
-        this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
-
-        if (--Game.shipCount === 0) {
-            loseGame();
-        }
-    }
-};
-
-var PlayerMissile = function (x, y) {
-    this.setup('missile', {
-        vy: -700,
-        damage: 10
-    });
-    this.x = x - this.w / 2;
-    this.y = y - this.h; 
-};
-
-PlayerMissile.prototype = new Sprite();
-PlayerMissile.prototype.type = OBJECT_PLAYER_PROJECTILE;
-
-PlayerMissile.prototype.step = function (dt)  {
-    this.y += this.vy * dt;
-    var collision = this.board.collide(this, OBJECT_ENEMY);
-    if (collision) {
-        collision.hit(this.damage);
-        this.board.remove(this);
-    } else if (this.y < -this.h) {
-        this.board.remove(this);
-    }
-};
-
-var Enemy = function (blueprint, override) {
-    this.merge(this.baseParameters);
-    this.setup(blueprint.sprite,blueprint);
-    this.merge(override);
-};
-
-Enemy.prototype = new Sprite();
-Enemy.prototype.type = OBJECT_ENEMY;
-
-Enemy.prototype.baseParameters = {
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0, 
-    E: 0,
-    F: 0,
-    G: 0,
-    H: 0,
-    t: 0,
-    reloadTime: 0.75, 
-    reload: 0
-};
-
-Enemy.prototype.step = function (dt) {
-    this.t += dt;
-
-    this.vx = this.A + this.B * Math.sin(this.C * this.t + this.D);
-    this.vy = this.E + this.F * Math.sin(this.G * this.t + this.H);
-
-    this.x += this.vx * dt;
-    this.y += this.vy * dt;
-
-    var collision = this.board.collide(this, OBJECT_PLAYER);
-    if (collision) {
-        collision.hit(this.damage);
-        this.board.remove(this);
-    }
-
-    if (this.reload <= 0 && Math.random() < (this.firePercentage || 0.01) ) {
-        this.reload = this.reloadTime;
-        if (this.missiles == 2) {
-            this.board.add(new EnemyMissile(this.x + this.w - 2, this.y + this.h / 2));
-            this.board.add(new EnemyMissile(this.x + 2, this.y + this.h / 2));
-        } else {
-            this.board.add(new EnemyMissile(this.x + this.w / 2, this.y + this.h));
-        }
-
-    }
-    this.reload -= dt;
-
-    if (this.x < -this.w || this.x > Game.width) {
-        this.board.remove(this);
-    } else if (this.y > Game.height) {
-        loseGame();
-    }
-};
-
-Enemy.prototype.hit = function (damage) {
-    this.health -= damage;
-    if (this.health <= 0) {
-        if (this.board.remove(this)) {
-            Game.points += this.points || 100;
-            this.board.add(new Explosion(this.x + this.w / 2, this.y + this.h / 2));
-        }
-    }
-};
-
-var EnemyMissile = function (x, y) {
-    this.setup('enemy_missile', {
-        vy: 200,
-        damage: 10
-    });
-    this.x = x - this.w / 2;
-    this.y = y;
-};
-
-EnemyMissile.prototype = new Sprite();
-EnemyMissile.prototype.type = OBJECT_ENEMY_PROJECTILE;
-
-EnemyMissile.prototype.step = function (dt)  {
-    this.y += this.vy * dt;
-    var collision = this.board.collide(this, OBJECT_PLAYER)
-    if (collision) {
-        collision.hit(this.damage);
-        this.board.remove(this);
-    } else if (this.y > Game.height) {
-        this.board.remove(this); 
-    }
-};
-
 var StarPowerup = function () {
     this.setup('star_powerup', {
         vy: 75,
-        maxVel: 200,
+        maxVel: 500,
         y: 0
     });
 
@@ -522,57 +263,17 @@ var StarPowerup = function () {
         var collision = this.board.collide(this, OBJECT_PLAYER);
 
         if (collision) {
-            invulnerability = 5 * 30;
+            Game.points++;
             this.board.remove(this);
         } else if (this.y > Game.height) {
             this.board.remove(this);
+        }
+
+        if (Game.points === 15) {
+            winGame();
         }
     }
 }
 
 StarPowerup.prototype = new Sprite();
 StarPowerup.prototype.type = OBJECT_POWERUP;
-
-var PoisonPill = function () {
-    this.setup('poison_pill', {
-        vy: 150,
-        maxVel: 200,
-        y: 0,
-        damage: 100
-    });
-
-    this.x = Math.floor(Math.random() * (Game.width - this.w)) + 0;
-
-    this.step = function (dt) {
-        this.y += this.vy * dt;
-
-        var collision = this.board.collide(this, OBJECT_PLAYER | OBJECT_ENEMY);
-
-        if (collision) {
-            collision.hit(this.damage);
-            this.board.remove(this);
-        } else if (this.y > Game.height) {
-            this.board.remove(this); 
-        }
-    }
-}
-
-PoisonPill.prototype = new Sprite();
-PoisonPill.prototype.type = OBJECT_POWERUP;
-
-var Explosion = function (centerX, centerY) {
-    this.setup('explosion', {
-        frame: 0
-    });
-    this.x = centerX - this.w / 2;
-    this.y = centerY - this.h / 2;
-};
-
-Explosion.prototype = new Sprite();
-
-Explosion.prototype.step = function (dt) {
-    this.frame++;
-    if (this.frame >= 12) {
-        this.board.remove(this);
-    }
-};

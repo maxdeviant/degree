@@ -232,6 +232,7 @@ Sprite.prototype.hit = function (damage) {
 
 var Level = function (levels, callback) {
     Game.currLevel = 1;
+    Game.timer = 30;
     Game.levels = levels;
 
     this.initialize(callback);
@@ -284,12 +285,8 @@ Level.prototype.step = function (dt) {
         }
     }
 
-    if (Math.random() < 0.01) {
+    if (Math.random() < 0.04) {
         this.board.add(new StarPowerup());
-    }
-
-    if (Math.random() < 0.05) {
-        this.board.add(new PoisonPill());
     }
 };
 
@@ -326,7 +323,7 @@ var LevelCounter = function () {
 
         ctx.font = 'bold 18px bangers';
         ctx.fillStyle = '#fff';
-        ctx.fillText('Level: ' + Game.currLevel, Game.width - 40, 30);
+        ctx.fillText('Timer: ' + Game.timer, Game.width - 40, 30);
 
         ctx.restore();
     };
