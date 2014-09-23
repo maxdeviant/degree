@@ -31,6 +31,43 @@
                 <li>Drinking</li>
             </ul>
         </div>
+
+        <div id="task-two">
+            <div id="button-one">
+                <button onclick="sum();">One</button>
+                <p id="one-output"></p>
+            </div>
+            <button onclick="age();">Two</button>
+        </div>
     </div>
+    <script>
+        function sum() {
+            var sum = 0;
+
+            for (var i = 0; i < 5; i++) {
+                sum += parseInt(prompt('Enter the ' + (i + 1) + 'th number.') || 0);
+            }
+
+            document.getElementById('one-output').innerHTML = 'Sum: ' + sum;
+        }
+
+        function age() {
+            var user = {};
+            var now = new Date(Date.now());
+
+            user.name = prompt('Enter your name.');
+            user.age = prompt('Enter your age.');
+
+            if (canDrink(user)) {
+                alert(user.name + ' can get turnt!');
+            } else {
+                alert(user.name + ', you are not old enough to party.');
+            }
+
+            function canDrink(obj) {
+                return obj.age > 20;
+            }
+        }
+    </script>
 </body>
 </html>
