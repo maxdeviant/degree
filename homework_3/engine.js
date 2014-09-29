@@ -96,7 +96,7 @@ var SpriteSheet = new function () {
 var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerName) {
     var up = false;
 
-     var KEYS_CHEAT = {
+    var KEYS_CHEAT = {
         38: 'up',
         40: 'down',
         37: 'left',
@@ -113,10 +113,12 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
 
             cheat.push(KEYS_CHEAT[e.keyCode]);
 
-            if (cheat.join() === 'up,up,down,down,left,right,left,right,a,b') {
-                cheat = [];
+            for (var i in cheats) {
+                if (cheat.join() === cheats[i].code) {
+                    cheat = [];
 
-                console.log('konami');
+                    cheats[i].enabled = true;
+                }
             }
 
             window.setTimeout(function () {
