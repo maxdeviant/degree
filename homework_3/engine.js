@@ -96,12 +96,45 @@ var SpriteSheet = new function () {
 var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerName) {
     var up = false;
 
+     var KEYS_CHEAT = {
+        38: 'up',
+        40: 'down',
+        37: 'left',
+        39: 'right',
+        65: 'a',
+        66: 'b'
+    };
+
+    var cheat = [];
+
+    var cheatCodes = function (e) {
+        if (KEYS_CHEAT[e.keyCode]) {
+            e.preventDefault();
+
+            cheat.push(KEYS_CHEAT[e.keyCode]);
+
+            if (cheat.join() === 'up,up,down,down,left,right,left,right,a,b') {
+                cheat = [];
+
+                console.log('konami');
+            }
+
+            window.setTimeout(function () {
+                cheat = [];
+            }, 5000);
+        }
+    }
+
+    window.addEventListener('keydown', cheatCodes);
+
     this.step = function (dt) {
         if (!Game.keys[key]) {
             up = true;
         }
 
         if (up && Game.keys[key] && callback) {
+            window.removeEventListener('keydown', cheatCodes);
+
             callback();
         }
     };
