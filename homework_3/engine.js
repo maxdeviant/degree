@@ -102,7 +102,11 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
         37: 'left',
         39: 'right',
         65: 'a',
-        66: 'b'
+        66: 'b',
+        68: 'd',
+        73: 'i',
+        80: 'p',
+        82: 'r',
     };
 
     var cheat = [];

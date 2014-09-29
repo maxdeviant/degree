@@ -143,6 +143,11 @@ var cheats = {
     'invulnerable': {
         code: 'up,up,down,down,left,right,left,right,a,b',
         enabled: false
+    },
+    'rapid_fire': {
+        code: 'r,a,p,i,d',
+        enabled: false
+    },
     }
 };
 
@@ -249,7 +254,7 @@ var Starfield = function (speed, opacity, numStars, clear) {
 var PlayerShip = function () { 
     this.setup('ship', {
         vx: 0,
-        reloadTime: 0.25,
+        reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
         maxVel: 200
     });
 
@@ -313,7 +318,7 @@ var PlayerShip = function () {
 var PlayerShipTwo = function () { 
     this.setup('ship', {
         vx: 0,
-        reloadTime: 0.25,
+        reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
         maxVel: 200
     });
 
