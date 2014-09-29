@@ -130,7 +130,7 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
 
             window.setTimeout(function () {
                 cheat = [];
-            }, 5000);
+            }, 3000);
         }
     }
 
