@@ -5,32 +5,32 @@
 %%% CSC345-80
 %%% 25 September 2014
 
-%%% ---------------------------------------------------------------------------
-CL-USER> (sum 3 4)                                          %%% Problem 1 - SUM
+%%% ------------------------------------------------------------------------
+CL-USER> (sum 3 4)                                       %%% Problem 1 - SUM
 7
 CL-USER> (sum 3 -4)
 -1
 CL-USER> (sum 3 'a)
 NIL
 
-%%% ---------------------------------------------------------------------------
-CL-USER> (add-1-all '(1 2 3 4 5))                     %%% Problem 2 - ADD-1-ALL
+%%% ------------------------------------------------------------------------
+CL-USER> (add-1-all '(1 2 3 4 5))                  %%% Problem 2 - ADD-1-ALL
 (2 3 4 5 6)
 CL-USER> (add-1-all '(1 2 3 "q" 5))
 NIL
 CL-USER> (add-1-all "qwer")
 NIL
 
-%%% ---------------------------------------------------------------------------
-CL-USER> (my-replace '(a) '(x) '(a (a) (b (a))))     %%% Problem 3 - MY-REPLACE
+%%% ------------------------------------------------------------------------
+CL-USER> (my-replace '(a) '(x) '(a (a) (b (a))))  %%% Problem 3 - MY-REPLACE
 (A (X) (B (X)))
 CL-USER> (my-replace '(a) '(x) '(a ((a) b (a)) b a))
 (A ((X) B (X)) B A)
 CL-USER> (my-replace 'a '(x y (z)) '(a (a b (a)) b a))
 ((X Y (Z)) ((X Y (Z)) B ((X Y (Z)))) B (X Y (Z)))
 
-%%% ---------------------------------------------------------------------------
-CL-USER> (comparefibonaccis)                          %%% Problem 4 - FIBONACCI
+%%% ------------------------------------------------------------------------
+CL-USER> (comparefibonaccis)                       %%% Problem 4 - FIBONACCI
 TAIL REC FIBONACCI 10
 Warning:  TIME form in a non-null environment, forced to interpret.
 Compiling entire form will produce more accurate times.
@@ -186,8 +186,8 @@ Compiling entire form will produce more accurate times.
 =======================================================
 NIL
 
-%%% ---------------------------------------------------------------------------
-CL-USER> (comparefibonaccis)               %%% Problem 4 - FIBONACCI (COMPILED)
+%%% ------------------------------------------------------------------------
+CL-USER> (comparefibonaccis)            %%% Problem 4 - FIBONACCI (COMPILED)
 TAIL REC FIBONACCI 10
 
 ; Evaluation took:
