@@ -294,10 +294,6 @@ var PlayerShip = function () {
         if (invulnerability > 0) {
             this.frame = 1;
 
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
             }
 
             invulnerability--;
@@ -346,12 +342,6 @@ var PlayerShipTwo = function () {
 
         if (invulnerability > 0) {
             this.frame = 1;
-
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
-            }
             
             invulnerability--;
         } else {
@@ -452,6 +442,9 @@ Enemy.prototype.step = function (dt) {
     var collision = this.board.collide(this, OBJECT_PLAYER);
     if (collision) {
         collision.hit(this.damage);
+
+        this.board.add(new Explosion(this.x + collision.w / 2, this.y + collision.h / 2));
+
         this.board.remove(this);
     }
 
