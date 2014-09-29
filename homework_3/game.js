@@ -148,6 +148,9 @@ var cheats = {
         code: 'r,a,p,i,d',
         enabled: false
     },
+    'fast_flight': {
+        code: 'f,a,s,t',
+        enabled: false
     }
 };
 
@@ -255,7 +258,7 @@ var PlayerShip = function () {
     this.setup('ship', {
         vx: 0,
         reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
-        maxVel: 200
+        maxVel: cheats['fast_flight'].enabled ? 400 : 200
     });
 
     this.reload = this.reloadTime;
@@ -319,7 +322,7 @@ var PlayerShipTwo = function () {
     this.setup('ship', {
         vx: 0,
         reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
-        maxVel: 200
+        maxVel: cheats['fast_flight'].enabled ? 400 : 200
     });
 
     this.reload = this.reloadTime;
