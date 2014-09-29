@@ -142,7 +142,7 @@ var enemies = {
 var cheats = {
     'invulnerable': {
         name: 'Invulnerability',
-        code: 'up,up,down,down,left,right,left,right,a,b',
+        code: 'up,up,down,down,left,right,left,right,b,a',
         enabled: false
     },
     'rapid_fire': {
