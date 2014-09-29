@@ -141,14 +141,17 @@ var enemies = {
 
 var cheats = {
     'invulnerable': {
+        name: 'Invulnerability',
         code: 'up,up,down,down,left,right,left,right,a,b',
         enabled: false
     },
     'rapid_fire': {
+        name: 'Rapid Fire',
         code: 'r,a,p,i,d',
         enabled: false
     },
     'fast_flight': {
+        name: 'Fast Flight',
         code: 'f,a,s,t',
         enabled: false
     }

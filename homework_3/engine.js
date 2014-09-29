@@ -162,6 +162,17 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
             ctx.font = 'bold 15px bangers';
             ctx.fillText('Adventure awaits you ' + playerName + '!', Game.width / 2, Game.height / 2 + 80);
         }
+
+        var enabled = [];
+        for (var i in cheats) {
+            if (cheats[i].enabled) {
+                enabled.push(cheats[i].name);
+            }
+        }
+
+        if (enabled.length > 0) {
+            ctx.fillText('Cheats: ' + enabled.join(', '), Game.width / 2, Game.height / 2 + 120);
+        }
     };
 };
 
