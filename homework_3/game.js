@@ -139,6 +139,24 @@ var enemies = {
     }
 };
 
+var cheats = {
+    'invulnerable': {
+        name: 'Invulnerability',
+        code: 'up,up,down,down,left,right,left,right,a,b',
+        enabled: false
+    },
+    'rapid_fire': {
+        name: 'Rapid Fire',
+        code: 'r,a,p,i,d',
+        enabled: false
+    },
+    'fast_flight': {
+        name: 'Fast Flight',
+        code: 'f,a,s,t',
+        enabled: false
+    }
+};
+
 var OBJECT_PLAYER = 1,
     OBJECT_PLAYER_PROJECTILE = 2,
     OBJECT_ENEMY = 4,
@@ -185,7 +203,7 @@ var playGame = function () {
     Game.setBoard(4, new GamePoints(0));
     Game.setBoard(5, new LevelCounter());
     Game.shipCount = 2;
-    invulnerability = 0;
+    invulnerability = cheats['invulnerable'].enabled ? 1 : 0;
 };
 
 var winGame = function () {
@@ -242,8 +260,8 @@ var Starfield = function (speed, opacity, numStars, clear) {
 var PlayerShip = function () { 
     this.setup('ship', {
         vx: 0,
-        reloadTime: 0.25,
-        maxVel: 200
+        reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
+        maxVel: cheats['fast_flight'].enabled ? 400 : 200
     });
 
     this.reload = this.reloadTime;
@@ -294,13 +312,9 @@ var PlayerShip = function () {
         if (invulnerability > 0) {
             this.frame = 1;
 
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
+            if (!cheats['invulnerable'].enabled) {
+                invulnerability--;
             }
-
-            invulnerability--;
         } else {
             this.frame = 0;
         }
@@ -310,8 +324,8 @@ var PlayerShip = function () {
 var PlayerShipTwo = function () { 
     this.setup('ship', {
         vx: 0,
-        reloadTime: 0.25,
-        maxVel: 200
+        reloadTime: cheats['rapid_fire'].enabled ? 0 : 0.25,
+        maxVel: cheats['fast_flight'].enabled ? 400 : 200
     });
 
     this.reload = this.reloadTime;
@@ -346,14 +360,10 @@ var PlayerShipTwo = function () {
 
         if (invulnerability > 0) {
             this.frame = 1;
-
-            var collision = this.board.collide(this, OBJECT_ENEMY);
-
-            if (collision) {
-                this.board.add(new Explosion(collision.x + collision.w / 2, collision.y + collision.h / 2));
-            }
             
-            invulnerability--;
+            if (!cheats['invulnerable'].enabled) {
+                invulnerability--;
+            }
         } else {
             this.frame = 0;
         }
@@ -452,6 +462,9 @@ Enemy.prototype.step = function (dt) {
     var collision = this.board.collide(this, OBJECT_PLAYER);
     if (collision) {
         collision.hit(this.damage);
+
+        this.board.add(new Explosion(this.x + collision.w / 2, this.y + collision.h / 2));
+
         this.board.remove(this);
     }
 
@@ -522,7 +535,10 @@ var StarPowerup = function () {
         var collision = this.board.collide(this, OBJECT_PLAYER);
 
         if (collision) {
-            invulnerability = 5 * 30;
+            if (!cheats['invulnerable'].enabled) {
+                invulnerability = 5 * 30;
+            }
+
             this.board.remove(this);
         } else if (this.y > Game.height) {
             this.board.remove(this);

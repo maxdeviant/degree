@@ -96,12 +96,54 @@ var SpriteSheet = new function () {
 var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerName) {
     var up = false;
 
+    var KEYS_CHEAT = {
+        38: 'up',
+        40: 'down',
+        37: 'left',
+        39: 'right',
+        65: 'a',
+        66: 'b',
+        68: 'd',
+        70: 'f',
+        73: 'i',
+        80: 'p',
+        82: 'r',
+        83: 's',
+        84: 't'
+    };
+
+    var cheat = [];
+
+    var cheatCodes = function (e) {
+        if (KEYS_CHEAT[e.keyCode]) {
+            e.preventDefault();
+
+            cheat.push(KEYS_CHEAT[e.keyCode]);
+
+            for (var i in cheats) {
+                if (cheat.join() === cheats[i].code) {
+                    cheat = [];
+
+                    cheats[i].enabled = true;
+                }
+            }
+
+            window.setTimeout(function () {
+                cheat = [];
+            }, 3000);
+        }
+    }
+
+    window.addEventListener('keydown', cheatCodes);
+
     this.step = function (dt) {
         if (!Game.keys[key]) {
             up = true;
         }
 
         if (up && Game.keys[key] && callback) {
+            window.removeEventListener('keydown', cheatCodes);
+
             callback();
         }
     };
@@ -119,6 +161,17 @@ var TitleScreen = function TitleScreen(title, key, subtitle, callback, playerNam
         if (playerName) {
             ctx.font = 'bold 15px bangers';
             ctx.fillText('Adventure awaits you ' + playerName + '!', Game.width / 2, Game.height / 2 + 80);
+        }
+
+        var enabled = [];
+        for (var i in cheats) {
+            if (cheats[i].enabled) {
+                enabled.push(cheats[i].name);
+            }
+        }
+
+        if (enabled.length > 0) {
+            ctx.fillText('Cheats: ' + enabled.join(', '), Game.width / 2, Game.height / 2 + 120);
         }
     };
 };
