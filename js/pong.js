@@ -62,6 +62,27 @@ var Player = function (x, y, CONTROLS) {
     };
 };
 
+var Ball = function () {
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
+    this.speed = 5;
+
+    this.step = function () {
+        if (typeof this.vy === 'undefined') {
+            this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
+        }
+
+        this.y += this.vy;
+    };
+
+    this.draw = function () {
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI, false);
+        ctx.fill();
+    };
+};
+
 var CONTROLS = Object.freeze({
     PLAYER_ONE: {
         LEFT: 'A',
@@ -81,8 +102,11 @@ var init = function () {
     var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
     var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
 
+    var ball = new Ball();
+
     entities.push(playerOne);
     entities.push(playerTwo);
+    entities.push(ball);
 };
 
 var update = function (dt) {
