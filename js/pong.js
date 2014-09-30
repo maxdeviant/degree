@@ -8,8 +8,6 @@ var STATES = Object.freeze({
     WIN: 'winState'
 });
 
-var currentState = STATES.MENU;
-
 var KEYS = Object.freeze({
     37: 'L_ARR',
     39: 'R_ARR',
@@ -78,6 +76,8 @@ var CONTROLS = Object.freeze({
 var entities = [];
 
 var init = function () {
+    var currentState = STATES.MENU;
+    
     var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
     var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
 
