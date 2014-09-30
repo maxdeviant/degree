@@ -53,7 +53,7 @@ var Player = function (x, y, CONTROLS) {
             this.x = 0;
         } else if (this.x > canvas.width - this.width) { 
             this.x = canvas.width - this.width;
-        }     
+        }
     };
 
     this.draw = function () {
@@ -77,7 +77,7 @@ var entities = [];
 
 var init = function () {
     var currentState = STATES.MENU;
-    
+
     var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
     var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
 
