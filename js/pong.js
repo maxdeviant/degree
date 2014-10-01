@@ -72,12 +72,20 @@ var Ball = function () {
     this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
 
     this.step = function () {
+        if (this.collide()) {
+            this.vx = 8 * (Math.round(Math.random()) * 2 - 1);
+            this.vy = -this.vy;
+        }
+
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.collide()) {
-            this.vx = 0;
-            this.vy = -this.vy;
+        if (this.x < 0) {
+            this.x = 0;
+            this.vx = -this.vx;
+        } else if (this.x > canvas.width - this.width) {
+            this.x = canvas.width - this.width;
+            this.vx = -this.vx;
         }
     };
 
