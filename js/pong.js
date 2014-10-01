@@ -86,10 +86,10 @@ var Ball = function () {
     };
 
     this.collide = function () {
-        var p1 = playerOne,
-            p2 = playerTwo;
+        var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
+        var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
 
-        if (this.y > playerOne.y - this.height || this.y - this.height < playerTwo.y + playerTwo.height) {
+        if (collidePlayerOne || collidePlayerTwo) {
             return true;
         }
 
