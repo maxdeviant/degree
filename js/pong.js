@@ -89,11 +89,7 @@ var Ball = function () {
         var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
 
-        if (collidePlayerOne || collidePlayerTwo) {
-            return true;
-        }
-
-        return false;
+        return collidePlayerOne || collidePlayerTwo;
     }
 };
 
