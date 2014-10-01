@@ -96,9 +96,13 @@ var Ball = function () {
         }
 
         if (this.y < 0) {
-            // Player 1 scored
+            playerOne.score++;
+
+            this.init();
         } else if (this.y > canvas.height - this.height) {
-            // Player 2 scored
+            playerTwo.score++;
+
+            this.init();
         }
     };
 
