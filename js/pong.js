@@ -87,6 +87,12 @@ var Ball = function () {
             this.x = canvas.width - this.width;
             this.vx = -this.vx;
         }
+
+        if (this.y < 0) {
+            // Player 1 scored
+        } else if (this.y > canvas.height - this.height) {
+            // Player 2 scored
+        }
     };
 
     this.draw = function () {
