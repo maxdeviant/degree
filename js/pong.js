@@ -153,6 +153,11 @@ var update = function (dt) {
         entities[i].step(dt);
         entities[i].draw();
     }
+
+    ctx.font = 'bold 18px arial';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('P1: ' + playerOne.score, 20, 20);
+    ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, 20);
 };
 
 var loop = function () {
