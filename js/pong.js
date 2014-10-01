@@ -93,7 +93,7 @@ var Ball = function () {
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
 
         return collidePlayerOne || collidePlayerTwo;
-    }
+    };
 };
 
 var CONTROLS = Object.freeze({
