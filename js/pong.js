@@ -63,22 +63,38 @@ var Player = function (x, y, CONTROLS) {
 };
 
 var Ball = function () {
+    this.width = this.height = 5;
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
-    this.speed = 5;
+    this.speed = 3;
 
     this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
 
     this.step = function () {
         this.y += this.vy;
+
+        if (this.collide()) {
+            this.vy = -this.vy;
+        }
     };
 
     this.draw = function () {
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#f00';
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI, false);
+        ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
         ctx.fill();
     };
+
+    this.collide = function () {
+        var p1 = playerOne,
+            p2 = playerTwo;
+
+        if (this.y > playerOne.y - this.height || this.y - this.height < playerTwo.y + playerTwo.height) {
+            return true;
+        }
+
+        return false;
+    }
 };
 
 var CONTROLS = Object.freeze({
@@ -94,13 +110,12 @@ var CONTROLS = Object.freeze({
 
 var entities = [];
 
+var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
+var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
+var ball = new Ball();
+
 var init = function () {
     var currentState = STATES.MENU;
-
-    var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
-    var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
-
-    var ball = new Ball();
 
     entities.push(playerOne);
     entities.push(playerTwo);
