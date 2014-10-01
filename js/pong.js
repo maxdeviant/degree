@@ -5,10 +5,14 @@ var ctx = canvas.getContext('2d');
 
 var STATES = Object.freeze({
     MENU: 'menuState',
+    GAME: 'gameState',
     WIN: 'winState'
 });
 
+var currentState = STATES.MENU;
+
 var KEYS = Object.freeze({
+    13: 'ENTER',
     37: 'L_ARR',
     39: 'R_ARR',
     65: 'A',
@@ -30,6 +34,26 @@ window.addEventListener('keyup', function (e) {
         pressed[KEYS[e.keyCode]] = false;
     }
 }, false);
+
+var Menu = function () {
+    this.init = function () {
+
+    };
+
+    this.step = function () {
+        if (pressed['ENTER']) {
+            reset();
+        }
+    };
+
+    this.draw = function () {
+        if (currentState === STATES.MENU) {
+            ctx.font = 'bold 18px arial';
+            ctx.fillStyle = '#fff';
+            ctx.fillText('PONG', canvas.width / 2, canvas.height / 2);
+        }
+    };
+};
 
 var Player = function (x, y, CONTROLS) {
     this.init = function (x, y) {
@@ -141,7 +165,13 @@ var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
 var ball = new Ball();
 
 var init = function () {
-    var currentState = STATES.MENU;
+    entities.push(new Menu());
+};
+
+var reset = function () {
+    currentState = STATES.GAME;
+
+    entities = [];
 
     entities.push(playerOne);
     entities.push(playerTwo);
