@@ -51,6 +51,12 @@ var Menu = function () {
             ctx.font = 'bold 18px arial';
             ctx.fillStyle = '#fff';
             ctx.fillText('PONG', canvas.width / 2, canvas.height / 2);
+            ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
+        } else if (currentState === STATES.WIN) {
+            ctx.font = 'bold 18px arial';
+            ctx.fillStyle = '#fff';
+            ctx.fillText('WINNER', canvas.width / 2, canvas.height / 2);
+            ctx.fillText('Press ENTER to restart', canvas.width / 2, canvas.height / 2 + 40);
         }
     };
 };
@@ -160,9 +166,9 @@ var CONTROLS = Object.freeze({
 
 var entities = [];
 
-var playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
-var playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
-var ball = new Ball();
+var playerOne,
+    playerTwo,
+    ball;
 
 var init = function () {
     entities.push(new Menu());
@@ -172,6 +178,10 @@ var reset = function () {
     currentState = STATES.GAME;
 
     entities = [];
+
+    playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
+    playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
+    ball = new Ball();
 
     entities.push(playerOne);
     entities.push(playerTwo);
@@ -184,10 +194,14 @@ var update = function (dt) {
         entities[i].draw();
     }
 
-    ctx.font = 'bold 18px arial';
-    ctx.fillStyle = '#fff';
-    ctx.fillText('P1: ' + playerOne.score, 20, 20);
-    ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, 20);
+    if (currentState === STATES.GAME) {
+        checkWin();
+
+        ctx.font = 'bold 18px arial';
+        ctx.fillStyle = '#fff';
+        ctx.fillText('P1: ' + playerOne.score, 20, 20);
+        ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, 20);   
+    }
 };
 
 var loop = function () {
@@ -199,6 +213,14 @@ var loop = function () {
     update(delta / 1000);
 
     requestAnimationFrame(loop);
+};
+
+var checkWin = function () {
+    if (playerOne.score > 9 || playerTwo.score > 9) {
+        currentState = STATES.WIN;
+
+        entities = [new Menu()];
+    }
 };
 
 var then = Date.now();
