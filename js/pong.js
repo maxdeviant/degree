@@ -32,11 +32,14 @@ window.addEventListener('keyup', function (e) {
 }, false);
 
 var Player = function (x, y, CONTROLS) {
-    this.width = 100;
-    this.height = 20;
-    this.x = x || canvas.width / 2 - this.width / 2;
-    this.y = y || 10;
-    this.speed = 10;
+    this.init = function (x, y) {
+        this.width = 100;
+        this.height = 20;
+        this.x = x || canvas.width / 2 - this.width / 2;
+        this.y = y || 10;
+        this.speed = 10;
+        this.score = 0;
+    };
 
     this.step = function (dt) {
         if (pressed[CONTROLS.LEFT]) {
@@ -60,16 +63,20 @@ var Player = function (x, y, CONTROLS) {
         ctx.fillStyle = '#fff';
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
+
+    this.init(x, y);
 };
 
 var Ball = function () {
-    this.width = this.height = 5;
-    this.x = canvas.width / 2;
-    this.y = canvas.height / 2;
-    this.speed = 5;
+    this.init = function () {
+        this.width = this.height = 5;
+        this.x = canvas.width / 2;
+        this.y = canvas.height / 2;
+        this.speed = 5;
 
-    this.vx = 0;
-    this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
+        this.vx = 0;
+        this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
+    };
 
     this.step = function () {
         if (this.collide()) {
@@ -108,6 +115,8 @@ var Ball = function () {
 
         return collidePlayerOne || collidePlayerTwo;
     };
+
+    this.init();
 };
 
 var CONTROLS = Object.freeze({
