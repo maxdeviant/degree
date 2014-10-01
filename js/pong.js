@@ -66,14 +66,17 @@ var Ball = function () {
     this.width = this.height = 5;
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
-    this.speed = 3;
+    this.speed = 5;
 
+    this.vx = 0;
     this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
 
     this.step = function () {
+        this.x += this.vx;
         this.y += this.vy;
 
         if (this.collide()) {
+            this.vx = 0;
             this.vy = -this.vy;
         }
     };
