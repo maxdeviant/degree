@@ -199,8 +199,8 @@ var update = function (dt) {
 
         ctx.font = 'bold 18px arial';
         ctx.fillStyle = '#fff';
-        ctx.fillText('P1: ' + playerOne.score, 20, 20);
-        ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, 20);   
+        ctx.fillText('P1: ' + playerOne.score, 20, canvas.height / 2);
+        ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, canvas.height / 2);   
     }
 };
 
