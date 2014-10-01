@@ -67,11 +67,9 @@ var Ball = function () {
     this.y = canvas.height / 2;
     this.speed = 5;
 
-    this.step = function () {
-        if (typeof this.vy === 'undefined') {
-            this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
-        }
+    this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
 
+    this.step = function () {
         this.y += this.vy;
     };
 
