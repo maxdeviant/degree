@@ -48,15 +48,33 @@ var Menu = function () {
 
     this.draw = function () {
         if (currentState === STATES.MENU) {
-            ctx.font = 'bold 18px arial';
+            ctx.save();
+
+            ctx.font = 'bold 40px arial';
             ctx.fillStyle = '#fff';
+            ctx.textAlign = 'center';
+
             ctx.fillText('PONG', canvas.width / 2, canvas.height / 2);
-            ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
-        } else if (currentState === STATES.WIN) {
+
             ctx.font = 'bold 18px arial';
+
+            ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
+
+            ctx.restore();
+        } else if (currentState === STATES.WIN) {
+            ctx.save();
+
+            ctx.font = 'bold 40px arial';
             ctx.fillStyle = '#fff';
+            ctx.textAlign = 'center';
+
             ctx.fillText('WINNER', canvas.width / 2, canvas.height / 2);
+
+            ctx.font = 'bold 18px arial';
+            
             ctx.fillText('Press ENTER to restart', canvas.width / 2, canvas.height / 2 + 40);
+
+            ctx.restore();
         }
     };
 };
