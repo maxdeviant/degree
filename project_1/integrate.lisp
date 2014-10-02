@@ -18,5 +18,9 @@
 ;;;=================================================================
 ;;; PREDICATES
 
+(defun variablep (F)
+    "Returns T if F is a valid variable symbol"
+    (member F *variable-symbols*))
+
 ;;;=================================================================
 ;;; CONSTRUCTORS
