@@ -119,7 +119,7 @@ var Player = function (x, y, CONTROLS) {
 
 var Ball = function () {
     this.init = function () {
-        this.width = this.height = 5;
+        this.width = this.height = 10;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.speed = 5;
