@@ -68,10 +68,12 @@ var Menu = function () {
             ctx.fillStyle = '#fff';
             ctx.textAlign = 'center';
 
-            ctx.fillText('WINNER', canvas.width / 2, canvas.height / 2);
+            var winText = (playerOne.score > playerTwo.score ? 'P1' : 'P2') + ' WINS!';
+
+            ctx.fillText(winText, canvas.width / 2, canvas.height / 2);
 
             ctx.font = 'bold 18px arial';
-            
+
             ctx.fillText('Press ENTER to restart', canvas.width / 2, canvas.height / 2 + 40);
 
             ctx.restore();
