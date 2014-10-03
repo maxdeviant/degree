@@ -1,0 +1,23 @@
+{
+  "name": "project-one",
+  "version": "0.0.1",
+  "description": "A game of Pong",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WCU-CSC496-F14/Proj1TeamA.git"
+  },
+  "author": "Marshall Bowers <elliott.codes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WCU-CSC496-F14/Proj1TeamA/issues"
+  },
+  "homepage": "https://github.com/WCU-CSC496-F14/Proj1TeamA",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-jshint": "^1.8.5"
+  }
+}
