@@ -104,7 +104,7 @@ var Player = function (x, y, CONTROLS) {
 
         if (this.x < 0) {
             this.x = 0;
-        } else if (this.x > canvas.width - this.width) { 
+        } else if (this.x > canvas.width - this.width) {
             this.x = canvas.width - this.width;
         }
     };
@@ -125,7 +125,7 @@ var Ball = function () {
         this.speed = 5;
 
         this.vx = 0;
-        this.vy = this.speed * (Math.round(Math.random()) * 2 - 1); 
+        this.vy = this.speed * (Math.round(Math.random()) * 2 - 1);
     };
 
     this.step = function () {
@@ -186,9 +186,7 @@ var CONTROLS = Object.freeze({
 
 var entities = [];
 
-var playerOne,
-    playerTwo,
-    ball;
+var playerOne, playerTwo, ball;
 
 var init = function () {
     entities.push(new Menu());
@@ -220,7 +218,7 @@ var update = function (dt) {
         ctx.font = 'bold 18px arial';
         ctx.fillStyle = '#fff';
         ctx.fillText('P1: ' + playerOne.score, 20, canvas.height / 2);
-        ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, canvas.height / 2);   
+        ctx.fillText('P2: ' + playerTwo.score, canvas.width - 60, canvas.height / 2);
     }
 };
 
