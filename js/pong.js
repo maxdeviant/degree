@@ -41,7 +41,7 @@ var Menu = function () {
     };
 
     this.step = function () {
-        if (pressed['ENTER']) {
+        if (pressed.ENTER) {
             reset();
         }
     };
