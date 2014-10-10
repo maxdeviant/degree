@@ -1,5 +1,8 @@
 'use strict';
 
+var pongCount = 1; //This is probably bad form but for now it works.
+var difLevel = 1;//Static for now.
+// will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 
@@ -84,7 +87,7 @@ var Menu = function () {
 var Player = function (x, y, CONTROLS) {
     this.init = function (x, y) {
         this.width = 100;
-        this.height = 20;
+        this.height = 5;
         this.x = x || canvas.width / 2 - this.width / 2;
         this.y = y || 10;
         this.speed = 10;
@@ -119,7 +122,7 @@ var Player = function (x, y, CONTROLS) {
 
 var Ball = function () {
     this.init = function () {
-        this.width = this.height = 10;
+        this.width = this.height = 7;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.speed = 5;
@@ -130,8 +133,10 @@ var Ball = function () {
 
     this.step = function () {
         if (this.collide()) {
-            this.vx = 8 * (Math.round(Math.random()) * 2 - 1);
+            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);
             this.vy = -this.vy;
+            pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
+
         }
 
         this.x += this.vx;
@@ -147,11 +152,11 @@ var Ball = function () {
 
         if (this.y < 0) {
             playerOne.score++;
-
+            pongCount = 1; //reset the speed of the ball
             this.init();
         } else if (this.y > canvas.height - this.height) {
             playerTwo.score++;
-
+            pongCount = 1;//reset the speed of the ball
             this.init();
         }
     };
@@ -173,7 +178,7 @@ var Ball = function () {
     this.init();
 };
 
-var CONTROLS = Object.freeze({
+var CONTROLS = Object.freeze({//what does freeze do? -Anthony
     PLAYER_ONE: {
         LEFT: 'A',
         RIGHT: 'D'
