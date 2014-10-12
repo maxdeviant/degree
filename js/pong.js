@@ -1,7 +1,7 @@
 'use strict';
 
 var pongCount = 1; //This is probably bad form but for now it works.
-var difLevel = 1;//Static for now.
+var difLevel = 1;//Set at one for now.
 // will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
@@ -136,7 +136,7 @@ var Ball = function () {
             this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);
             this.vy = -this.vy;
             pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
-
+                                             //Can change difLevel to allow + 2 or higher it is currently set at 1
         }
 
         this.x += this.vx;
@@ -150,11 +150,11 @@ var Ball = function () {
             this.vx = -this.vx;
         }
 
-        if (this.y < 0) {
+        if (this.y < 5) {
             playerOne.score++;
             pongCount = 1; //reset the speed of the ball
             this.init();
-        } else if (this.y > canvas.height - this.height) {
+        } else if (this.y > canvas.height - this.height -5) {
             playerTwo.score++;
             pongCount = 1;//reset the speed of the ball
             this.init();
@@ -202,8 +202,8 @@ var reset = function () {
 
     entities = [];
 
-    playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
-    playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
+    playerOne = new Player(null, canvas.height - 12, CONTROLS.PLAYER_ONE);
+    playerTwo = new Player(null, 8, CONTROLS.PLAYER_TWO);
     ball = new Ball();
 
     entities.push(playerOne);
