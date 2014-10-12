@@ -1,5 +1,8 @@
 'use strict';
 
+var pongCount = 1; //This is probably bad form but for now it works. -Anthony
+var difLevel = 1;//Set at one for now.
+// will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 
@@ -84,7 +87,7 @@ var Menu = function () {
 var Player = function (x, y, CONTROLS) {
     this.init = function (x, y) {
         this.width = 100;
-        this.height = 20;
+        this.height = 5;
         this.x = x || canvas.width / 2 - this.width / 2;
         this.y = y || 10;
         this.speed = 10;
@@ -119,7 +122,7 @@ var Player = function (x, y, CONTROLS) {
 
 var Ball = function () {
     this.init = function () {
-        this.width = this.height = 10;
+        this.width = this.height = 7;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.speed = 5;
@@ -129,9 +132,11 @@ var Ball = function () {
     };
 
     this.step = function () {
-        if (this.collide()) {
-            this.vx = 8 * (Math.round(Math.random()) * 2 - 1);
-            this.vy = -this.vy;
+        if (this.collide()) {//
+            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
+            this.vy = -this.vy;//switches direction of ball
+            pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
+                                             //Can change difLevel to allow + 2 or higher it is currently set at 1 -Anthony
         }
 
         this.x += this.vx;
@@ -145,13 +150,13 @@ var Ball = function () {
             this.vx = -this.vx;
         }
 
-        if (this.y < 0) {
+        if (this.y < 5) {
             playerOne.score++;
-
+            pongCount = 1; //reset the speed of the ball
             this.init();
-        } else if (this.y > canvas.height - this.height) {
+        } else if (this.y > canvas.height - this.height -5) {
             playerTwo.score++;
-
+            pongCount = 1;//reset the speed of the ball -Anthony
             this.init();
         }
     };
@@ -166,14 +171,17 @@ var Ball = function () {
     this.collide = function () {
         var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
-
-        return collidePlayerOne || collidePlayerTwo;
+        var collideRocket; //for future game add on.
+        // will need to take into account it automatically switches the way the balls moving.
+        //collide code above takes care of that.
+        //Something to keep in mind. -Anthony
+        return collidePlayerOne || collidePlayerTwo || collideRocket;
     };
 
     this.init();
 };
 
-var CONTROLS = Object.freeze({
+var CONTROLS = Object.freeze({//what does freeze do? -Anthony
     PLAYER_ONE: {
         LEFT: 'A',
         RIGHT: 'D'
@@ -197,8 +205,8 @@ var reset = function () {
 
     entities = [];
 
-    playerOne = new Player(null, canvas.height - 30, CONTROLS.PLAYER_ONE);
-    playerTwo = new Player(null, 10, CONTROLS.PLAYER_TWO);
+    playerOne = new Player(null, canvas.height - 12, CONTROLS.PLAYER_ONE);
+    playerTwo = new Player(null, 8, CONTROLS.PLAYER_TWO);
     ball = new Ball();
 
     entities.push(playerOne);
