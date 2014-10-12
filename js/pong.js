@@ -1,6 +1,6 @@
 'use strict';
 
-var pongCount = 1; //This is probably bad form but for now it works.
+var pongCount = 1; //This is probably bad form but for now it works. -Anthony
 var difLevel = 1;//Set at one for now.
 // will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
@@ -132,11 +132,11 @@ var Ball = function () {
     };
 
     this.step = function () {
-        if (this.collide()) {
-            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);
-            this.vy = -this.vy;
+        if (this.collide()) {//
+            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
+            this.vy = -this.vy;//switches direction of ball
             pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
-                                             //Can change difLevel to allow + 2 or higher it is currently set at 1
+                                             //Can change difLevel to allow + 2 or higher it is currently set at 1 -Anthony
         }
 
         this.x += this.vx;
@@ -156,7 +156,7 @@ var Ball = function () {
             this.init();
         } else if (this.y > canvas.height - this.height -5) {
             playerTwo.score++;
-            pongCount = 1;//reset the speed of the ball
+            pongCount = 1;//reset the speed of the ball -Anthony
             this.init();
         }
     };
@@ -171,8 +171,11 @@ var Ball = function () {
     this.collide = function () {
         var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
-
-        return collidePlayerOne || collidePlayerTwo;
+        var collideRocket; //for future game add on.
+        // will need to take into account it automatically switches the way the balls moving.
+        //collide code above takes care of that.
+        //Something to keep in mind. -Anthony
+        return collidePlayerOne || collidePlayerTwo || collideRocket;
     };
 
     this.init();
