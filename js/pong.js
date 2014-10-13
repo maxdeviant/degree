@@ -169,7 +169,7 @@ var Ball = function (color, direction) {
         }
 
         // If player one score
-        if (this.y < this.height) {
+        if (this.y < 0 - this.height) {
             // Increment player one's score
             playerOne.score++;
 
@@ -178,7 +178,7 @@ var Ball = function (color, direction) {
 
             // Reinitialize the ball
             this.init();
-        } else if (this.y > canvas.height - this.height) { // If player two score
+        } else if (this.y > canvas.height) { // If player two score
             // Increment player two's score
             playerTwo.score++;
 
