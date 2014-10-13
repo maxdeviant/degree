@@ -1,19 +1,22 @@
 'use strict';
 
 var pongCount = 1; //This is probably bad form but for now it works. -Anthony
-var difLevel = .5;//Slowed down to account for the added difficulty of second ball.
+var difLevel = 0.5; //Slowed down to account for the added difficulty of second ball.
 // will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 
+// Initialize game states
 var STATES = Object.freeze({
     MENU: 'menuState',
     GAME: 'gameState',
     WIN: 'winState'
 });
 
+// Set the current state to the menu
 var currentState = STATES.MENU;
 
+// Initialize game keys
 var KEYS = Object.freeze({
     13: 'ENTER',
     37: 'L_ARR',
@@ -24,6 +27,7 @@ var KEYS = Object.freeze({
 
 var pressed = {};
 
+// Add input listeners
 window.addEventListener('keydown', function (e) {
     if (KEYS[e.keyCode]) {
         e.preventDefault();
@@ -38,18 +42,22 @@ window.addEventListener('keyup', function (e) {
     }
 }, false);
 
+// Menu object
 var Menu = function () {
     this.init = function () {
 
     };
 
     this.step = function () {
+        // If Enter key is pressed
         if (pressed.ENTER) {
+            // Reset the game (start)
             reset();
         }
     };
 
     this.draw = function () {
+        // If in the menu state
         if (currentState === STATES.MENU) {
             ctx.save();
 
@@ -57,6 +65,7 @@ var Menu = function () {
             ctx.fillStyle = '#fff';
             ctx.textAlign = 'center';
 
+            // Draw the title screen
             ctx.fillText('PONG', canvas.width / 2, canvas.height / 2);
 
             ctx.font = 'bold 18px arial';
@@ -64,15 +73,17 @@ var Menu = function () {
             ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
 
             ctx.restore();
-        } else if (currentState === STATES.WIN) {
+        } else if (currentState === STATES.WIN) { // If in the win state
             ctx.save();
 
             ctx.font = 'bold 40px arial';
             ctx.fillStyle = '#fff';
             ctx.textAlign = 'center';
 
+            // Generate win text
             var winText = (playerOne.score > playerTwo.score ? 'P1' : 'P2') + ' WINS!';
 
+            // Draw the win screen
             ctx.fillText(winText, canvas.width / 2, canvas.height / 2);
 
             ctx.font = 'bold 18px arial';
@@ -84,6 +95,7 @@ var Menu = function () {
     };
 };
 
+// Player object
 var Player = function (x, y, CONTROLS) {
     this.init = function (x, y) {
         this.width = 100;
@@ -131,14 +143,13 @@ var Ball = function () {
         this.vy = this.speed * (Math.round(Math.random()) * 2 - 1);
     };
 
-
-
     this.step = function () {
-        if (this.collide()) {//
-            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
-            this.vy = -this.vy;//switches direction of ball
-            pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
-                                     //Can change difLevel to allow + 2 or higher it is currently set at .5 -Anthony
+        if (this.collide()) { //
+            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1); //best result was keeping the speed on the X axis.-Anthony
+            // Reverse direction of the ball
+            this.vy = -this.vy;
+            pongCount = pongCount + difLevel; // This is here to show that this will constantly increase speed of the ball.
+            //Can change difLevel to allow + 2 or higher it is currently set at .5 -Anthony
         }
 
         this.x += this.vx;
@@ -154,11 +165,11 @@ var Ball = function () {
 
         if (this.y < 5) {
             playerOne.score++;
-            pongCount = pongCount/2; //more fun when it never slows down to original the entire game. (Old was reset to 1)
+            pongCount = pongCount / 2; //more fun when it never slows down to original the entire game. (Old was reset to 1)
             this.init();
-        } else if (this.y > canvas.height - this.height -5) {
+        } else if (this.y > canvas.height - this.height - 5) {
             playerTwo.score++;
-            pongCount = pongCount/2;//More fun when it never slows down to the original the entire game. -Anthony
+            pongCount = pongCount / 2; //More fun when it never slows down to the original the entire game. -Anthony
             this.init();
         }
     };
@@ -179,7 +190,8 @@ var Ball = function () {
     this.init();
 };
 
-var CONTROLS = Object.freeze({//what does freeze do? -Anthony
+// Initialize control mappings
+var CONTROLS = Object.freeze({
     PLAYER_ONE: {
         LEFT: 'A',
         RIGHT: 'D'
@@ -192,39 +204,57 @@ var CONTROLS = Object.freeze({//what does freeze do? -Anthony
 
 var entities = [];
 
-var playerOne, playerTwo, ball, ball2;//add ball two
+var playerOne, playerTwo, ball, ball2;
 
+// Initialize the game
 var init = function () {
+    // Add the menu to the entities list
     entities.push(new Menu());
+
+    // Run the game loop
+    loop();
 };
 
+// Reset the game to defaults
 var reset = function () {
+    // Switch to the game state
     currentState = STATES.GAME;
 
+    // Clear all entities
     entities = [];
 
+    // Reset the players
     playerOne = new Player(null, canvas.height - 12, CONTROLS.PLAYER_ONE);
     playerTwo = new Player(null, 8, CONTROLS.PLAYER_TWO);
-    ball = new Ball();//note fr later -Anthony
+
+    // Reset the balls
+    ball = new Ball();
     ball2 = new Ball();
 
+    // Add the entities to the list
     entities.push(playerOne);
     entities.push(playerTwo);
     entities.push(ball);
-    entities.push(ball2);// Balls will spawn immediately  be constantly be in play(This seemed the most entertaining)-Anthony
-
-
+    entities.push(ball2);
 };
 
+// Game logic
 var update = function (dt) {
+    // Iterate over entities
     for (var i in entities) {
+        // Perform step
         entities[i].step(dt);
+
+        // Perform draw
         entities[i].draw();
     }
 
+    // If in the game state
     if (currentState === STATES.GAME) {
+        // Check for a win
         checkWin();
 
+        // Draw the scoreboard
         ctx.font = 'bold 18px arial';
         ctx.fillStyle = '#fff';
         ctx.fillText('P1: ' + playerOne.score, 20, canvas.height / 2);
@@ -232,28 +262,38 @@ var update = function (dt) {
     }
 };
 
+// Game loop
 var loop = function () {
+    // Calculate time delta
     var now = Date.now();
     var delta = now - then;
 
+    // Clear the screen
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Call update function
     update(delta / 1000);
 
+    // Call animations
     requestAnimationFrame(loop);
 };
 
+// Check if a player has won the game
 var checkWin = function () {
+    // If either player's score is 10
     if (playerOne.score > 9 || playerTwo.score > 9) {
+        // Switch to the win state
         currentState = STATES.WIN;
 
+        // Add the menu to the entities list
         entities = [new Menu()];
     }
 };
 
 var then = Date.now();
 
+// Handle multiple browsers
 var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame;
 
+// Initialize the game
 init();
-loop();
