@@ -51,13 +51,15 @@ var Menu = function () {
     this.init = function () {};
 
     this.step = function () {
-        // If Enter key is pressed
+        // If enter key is pressed
         if (pressed.ENTER) {
             // Reset the game (start)
             reset();
-        } else if (pressed.SPACEBAR) {
+        } else if (pressed.SPACEBAR) { // If spacebar is pressed
+            // Switch to the controls state
             currentState = STATES.CONTROLS;
-        } else if (pressed.ESCAPE) {
+        } else if (pressed.ESCAPE) { // If escape key is pressed
+            // Switch to the menu state
             currentState = STATES.MENU;
         }
     };
