@@ -6,9 +6,9 @@ var ctx = canvas.getContext('2d');
 
 // Initialize game states
 var STATES = Object.freeze({
-    MENU: 'menuState',
-    GAME: 'gameState',
-    WIN: 'winState'
+    MENU: 1,
+    GAME: 2,
+    WIN: 4
 });
 
 // Set the current state to the menu
@@ -57,7 +57,7 @@ var Menu = function () {
 
     this.draw = function () {
         // If in the menu state
-        if (currentState === STATES.MENU) {
+        if (currentState & STATES.MENU) {
             ctx.save();
 
             ctx.font = 'bold 40px arial';
@@ -72,7 +72,7 @@ var Menu = function () {
             ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
 
             ctx.restore();
-        } else if (currentState === STATES.WIN) { // If in the win state
+        } else if (currentState & STATES.WIN) { // If in the win state
             ctx.save();
 
             ctx.font = 'bold 40px arial';
@@ -300,7 +300,7 @@ var update = function (dt) {
     }
 
     // If in the game state
-    if (currentState === STATES.GAME) {
+    if (currentState & STATES.GAME) {
         // Check for a win
         checkWin();
 
