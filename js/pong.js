@@ -169,8 +169,8 @@ var Ball = function () {
     };
 
     this.collide = function () {
-        var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
-        var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
+        var collidePlayerOne = this.y > (playerOne.y - this.height)-1 && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
+        var collidePlayerTwo = this.y - this.height < (playerTwo.y + playerTwo.height)+1 && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
         var collideRocket; //for future game add on.
         // will need to take into account it automatically switches the way the balls moving.
         //collide code above takes care of that.
