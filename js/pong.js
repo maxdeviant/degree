@@ -1,5 +1,6 @@
 'use strict';
 
+// Initialize canvas
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 
@@ -44,9 +45,7 @@ var incDifficulty = 0.5;
 
 // Menu object
 var Menu = function () {
-    this.init = function () {
-
-    };
+    this.init = function () {};
 
     this.step = function () {
         // If Enter key is pressed
@@ -93,6 +92,9 @@ var Menu = function () {
             ctx.restore();
         }
     };
+
+    // Initialize Menu
+    this.init();
 };
 
 // Player object
@@ -107,19 +109,27 @@ var Player = function (x, y, CONTROLS) {
     };
 
     this.step = function (dt) {
+        // If left button is pressed
         if (pressed[CONTROLS.LEFT]) {
+            // Move the paddle left
             this.vx = -this.speed;
-        } else if (pressed[CONTROLS.RIGHT]) {
+        } else if (pressed[CONTROLS.RIGHT]) { // If the right button is pressed
+            // Move the paddle right
             this.vx = this.speed;
-        } else {
+        } else { // If neither is pressed
+            // Stop X velocity
             this.vx = 0;
         }
 
+        // Move in X direction
         this.x += this.vx;
 
+        // If at the left wall
         if (this.x < 0) {
+            // Adjust position
             this.x = 0;
-        } else if (this.x > canvas.width - this.width) {
+        } else if (this.x > canvas.width - this.width) { // If at the right wall
+            // Adjust position
             this.x = canvas.width - this.width;
         }
     };
@@ -129,6 +139,7 @@ var Player = function (x, y, CONTROLS) {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
 
+    // Initialize Player
     this.init(x, y);
 };
 
@@ -146,6 +157,7 @@ var Ball = function (color, direction) {
     };
 
     this.step = function () {
+        // If collided with player
         if (this.collide()) {
             // Adjust horizontal velocity
             this.vx = this.difficulty * (Math.round(Math.random()) * 2 - 1);
@@ -157,14 +169,22 @@ var Ball = function (color, direction) {
             this.difficulty += incDifficulty;
         }
 
+        // Move in X and Y directions
         this.x += this.vx;
         this.y += this.vy;
 
+        // If hit the left wall
         if (this.x < 0) {
+            // Adjust position
             this.x = 0;
+
+            // Reverse X direction
             this.vx = -this.vx;
-        } else if (this.x > canvas.width - this.width) {
+        } else if (this.x > canvas.width - this.width) { // If hit the right wall
+            // Adjust position
             this.x = canvas.width - this.width;
+
+            // Reverse X direction
             this.vx = -this.vx;
         }
 
@@ -191,19 +211,26 @@ var Ball = function (color, direction) {
     };
 
     this.draw = function () {
+        ctx.save();
+
         ctx.fillStyle = this.color || '#fff';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
         ctx.fill();
+
+        ctx.restore();
     };
 
+    // Checks for collision with player
     this.collide = function () {
         var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
 
+        // If collided with player one or two
         return collidePlayerOne || collidePlayerTwo;
     };
 
+    // Initialize Ball
     this.init();
 };
 
