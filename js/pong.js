@@ -203,9 +203,15 @@ var CONTROLS = Object.freeze({
     }
 });
 
+// Initialize directions
+var DIRECTION = Object.freeze({
+    UP: 1,
+    DOWN: -1
+});
+
 var entities = [];
 
-var playerOne, playerTwo, ball, ball2;
+var playerOne, playerTwo, ball, ballTwo;
 
 // Initialize the game
 var init = function () {
@@ -229,14 +235,14 @@ var reset = function () {
     playerTwo = new Player(null, 8, CONTROLS.PLAYER_TWO);
 
     // Reset the balls
-    ball = new Ball('#f00', 1);
-    ball2 = new Ball('#00f', -1);
+    ball = new Ball('#f00', DIRECTION.UP);
+    ballTwo = new Ball('#00f', DIRECTION.DOWN);
 
     // Add the entities to the list
     entities.push(playerOne);
     entities.push(playerTwo);
     entities.push(ball);
-    entities.push(ball2);
+    entities.push(ballTwo);
 };
 
 // Game logic
