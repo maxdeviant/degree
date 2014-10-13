@@ -7,8 +7,9 @@ var ctx = canvas.getContext('2d');
 // Initialize game states
 var STATES = Object.freeze({
     MENU: 1,
-    GAME: 2,
-    WIN: 4
+    CONTROLS: 2,
+    GAME: 4,
+    WIN: 8
 });
 
 // Set the current state to the menu
@@ -17,6 +18,8 @@ var currentState = STATES.MENU;
 // Initialize game keys
 var KEYS = Object.freeze({
     13: 'ENTER',
+    27: 'ESCAPE',
+    32: 'SPACEBAR',
     37: 'L_ARR',
     39: 'R_ARR',
     65: 'A',
@@ -52,6 +55,10 @@ var Menu = function () {
         if (pressed.ENTER) {
             // Reset the game (start)
             reset();
+        } else if (pressed.SPACEBAR) {
+            currentState = STATES.CONTROLS;
+        } else if (pressed.ESCAPE) {
+            currentState = STATES.MENU;
         }
     };
 
@@ -70,6 +77,33 @@ var Menu = function () {
             ctx.font = 'bold 18px arial';
 
             ctx.fillText('Press ENTER to play', canvas.width / 2, canvas.height / 2 + 40);
+
+            ctx.fillText('Press SPACE to view controls', canvas.width / 2, canvas.height / 2 + 80);
+
+            ctx.restore();
+        } else if (currentState & STATES.CONTROLS) {
+            ctx.save();
+
+            ctx.font = 'bold 36px arial';
+            ctx.fillStyle = '#fff';
+            ctx.textAlign = 'center';
+            ctx.fillText('CONTROLS', canvas.width / 2, 40);
+
+
+            ctx.font = 'bold 18px arial';
+            ctx.textAlign = 'left';
+
+            ctx.fillText('P1: ', canvas.width / 4, 100);
+            ctx.fillText('LEFT: A', canvas.width / 3, 100);
+            ctx.fillText('RIGHT: D', canvas.width / 3, 120);
+
+            ctx.fillText('P2: ', canvas.width / 4, 160);
+            ctx.fillText('LEFT: LEFT ARROW', canvas.width / 3, 160);
+            ctx.fillText('RIGHT: RIGHT ARROW', canvas.width / 3, 180);
+
+            ctx.textAlign = 'center';
+
+            ctx.fillText('Press ESCAPE to close.', canvas.width / 2, canvas.height - 40);
 
             ctx.restore();
         } else if (currentState & STATES.WIN) { // If in the win state
