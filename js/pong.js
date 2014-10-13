@@ -132,15 +132,16 @@ var Player = function (x, y, CONTROLS) {
     this.init(x, y);
 };
 
-var Ball = function () {
+var Ball = function (color, direction) {
     this.init = function () {
         this.width = this.height = 7;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
         this.speed = 4;
+        this.color = color;
 
         this.vx = 0;
-        this.vy = this.speed * (Math.round(Math.random()) * 2 - 1);
+        this.vy = this.speed * direction || (Math.round(Math.random()) * 2 - 1);
     };
 
     this.step = function () {
@@ -163,11 +164,11 @@ var Ball = function () {
             this.vx = -this.vx;
         }
 
-        if (this.y < 5) {
+        if (this.y < this.height) {
             playerOne.score++;
             pongCount = pongCount / 2; //more fun when it never slows down to original the entire game. (Old was reset to 1)
             this.init();
-        } else if (this.y > canvas.height - this.height - 5) {
+        } else if (this.y > canvas.height - this.height) {
             playerTwo.score++;
             pongCount = pongCount / 2; //More fun when it never slows down to the original the entire game. -Anthony
             this.init();
@@ -175,7 +176,7 @@ var Ball = function () {
     };
 
     this.draw = function () {
-        ctx.fillStyle = '#f00';
+        ctx.fillStyle = this.color || '#fff';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
         ctx.fill();
@@ -228,8 +229,8 @@ var reset = function () {
     playerTwo = new Player(null, 8, CONTROLS.PLAYER_TWO);
 
     // Reset the balls
-    ball = new Ball();
-    ball2 = new Ball();
+    ball = new Ball('#f00', 1);
+    ball2 = new Ball('#00f', -1);
 
     // Add the entities to the list
     entities.push(playerOne);
