@@ -12,6 +12,12 @@ var STATES = Object.freeze({
     WIN: 'winState'
 });
 
+
+//creates new sounds
+var hitSound = new Audio("sounds/hit.mp3");
+var scoreSound = new Audio("sounds/score.mp3");
+var winSound = new Audio("sounds/win.mp3");
+
 var currentState = STATES.MENU;
 
 var KEYS = Object.freeze({
@@ -65,6 +71,7 @@ var Menu = function () {
 
             ctx.restore();
         } else if (currentState === STATES.WIN) {
+
             ctx.save();
 
             ctx.font = 'bold 40px arial';
@@ -133,6 +140,7 @@ var Ball = function () {
 
     this.step = function () {
         if (this.collide()) {//
+			hitSound.play()
             this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
             this.vy = -this.vy;//switches direction of ball
             pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
@@ -153,10 +161,12 @@ var Ball = function () {
         if (this.y < 5) {
             playerOne.score++;
             pongCount = 1; //reset the speed of the ball
+			scoreSound.play();
             this.init();
         } else if (this.y > canvas.height - this.height -5) {
             playerTwo.score++;
             pongCount = 1;//reset the speed of the ball -Anthony
+			scoreSound.play();
             this.init();
         }
     };
@@ -244,6 +254,7 @@ var loop = function () {
 var checkWin = function () {
     if (playerOne.score > 9 || playerTwo.score > 9) {
         currentState = STATES.WIN;
+		winSound.play();
 
         entities = [new Menu()];
     }
