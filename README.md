@@ -26,6 +26,6 @@ Grading Criteria
 
 UPDATE 10/13/14 Anthony Paparo
 
-I was in the proccess of adding powerups and things of the sort and scrapped it. Pong itself isnt that exciting and the score going all the way to 10 seemed boring ----> no matter what was added, pong to ten slowly was going to be boring. So I made it a constant multiball which seems to end games pretty fast (< 2 mins) and its happening so fast it adds a ton of excitement. I also made it so it never really slows down. It does slow a bit each score enough to let you catch your barings, but the excitement constantly builds until its over. These days quick rounds of games seems to be ideal. 
+I was in the proccess of adding powerups and things of the sort and scrapped it. Pong itself isnt that exciting and the score going all the way to 10 seemed boring ----> no matter what was added, pong to ten slowly was going to be boring. So I made it a constant multiball which seems to end games pretty fast (< 2 mins) and its happening so fast it adds a ton of excitement. I also made it so it never really slows down. It does slow a bit each score enough to let you catch your bearings, but the excitement constantly builds until its over. These days quick rounds of games seems to be ideal. 
 
 Play and let me know what you think. I'll have all day tommorrow if you guys want me to go back and make it differnet. -Anthony
