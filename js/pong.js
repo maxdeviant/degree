@@ -203,7 +203,7 @@ var Ball = function (color, direction) {
             playerTwo.score++;
 
             // Halve the difficulty
-            this.difficulty = this.difficulty / 2 > 1 ? this.difficulty / 2 : 1
+            this.difficulty = this.difficulty / 2 > 1 ? this.difficulty / 2 : 1;
 
             // Reinitialize the ball
             this.init();
