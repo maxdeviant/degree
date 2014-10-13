@@ -1,8 +1,5 @@
 'use strict';
 
-var pongCount = 1; //This is probably bad form but for now it works. -Anthony
-var difLevel = 0.5; //Slowed down to account for the added difficulty of second ball.
-// will add function to allow this to be set by user to control how fast the ball speed rises.
 var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 
@@ -41,6 +38,9 @@ window.addEventListener('keyup', function (e) {
         pressed[KEYS[e.keyCode]] = false;
     }
 }, false);
+
+// Initialize difficulty step
+var incDifficulty = 0.5;
 
 // Menu object
 var Menu = function () {
@@ -137,20 +137,24 @@ var Ball = function (color, direction) {
         this.width = this.height = 7;
         this.x = canvas.width / 2;
         this.y = canvas.height / 2;
-        this.speed = 4;
         this.color = color;
+        this.speed = 4;
+        this.difficulty = 1;
 
         this.vx = 0;
         this.vy = this.speed * direction || (Math.round(Math.random()) * 2 - 1);
     };
 
     this.step = function () {
-        if (this.collide()) { //
-            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1); //best result was keeping the speed on the X axis.-Anthony
+        if (this.collide()) {
+            // Adjust horizontal velocity
+            this.vx = this.difficulty * (Math.round(Math.random()) * 2 - 1);
+
             // Reverse direction of the ball
             this.vy = -this.vy;
-            pongCount = pongCount + difLevel; // This is here to show that this will constantly increase speed of the ball.
-            //Can change difLevel to allow + 2 or higher it is currently set at .5 -Anthony
+
+            // Increase ball's difficulty modifier
+            this.difficulty += incDifficulty;
         }
 
         this.x += this.vx;
@@ -164,13 +168,24 @@ var Ball = function (color, direction) {
             this.vx = -this.vx;
         }
 
+        // If player one score
         if (this.y < this.height) {
+            // Increment player one's score
             playerOne.score++;
-            pongCount = pongCount / 2; //more fun when it never slows down to original the entire game. (Old was reset to 1)
+
+            // Halve the difficulty
+            this.difficulty = this.difficulty / 2 > 1 ? this.difficulty / 2 : 1;
+
+            // Reinitialize the ball
             this.init();
-        } else if (this.y > canvas.height - this.height) {
+        } else if (this.y > canvas.height - this.height) { // If player two score
+            // Increment player two's score
             playerTwo.score++;
-            pongCount = pongCount / 2; //More fun when it never slows down to the original the entire game. -Anthony
+
+            // Halve the difficulty
+            this.difficulty = this.difficulty / 2 > 1 ? this.difficulty / 2 : 1
+
+            // Reinitialize the ball
             this.init();
         }
     };
@@ -185,6 +200,7 @@ var Ball = function (color, direction) {
     this.collide = function () {
         var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
         var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
+
         return collidePlayerOne || collidePlayerTwo;
     };
 
