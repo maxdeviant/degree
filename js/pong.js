@@ -12,8 +12,6 @@ var STATES = Object.freeze({
     WIN: 8
 });
 
-var firstTurn = 0;
-
 // Initialize sounds
 var hitSound = new Audio('sounds/hit.mp3');
 var scoreSound = new Audio('sounds/score.mp3');
@@ -392,9 +390,10 @@ var checkWin = function () {
     if (playerOne.score > 9 || playerTwo.score > 9) {
         // Switch to the win state
         currentState = STATES.WIN;
+
+        // Play the win sound
         winSound.play();
 
-        firstTurn = 0; //resets firstTurn to 0 so that the first hit causes random angle
         // Add the menu to the entities list
         entities = [new Menu()];
     }
