@@ -70,7 +70,7 @@
     `(integrate '(+ (+ (- - x) (+ x 3)) 2) 'x 2 6))
 
 (defun test-run-13 ()
-    `(integrate '(- x (expt x 3)) 'x)))
+    `(integrate '(- x (expt x 3)) 'x))
 
 (defun test-run-14 ()
     `(integrate '(- x (expt x 3)) 'x 2 5))
