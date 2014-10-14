@@ -15,9 +15,9 @@ var STATES = Object.freeze({
 var firstTurn = 0;
 
 // Initialize sounds
-var hitSound = new Audio("sounds/hit.mp3");
-var scoreSound = new Audio("sounds/score.mp3");
-var winSound = new Audio("sounds/win.mp3");
+var hitSound = new Audio('sounds/hit.mp3');
+var scoreSound = new Audio('sounds/score.mp3');
+var winSound = new Audio('sounds/win.mp3');
 
 // Set the current state to the menu
 var currentState = STATES.MENU;
