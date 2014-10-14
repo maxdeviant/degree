@@ -12,6 +12,8 @@ var STATES = Object.freeze({
     WIN: 'winState'
 });
 
+var firstTurn = 0;
+
 
 //creates new sounds
 var hitSound = new Audio("sounds/hit.mp3");
@@ -140,8 +142,18 @@ var Ball = function () {
 
     this.step = function () {
         if (this.collide()) {//
-			hitSound.play()
-            this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
+			hitSound.play();
+			
+			if(firstTurn=0){     //ball gets either a positive or negative velocity set on first hit
+            	this.vx = pongCount * (Math.round(Math.random()) * 2 - 1);//best result was keeping the speed on the X axis.-Anthony
+				firstTurn =1;  //sets first turn to 1 so random direction isnt used again
+			}
+			else{
+				if(this.vx>0)
+					this.vx = pongCount;	//if x velocity is positive it stays positive and increments
+				else
+					this.vx = -pongCount;  //if x velocity is negative it stays negative and increments
+			}
             this.vy = -this.vy;//switches direction of ball
             pongCount = pongCount + difLevel;// This is here to show that this will constantly increase speed of the ball.
                                              //Can change difLevel to allow + 2 or higher it is currently set at 1 -Anthony
@@ -255,6 +267,8 @@ var checkWin = function () {
     if (playerOne.score > 9 || playerTwo.score > 9) {
         currentState = STATES.WIN;
 		winSound.play();
+		
+		firstTurn = 0;		//resets firstTurn to 0 so that the first hit causes random angle
 
         entities = [new Menu()];
     }
@@ -266,3 +280,5 @@ var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequest
 
 init();
 loop();
+
+
