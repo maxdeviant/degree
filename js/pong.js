@@ -170,12 +170,12 @@ var Ball = function () {
             this.vx = -this.vx;
         }
 
-        if (this.y < 5) {
+        if (this.y < 8) {
             playerOne.score++;
             pongCount = 1; //reset the speed of the ball
 			scoreSound.play();
             this.init();
-        } else if (this.y > canvas.height - this.height -5) {
+        } else if (this.y > canvas.height - this.height -8) {
             playerTwo.score++;
             pongCount = 1;//reset the speed of the ball -Anthony
 			scoreSound.play();
