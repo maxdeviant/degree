@@ -275,8 +275,14 @@ var Ball = function (color, direction) {
 
     // Checks for collision with player
     this.collide = function () {
-        var collidePlayerOne = this.y > playerOne.y - this.height && (this.x > playerOne.x && this.x < playerOne.x + playerOne.width);
-        var collidePlayerTwo = this.y - this.height < playerTwo.y + playerTwo.height && (this.x > playerTwo.x && this.x < playerTwo.x + playerTwo.width);
+        var collidePlayerOne = this.y >= playerOne.y - this.height && (this.x >= playerOne.x && this.x <= playerOne.x + playerOne.width);
+        var collidePlayerTwo = this.y - this.height <= playerTwo.y + playerTwo.height && (this.x >= playerTwo.x && this.x <= playerTwo.x + playerTwo.width);
+
+        if (collidePlayerOne) {
+            this.y -= 1;
+        } else if (collidePlayerTwo) {
+            this.y += 1;
+        }
 
         // If collided with player one or two
         return collidePlayerOne || collidePlayerTwo;
