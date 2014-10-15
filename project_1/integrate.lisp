@@ -49,6 +49,50 @@
 
 ;;; SELECTORS -- OPERANDS
 
+(defun negative-operand (F)
+    "docstring"
+    (second F))
+
+(defun sum-first-operand (F)
+    "docstring"
+    (second F))
+
+(defun sum-second-operand (F)
+    "docstring"
+    (third F))
+
+(defun difference-first-operand (F)
+    "docstring"
+    (second F))
+
+(defun difference-second-operand (F)
+    "docstring"
+    (third F))
+
+(defun product-first-operand (F)
+    "docstring"
+    (second F))
+
+(defun product-second-operand (F)
+    "docstring"
+    (third F))
+
+(defun quotient-first-operand (F)
+    "docstring"
+    (second F))
+
+(defun quotient-second-operand (F)
+    "docstring"
+    (third F))
+
+(defun power-first-operand (F)
+    "docstring"
+    (second F))
+
+(defun power-second-operand (F)
+    "docstring"
+    (third F))
+
 ;;;=================================================================
 ;;; PREDICATES
 
