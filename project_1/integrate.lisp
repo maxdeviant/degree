@@ -19,6 +19,34 @@
 ;;;=================================================================
 ;;; SELECTORS -- OPERATORS
 
+(defun negative-operator (F)
+    "docstring"
+    (first F))
+
+(defun sum-operator (F)
+    "docstring"
+    (first F))
+
+(defun difference-operator (F)
+    "docstring"
+    (first F))
+
+(defun product-operator (F)
+    "docstring"
+    (first F))
+
+(defun quotient-operator (F)
+    "docstring"
+    (first F))
+
+(defun power-operator (F)
+    "docstring"
+    (first F))
+
+(defun log-operator (F)
+    "docstring"
+    (first F))
+
 ;;; SELECTORS -- OPERANDS
 
 ;;;=================================================================
