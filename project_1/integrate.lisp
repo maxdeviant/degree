@@ -9,6 +9,12 @@
 
 (defconstant *variable-symbols* '(U V W X Y Z))
 (defconstant *negative-symbol* '-)
+(defconstant *sum-symbol* '+)
+(defconstant *difference-symbol* '-)
+(defconstant *product-symbol* '*)
+(defconstant *quotient-symbol* '/)
+(defconstant *power-symbol* 'expt)
+(defconstant *log-symbol* 'log)
 
 ;;;=================================================================
 ;;; SELECTORS -- OPERATORS
