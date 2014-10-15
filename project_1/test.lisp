@@ -150,6 +150,9 @@
 (defun test-make-quotient ()
     "pass")
 
+(defun test-make-power ()
+    "pass")
+
 (defun runs ()
     "docstring"
     (print (do-run (test-run-1)))

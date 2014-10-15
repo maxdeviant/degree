@@ -181,7 +181,10 @@
 
 (defun make-power (V N)
     "docstring"
-    "pass")
+    (cond
+        ((and (number-p V) (numberp N)) (expt V N))
+        (t (list *power-symbol* V N))
+    ))
 
 ;;;=================================================================
 ;;;    NAME: integrate
