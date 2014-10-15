@@ -118,6 +118,7 @@
 (defun test-constructors ()
     (test-make-negative)
     (test-make-sum)
+    (test-make-difference)
     "Constructor tests passed.")
 
 (defun test-make-negative ()
@@ -137,6 +138,9 @@
         ()
         "~S is not equal to ~S" (make-sum 'F 'G) '(+ F G))
     )
+
+(defun test-make-difference ()
+    "pass")
 
 (defun runs ()
     "docstring"

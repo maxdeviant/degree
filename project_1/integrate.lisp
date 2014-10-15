@@ -151,7 +151,11 @@
 
 (defun make-difference (F G)
     "docstring"
-    "pass")
+    (cond
+        ((eq F 0) (make-negative G))
+        ((eq G 0) F)
+        ((and (numberp F) (numberp G)) (- F G))
+        (t (list *difference-symbol* F G))))
 
 (defun make-product (F G)
     "docstring"
