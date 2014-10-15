@@ -4,6 +4,7 @@
     "Runs the tests for Project 1."
     (test-operators)
     (test-operands)
+    (test-constructors)
     "Tests passed.")
 
 (defun test-operators ()
@@ -113,6 +114,25 @@
     (assert (eq (power-second-operand '(expt x y)) 'y)
         ()
         "~S is not equal to ~S" (power-second-operand '(expt x y)) 'y))
+
+(defun test-constructors ()
+    (test-make-sum)
+    "Constructor tests passed.")
+
+(defun test-make-sum ()
+    (assert (equal (make-sum 'F 'G) '(+ F G))
+        ()
+        "~S is not equal to ~S" (make-sum 'F 'G) '(+ F G))
+    (assert (equal (make-sum 'F 0) 'F)
+        ()
+        "~S is not equal to ~S" (make-sum 'F '0) 'F)
+    (assert (equal (make-sum 0 'G) 'G)
+        ()
+        "~S is not equal to ~S" (make-sum 0 'G) 'G)
+    (assert (equal (make-sum 2 3) (+ 2 3))
+        ()
+        "~S is not equal to ~S" (make-sum 2 3) (+ 2 3))
+    )
 
 (defun runs ()
     "docstring"
