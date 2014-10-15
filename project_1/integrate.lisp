@@ -107,6 +107,30 @@
     "docstring"
     V)
 
+(defun make-negative (F)
+    "docstring"
+    "pass")
+
+(defun make-sum (F G)
+    "docstring"
+    "pass")
+
+(defun make-difference (F G)
+    "docstring"
+    "pass")
+
+(defun make-product (F G)
+    "docstring"
+    "pass")
+
+(defun make-quotient (F G)
+    "docstring"
+    "pass")
+
+(defun make-power (V N)
+    "docstring"
+    "pass")
+
 ;;;=================================================================
 ;;;    NAME: integrate
 ;;;  ARG(S): 
