@@ -159,7 +159,16 @@
 
 (defun make-product (F G)
     "docstring"
-    "pass")
+    (cond
+        ((eq F 0) 0)
+        ((eq G 0) 0)
+        ((eq F 1) G)
+        ((eq G 1) F)
+        ((eq F -1) (make-negative G))
+        ((eq G -1) (make-negative F))
+        ((and (numberp F) (numberp G)) (* F G))
+        (t (list *product-symbol* F G))
+    ))
 
 (defun make-quotient (F G)
     "docstring"
