@@ -100,6 +100,30 @@
     "Returns T if F is a valid variable symbol"
     (member F *variable-symbols*))
 
+(defun sump (F)
+    "docstring"
+    "pass")
+
+(defun differencep (F)
+    "docstring"
+    "pass")
+
+(defun sump (F)
+    "docstring"
+    "pass")
+
+(defun productp (F)
+    "docstring"
+    "pass")
+
+(defun quotientp (F)
+    "docstring"
+    "pass")
+
+(defun powerp (F)
+    "docstring"
+    "pass")
+
 ;;;=================================================================
 ;;; CONSTRUCTORS
 
