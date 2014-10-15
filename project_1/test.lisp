@@ -120,9 +120,6 @@
     "Constructor tests passed.")
 
 (defun test-make-sum ()
-    (assert (equal (make-sum 'F 'G) '(+ F G))
-        ()
-        "~S is not equal to ~S" (make-sum 'F 'G) '(+ F G))
     (assert (equal (make-sum 'F 0) 'F)
         ()
         "~S is not equal to ~S" (make-sum 'F '0) 'F)
@@ -132,6 +129,9 @@
     (assert (equal (make-sum 2 3) (+ 2 3))
         ()
         "~S is not equal to ~S" (make-sum 2 3) (+ 2 3))
+    (assert (equal (make-sum 'F 'G) '(+ F G))
+        ()
+        "~S is not equal to ~S" (make-sum 'F 'G) '(+ F G))
     )
 
 (defun runs ()

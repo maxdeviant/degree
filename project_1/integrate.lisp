@@ -144,8 +144,8 @@
     (cond
         ((eq F 0) G)
         ((eq G 0) F)
-        ; ((eq F (make-negative) G) 0)
-        ; ((eq G (make-negative) F) 0)
+        ((eq F (make-negative G)) 0)
+        ((eq G (make-negative F)) 0)
         ((and (numberp F) (numberp G)) (+ F G))
         (t (list *sum-symbol* F G))))
 
