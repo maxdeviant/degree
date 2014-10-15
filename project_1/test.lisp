@@ -3,6 +3,7 @@
 (defun tests ()
     "Runs the tests for Project 1."
     (test-operators)
+    (test-operands)
     "Tests passed.")
 
 (defun test-operators ()
@@ -43,6 +44,75 @@
     (assert (eq (power-operator '(expt x y)) 'expt)
         ()
         "~S is not equal to ~S" (power-operator '(expt x y)) 'expt))
+
+(defun test-operands ()
+    (test-negative-operand)
+    (test-sum-first-operand)
+    (test-sum-second-operand)
+    (test-difference-first-operand)
+    (test-difference-second-operand)
+    (test-product-first-operand)
+    (test-product-second-operand)
+    (test-quotient-first-operand)
+    (test-quotient-second-operand)
+    (test-power-first-operand)
+    (test-power-second-operand)
+    "Operand tests passed.")
+
+(defun test-negative-operand ()
+    (assert (eq (negative-operand '(- x)) 'x)
+        ()
+        "~S is not equal to ~S" (negative-operand '(- x)) 'x))
+
+(defun test-sum-first-operand ()
+    (assert (eq (sum-first-operand '(+ x y)) 'x)
+        ()
+        "~S is not equal to ~S" (sum-first-operand '(+ x y)) 'x))
+
+(defun test-sum-second-operand ()
+    (assert (eq (sum-second-operand '(+ x y)) 'y)
+        ()
+        "~S is not equal to ~S" (sum-second-operand '(+ x y)) 'y))
+
+(defun test-difference-first-operand ()
+    (assert (eq (difference-first-operand '(- x y)) 'x)
+        ()
+        "~S is not equal to ~S" (difference-first-operand '(- x y)) 'x))
+
+(defun test-difference-second-operand ()
+    (assert (eq (difference-second-operand '(- x y)) 'y)
+        ()
+        "~S is not equal to ~S" (difference-second-operand '(- x y)) 'y))
+
+(defun test-product-first-operand ()
+    (assert (eq (product-first-operand '(* x y)) 'x)
+        ()
+        "~S is not equal to ~S" (product-first-operand '(- x y)) 'x))
+
+(defun test-product-second-operand ()
+    (assert (eq (product-second-operand '(* x y)) 'y)
+        ()
+        "~S is not equal to ~S" (product-second-operand '(* x y)) 'y))
+
+(defun test-quotient-first-operand ()
+    (assert (eq (quotient-first-operand '(/ x y)) 'x)
+        ()
+        "~S is not equal to ~S" (quotient-first-operand '(/ x y)) 'x))
+
+(defun test-quotient-second-operand ()
+    (assert (eq (quotient-second-operand '(/ x y)) 'y)
+        ()
+        "~S is not equal to ~S" (quotient-second-operand '(/ x y)) 'y))
+
+(defun test-power-first-operand ()
+    (assert (eq (power-first-operand '(expt x y)) 'x)
+        ()
+        "~S is not equal to ~S" (power-first-operand '(expt x y)) 'x))
+
+(defun test-power-second-operand ()
+    (assert (eq (power-second-operand '(expt x y)) 'y)
+        ()
+        "~S is not equal to ~S" (power-second-operand '(expt x y)) 'y))
 
 (defun runs ()
     "docstring"
