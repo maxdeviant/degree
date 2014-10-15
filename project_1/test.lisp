@@ -120,6 +120,7 @@
     (test-make-sum)
     (test-make-difference)
     (test-make-product)
+    (test-make-quotient)
     "Constructor tests passed.")
 
 (defun test-make-negative ()
@@ -144,6 +145,9 @@
     "pass")
 
 (defun test-make-product ()
+    "pass")
+
+(defun test-make-quotient ()
     "pass")
 
 (defun runs ()

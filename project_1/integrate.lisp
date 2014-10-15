@@ -172,7 +172,12 @@
 
 (defun make-quotient (F G)
     "docstring"
-    "pass")
+    (cond
+        ((eq F 0) 0)
+        ((eq G 0) nil)
+        ((and (numberp F) (numberp G)) (/ F G))
+        (t (list *quotient-symbol* F G))
+    ))
 
 (defun make-power (V N)
     "docstring"
