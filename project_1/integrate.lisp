@@ -137,7 +137,7 @@
 
 (defun make-negative (F)
     "docstring"
-    "pass")
+    (list *negative-symbol* F))
 
 (defun make-sum (F G)
     "docstring"

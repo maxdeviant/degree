@@ -116,8 +116,12 @@
         "~S is not equal to ~S" (power-second-operand '(expt x y)) 'y))
 
 (defun test-constructors ()
+    (test-make-negative)
     (test-make-sum)
     "Constructor tests passed.")
+
+(defun test-make-negative ()
+    "pass")
 
 (defun test-make-sum ()
     (assert (equal (make-sum 'F 0) 'F)
