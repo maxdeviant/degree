@@ -190,7 +190,8 @@
 
 (defun integrate (F V &optional lower upper)
     "docstring"
-    (def-integral (indef-integral F V) lower upper))
+    (indef-integral F V)) ; test indefinites only
+    ; (def-integral (indef-integral F V) lower upper))
 
 ;;;=================================================================
 ;;;    NAME: indef-integral
@@ -199,7 +200,10 @@
 
 (defun indef-integral (F V)
     "docstring"
-    "pass")
+    (cond
+        ((number-p F) (make-product F V))
+        (t "pass")
+    ))
 
 ;;;=================================================================
 ;;;    NAME: def-integral
