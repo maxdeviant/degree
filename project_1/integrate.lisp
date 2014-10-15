@@ -96,35 +96,35 @@
 ;;;=================================================================
 ;;; PREDICATES
 
-(defun variablep (F)
+(defun variable-p (F)
     "Returns T if F is a valid variable symbol"
     (member F *variable-symbols*))
 
-(defun negativep (F)
+(defun number-p (F)
+    "docstring"
+    (numberp F))
+
+(defun negative-p (F)
     "docstring"
     "pass")
 
-(defun sump (F)
+(defun sum-p (F)
     "docstring"
     "pass")
 
-(defun differencep (F)
+(defun difference-p (F)
     "docstring"
     "pass")
 
-(defun sump (F)
+(defun product-p (F)
     "docstring"
     "pass")
 
-(defun productp (F)
+(defun quotient-p (F)
     "docstring"
     "pass")
 
-(defun quotientp (F)
-    "docstring"
-    "pass")
-
-(defun powerp (F)
+(defun power-p (F)
     "docstring"
     "pass")
 
@@ -146,7 +146,7 @@
         ((eq G 0) F)
         ((eq F (make-negative G)) 0)
         ((eq G (make-negative F)) 0)
-        ((and (numberp F) (numberp G)) (+ F G))
+        ((and (number-p F) (number-p G)) (+ F G))
         (t (list *sum-symbol* F G))))
 
 (defun make-difference (F G)
@@ -154,7 +154,7 @@
     (cond
         ((eq F 0) (make-negative G))
         ((eq G 0) F)
-        ((and (numberp F) (numberp G)) (- F G))
+        ((and (number-p F) (number-p G)) (- F G))
         (t (list *difference-symbol* F G))))
 
 (defun make-product (F G)
@@ -166,7 +166,7 @@
         ((eq G 1) F)
         ((eq F -1) (make-negative G))
         ((eq G -1) (make-negative F))
-        ((and (numberp F) (numberp G)) (* F G))
+        ((and (number-p F) (number-p G)) (* F G))
         (t (list *product-symbol* F G))
     ))
 
@@ -175,7 +175,7 @@
     (cond
         ((eq F 0) 0)
         ((eq G 0) nil)
-        ((and (numberp F) (numberp G)) (/ F G))
+        ((and (number-p F) (number-p G)) (/ F G))
         (t (list *quotient-symbol* F G))
     ))
 
