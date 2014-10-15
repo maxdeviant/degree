@@ -2,10 +2,50 @@
 
 (defun tests ()
     "Runs the tests for Project 1."
+    (test-operators)
     "Tests passed.")
 
+(defun test-operators ()
+    (test-negative-operator)
+    (test-sum-operator)
+    (test-difference-operator)
+    (test-product-operator)
+    (test-quotient-operator)
+    (test-power-operator)
+    "Operator tests passed.")
+
+(defun test-negative-operator ()
+    (assert (eq (negative-operator '(- x)) '-)
+        ()
+        "~S is not equal to ~S" (negative-operator '(- x)) '-))
+
+(defun test-sum-operator ()
+    (assert (eq (sum-operator '(+ x y)) '+)
+        ()
+        "~S is not equal to ~S" (sum-operator '(+ x y)) '+))
+
+(defun test-difference-operator ()
+    (assert (eq (difference-operator '(- x y)) '-)
+        ()
+        "~S is not equal to ~S" (difference-operator '(- x y)) '-))
+
+(defun test-product-operator ()
+    (assert (eq (product-operator '(* x y)) '*)
+        ()
+        "~S is not equal to ~S" (product-operator '(* x y)) '*))
+
+(defun test-quotient-operator ()
+    (assert (eq (quotient-operator '(/ x y)) '/)
+        ()
+        "~S is not equal to ~S" (quotient-operator '(/ x y)) '/))
+
+(defun test-power-operator ()
+    (assert (eq (power-operator '(expt x y)) 'expt)
+        ()
+        "~S is not equal to ~S" (power-operator '(expt x y)) 'expt))
+
 (defun runs ()
-    ""
+    "docstring"
     (print (do-run (test-run-1)))
     (print (do-run (test-run-2)))
     (print (do-run (test-run-3)))
