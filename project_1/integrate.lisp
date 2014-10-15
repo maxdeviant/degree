@@ -100,6 +100,10 @@
     "Returns T if F is a valid variable symbol"
     (member F *variable-symbols*))
 
+(defun negativep (F)
+    "docstring"
+    "pass")
+
 (defun sump (F)
     "docstring"
     "pass")
