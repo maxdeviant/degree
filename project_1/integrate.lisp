@@ -25,18 +25,24 @@
         ;; Indefinite integration helper function
         (indef-integral-aux (F V)
             (cond
+                ;; Numbers
                 ((number-p F) (make-product F V))
+                ;; Negative
                 ((negative-p F) (make-negative (integrate (make-negative F) V)))
                 ((variable-p F) (integrate (make-power F 1) V))
+                ;; Addition
                 ((sum-p F) (make-sum
                     (integrate (sum-first-operand F) V)
                     (integrate (sum-second-operand F) V)))
+                ;; Subtraction
                 ((difference-p F) (make-difference
                     (integrate (difference-first-operand F) V)
                     (integrate (difference-second-operand F) V)))
+                ;; Power (n != -1)
                 ((and (power-p F) (not (eq (power-second-operand F) -1))) (make-quotient
                     (make-power V (make-sum (power-second-operand F) 1))
                     (make-sum (power-second-operand F) 1)))
+                ;; Power (n = -1)
                 ((and (power-p F) (eq (power-second-operand F) -1) (make-log (power-first-operand F))))
                 (t nil))))
         (cond
@@ -389,10 +395,14 @@
     (labels (
         (make-negative-aux (F)
             (cond
+                ;; If F is a number, negate it numerically
                 ((number-p F) (* -1 F))
+                ;; If F is already a negative, get the negation
                 ((negative-p F) (negative-operand F))
+                ;; Returns the list containing the negative expression
                 (t (list *negative-symbol* F)))))
     (cond
+        ;; Simplify expression if necessary
         ((mult-negative-p F) (make-negative-aux (make-simplified-negative F)))
         (t (make-negative-aux F)))))
 
