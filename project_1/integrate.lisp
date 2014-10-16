@@ -406,10 +406,13 @@
     (labels (
         (make-simplified-negative-aux (F)
             (cond
+                ;; Even number of negative symbols cancel each other out
                 ((eq (mod (length F) 2) 0) (list *negative-symbol* (first (last F))))
                 (t (first (last F))))))
     (cond
+        ;; If there are multiple negatives, simplify
         ((mult-negative-p F) (make-simplified-negative-aux F))
+        ;; If F is a single negative, return F
         ((negative-p F) F))))
 
 ;;;=================================================================
@@ -420,11 +423,15 @@
 (defun make-sum (F G)
     "Constructs an expression which is the sum of F and G."
     (cond
+        ;; F or G plus 0 is itself
         ((eq F 0) G)
         ((eq G 0) F)
+        ;; F or G plus its inverse is 0
         ((eq F (make-negative G)) 0)
         ((eq G (make-negative F)) 0)
+        ;; If both are numbers, perform addition
         ((and (number-p F) (number-p G)) (+ F G))
+        ;; Return the list containing the sum expression
         (t (list *sum-symbol* F G))))
 
 ;;;=================================================================
@@ -435,10 +442,13 @@
 (defun make-difference (F G)
     "Constructs an expression which is the difference of F and G."
     (cond
+        ;; 0 minus G yields the negation of G
         ((eq F 0) (make-negative G))
+        ;; F minus 0 yields F
         ((eq G 0) F)
+        ;; If both are numbers, perform subtraction
         ((and (number-p F) (number-p G)) (- F G))
-        ((eq F (make-negative G)) (make-sum F G))
+        ;; Return the list containing the difference expression
         (t (list *difference-symbol* F G))))
 
 ;;;=================================================================
@@ -449,14 +459,20 @@
 (defun make-product (F G)
     "Constructs an expression which is the product of F and G."
     (cond
+        ;; F or G time 0 is 0
         ((eq F 0) 0)
         ((eq G 0) 0)
+        ;; F or G times 1 is itself
         ((eq F 1) G)
         ((eq G 1) F)
+        ;; F or G times -1 is its negation
         ((eq F -1) (make-negative G))
         ((eq G -1) (make-negative F))
+        ;; If F and G are both negative, negate both and multiply
         ((and (negative-p F) (negative-p G)) (make-product (make-negative F) (make-negative G)))
+        ;; If both are numbers, perform multiplication
         ((and (number-p F) (number-p G)) (* F G))
+        ;; Return the list containing the product expression
         (t (list *product-symbol* F G))))
 
 ;;;=================================================================
@@ -467,9 +483,13 @@
 (defun make-quotient (F G)
     "Constructs an expression which is the quotient of F and G."
     (cond
+        ;; 0 divided by anything is 0
         ((eq F 0) 0)
+        ;; Division by 0 not allowed
         ((eq G 0) nil)
+        ;; If both are numbers, perform division
         ((and (number-p F) (number-p G)) (/ F G))
+        ;; Return the list containing the difference expression
         (t (list *quotient-symbol* F G))))
 
 ;;;=================================================================
@@ -480,7 +500,9 @@
 (defun make-power (V N)
     "Constructs an expression which is V raised to the Nth power."
     (cond
+        ;; If both are numbers, perform exponentiation
         ((and (number-p V) (numberp N)) (expt V N))
+        ;; Return the list containing the power expression
         (t (list *power-symbol* V N))))
 
 ;;;=================================================================
@@ -491,4 +513,5 @@
 (defun make-log (V)
     "Constructs an expression which is the mathematical logarithm of V."
     (cond
+        ;; If V is a variable, return the list containing the logarithmic expression
         ((variable-p V) (list *log-symbol* V))))
