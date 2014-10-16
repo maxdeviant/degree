@@ -10,7 +10,7 @@
 ;;; RETURNS: 
 
 (defun integrate (F V &optional lower upper)
-    "docstring"
+    "Integrates F with respect to V, optionally integrating on the domain [LOWER, UPPER]."
     (def-integral (indef-integral F V) V lower upper))
 
 ;;;=================================================================
@@ -19,7 +19,7 @@
 ;;; RETURNS: 
 
 (defun indef-integral (F V)
-    "docstring"
+    "Indefinitely integrates F with respect to V."
     (labels (
         (indef-integral-aux (F V)
             (cond
@@ -48,7 +48,7 @@
 ;;; RETURNS: 
 
 (defun def-integral (F V lower upper)
-    "docstring"
+    "Definitely integrates F with respect to V, on the domain [LOWER, UPPER]."
     (cond
         ((not (and (number-p lower) (number-p upper))) F)
         (t (eval (make-difference
@@ -56,7 +56,7 @@
             (my-replace V lower F))))))
 
 (defun my-replace (e1 e2 L)
-    "docstring"
+    "Returns the list L with element E1 replaced with E2."
     (labels (
         (my-replace-aux (e1 e2 L)
             (cond
@@ -84,88 +84,88 @@
 ;;; SELECTORS -- OPERATORS
 
 (defun negative-operator (F)
-    "docstring"
+    "Selects the negative symbol in a prefix expression."
     (first F))
 
 (defun sum-operator (F)
-    "docstring"
+    "Selects the sum symbol in a prefix expression."
     (first F))
 
 (defun difference-operator (F)
-    "docstring"
+    "Selects the difference symbol in a prefix expression."
     (first F))
 
 (defun product-operator (F)
-    "docstring"
+    "Selects the product symbol in a prefix expression."
     (first F))
 
 (defun quotient-operator (F)
-    "docstring"
+    "Selects the quotient symbol in a prefix expression."
     (first F))
 
 (defun power-operator (F)
-    "docstring"
+    "Selects the power symbol in a prefix expression."
     (first F))
 
 ;;; SELECTORS -- OPERANDS
 
 (defun negative-operand (F)
-    "docstring"
+    "Selects the operand of a negative operation in a prefix expression."
     (second F))
 
 (defun sum-first-operand (F)
-    "docstring"
+    "Selects the first operand of a sum operation in a prefix expression."
     (second F))
 
 (defun sum-second-operand (F)
-    "docstring"
+    "Selects the second operand of a sum operation in a prefix expression."
     (third F))
 
 (defun difference-first-operand (F)
-    "docstring"
+    "Selects the first operand of a difference operation in a prefix expression."
     (second F))
 
 (defun difference-second-operand (F)
-    "docstring"
+    "Selects the second operand of a difference operation in a prefix expression."
     (third F))
 
 (defun product-first-operand (F)
-    "docstring"
+    "Selects the first operand of a product operation in a prefix expression."
     (second F))
 
 (defun product-second-operand (F)
-    "docstring"
+    "Selects the second operand of a product operation in a prefix expression."
     (third F))
 
 (defun quotient-first-operand (F)
-    "docstring"
+    "Selects the first operand of a quotient operation in a prefix expression."
     (second F))
 
 (defun quotient-second-operand (F)
-    "docstring"
+    "Selects the second operand of a quotient operation in a prefix expression."
     (third F))
 
 (defun power-first-operand (F)
-    "docstring"
+    "Selects the first operand of a power operation in a prefix expression."
     (second F))
 
 (defun power-second-operand (F)
-    "docstring"
+    "Selects the second operand of a power operation in a prefix expression."
     (third F))
 
 ;;;=================================================================
 ;;; PREDICATES
 
 (defun variable-p (F)
-    "docstring"
+    "Returns T if F is a valid variable symbol."
     (member F *variable-symbols*))
 
 (defun number-p (F)
-    "docstring"
+    "Returns T if F is a number."
     (numberp F))
 
 (defun negative-p (F)
-    "docstring"
+    "Returns T if F is a negative expression."
     (cond
         ((and (number-p F) (< F 0)) t)
         ((number-p F) nil)
@@ -176,7 +176,7 @@
             (not (eq (negative-operand F) *negative-symbol*))) t)))
 
 (defun mult-negative-p (F)
-    "docstring"
+    "Returns T if F is a negative expression with multiple negations."
     (labels (
         (mult-negative-p-aux (F L)
             (cond
@@ -192,7 +192,7 @@
         (t (mult-negative-p-aux F '())))))
 
 (defun sum-p (F)
-    "docstring"
+    "Returns T if F is a sum expression."
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
@@ -202,7 +202,7 @@
             (sum-second-operand F)) t)))
 
 (defun difference-p (F)
-    "docstring"
+    "Returns T if F is a difference expression."
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
@@ -212,7 +212,7 @@
             (difference-second-operand F)) t)))
 
 (defun power-p (F)
-    "docstring"
+    "Returns T if F is a power expression."
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
@@ -225,11 +225,11 @@
 ;;; CONSTRUCTORS
 
 (defun make-variable (V)
-    "docstring"
+    "Constructs a variable expression."
     V)
 
 (defun make-negative (F)
-    "docstring"
+    "Constructs an expression which is the negation of F."
     (labels (
         (make-negative-aux (F)
             (cond
@@ -241,6 +241,7 @@
         (t (make-negative-aux F)))))
 
 (defun make-reduced-negative (F)
+    "Constructs an expression which is the reduced negation of F."
     (labels (
         (make-reduced-negative-aux (F)
             (cond
@@ -251,7 +252,7 @@
         ((negative-p F) F))))
 
 (defun make-sum (F G)
-    "docstring"
+    "Constructs an expression with is the sum of F and G."
     (cond
         ((eq F 0) G)
         ((eq G 0) F)
@@ -261,7 +262,7 @@
         (t (list *sum-symbol* F G))))
 
 (defun make-difference (F G)
-    "docstring"
+    "Constructs an expression which is the difference of F and G."
     (cond
         ((eq F 0) (make-negative G))
         ((eq G 0) F)
@@ -270,7 +271,7 @@
         (t (list *difference-symbol* F G))))
 
 (defun make-product (F G)
-    "docstring"
+    "Constructs an expression which is the product of F and G."
     (cond
         ((eq F 0) 0)
         ((eq G 0) 0)
@@ -283,7 +284,7 @@
         (t (list *product-symbol* F G))))
 
 (defun make-quotient (F G)
-    "docstring"
+    "Constructs an expression which is the quotient of F and G."
     (cond
         ((eq F 0) 0)
         ((eq G 0) nil)
@@ -291,12 +292,12 @@
         (t (list *quotient-symbol* F G))))
 
 (defun make-power (V N)
-    "docstring"
+    "Constructs an expression which is V raised to the Nth power."
     (cond
         ((and (number-p V) (numberp N)) (expt V N))
         (t (list *power-symbol* V N))))
 
 (defun make-log (V)
-    "docstring"
+    "Constructs an expression which is the mathematical log of V."
     (cond
         ((variable-p V) (list *log-symbol* V))))
