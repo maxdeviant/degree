@@ -5,6 +5,9 @@
 ;;; integrate.lisp
 
 ;;;=================================================================
+;;; BUG STATUS -- NO KNOWN BUGS
+
+;;;=================================================================
 ;;;    NAME: integrate
 ;;;  ARG(S): A function F to integrate with respect to variable V;
 ;;;          optionally takes integers LOWER and UPPER for the integration bounds
