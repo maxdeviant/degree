@@ -22,6 +22,7 @@
 (defun indef-integral (F V)
     "Indefinitely integrates F with respect to V."
     (labels (
+        ;; Indefinite integration helper function
         (indef-integral-aux (F V)
             (cond
                 ((number-p F) (make-product F V))
@@ -39,7 +40,8 @@
                 ((and (power-p F) (eq (power-second-operand F) -1) (make-log (power-first-operand F))))
                 (t nil))))
         (cond
-            ((mult-negative-p F) (indef-integral-aux (make-reduced-negative F) V))
+            ;; Simplify multiple negative symbols, if present
+            ((mult-negative-p F) (indef-integral-aux (make-simplified-negative F) V))
             ((variable-p V) (indef-integral-aux F V))
             (t nil))))
 
@@ -52,7 +54,9 @@
 (defun def-integral (F V lower upper)
     "Definitely integrates F with respect to V, on the domain [LOWER, UPPER]."
     (cond
+        ;; Return indefinite integral if limits are not numbers
         ((not (and (number-p lower) (number-p upper))) F)
+        ;; If they are, make the difference of the substituted halves
         (t (eval (make-difference
             (my-replace V upper F)
             (my-replace V lower F))))))
@@ -65,14 +69,20 @@
 (defun my-replace (e1 e2 L)
     "Returns the list L with element E1 replaced with E2."
     (labels (
+        ;; Helper function
         (my-replace-aux (e1 e2 L)
             (cond
-                ((endp L) nil)
+                ((endp L) L)
+                ;; Perform replacement when the element is found
                 ((equal (first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
+                ;; Go down a level if the element itself is a list
                 ((listp (first L)) (cons (my-replace e1 e2 (first L)) (my-replace e1 e2 (rest L))))
+                ;; Continue CDRing down the list
                 (t (cons (first L) (my-replace e1 e2 (rest L)))))))
         (cond
+            ;; If L is a variable, perform replacement on a list containing the variable
             ((variable-p L) (first (my-replace e1 e2 (list L))))
+            ;; Perform the replace
             (t (my-replace-aux e1 e2 L)))))
 
 ;;;=================================================================
@@ -274,10 +284,12 @@
 (defun negative-p (F)
     "Returns T if F is a negative expression."
     (cond
+        ;; Check if numerically negative
         ((and (number-p F) (< F 0)) t)
         ((number-p F) nil)
         ((variable-p F) nil)
         ((difference-p F) nil)
+        ;; Check if expression follows the form (- F)
         ((and
             (eq (negative-operator F) *negative-symbol*)
             (not (eq (negative-operand F) *negative-symbol*))) t)))
@@ -290,10 +302,14 @@
 (defun mult-negative-p (F)
     "Returns T if F is a negative expression with multiple negations."
     (labels (
+        ;; Helper function
         (mult-negative-p-aux (F L)
             (cond
+                ;; Return T if L contains just one element at the end
                 ((endp F) (eq (length L) 1))
+                ;; If CAR is the negative symbol, continue CDRing
                 ((eq (first F) *negative-symbol*) (mult-negative-p-aux (rest F) L))
+                ;; Otherwise, add CAR to L and continue
                 (t (mult-negative-p-aux (rest F) (cons (first F) L))))))
     (cond
         ((number-p F) nil)
@@ -313,6 +329,7 @@
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
+        ;; Check if expression follows the form (+ F G)
         ((and
             (eq (sum-operator F) *sum-symbol*)
             (sum-first-operand F)
@@ -328,6 +345,7 @@
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
+        ;; Check if expression follows the form (- F G)
         ((and
             (eq (difference-operator F) *difference-symbol*)
             (not (eq (difference-first-operand F) *difference-symbol*))
@@ -343,6 +361,7 @@
     (cond
         ((number-p F) nil)
         ((variable-p F) nil)
+        ;; Check if expression follows the form (EXPT V N)
         ((and
             (eq (power-operator F) *power-symbol*)
             (variable-p (power-first-operand F))
