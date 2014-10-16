@@ -13,25 +13,25 @@
 
 
 // Wait for the load event to start the game.
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
 
     // Create an instance of the engine, including only
     // the `Sprites` module, and then call setup to create a
     // canvas element on the page. If you already have a 
     // canvas element in your page, you can pass the element
     // or it's id as the first parameter to set up as well.
-    var Q = window.Q = Quintus().include("Sprites").setup({ width: 400, height: 400 });
+    var Q = window.Q = Quintus().include('Sprites').setup({ width: 960, height: 640 });
 
     // The `MovingSprite` class is a descendant of the base `Sprite` class,
     // all it does is add in a step method to Sprite that runs the standard
     // 2D motion equations using properties vx, vy for the velocity and ax, ay 
     // to calculate the new x and y positions.
-    Q.MovingSprite.extend("Ball", {
+    Q.MovingSprite.extend('Ball', {
         // Sprites by default expect either a `sheet` or an `asset` property
         // to draw themselves, but by overriding the draw method you can draw a 
         // shape directly on the canvas instead. 
         draw: function(ctx) {
-            ctx.fillStyle = "black";
+            ctx.fillStyle = 'black';
             ctx.beginPath();
             ctx.arc(-this.p.cx, -this.p.cy, this.p.w / 2, 0, Math.PI * 2); 
             ctx.fill();
@@ -42,6 +42,10 @@ window.addEventListener("load", function () {
     // passing in the size, position, velocity, and 
     // acceleration
     var ball = window.ball = new Q.Ball({ w: 20, h: 20, x: 30, y: 300, vx: 30, vy: -100, ax: 0, ay: 30 });
+    var ballTwo = window.ball = new Q.Ball({ w: 30, h: 30, x: 100, y: 300, vx: 40, vy: -100, ax: 0, ay: 30 });
+    var ballThree = window.ball = new Q.Ball({ w: 40, h: 40, x: 200, y: 300, vx: 50, vy: -100, ax: 0, ay: 30 });
+
+    var entities = [ball, ballTwo, ballThree];
 
     // You can start the game loop directly by
     // calling `gameLoop` with a callback and Quintus
@@ -54,11 +58,13 @@ window.addEventListener("load", function () {
         // Clear the canvas 
         Q.clear();
 
-        // Move the ball `dt` forward in time
-        ball.update(dt);
+        for (var i in entities) {
+            // Move the ball `dt` forward in time
+            entities[i].update(dt);
 
-        // Render the ball onto the canvas context.
-        ball.render(Q.ctx);
+            // Render the ball onto the canvas context.
+            entities[i].render(Q.ctx);
+        }
     });
 
     // ## Possible Experimentations:
