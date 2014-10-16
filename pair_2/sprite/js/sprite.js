@@ -72,11 +72,11 @@ window.addEventListener('load', function (e) {
         });
 
         Q.input.on('left', stage, function (e) {
-            sprite1.p.x -= 5;
+            sprite1.p.x -= 20;
         });
 
         Q.input.on('right', stage, function (e) {
-            sprite1.p.x += 5;
+            sprite1.p.x += 20;
         });
 
         Q.input.on('fire', stage, function (e) {
