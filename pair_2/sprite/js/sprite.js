@@ -90,7 +90,7 @@ window.addEventListener('load', function (e) {
 
 
         // Draw some lines after each frame
-        stage.on('postrender', drawLines);
+        stage.on('prerender', drawLines);
     });
 
     Q.load('../images/enemy.png',function() {
