@@ -6,8 +6,9 @@
 
 ;;;=================================================================
 ;;;    NAME: integrate
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;  ARG(S): A function F to integrate with respect to variable V;
+;;;          optionally takes integers LOWER and UPPER for the integration bounds
+;;; RETURNS: The result of the integration
 
 (defun integrate (F V &optional lower upper)
     "Integrates F with respect to V, optionally integrating on the domain [LOWER, UPPER]."
@@ -15,8 +16,8 @@
 
 ;;;=================================================================
 ;;;    NAME: indef-integral
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;  ARG(S): A function F to integrate with respect to variable V
+;;; RETURNS: The indefinitely integrated expression
 
 (defun indef-integral (F V)
     "Indefinitely integrates F with respect to V."
@@ -44,8 +45,9 @@
 
 ;;;=================================================================
 ;;;    NAME: def-integral
-;;;  ARG(S): 
-;;; RETURNS: 
+;;;  ARG(S): A function F to integrate with respect to variable V
+;;;          on the interval [LOWER, UPPER]
+;;; RETURNS: The definitely integrated expression on the interval [LOWER, UPPER]
 
 (defun def-integral (F V lower upper)
     "Definitely integrates F with respect to V, on the domain [LOWER, UPPER]."
@@ -54,6 +56,11 @@
         (t (eval (make-difference
             (my-replace V upper F)
             (my-replace V lower F))))))
+
+;;;=================================================================
+;;;    NAME: my-replace
+;;;  ARG(S): The element E1 to replace with E2 in the list L
+;;; RETURNS: The list with the specified elements replaced
 
 (defun my-replace (e1 e2 L)
     "Returns the list L with element E1 replaced with E2."
@@ -83,25 +90,55 @@
 ;;;=================================================================
 ;;; SELECTORS -- OPERATORS
 
+;;;=================================================================
+;;;    NAME: negative-operator
+;;;  ARG(S): A negated expression F
+;;; RETURNS: The negative symbol from F
+
 (defun negative-operator (F)
     "Selects the negative symbol in a prefix expression."
     (first F))
+
+;;;=================================================================
+;;;    NAME: sum-operator
+;;;  ARG(S): A sum expression F
+;;; RETURNS: The sum symbol from F
 
 (defun sum-operator (F)
     "Selects the sum symbol in a prefix expression."
     (first F))
 
+;;;=================================================================
+;;;    NAME: difference-operator
+;;;  ARG(S): A difference expression F
+;;; RETURNS: The difference symbol from F
+
 (defun difference-operator (F)
     "Selects the difference symbol in a prefix expression."
     (first F))
+
+;;;=================================================================
+;;;    NAME: product-operator
+;;;  ARG(S): A product expression F
+;;; RETURNS: The product symbol from F
 
 (defun product-operator (F)
     "Selects the product symbol in a prefix expression."
     (first F))
 
+;;;=================================================================
+;;;    NAME: quotient-operator
+;;;  ARG(S): A quotient expression F
+;;; RETURNS: The quotient symbol from F
+
 (defun quotient-operator (F)
     "Selects the quotient symbol in a prefix expression."
     (first F))
+
+;;;=================================================================
+;;;    NAME: power-operator
+;;;  ARG(S): A power expression F
+;;; RETURNS: The power operator from F
 
 (defun power-operator (F)
     "Selects the power symbol in a prefix expression."
@@ -109,45 +146,100 @@
 
 ;;; SELECTORS -- OPERANDS
 
+;;;=================================================================
+;;;    NAME: negative-operand
+;;;  ARG(S): A negated expression F
+;;; RETURNS: The operand of negated expression F
+
 (defun negative-operand (F)
     "Selects the operand of a negative operation in a prefix expression."
     (second F))
+
+;;;=================================================================
+;;;    NAME: sum-first-operand
+;;;  ARG(S): A sum expression F
+;;; RETURNS: The first operand of sum expression F
 
 (defun sum-first-operand (F)
     "Selects the first operand of a sum operation in a prefix expression."
     (second F))
 
+;;;=================================================================
+;;;    NAME: sum-second-operand
+;;;  ARG(S): A sum expression F
+;;; RETURNS: The second operand of sum expression F
+
 (defun sum-second-operand (F)
     "Selects the second operand of a sum operation in a prefix expression."
     (third F))
+
+;;;=================================================================
+;;;    NAME: difference-first-operand
+;;;  ARG(S): A difference expression F
+;;; RETURNS: The first operand of difference expression F
 
 (defun difference-first-operand (F)
     "Selects the first operand of a difference operation in a prefix expression."
     (second F))
 
+;;;=================================================================
+;;;    NAME: difference-second-operand
+;;;  ARG(S): A difference expression F
+;;; RETURNS: The second operand of difference expression F
+
 (defun difference-second-operand (F)
     "Selects the second operand of a difference operation in a prefix expression."
     (third F))
+
+;;;=================================================================
+;;;    NAME: product-first-operand
+;;;  ARG(S): A product expression F
+;;; RETURNS: The first operand of product expression F
 
 (defun product-first-operand (F)
     "Selects the first operand of a product operation in a prefix expression."
     (second F))
 
+;;;=================================================================
+;;;    NAME: product-second-operand
+;;;  ARG(S): A product expression F
+;;; RETURNS: The second operand of product expression F
+
 (defun product-second-operand (F)
     "Selects the second operand of a product operation in a prefix expression."
     (third F))
+
+;;;=================================================================
+;;;    NAME: quotient-first-operand
+;;;  ARG(S): A quotient expression F
+;;; RETURNS: The first operand of quotient expression F
 
 (defun quotient-first-operand (F)
     "Selects the first operand of a quotient operation in a prefix expression."
     (second F))
 
+;;;=================================================================
+;;;    NAME: quotient-second-operand
+;;;  ARG(S): A quotient expression F
+;;; RETURNS: The second operand of quotient expression F
+
 (defun quotient-second-operand (F)
     "Selects the second operand of a quotient operation in a prefix expression."
     (third F))
 
+;;;=================================================================
+;;;    NAME: power-first-operand
+;;;  ARG(S): A power expression F
+;;; RETURNS: The first operand of power expression F
+
 (defun power-first-operand (F)
     "Selects the first operand of a power operation in a prefix expression."
     (second F))
+
+;;;=================================================================
+;;;    NAME: power-second-operand
+;;;  ARG(S): A power expression F
+;;; RETURNS: The second operand of power expression F
 
 (defun power-second-operand (F)
     "Selects the second operand of a power operation in a prefix expression."
@@ -156,13 +248,28 @@
 ;;;=================================================================
 ;;; PREDICATES
 
+;;;=================================================================
+;;;    NAME: variable-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a variable symbol
+
 (defun variable-p (F)
-    "Returns T if F is a valid variable symbol."
+    "Returns T if F is a variable symbol."
     (member F *variable-symbols*))
+
+;;;=================================================================
+;;;    NAME: number-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a number
 
 (defun number-p (F)
     "Returns T if F is a number."
     (numberp F))
+
+;;;=================================================================
+;;;    NAME: negative-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a negative expression
 
 (defun negative-p (F)
     "Returns T if F is a negative expression."
@@ -174,6 +281,11 @@
         ((and
             (eq (negative-operator F) *negative-symbol*)
             (not (eq (negative-operand F) *negative-symbol*))) t)))
+
+;;;=================================================================
+;;;    NAME: mult-negative-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a negative expression with multiple negations
 
 (defun mult-negative-p (F)
     "Returns T if F is a negative expression with multiple negations."
@@ -191,6 +303,11 @@
         ((not (listp F)) nil)
         (t (mult-negative-p-aux F '())))))
 
+;;;=================================================================
+;;;    NAME: sum-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a sum expression
+
 (defun sum-p (F)
     "Returns T if F is a sum expression."
     (cond
@@ -201,6 +318,11 @@
             (sum-first-operand F)
             (sum-second-operand F)) t)))
 
+;;;=================================================================
+;;;    NAME: difference-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a difference expression
+
 (defun difference-p (F)
     "Returns T if F is a difference expression."
     (cond
@@ -210,6 +332,11 @@
             (eq (difference-operator F) *difference-symbol*)
             (not (eq (difference-first-operand F) *difference-symbol*))
             (difference-second-operand F)) t)))
+
+;;;=================================================================
+;;;    NAME: power-p
+;;;  ARG(S): An expression F
+;;; RETURNS: T if F is a power expression
 
 (defun power-p (F)
     "Returns T if F is a power expression."
@@ -224,9 +351,19 @@
 ;;;=================================================================
 ;;; CONSTRUCTORS
 
+;;;=================================================================
+;;;    NAME: make-variable
+;;;  ARG(S): A variable V
+;;; RETURNS: A variable expression consisting of V
+
 (defun make-variable (V)
-    "Constructs a variable expression."
+    "Constructs a variable expression consisting of V."
     V)
+
+;;;=================================================================
+;;;    NAME: make-negative
+;;;  ARG(S): An expression F
+;;; RETURNS: An expression which is the negation of F
 
 (defun make-negative (F)
     "Constructs an expression which is the negation of F."
@@ -240,6 +377,11 @@
         ((mult-negative-p F) (make-negative-aux (make-reduced-negative F)))
         (t (make-negative-aux F)))))
 
+;;;=================================================================
+;;;    NAME: make-reduced-negative
+;;;  ARG(S): An expression F
+;;; RETURNS: An expression which is the reduced negation of F
+
 (defun make-reduced-negative (F)
     "Constructs an expression which is the reduced negation of F."
     (labels (
@@ -251,8 +393,13 @@
         ((mult-negative-p F) (make-reduced-negative-aux F))
         ((negative-p F) F))))
 
+;;;=================================================================
+;;;    NAME: make-sum
+;;;  ARG(S): Expressions F and G
+;;; RETURNS: An expression which is the sum of F and G
+
 (defun make-sum (F G)
-    "Constructs an expression with is the sum of F and G."
+    "Constructs an expression which is the sum of F and G."
     (cond
         ((eq F 0) G)
         ((eq G 0) F)
@@ -260,6 +407,11 @@
         ((eq G (make-negative F)) 0)
         ((and (number-p F) (number-p G)) (+ F G))
         (t (list *sum-symbol* F G))))
+
+;;;=================================================================
+;;;    NAME: make-difference
+;;;  ARG(S): Expressions F and G
+;;; RETURNS: An expression which is the difference of F and G
 
 (defun make-difference (F G)
     "Constructs an expression which is the difference of F and G."
@@ -269,6 +421,11 @@
         ((and (number-p F) (number-p G)) (- F G))
         ((eq F (make-negative G)) (make-sum F G))
         (t (list *difference-symbol* F G))))
+
+;;;=================================================================
+;;;    NAME: make-product
+;;;  ARG(S): Expressions F and G
+;;; RETURNS: An expression which is the product of F and G
 
 (defun make-product (F G)
     "Constructs an expression which is the product of F and G."
@@ -283,6 +440,11 @@
         ((and (number-p F) (number-p G)) (* F G))
         (t (list *product-symbol* F G))))
 
+;;;=================================================================
+;;;    NAME: make-quotient
+;;;  ARG(S): Expressions F and G
+;;; RETURNS: An expression which is the quotient of F and G
+
 (defun make-quotient (F G)
     "Constructs an expression which is the quotient of F and G."
     (cond
@@ -291,13 +453,23 @@
         ((and (number-p F) (number-p G)) (/ F G))
         (t (list *quotient-symbol* F G))))
 
+;;;=================================================================
+;;;    NAME: make-power
+;;;  ARG(S): Variable V and integer N
+;;; RETURNS: An expression which is V raised to the Nth power
+
 (defun make-power (V N)
     "Constructs an expression which is V raised to the Nth power."
     (cond
         ((and (number-p V) (numberp N)) (expt V N))
         (t (list *power-symbol* V N))))
 
+;;;=================================================================
+;;;    NAME: make-log
+;;;  ARG(S): Variable V
+;;; RETURNS: An expression which is the mathemetical logarithm of V
+
 (defun make-log (V)
-    "Constructs an expression which is the mathematical log of V."
+    "Constructs an expression which is the mathematical logarithm of V."
     (cond
         ((variable-p V) (list *log-symbol* V))))
