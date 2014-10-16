@@ -42,11 +42,11 @@
                     (integrate (difference-first-operand F) V)
                     (integrate (difference-second-operand F) V)))
                 ;; Power (n != -1)
-                ((and (power-p F) (not (eq (power-second-operand F) -1))) (make-quotient
+                ((and (power-p F) (not (equal (power-second-operand F) -1))) (make-quotient
                     (make-power V (make-sum (power-second-operand F) 1))
                     (make-sum (power-second-operand F) 1)))
                 ;; Power (n = -1)
-                ((and (power-p F) (eq (power-second-operand F) -1) (make-log (power-first-operand F))))
+                ((and (power-p F) (equal (power-second-operand F) -1) (make-log (power-first-operand F))))
                 (t nil))))
         (cond
             ;; Simplify multiple negative symbols, if present
@@ -300,8 +300,8 @@
         ((difference-p F) nil)
         ;; Check if expression follows the form (- F)
         ((and
-            (eq (negative-operator F) *negative-symbol*)
-            (not (eq (negative-operand F) *negative-symbol*))) t)))
+            (equal (negative-operator F) *negative-symbol*)
+            (not (equal (negative-operand F) *negative-symbol*))) t)))
 
 ;;;=================================================================
 ;;;    NAME: mult-negative-p
@@ -315,9 +315,9 @@
         (mult-negative-p-aux (F L)
             (cond
                 ;; Return T if L contains just one element at the end
-                ((endp F) (eq (length L) 1))
+                ((endp F) (equal (length L) 1))
                 ;; If CAR is the negative symbol, continue CDRing
-                ((eq (first F) *negative-symbol*) (mult-negative-p-aux (rest F) L))
+                ((equal (first F) *negative-symbol*) (mult-negative-p-aux (rest F) L))
                 ;; Otherwise, add CAR to L and continue
                 (t (mult-negative-p-aux (rest F) (cons (first F) L))))))
     (cond
@@ -340,7 +340,7 @@
         ((variable-p F) nil)
         ;; Check if expression follows the form (+ F G)
         ((and
-            (eq (sum-operator F) *sum-symbol*)
+            (equal (sum-operator F) *sum-symbol*)
             (sum-first-operand F)
             (sum-second-operand F)) t)))
 
@@ -356,8 +356,8 @@
         ((variable-p F) nil)
         ;; Check if expression follows the form (- F G)
         ((and
-            (eq (difference-operator F) *difference-symbol*)
-            (not (eq (difference-first-operand F) *difference-symbol*))
+            (equal (difference-operator F) *difference-symbol*)
+            (not (equal (difference-first-operand F) *difference-symbol*))
             (difference-second-operand F)) t)))
 
 ;;;=================================================================
@@ -372,7 +372,7 @@
         ((variable-p F) nil)
         ;; Check if expression follows the form (EXPT V N)
         ((and
-            (eq (power-operator F) *power-symbol*)
+            (equal (power-operator F) *power-symbol*)
             (variable-p (power-first-operand F))
             (number-p (power-second-operand F))) t)))
 
@@ -420,7 +420,7 @@
         (make-simplified-negative-aux (F)
             (cond
                 ;; Even number of negative symbols cancel each other out
-                ((eq (mod (length F) 2) 0) (list *negative-symbol* (first (last F))))
+                ((equal (mod (length F) 2) 0) (list *negative-symbol* (first (last F))))
                 (t (first (last F))))))
     (cond
         ;; If there are multiple negatives, simplify
@@ -437,11 +437,11 @@
     "Constructs an expression which is the sum of F and G."
     (cond
         ;; F or G plus 0 is itself
-        ((eq F 0) G)
-        ((eq G 0) F)
+        ((equal F 0) G)
+        ((equal G 0) F)
         ;; F or G plus its inverse is 0
-        ((eq F (make-negative G)) 0)
-        ((eq G (make-negative F)) 0)
+        ((equal F (make-negative G)) 0)
+        ((equal G (make-negative F)) 0)
         ;; If both are numbers, perform addition
         ((and (number-p F) (number-p G)) (+ F G))
         ;; Return the list containing the sum expression
@@ -456,11 +456,12 @@
     "Constructs an expression which is the difference of F and G."
     (cond
         ;; 0 minus G yields the negation of G
-        ((eq F 0) (make-negative G))
+        ((equal F 0) (make-negative G))
         ;; F minus 0 yields F
-        ((eq G 0) F)
+        ((equal G 0) F)
         ;; If both are numbers, perform subtraction
         ((and (number-p F) (number-p G)) (- F G))
+        ((equal F (make-negative G)) (make-sum F G))
         ;; Return the list containing the difference expression
         (t (list *difference-symbol* F G))))
 
@@ -473,14 +474,14 @@
     "Constructs an expression which is the product of F and G."
     (cond
         ;; F or G time 0 is 0
-        ((eq F 0) 0)
-        ((eq G 0) 0)
+        ((equal F 0) 0)
+        ((equal G 0) 0)
         ;; F or G times 1 is itself
-        ((eq F 1) G)
-        ((eq G 1) F)
+        ((equal F 1) G)
+        ((equal G 1) F)
         ;; F or G times -1 is its negation
-        ((eq F -1) (make-negative G))
-        ((eq G -1) (make-negative F))
+        ((equal F -1) (make-negative G))
+        ((equal G -1) (make-negative F))
         ;; If F and G are both negative, negate both and multiply
         ((and (negative-p F) (negative-p G)) (make-product (make-negative F) (make-negative G)))
         ;; If both are numbers, perform multiplication
@@ -497,9 +498,9 @@
     "Constructs an expression which is the quotient of F and G."
     (cond
         ;; 0 divided by anything is 0
-        ((eq F 0) 0)
+        ((equal F 0) 0)
         ;; Division by 0 not allowed
-        ((eq G 0) nil)
+        ((equal G 0) nil)
         ;; If both are numbers, perform division
         ((and (number-p F) (number-p G)) (/ F G))
         ;; Return the list containing the difference expression
