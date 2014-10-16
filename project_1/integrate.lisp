@@ -374,23 +374,23 @@
                 ((negative-p F) (negative-operand F))
                 (t (list *negative-symbol* F)))))
     (cond
-        ((mult-negative-p F) (make-negative-aux (make-reduced-negative F)))
+        ((mult-negative-p F) (make-negative-aux (make-simplified-negative F)))
         (t (make-negative-aux F)))))
 
 ;;;=================================================================
-;;;    NAME: make-reduced-negative
+;;;    NAME: make-simplified-negative
 ;;;  ARG(S): An expression F
-;;; RETURNS: An expression which is the reduced negation of F
+;;; RETURNS: An expression which is the simplified negation of F
 
-(defun make-reduced-negative (F)
-    "Constructs an expression which is the reduced negation of F."
+(defun make-simplified-negative (F)
+    "Constructs an expression which is the simplified negation of F."
     (labels (
-        (make-reduced-negative-aux (F)
+        (make-simplified-negative-aux (F)
             (cond
                 ((eq (mod (length F) 2) 0) (list *negative-symbol* (first (last F))))
                 (t (first (last F))))))
     (cond
-        ((mult-negative-p F) (make-reduced-negative-aux F))
+        ((mult-negative-p F) (make-simplified-negative-aux F))
         ((negative-p F) F))))
 
 ;;;=================================================================
