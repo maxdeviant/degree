@@ -9,14 +9,14 @@ Q.scene('menu', function (stage) {
         fill: '#000'
     }));
 
-    stage.insert(new Q.UI.Text({ 
+    stage.insert(new Q.UI.Text({
         label: 'Project Two',
         color: '#fff',
         x: 0,
         y: 0
     }), container);
 
-    stage.insert(new Q.UI.Button({ 
+    stage.insert(new Q.UI.Button({
         label: 'Start',
         fill: '#fff',
         x: 0,
