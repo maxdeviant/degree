@@ -56,7 +56,9 @@ $(function () {
             this.on('hit', this, 'collision');
             this.on('step', function (dt) {
                 var p = this.p;
+
                 Q.stage().collide(this);
+                
                 p.x += p.dx * p.speed * dt;
                 p.y += p.dy * p.speed * dt;
 
