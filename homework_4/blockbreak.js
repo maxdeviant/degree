@@ -14,7 +14,7 @@ $(function () {
         ]
     });
 
-    Q.Sprite.extend('Paddle', { // extend Sprite class to create Q.Paddle subclass
+    Q.Sprite.extend('Paddle', {
         init: function (p) {
             this._super(p, {
                 sheet: 'paddle',
@@ -39,7 +39,6 @@ $(function () {
             } else if (this.p.x > Q.width - this.p.w) {
                 this.p.x = Q.width - this.p.w;
             }
-            //      this._super(dt);          // no need for this call anymore
         }
     });
 
@@ -54,10 +53,10 @@ $(function () {
             this.p.y = Q.height / 2 - this.p.h;
             this.p.x = Q.width / 2 + this.p.w / 2;
 
-            this.on('hit', this, 'collision'); // Listen for hit event and call the collision method
-            this.on('step', function (dt) { // On every step, call this anonymous function
+            this.on('hit', this, 'collision');
+            this.on('step', function (dt) {
                 var p = this.p;
-                Q.stage().collide(this); // tell stage to run collisions on this sprite
+                Q.stage().collide(this);
                 p.x += p.dx * p.speed * dt;
                 p.y += p.dy * p.speed * dt;
 
@@ -78,12 +77,10 @@ $(function () {
             });
         },
 
-        collision: function (col) { // collision method
+        collision: function (col) {
             if (col.obj.isA('Paddle')) {
-                //          alert('collision with paddle');
                 this.p.dy = -1;
             } else if (col.obj.isA('Block')) {
-                //          alert('collision with block');
                 col.obj.destroy();
                 this.p.dy *= -1;
                 Q.stage().trigger('removeBlock');
@@ -145,8 +142,8 @@ $(function () {
                         Q.stageScene('game');
                     }
                 });
-
             }));
+
             Q.stageScene('game');
         });
     });
