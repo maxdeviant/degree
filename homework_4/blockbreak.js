@@ -63,9 +63,9 @@ $(function () {
                 if (p.x < 0) {
                     p.x = 0;
                     p.dx = 1;
-                } else if (p.x > Q.width - p.w) {
+                } else if (p.x > Q.width) {
                     p.dx = -1;
-                    p.x = Q.width - p.w;
+                    p.x = Q.width;
                 }
 
                 if (p.y < 0) {
