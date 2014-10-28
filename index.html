@@ -1,24 +1,67 @@
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<meta name="viewport" content="width=device-width, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
-<title>Platformer Example</title>
-<script src='../lib/quintus.js'></script>
-<script src='../lib/quintus_sprites.js'></script>
-<script src='../lib/quintus_scenes.js'></script>
-<script src='../lib/quintus_input.js'></script>
-<script src='../lib/quintus_anim.js'></script>
-<script src='../lib/quintus_2d.js'></script>
-<script src='../lib/quintus_touch.js'></script>
-<script src='../lib/quintus_ui.js'></script>
+    <title>Project Two</title>
 
-<script src='platformer.js'></script>
-<style> 
-  body { padding:0px; margin:0px; } 
-</style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <script src="js/quintus-all.min.js"></script>
+    <script>
+
+var Q = new Quintus().include('Sprites, Scenes, Input, 2D, UI').setup();
+
+Q.scene("testRoom", function (stage) 
+{
+ Q.stageTMX("test.tmx", stage);
+});
+
+Q.loadTMX("test.tmx, tilesheet_land.png", function() {
+  Q.stageScene("testRoom");
+});
+    </script>
 </body>
+</html>
+
+ -->
+
+ <html>
+  <head>
+    <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
+	<style>
+		canvas { background-color: #5e81a2; }
+	</style>
+  </head>
+   <body>
+     <script>
+		// This game uses spritesheet.png from:
+	 	// http://opengameart.org/content/platform-tileset-nature
+		var Q = Quintus()
+			.include("Sprites, Scenes, Anim, Input, 2D, Touch, UI, TMX")
+			.setup({maximize: true})
+			.controls()
+			.touch();
+
+
+		// Load TMX File as a scene
+		Q.scene("level1", function(stage)
+		{
+			Q.stageTMX("testLevel.tmx", stage);
+
+		});
+
+
+		// Load assets and launch the first scene to start the game
+		//
+		Q.loadTMX("testLevel.tmx" , function()
+		{
+			Q.stageScene("level1");
+		});
+   </script>
+   </body>
 </html>
