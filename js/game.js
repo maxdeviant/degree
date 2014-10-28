@@ -1,8 +1,6 @@
 'use strict';
 
-var Q = Quintus()
-    .include('Sprites, Scenes, Input, 2D')
-    .setup();
+var Q = new Quintus().include('Sprites, Scenes, Input, 2D').setup();
 
 Q.scene('menu', function (stage) {
 

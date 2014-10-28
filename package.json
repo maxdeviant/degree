@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/WCU-CSC496-F14/Proj2TeamD",
   "devDependencies": {
-    "gulp": "^3.8.9"
+    "gulp": "^3.8.9",
+    "gulp-beautify": "^1.1.0",
+    "gulp-jshint": "^1.8.6"
   }
 }
