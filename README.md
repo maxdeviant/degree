@@ -1,6 +1,8 @@
 Proj2TeamD
 ==========
 
+[GitHub Pages](http://wcu-csc496-f14.github.io/Proj2TeamD/)
+
 Date Out: Thursday, October 23
 
 Intermediate Presentation: Tuesday, November 4
