@@ -78,7 +78,7 @@ $(function () {
                     p.y = 0;
                     p.dy = 1;
                 } else if (p.y > Q.height) {
-                    Q.stageScene('game');
+                    Q.stageScene('lose');
                 }
             });
         },
@@ -184,7 +184,34 @@ $(function () {
                 container.fit(20);
             }));
 
-            Q.stageScene('win');
+            Q.scene('lose', new Q.Scene(function (stage) {
+                var container = stage.insert(new Q.UI.Container({
+                    x: Q.width / 2,
+                    y: Q.height / 2.5,
+                    fill: '#333'
+                }));
+
+                container.insert(new Q.UI.Text({
+                    label: 'You Lose!',
+                    color: '#fff',
+                    x: 0,
+                    y: 0
+                }));
+
+                container.insert(new Q.UI.Button({
+                    label: 'Play Again',
+                    fill: '#fff',
+                    x: 0,
+                    y: 50,
+                    w: 150
+                }, function () {
+                    Q.stageScene('game');
+                }));
+
+                container.fit(20);
+            }));
+
+            Q.stageScene('game');
         });
     });
 });
