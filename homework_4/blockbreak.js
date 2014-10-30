@@ -1,7 +1,7 @@
 'use strict';
 
 $(function () {
-    var Q = window.Q = new Quintus().include('Input, Sprites, Scenes').setup();
+    var Q = window.Q = new Quintus().include('Input, Sprites, Scenes, UI, Touch').setup().touch();
 
     Q.input.keyboardControls();
     Q.input.touchControls({
@@ -98,7 +98,7 @@ $(function () {
             this._super(_(props).extend({
                 sheet: 'block'
             }));
-            
+
             this.on('collision', function (ball) {
                 this.destroy();
                 ball.p.dy *= -1;
@@ -144,7 +144,6 @@ $(function () {
                             x: x * 50 + 35,
                             y: y * 30 + 15
                         }));
-
                         blockCount++;
                     }
                 }
@@ -153,12 +152,39 @@ $(function () {
                     blockCount--;
 
                     if (blockCount === 0) {
-                        Q.stageScene('game');
+                        Q.stageScene('win');
                     }
                 });
             }));
 
-            Q.stageScene('game');
+            Q.scene('win', new Q.Scene(function (stage) {
+                var container = stage.insert(new Q.UI.Container({
+                    x: Q.width / 2,
+                    y: Q.height / 2.5,
+                    fill: '#333'
+                }));
+
+                container.insert(new Q.UI.Text({
+                    label: 'You Win!',
+                    color: '#fff',
+                    x: 0,
+                    y: 0
+                }));
+
+                container.insert(new Q.UI.Button({
+                    label: 'Play Again',
+                    fill: '#fff',
+                    x: 0,
+                    y: 50,
+                    w: 150
+                }, function () {
+                    Q.stageScene('game');
+                }));
+
+                container.fit(20);
+            }));
+
+            Q.stageScene('win');
         });
     });
 });
