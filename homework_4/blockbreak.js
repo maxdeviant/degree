@@ -157,6 +157,41 @@ $(function () {
                 });
             }));
 
+            Q.scene('title', new Q.Scene(function (stage) {
+                var container = stage.insert(new Q.UI.Container({
+                    x: Q.width / 2,
+                    y: Q.height / 2.5,
+                    fill: '#333'
+                }));
+
+                container.insert(new Q.UI.Text({
+                    label: 'Block Break',
+                    color: '#fff',
+                    x: 0,
+                    y: 0
+                }));
+
+                container.insert(new Q.UI.Button({
+                    label: 'Play',
+                    fill: '#fff',
+                    x: 0,
+                    y: 50,
+                    w: 150
+                }, function () {
+                    Q.stageScene('game');
+                }));
+
+                container.insert(new Q.UI.Text({
+                    label: 'Use arrow keys to move paddle',
+                    color: '#fff',
+                    x: 0,
+                    y: 100,
+                    size: 15
+                }));
+
+                container.fit(20);
+            }));
+
             Q.scene('win', new Q.Scene(function (stage) {
                 var container = stage.insert(new Q.UI.Container({
                     x: Q.width / 2,
@@ -211,7 +246,7 @@ $(function () {
                 container.fit(20);
             }));
 
-            Q.stageScene('game');
+            Q.stageScene('title');
         });
     });
 });
