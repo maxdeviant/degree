@@ -16,7 +16,23 @@ var Level = function () {
             }
         }
 
-        return map;
+        var isValid = this.validate(map, {
+            x: 0,
+            y: 0
+        }, {
+            x: 10,
+            y: 10
+        });
+
+        if (isValid) {
+            return map;
+        }
+
+        return this.generate(width, height);
+    };
+
+    this.validate = function (map, start, end) {
+        return Math.random() < 0.5;
     };
 };
 
