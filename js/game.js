@@ -12,7 +12,11 @@ var Level = function () {
             map[row] = [];
 
             for (var col = 0; col < width; col++) {
-                map[row][col] = Math.random() < 0.5 ? 1 : 0;
+                if (row < (height - 1)) {
+                    map[row][col] = Math.random() < 0.2 ? 1 : 0;
+                } else {
+                    map[row][col] = 1;
+                }
             }
         }
 
