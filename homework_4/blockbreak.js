@@ -14,6 +14,27 @@ $(function () {
         ]
     });
 
+    var score = 0;
+
+    Q.UI.Text.extend('Score', {
+        init: function (p) {
+            this._super({
+                label: 'Score: 0',
+                align: 'left',
+                x: 50,
+                y: Q.height - 10,
+                weight: 'normal',
+                color: 'white',
+                size: 15
+            });
+
+            Q.state.on('change.score', this, 'score');
+        },
+        score: function (score) {
+            this.p.label = 'Score: ' + score;
+        }
+    });
+
     Q.Sprite.extend('Paddle', {
         init: function (p) {
             this._super(p, {
@@ -86,6 +107,8 @@ $(function () {
             if (col.obj.isA('Paddle')) {
                 this.p.dy = -1;
             } else if (col.obj.isA('Block')) {
+                Q.state.set('score', score += col.obj.points);
+
                 col.obj.destroy();
                 this.p.dy *= -1;
                 Q.stage().trigger('removeBlock');
@@ -98,6 +121,8 @@ $(function () {
             this._super(_(props).extend({
                 sheet: 'block'
             }));
+
+            this.points = 1;
 
             this.on('collision', function (ball) {
                 this.destroy();
@@ -133,6 +158,10 @@ $(function () {
             });
 
             Q.scene('game', new Q.Scene(function (stage) {
+                score = 0;
+
+                Q.stageScene('hud', 1);
+
                 stage.insert(new Q.Paddle());
                 stage.insert(new Q.Ball());
 
@@ -156,6 +185,12 @@ $(function () {
                     }
                 });
             }));
+
+            Q.scene('hud', function (stage) {
+                stage.insert(new Q.Score());
+            }, {
+                stage: 1
+            });
 
             Q.scene('title', new Q.Scene(function (stage) {
                 var container = stage.insert(new Q.UI.Container({
