@@ -17,10 +17,75 @@
  		
  		.controls().touch()
 
+// Q.Sprite.extend("Player",
+// 		{
+// 			init: function(p)
+// 			{
+// 				p.sheet  = "game_tiles";
+// 				p.sprite = "game_tiles";
+// 				this._super(p);
+// 				this.add("2d, animation");
+// 				this.add("platformerControls");
+// 				// Trigger input once (vs held down)
+// 				Q.input.on("fire", this, "flip_gravity");
+// 				Q.input.on("up",   this, "jump");
+// 			},
+// 			// Movement animations
+// 			step: function(delta)
+// 			{
+// 				if(this.p.vx > 0)
+// 				{
+// 					if(this.p.landed > 0) { this.play("walk_right"); }
+// 					else                  { this.play("jump_right"); }
+// 				}
+// 				else if(this.p.vx < 0)
+// 				{
+// 					if(this.p.landed > 0) { this.play("walk_left"); }
+// 					else                  { this.play("jump_left"); }
+// 				}
+// 				else
+// 				{
+// 					this.play("stand_front");
+// 				}
+// 			},
+// 			// This could be on a switch too
+// 			flip_gravity: function()
+// 			{
+// 				Q.gravityY *= -1.0;
+// 				if(Q.gravityY < 0) { this.p.sprite = "game_tiles_upsidedown"; }
+// 				else               { this.p.sprite = "game_tiles";            }
+// 			},
+// 			jump: function()
+// 			{
+// 				Q.audio.play('jump.wav');
+// 			}
+// 		});
+
+ Q.Sprite.extend("Player",
+ {
+ 	init: function(properties)
+ 	{
+ 		properties.sheet  = "Tiles";
+ 		properties.frame = 51;
+				// this._super(properties);
+
+				this._super(properties, {
+					jumpSpeed: -400,
+					speed: 300
+				});
+				this.add("2d");
+				this.add("platformerControls");
+
+				// Q.heightY = 500;				
+			},
+
+		});
 // ## Create test scene
 
 Q.scene("levelTest",function(stage) {
 	Q.stageTMX("testLevel.tmx",stage);
+	stage.add("viewport").follow(Q("Player").first());
+
 });
 
 
@@ -32,6 +97,6 @@ Q.loadTMX("testLevel.tmx", function() {
 
 });
 
- 	</script>
- </body>
- </html>
+ </script>
+</body>
+</html>
