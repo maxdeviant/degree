@@ -1,7 +1,9 @@
 'use strict';
 
 $(function () {
-    var Q = window.Q = new Quintus().include('Input, Sprites, Scenes, UI, Touch').setup().touch();
+    var Q = window.Q = new Quintus({
+        audioSupported: ['ogg']
+    }).include('Input, Sprites, Scenes, UI, Touch, Audio').setup().touch().enableSound();;
 
     Q.input.keyboardControls();
     Q.input.touchControls({
@@ -108,20 +110,28 @@ $(function () {
                 p.y += p.dy * p.speed * dt;
 
                 if (p.x < 0) {
+                    Q.audio.play('hit-wall.ogg');
+
                     p.x = 0;
                     p.dx = 1;
                 } else if (p.x > Q.width) {
+                    Q.audio.play('hit-wall.ogg');
+
                     p.dx = -1;
                     p.x = Q.width;
                 }
 
                 if (p.y < 0) {
+                    Q.audio.play('hit-wall.ogg');
+
                     p.y = 0;
                     p.dy = 1;
                 } else if (p.y > Q.height) {
                     Q.state.set('lives', --lives);
 
                     if (lives > 0) {
+                        Q.audio.play('lose-life.ogg');
+
                         this.p.y = Q.height / 2 - this.p.h;
                         this.p.x = Q.width / 2 + this.p.w / 2;
                         this.p.dx = Math.random() < 0.5 ? 1 : -1;
@@ -134,8 +144,12 @@ $(function () {
         },
         collision: function (col) {
             if (col.obj.isA('Paddle')) {
+                Q.audio.play('hit-paddle.ogg');
+
                 this.p.dy = -1;
             } else if (col.obj.isA('Block')) {
+                Q.audio.play('hit-block.ogg');
+
                 Q.state.set('score', score += col.obj.points);
 
                 col.obj.destroy();
@@ -161,7 +175,7 @@ $(function () {
         }
     });
 
-    Q.load(['blockbreak.png', 'blockbreak.json'], function () {
+    Q.load(['blockbreak.png', 'blockbreak.json', 'hit-block.ogg', 'hit-wall.ogg', 'hit-paddle.ogg', 'lose-life.ogg', 'lose.ogg', 'win.ogg'], function () {
         Q.load(['blockbreak.png'], function () {
             Q.compileSheets('blockbreak.png', 'blockbreak.json');
 
@@ -259,6 +273,8 @@ $(function () {
             }));
 
             Q.scene('win', new Q.Scene(function (stage) {
+                Q.audio.play('win.ogg');
+
                 var container = stage.insert(new Q.UI.Container({
                     x: Q.width / 2,
                     y: Q.height / 2.5,
@@ -286,6 +302,8 @@ $(function () {
             }));
 
             Q.scene('lose', new Q.Scene(function (stage) {
+                Q.audio.play('lose.ogg');
+
                 var container = stage.insert(new Q.UI.Container({
                     x: Q.width / 2,
                     y: Q.height / 2.5,
