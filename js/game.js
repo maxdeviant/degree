@@ -5,7 +5,7 @@ var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI').setup({
 }).touch();
 
 var Level = function () {
-    this.generate = function (width, height) {
+    this.generate = function (width, height, start) {
         var TILES = Object.freeze({
             AIR: 0,
             BLOCK: 1
@@ -13,22 +13,30 @@ var Level = function () {
 
         var map = [];
 
+        var start = start || {
+            x: 0,
+            y: height - 2
+        };
+
         for (var row = 0; row < height; row++) {
             map[row] = [];
 
             for (var col = 0; col < width; col++) {
+                if (col === start.x && row === start.y) {
+                    map[row][col] = TILES.AIR;
+                    continue;
+                }
+
                 if (row < (height - 1)) {
                     map[row][col] = Math.random() < 0.2 ? TILES.BLOCK : TILES.AIR;
-                } else {
-                    map[row][col] = TILES.BLOCK;
+                    continue;
                 }
+
+                map[row][col] = TILES.BLOCK;
             }
         }
 
-        var isValid = this.validate(map, {
-            x: 0,
-            y: 0
-        }, {
+        var isValid = this.validate(map, start, {
             x: 10,
             y: 10
         });
