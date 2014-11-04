@@ -14,6 +14,7 @@ $(function () {
         ]
     });
 
+    var lives = 3;
     var score = 0;
 
     Q.UI.Text.extend('Score', {
@@ -32,6 +33,25 @@ $(function () {
         },
         score: function (score) {
             this.p.label = 'Score: ' + score;
+        }
+    });
+
+    Q.UI.Text.extend('Lives', {
+        init: function (p) {
+            this._super({
+                label: 'Lives: 3',
+                align: 'right',
+                x: Q.width - 40,
+                y: Q.height - 10,
+                weight: 'normal',
+                color: 'white',
+                size: 15
+            });
+
+            Q.state.on('change.lives', this, 'lives');
+        },
+        lives: function (lives) {
+            this.p.label = 'Lives: ' + lives;
         }
     });
 
@@ -70,7 +90,7 @@ $(function () {
             this._super({
                 sheet: 'ball',
                 speed: 200,
-                dx: 1,
+                dx: Math.random() < 0.5 ? 1 : -1,
                 dy: -1,
             });
 
@@ -99,7 +119,16 @@ $(function () {
                     p.y = 0;
                     p.dy = 1;
                 } else if (p.y > Q.height) {
-                    Q.stageScene('lose');
+                    Q.state.set('lives', --lives);
+
+                    if (lives > 0) {
+                        this.p.y = Q.height / 2 - this.p.h;
+                        this.p.x = Q.width / 2 + this.p.w / 2;
+                        this.p.dx = Math.random() < 0.5 ? 1 : -1;
+                        this.p.dy = -1;
+                    } else {
+                        Q.stageScene('lose');
+                    }
                 }
             });
         },
@@ -158,6 +187,7 @@ $(function () {
             });
 
             Q.scene('game', new Q.Scene(function (stage) {
+                lives = 3;
                 score = 0;
 
                 Q.stageScene('hud', 1);
@@ -188,6 +218,7 @@ $(function () {
 
             Q.scene('hud', function (stage) {
                 stage.insert(new Q.Score());
+                stage.insert(new Q.Lives());
             }, {
                 stage: 1
             });
