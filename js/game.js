@@ -56,12 +56,14 @@ Q.Sprite.extend('Player', {
     init: function (p) {
         this._super(p, {
             sheet: 'player',
-            x: 0,
-            y: 0,
+            x: 15,
+            y: Q.height - 128,
             jumpSpeed: -400
         });
 
         this.add('2d, platformerControls');
+    },
+    step: function () {
     }
 });
 
