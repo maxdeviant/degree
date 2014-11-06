@@ -1,8 +1,8 @@
 'use strict';
 
-var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI').setup({
+var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI, Anim').setup({
     maximize: true
-}).touch();
+}).controls().touch();
 
 var Level = function () {
     this.generate = function (width, height, start, end) {
@@ -52,6 +52,19 @@ var Level = function () {
     };
 };
 
+Q.Sprite.extend('Player', {
+    init: function (p) {
+        this._super(p, {
+            sheet: 'player',
+            x: 0,
+            y: 0,
+            jumpSpeed: -400
+        });
+
+        this.add('2d, platformerControls');
+    }
+});
+
 Q.scene('menu', function (stage) {
     var container = stage.insert(new Q.UI.Container({
         x: Q.width / 2,
@@ -83,22 +96,35 @@ Q.scene('game', function (stage) {
     var map = l.generate(30, 20);
 
     Q.scene('testLevel', function (stage) {
+        stage.insert(new Q.Repeater({
+            asset: 'background-wall.png',
+            speedX: 0.5,
+            speedY: 0.5
+        }));
+
         stage.collisionLayer(new Q.TileLayer({
             tiles: map,
             sheet: 'tiles'
         }));
+
+        var player = stage.insert(new Q.Player());
+
+        stage.add('viewport').follow(player);
     });
+
 
     Q.stageScene('testLevel');
 });
 
 Q.clearColor = '#000';
 
-Q.load('tiles.png', function () {
+Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'background-wall.png'], function () {
     Q.sheet('tiles', 'tiles.png', {
         tilew: 32,
         tileh: 32
     });
 
-    Q.stageScene('game', 0);
+    Q.compileSheets('sprites.png', 'sprites.json');
+
+    Q.stageScene('game');
 });
