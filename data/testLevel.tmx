@@ -631,8 +631,5 @@
  </layer>
  <objectgroup name="Object Layer 1">
   <object gid="124" x="516" y="95"/>
-  <object x="1377" y="128.333">
-   <polygon points="0,0 -0.666667,64 127.667,63.6667"/>
-  </object>
  </objectgroup>
 </map>

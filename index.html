@@ -17,69 +17,60 @@
  		
  		.controls().touch()
 
-// Q.Sprite.extend("Player",
-// 		{
-// 			init: function(p)
-// 			{
-// 				p.sheet  = "game_tiles";
-// 				p.sprite = "game_tiles";
-// 				this._super(p);
-// 				this.add("2d, animation");
-// 				this.add("platformerControls");
-// 				// Trigger input once (vs held down)
-// 				Q.input.on("fire", this, "flip_gravity");
-// 				Q.input.on("up",   this, "jump");
-// 			},
-// 			// Movement animations
-// 			step: function(delta)
-// 			{
-// 				if(this.p.vx > 0)
-// 				{
-// 					if(this.p.landed > 0) { this.play("walk_right"); }
-// 					else                  { this.play("jump_right"); }
-// 				}
-// 				else if(this.p.vx < 0)
-// 				{
-// 					if(this.p.landed > 0) { this.play("walk_left"); }
-// 					else                  { this.play("jump_left"); }
-// 				}
-// 				else
-// 				{
-// 					this.play("stand_front");
-// 				}
-// 			},
-// 			// This could be on a switch too
-// 			flip_gravity: function()
-// 			{
-// 				Q.gravityY *= -1.0;
-// 				if(Q.gravityY < 0) { this.p.sprite = "game_tiles_upsidedown"; }
-// 				else               { this.p.sprite = "game_tiles";            }
-// 			},
-// 			jump: function()
-// 			{
-// 				Q.audio.play('jump.wav');
-// 			}
-// 		});
+ 		Q.Sprite.extend("Player",
+ 		{
+ 			init: function(properties)
+ 			{
+ 				this._super(properties, [
+ 					sheet: "sprites_wallace_",
+ 					jumpSpeed: -400,
+ 					speed: 300,
+ 					type: Q.SPRITE_PLAYER,
+ 					]);
+ 				this.add('2d, platformerControls, animation, tween');
 
- Q.Sprite.extend("Player",
- {
- 	init: function(properties)
- 	{
- 		properties.sheet  = "Tiles";
- 		properties.frame = 51;
-				// this._super(properties);
+ 				this.on("jump");
+ 				this.on('jumped');
 
-				this._super(properties, {
-					jumpSpeed: -400,
-					speed: 300
-				});
-				this.add("2d");
-				this.add("platformerControls");
+ 				jump: function(obj) {
+ 					if (!obj.properties.playedJump) {
+ 						obj.properties.playedJump = true;
+ 					}
+ 				},
 
-				// Q.heightY = 500;				
-			},
+ 				jumped: function(obj) {
+ 					obj.properties.playedJump = false;
+ 				},
 
-		});
+ 				continueOverSensor: function(){
+ 					this.properties.vy = 0;
+ 					if (this.properties.vx != 0) {
+ 						this.play("walk_" + this.properties.direction);
+ 					}
+ 				},
+
+ 				if(!processed){
+ 					this.properties.gravity = 1;
+ 					if(this.properties.vx > 0) {
+ 						if(this.properties.landed > 0){
+ 							this.play("walk_right");
+ 						} else {
+ 							this.play("jump_right");
+ 						}
+ 						this.properties.direction = "right";
+ 					} else if(this.properties.vx < 0) {
+ 						if(this.properties.landed > 0) {
+ 							this.play("walk_left");
+ 						} else {
+ 							this.play("jump_left");
+ 						}
+ 						this.properties.direction = "left";
+ 					} else {
+ 						this.play("stand_" + this.properties.direction);
+ 					}
+ 				}
+
+ 			});
 // ## Create test scene
 
 Q.scene("levelTest",function(stage) {
@@ -93,6 +84,14 @@ Q.scene("levelTest",function(stage) {
 // Load test scene and assets
 Q.loadTMX("testLevel.tmx", function() {
 	Q.stageScene("levelTest");
+	Q.animations("player", {
+      walk_right: { frames: [0,1,2,3,4,5,6,7,8,9,10], rate: 1/15, flip: false, loop: true },
+      walk_left: { frames:  [0,1,2,3,4,5,6,7,8,9,10], rate: 1/15, flip:"x", loop: true },
+      jump_right: { frames: [13], rate: 1/10, flip: false },
+      jump_left: { frames:  [13], rate: 1/10, flip: "x" },
+      stand_right: { frames:[14], rate: 1/10, flip: false },
+      stand_left: { frames: [14], rate: 1/10, flip:"x" },
+    });
 });
 
 });
