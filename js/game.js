@@ -7,8 +7,7 @@ var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI, Anim').set
 var time = 0;
 
 Q.input.keyboardControls({
-    87: 'up',
-    83: 'down',
+    32: 'up',
     65: 'left',
     68: 'right'
 });
@@ -33,18 +32,22 @@ var Level = function () {
             map[row] = [];
 
             for (var col = 0; col < width; col++) {
-                if (col === start.x && row === start.y) {
-                    map[row][col] = TILES.AIR;
-                    continue;
-                }
-
-                if (row < (height - 1)) {
-                    map[row][col] = Math.random() < 0.2 ? TILES.BLOCK : TILES.AIR;
-                    continue;
-                }
-
-                map[row][col] = TILES.BLOCK;
+                map[row][col] = TILES.AIR;
             }
+        }
+
+        var currElevation = Math.floor(Math.random() * height);
+        var lastElevation = 0;
+
+        for (var col = 0; col < width; col++) {
+            lastElevation = currElevation;
+            currElevation = this.createElevation(height, lastElevation);
+
+            for (var e = 0; e < currElevation; e++) {
+                map[height - e - 1][col] = TILES.BLOCK;
+            }
+
+            map[height - 1][col] = TILES.BLOCK;
         }
 
         var isValid = this.validate(map, start, end);
@@ -59,6 +62,16 @@ var Level = function () {
     this.validate = function (map, start, end) {
         return Math.random() < 0.5;
     };
+
+    this.createElevation = function (max, last) {
+        var elevation = Math.floor(Math.random() * max);
+
+        if (Math.abs(elevation - last) > 2) {
+            return this.createElevation(max, last);
+        }
+
+        return elevation;
+    };
 };
 
 Q.Sprite.extend('Player', {
@@ -67,7 +80,7 @@ Q.Sprite.extend('Player', {
             sprite: 'player',
             sheet: 'player',
             x: 15,
-            y: Q.height - 128,
+            y: 0,
             jumpSpeed: -400
         });
 
@@ -156,7 +169,7 @@ Q.scene('hud', function (stage) {
 Q.scene('game', function (stage) {
     var l = new Level();
 
-    var map = l.generate(300, 20);
+    var map = l.generate(3000, 20);
 
     Q.scene('testLevel', function (stage) {
         stage.insert(new Q.Repeater({
@@ -170,7 +183,9 @@ Q.scene('game', function (stage) {
             sheet: 'tiles'
         }));
 
-        var player = stage.insert(new Q.Player());
+        var player = stage.insert(new Q.Player({
+            y: Q.height / 2
+        }));
 
         stage.add('viewport').follow(player);
     });
