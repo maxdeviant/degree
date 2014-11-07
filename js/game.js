@@ -4,6 +4,8 @@ var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI, Anim').set
     maximize: true
 }).setup().touch();
 
+var time = 0;
+
 Q.input.keyboardControls({
     87: 'up',
     83: 'down',
@@ -86,11 +88,34 @@ Q.Sprite.extend('Player', {
             }
         } else {
             if (Q.inputs.up) {
-                this.play('jump_' + this.p.direction);    
+                this.play('jump_' + this.p.direction);
             } else {
                 this.play('idle_' + this.p.direction);
             }
         }
+
+        time += dt;
+        Q.state.set('time', time);
+    }
+});
+
+Q.UI.Text.extend('Time', {
+    init: function (p) {
+        this._super({
+            label: 'Time: 0:00',
+            align: 'left',
+            x: Q.width - 80,
+            y: 30,
+            font: 'monospace',
+            weight: 'normal',
+            color: 'white',
+            size: 20
+        });
+
+        Q.state.on('change.time', this, 'time');
+    },
+    time: function (time) {
+        this.p.label = 'Time: ' + time.toFixed(2);
     }
 });
 
@@ -115,8 +140,17 @@ Q.scene('menu', function (stage) {
         y: 70,
         w: 100
     }, function () {
+        time = 0;
+
         Q.stageScene('game');
+        Q.stageScene('hud');
     }));
+});
+
+Q.scene('hud', function (stage) {
+    stage.insert(new Q.Time());
+}, {
+    stage: 1
 });
 
 Q.scene('game', function (stage) {
@@ -140,7 +174,6 @@ Q.scene('game', function (stage) {
 
         stage.add('viewport').follow(player);
     });
-
 
     Q.stageScene('testLevel');
 });
@@ -195,6 +228,9 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
         }
     });
 
+    // Q.stageScene('menu');
+    time = 0;
 
     Q.stageScene('game');
+    Q.stageScene('hud');
 });
