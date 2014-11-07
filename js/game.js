@@ -13,12 +13,12 @@ var Level = function () {
 
         var map = [];
 
-        var start = start || {
+        start = start || {
             x: 0,
             y: height - 2
         };
 
-        var end = end || {};
+        end = end || {};
 
         for (var row = 0; row < height; row++) {
             map[row] = [];
