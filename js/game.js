@@ -85,7 +85,11 @@ Q.Sprite.extend('Player', {
                 this.play('jump_left');
             }
         } else {
-            this.play('idle_' + this.p.direction);
+            if (Q.inputs.up) {
+                this.play('jump_' + this.p.direction);    
+            } else {
+                this.play('idle_' + this.p.direction);
+            }
         }
     }
 });
