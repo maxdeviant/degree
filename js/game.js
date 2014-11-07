@@ -2,7 +2,14 @@
 
 var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI, Anim').setup({
     maximize: true
-}).controls().touch();
+}).setup().touch();
+
+Q.input.keyboardControls({
+    87: 'up',
+    83: 'down',
+    65: 'left',
+    68: 'right'
+});
 
 var Level = function () {
     this.generate = function (width, height, start, end) {
@@ -63,8 +70,7 @@ Q.Sprite.extend('Player', {
 
         this.add('2d, platformerControls');
     },
-    step: function () {
-    }
+    step: function () {}
 });
 
 Q.scene('menu', function (stage) {
@@ -95,7 +101,7 @@ Q.scene('menu', function (stage) {
 Q.scene('game', function (stage) {
     var l = new Level();
 
-    var map = l.generate(30, 20);
+    var map = l.generate(300, 20);
 
     Q.scene('testLevel', function (stage) {
         stage.insert(new Q.Repeater({
