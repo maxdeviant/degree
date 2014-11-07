@@ -62,15 +62,32 @@ var Level = function () {
 Q.Sprite.extend('Player', {
     init: function (p) {
         this._super(p, {
+            sprite: 'player',
             sheet: 'player',
             x: 15,
             y: Q.height - 128,
             jumpSpeed: -400
         });
 
-        this.add('2d, platformerControls');
+        this.add('2d, platformerControls, animation, tween');
     },
-    step: function () {}
+    step: function (dt) {
+        if (Q.inputs.right) {
+            if (this.p.landed > 0) {
+                this.play('run_right');
+            } else {
+                this.play('jump_right');
+            }
+        } else if (Q.inputs.left) {
+            if (this.p.landed > 0) {
+                this.play('run_left');
+            } else {
+                this.play('jump_left');
+            }
+        } else {
+            this.play('idle_' + this.p.direction);
+        }
+    }
 });
 
 Q.scene('menu', function (stage) {
@@ -126,13 +143,54 @@ Q.scene('game', function (stage) {
 
 Q.clearColor = '#000';
 
-Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'background-wall.png'], function () {
+Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json', 'background-wall.png'], function () {
     Q.sheet('tiles', 'tiles.png', {
         tilew: 32,
         tileh: 32
     });
 
     Q.compileSheets('sprites.png', 'sprites.json');
+    Q.compileSheets('player.png', 'player.json');
+
+    Q.animations('player', {
+        idle_right: {
+            frames: [0],
+            rate: 1 / 15,
+            flip: false,
+            loop: true
+        },
+        idle_left: {
+            frames: [0],
+            rate: 1 / 15,
+            flip: 'x',
+            loop: true
+        },
+        run_right: {
+            frames: [1, 2, 3, 4],
+            rate: 1 / 15,
+            flip: false,
+            loop: true
+        },
+        run_left: {
+            frames: [1, 2, 3, 4],
+            rate: 1 / 15,
+            flip: 'x',
+            loop: true
+        },
+        jump_right: {
+            frames: [5],
+            rate: 1 / 15,
+            flip: false,
+            loop: true
+        },
+        jump_left: {
+            frames: [5],
+            rate: 1 / 15,
+            flip: 'x',
+            loop: true
+        }
+    });
+
 
     Q.stageScene('game');
 });
