@@ -1,6 +1,6 @@
 'use strict';
 
-var Q = new Quintus().include('Sprites, Scenes, Input, Touch, 2D, UI, Anim').setup({
+var Q = new Quintus().include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim']).setup({
     maximize: true
 }).setup().touch();
 
@@ -84,7 +84,7 @@ Q.Sprite.extend('Player', {
             jumpSpeed: -400
         });
 
-        this.add('2d, platformerControls, animation, tween');
+        this.add(['2d', 'platformerControls', 'animation', 'tween']);
     },
     step: function (dt) {
         if (Q.inputs.right) {
