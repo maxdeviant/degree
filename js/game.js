@@ -112,6 +112,33 @@ Q.Sprite.extend('Player', {
     }
 });
 
+Q.Sprite.extend('Enemy', {
+    init: function (p) {
+        this._super(p, {
+            sheet: 'enemy',
+            vx: 100
+        });
+
+        this.add(['2d', 'aiBounce']);
+
+        this.on('bump.left,bump.right,bump.bottom', function (collision) {
+            if (collision.obj.isA('Player')) {
+                Q.stageScene('endGame', 1, {
+                    label: 'You Died'
+                });
+                collision.obj.destroy();
+            }
+        });
+
+        this.on('bump.top', function (collision) {
+            if (collision.obj.isA('Player')) {
+                this.destroy();
+                collision.obj.p.vy = -300;
+            }
+        });
+    }
+});
+
 Q.UI.Text.extend('Time', {
     init: function (p) {
         this._super({
@@ -184,7 +211,11 @@ Q.scene('game', function (stage) {
         }));
 
         var player = stage.insert(new Q.Player({
-            y: Q.height / 2
+            y: 0
+        }));
+
+        stage.insert(new Q.Enemy({
+            x: Q.width - 1
         }));
 
         stage.add('viewport').follow(player);
