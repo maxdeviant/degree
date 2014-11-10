@@ -78,10 +78,14 @@ Q.Sprite.extend('Player', {
         this._super(p, {
             sprite: 'player',
             sheet: 'player',
+            standingPoints: [ [ -9, 15], [ -12, 5 ], [-10,-10], [10,-10], [12, 5 ], [ 9, 15 ]],
+
             x: 15,
-            y: Q.height + 5,
+            y: Q.height/2,
             jumpSpeed: -400
         });
+
+        this.p.points = this.p.standingPoints;
 
         this.add(['2d', 'platformerControls', 'animation', 'tween']);
     },
@@ -217,26 +221,26 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
             loop: true
         },
         run_right: {
-            frames: [1, 2, 3, 4],
-            rate: 1 / 5,
+            frames: [1, 2, 1, 4, 3,4],
+            rate: 1 / 2,
             flip: false,
             loop: true
         },
         run_left: {
             frames: [1, 2, 3, 4],
-            rate: 1 / 5,
+            rate: 1 / 2,
             flip: 'x',
             loop: true
         },
         jump_right: {
             frames: [5],
-            rate: 1 / 5,
+            rate: 1 / 2,
             flip: false,
             loop: true
         },
         jump_left: {
             frames: [5],
-            rate: 1 / 5,
+            rate: 1 / 2,
             flip: 'x',
             loop: true
         }
@@ -247,4 +251,5 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
 
     Q.stageScene('game');
     Q.stageScene('hud');
+    
 });
