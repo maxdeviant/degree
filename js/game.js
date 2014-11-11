@@ -8,6 +8,8 @@ var Q = window.Q = new Quintus({audioSupported: ['ogg']})
 
 var time = 0;
 
+var camera;
+
 Q.input.keyboardControls({
     32: 'up',
     65: 'left',
@@ -169,6 +171,8 @@ Q.UI.Text.extend('Time', {
     },
     time: function (time) {
         this.p.label = 'Time: ' + time.toFixed(2);
+
+        camera.moveTo(time * 32);
     }
 });
 
@@ -228,7 +232,7 @@ Q.scene('game', function (stage) {
             // y: l.map[[][0]].height
         }));
 
-        stage.add('viewport').follow(player);
+        camera = stage.add('viewport');
     });
 
     Q.stageScene('testLevel');
