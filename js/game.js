@@ -155,6 +155,13 @@ Q.Sprite.extend('Player', {
             Q.stageScene('lose');
         }
 
+        // If player gets ahead of scrolling camera
+        if (this.p.x > screenEdge + Q.width) {
+            // Lose the game
+            Q.clearStages();
+            Q.stageScene('lose');
+        }
+
         // If player falls of the screen vertically
         if (this.p.y > Q.height) {
             // Lose the game
