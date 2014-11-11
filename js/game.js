@@ -255,7 +255,7 @@ Q.UI.Text.extend('Time', {
         this.p.label = 'Time: ' + time.toFixed(2);
 
         // Update screen edge (for lose state)
-        screenEdge = time * 32;
+        screenEdge = time * (1 + time / 10) * 32;
 
         // Scroll the camera
         camera.moveTo(screenEdge, levelHeight * -6.4);
