@@ -16,6 +16,9 @@ var camera;
 // Edge of camera
 var screenEdge;
 
+// Difficulty level
+var difficulty;
+
 // Level generation information
 var levelWidth;
 var levelHeight;
@@ -254,8 +257,11 @@ Q.UI.Text.extend('Time', {
         // Update time display
         this.p.label = 'Time: ' + time.toFixed(2);
 
+        // Increase difficulty
+        difficulty += time / 10;
+
         // Update screen edge (for lose state)
-        screenEdge = time * (1 + time / 10) * 32;
+        screenEdge = time * difficulty * 32;
 
         // Scroll the camera
         camera.moveTo(screenEdge, levelHeight * -6.4);
@@ -290,6 +296,7 @@ Q.scene('menu', function (stage) {
         // Reset game values
         time = 0;
         screenEdge = 0;
+        difficulty = 1;
 
         // Play audio
         Q.audio.play('game.ogg', {
