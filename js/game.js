@@ -6,10 +6,10 @@ var Q = window.Q = new Quintus({audioSupported: ['ogg']})
 }).setup().touch().enableSound();
 
 
-var time = 0;
+var time;
 
 var camera;
-var screenEdge = 0;
+var screenEdge;
 
 var levelEnd;
 
@@ -182,7 +182,7 @@ Q.UI.Text.extend('Time', {
 
         screenEdge = time * 32;
 
-        camera.moveTo(screenEdge);
+        camera.moveTo(screenEdge, -128);
     }
 });
 
@@ -208,6 +208,7 @@ Q.scene('menu', function (stage) {
         w: 100
     }, function () {
         time = 0;
+        screenEdge = 0;
 
         Q.stageScene('game');
         Q.stageScene('hud');
