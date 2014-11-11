@@ -1,7 +1,8 @@
 'use strict';
 
-var Q = window.Q = new Quintus({audioSupported: ['ogg']})
-.include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim', 'Audio']).setup({
+var Q = window.Q = new Quintus({
+    audioSupported: ['ogg']
+}).include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim', 'Audio']).setup({
     maximize: true
 }).setup().touch().enableSound();
 
@@ -11,6 +12,9 @@ var time;
 var camera;
 var screenEdge;
 
+
+var levelWidth;
+var levelHeight;
 var levelEnd;
 
 Q.input.keyboardControls({
@@ -110,6 +114,10 @@ Q.Sprite.extend('Player', {
             Q.stageScene('lose');
         }
 
+        if (this.p.x + 320 >= levelEnd) {
+
+        }
+
         if (Q.inputs.right) {
             if (this.p.landed > 0) {
                 this.play('run_right');
@@ -182,7 +190,7 @@ Q.UI.Text.extend('Time', {
 
         screenEdge = time * 32;
 
-        camera.moveTo(screenEdge, -128);
+        camera.moveTo(screenEdge, levelHeight * -6.4);
     }
 });
 
@@ -224,7 +232,12 @@ Q.scene('hud', function (stage) {
 Q.scene('game', function (stage) {
     var l = new Level();
 
-    var map = l.generate(3000, 20);
+    levelWidth = 30000;
+    levelHeight = 20;
+
+    var map = l.generate(levelWidth, levelHeight);
+
+    levelEnd = levelWidth * 32;
 
     Q.scene('testLevel', function (stage) {
         stage.insert(new Q.Repeater({
@@ -337,7 +350,9 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
     // Q.stageScene('menu');
     time = 0;
 
-    Q.audio.play('game.ogg',{loop:true});
+    Q.audio.play('game.ogg', {
+        loop: true
+    });
 
     Q.stageScene('game');
     Q.stageScene('hud');
