@@ -299,6 +299,20 @@ Q.scene('menu', function (stage) {
         Q.stageScene('game');
         Q.stageScene('hud');
     }));
+
+    container.insert(new Q.UI.Text({
+        label: 'Use A and D to move, SPACEBAR to jump.',
+        color: '#fff',
+        x: 0,
+        y: 140
+    }));
+
+    container.insert(new Q.UI.Text({
+        label: 'Stay on the screen, or else you\'ll die.',
+        color: '#fff',
+        x: 0,
+        y: 180
+    }));
 });
 
 // HUD overlay
