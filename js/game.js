@@ -231,7 +231,9 @@ Q.Sprite.extend('Enemy', {
         this.on('bump.top', function (collision) {
             if (collision.obj.isA('Player')) {
                 this.destroy();
-                collision.obj.p.vy = -300;
+                collision.obj.p.vy = -400;
+
+                difficulty -= 0.5;
             }
         });
     }
@@ -258,7 +260,7 @@ Q.UI.Text.extend('Time', {
         this.p.label = 'Time: ' + time.toFixed(2);
 
         // Increase difficulty
-        difficulty += time / 10;
+        difficulty = 1 + time / 10;
 
         // Update screen edge (for lose state)
         screenEdge = time * difficulty * 32;
@@ -345,7 +347,7 @@ Q.scene('game', function (stage) {
         var l = new Level();
 
         // Set level values
-        levelWidth = 100000;
+        levelWidth = 3000;
         levelHeight = 20;
 
         // Generate a new levelmap
@@ -359,6 +361,15 @@ Q.scene('game', function (stage) {
             tiles: map,
             sheet: 'tiles'
         }));
+
+        for (var i = 10; i < levelWidth; i++) {
+            if (Math.random() < 0.2) {
+                stage.insert(new Q.Enemy({
+                    x: i * 32,
+                    y: 14
+                }));
+            }
+        }
 
         // Add the player
         var player = stage.insert(new Q.Player({
