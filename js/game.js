@@ -222,7 +222,8 @@ Q.scene('game', function (stage) {
         }));
 
         var player = stage.insert(new Q.Player({
-            y: (Q.height / 2)
+            y: 14
+            // y: l.map[[][0]].height
         }));
 
         stage.add('viewport').follow(player);
