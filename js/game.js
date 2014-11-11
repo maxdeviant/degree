@@ -356,7 +356,6 @@ Q.scene('game', function (stage) {
         var player = stage.insert(new Q.Player({
             x: 64,
             y: 14
-            // y: l.map[[][0]].height
         }));
 
         // Add the scrolling camera
