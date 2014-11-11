@@ -119,10 +119,6 @@ Q.Sprite.extend('Player', {
             Q.stageScene('lose');
         }
 
-        if (this.p.x + 320 >= levelEnd) {
-
-        }
-
         if (Q.inputs.right) {
             if (this.p.landed > 0) {
                 this.play('run_right');
@@ -248,7 +244,7 @@ Q.scene('game', function (stage) {
 
         var l = new Level();
 
-        levelWidth = 10;
+        levelWidth = 100000;
         levelHeight = 20;
 
         var map = l.generate(levelWidth, levelHeight);
