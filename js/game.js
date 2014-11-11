@@ -287,7 +287,7 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
     // Q.stageScene('menu');
     time = 0;
 
-    Q.audio.play('game.ogg');
+    Q.audio.play('game.ogg',{loop:true});
 
     Q.stageScene('game');
     Q.stageScene('hud');
