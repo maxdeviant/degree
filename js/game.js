@@ -9,6 +9,9 @@ var Q = window.Q = new Quintus({audioSupported: ['ogg']})
 var time = 0;
 
 var camera;
+var screenEdge = 0;
+
+var levelEnd;
 
 Q.input.keyboardControls({
     32: 'up',
@@ -102,6 +105,11 @@ Q.Sprite.extend('Player', {
         this.add(['2d', 'platformerControls', 'animation', 'tween']);
     },
     step: function (dt) {
+        if (this.p.x < screenEdge) {
+            Q.clearStages();
+            Q.stageScene('lose');
+        }
+
         if (Q.inputs.right) {
             if (this.p.landed > 0) {
                 this.play('run_right');
@@ -172,7 +180,9 @@ Q.UI.Text.extend('Time', {
     time: function (time) {
         this.p.label = 'Time: ' + time.toFixed(2);
 
-        camera.moveTo(time * 32);
+        screenEdge = time * 32;
+
+        camera.moveTo(screenEdge);
     }
 });
 
@@ -184,7 +194,7 @@ Q.scene('menu', function (stage) {
     }));
 
     container.insert(new Q.UI.Text({
-        label: 'Project Two',
+        label: 'SPRINTf',
         color: '#fff',
         x: 0,
         y: 0
@@ -228,6 +238,7 @@ Q.scene('game', function (stage) {
         }));
 
         var player = stage.insert(new Q.Player({
+            x: 64,
             y: 14
             // y: l.map[[][0]].height
         }));
@@ -236,6 +247,40 @@ Q.scene('game', function (stage) {
     });
 
     Q.stageScene('testLevel');
+});
+
+Q.scene('lose', function (stage) {
+    console.log('you lose');
+
+    var container = stage.insert(new Q.UI.Container({
+        x: Q.width / 2,
+        y: Q.height / 4,
+        fill: '#000'
+    }));
+
+    container.insert(new Q.UI.Text({
+        label: 'You Died!',
+        color: '#fff',
+        x: 0,
+        y: 0
+    }));
+
+    container.insert(new Q.UI.Text({
+        label: 'You lasted ' + Q.state.get('time').toFixed(2) + ' seconds.',
+        color: '#fff',
+        x: 0,
+        y: 70
+    }));
+
+    container.insert(new Q.UI.Button({
+        label: 'Menu',
+        fill: '#fff',
+        x: 0,
+        y: 140,
+        w: 100
+    }, function () {
+        Q.stageScene('menu');
+    }));
 });
 
 Q.clearColor = '#000';
