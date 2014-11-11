@@ -223,6 +223,10 @@ Q.scene('menu', function (stage) {
         time = 0;
         screenEdge = 0;
 
+        Q.audio.play('game.ogg', {
+            loop: true
+        });
+
         Q.stageScene('game');
         Q.stageScene('hud');
     }));
@@ -235,21 +239,21 @@ Q.scene('hud', function (stage) {
 });
 
 Q.scene('game', function (stage) {
-    var l = new Level();
-
-    levelWidth = 30000;
-    levelHeight = 20;
-
-    var map = l.generate(levelWidth, levelHeight);
-
-    levelEnd = levelWidth * 32;
-
-    Q.scene('testLevel', function (stage) {
+    Q.scene('level', function (stage) {
         stage.insert(new Q.Repeater({
             asset: 'background-wall.png',
             speedX: 0.5,
             speedY: 0.5
         }));
+
+        var l = new Level();
+
+        levelWidth = 10;
+        levelHeight = 20;
+
+        var map = l.generate(levelWidth, levelHeight);
+
+        levelEnd = levelWidth * 32;
 
         stage.collisionLayer(new Q.TileLayer({
             tiles: map,
@@ -265,12 +269,10 @@ Q.scene('game', function (stage) {
         camera = stage.add('viewport');
     });
 
-    Q.stageScene('testLevel');
+    Q.stageScene('level');
 });
 
 Q.scene('lose', function (stage) {
-    console.log('you lose');
-
     var container = stage.insert(new Q.UI.Container({
         x: Q.width / 2,
         y: Q.height / 4,
@@ -352,13 +354,5 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
         }
     });
 
-    // Q.stageScene('menu');
-    time = 0;
-
-    Q.audio.play('game.ogg', {
-        loop: true
-    });
-
-    Q.stageScene('game');
-    Q.stageScene('hud');
+    Q.stageScene('menu');
 });
