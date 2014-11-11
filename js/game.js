@@ -114,6 +114,11 @@ Q.Sprite.extend('Player', {
             Q.stageScene('lose');
         }
 
+        if (this.p.y > Q.height) {
+            Q.clearStages();
+            Q.stageScene('lose');
+        }
+
         if (this.p.x + 320 >= levelEnd) {
 
         }
