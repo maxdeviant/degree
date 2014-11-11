@@ -1,7 +1,9 @@
 
-var Q = new Quintus().include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim']).setup({
+var Q = window.Q = new Quintus({audioSupported: ['ogg']})
+.include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim', 'Audio']).setup({
     maximize: true
-}).setup().touch();
+}).setup().touch().enableSound();
+
 
 var time = 0;
 
@@ -199,7 +201,7 @@ Q.scene('game', function (stage) {
 
 Q.clearColor = '#000';
 
-Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json', 'background-wall.png'], function () {
+Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json', 'background-wall.png', 'game.ogg'], function () {
     Q.sheet('tiles', 'tiles.png', {
         tilew: 32,
         tileh: 32
@@ -250,7 +252,8 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
     // Q.stageScene('menu');
     time = 0;
 
+    Q.audio.play('game.ogg');
+
     Q.stageScene('game');
     Q.stageScene('hud');
-    
 });
