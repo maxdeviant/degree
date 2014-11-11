@@ -215,11 +215,12 @@ Q.Sprite.extend('Enemy', {
 
         this.add(['2d', 'aiBounce']);
 
-        this.on('bump.left,bump.right,bump.bottom', function (collision) {
+        this.on(['bump.left', 'bump.right', 'bump.bottom'], function (collision) {
             if (collision.obj.isA('Player')) {
-                Q.stageScene('endGame', 1, {
-                    label: 'You Died'
-                });
+                // Lose game
+                Q.clearStages();
+                Q.stageScene('lose');
+
                 collision.obj.destroy();
             }
         });
