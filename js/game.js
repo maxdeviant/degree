@@ -16,7 +16,8 @@ var Level = function () {
     this.generate = function (width, height, start, end) {
         var TILES = Object.freeze({
             AIR: 0,
-            BLOCK: 1
+            BLOCK: 1,
+            LAVA: 2
         });
 
         var map = [];
