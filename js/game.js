@@ -1,4 +1,3 @@
-'use strict';
 
 var Q = new Quintus().include(['Sprites', 'Scenes', 'Input', 'Touch', '2D', 'UI', 'Anim']).setup({
     maximize: true
@@ -79,10 +78,13 @@ Q.Sprite.extend('Player', {
         this._super(p, {
             sprite: 'player',
             sheet: 'player',
+            standingPoints: [ [ -9, 15], [ -12, 5 ], [-10,-10], [10,-10], [12, 5 ], [ 9, 15 ]],
             x: 15,
-            y: 0,
+            y: Q.height/2,
             jumpSpeed: -400
         });
+
+        this.p.points = this.p.standingPoints;
 
         this.add(['2d', 'platformerControls', 'animation', 'tween']);
     },
@@ -211,11 +213,7 @@ Q.scene('game', function (stage) {
         }));
 
         var player = stage.insert(new Q.Player({
-            y: 0
-        }));
-
-        stage.insert(new Q.Enemy({
-            x: Q.width - 1
+            y: (Q.height / 2)
         }));
 
         stage.add('viewport').follow(player);
@@ -238,37 +236,37 @@ Q.load(['sprites.png', 'sprites.json', 'tiles.png', 'player.png', 'player.json',
     Q.animations('player', {
         idle_right: {
             frames: [0],
-            rate: 1 / 15,
+            rate: 1 / 5,
             flip: false,
             loop: true
         },
         idle_left: {
             frames: [0],
-            rate: 1 / 15,
+            rate: 1 / 5,
             flip: 'x',
             loop: true
         },
         run_right: {
-            frames: [1, 2, 3, 4],
-            rate: 1 / 15,
+            frames: [1, 2, 1, 4, 3,4],
+            rate: 1 / 2,
             flip: false,
             loop: true
         },
         run_left: {
             frames: [1, 2, 3, 4],
-            rate: 1 / 15,
+            rate: 1 / 2,
             flip: 'x',
             loop: true
         },
         jump_right: {
             frames: [5],
-            rate: 1 / 15,
+            rate: 1 / 2,
             flip: false,
             loop: true
         },
         jump_left: {
             frames: [5],
-            rate: 1 / 15,
+            rate: 1 / 2,
             flip: 'x',
             loop: true
         }
