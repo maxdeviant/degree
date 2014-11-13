@@ -24,3 +24,18 @@ beginsWithVowel "ukelele";
 beginsWithVowel "matt";
 
 (* Problem 3.3.10 *)
+
+fun piglatinize W =
+    let
+        fun doVowel W = W ^ "yay"
+
+        fun doConsonant W = substring(W, 1, size(W) - 1) ^ substring(W, 0, 1) ^ "ay"
+    in
+        if beginsWithVowel W then doVowel(W) else doConsonant(W)
+    end;
+
+piglatinize "apple";
+piglatinize "boy";
+piglatinize "able";
+piglatinize "stripe";
+piglatinize "try";
