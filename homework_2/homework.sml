@@ -1,3 +1,8 @@
+(* Marshall Bowers *)
+(* Dr Richard Wyatt *)
+(* 18 November 2014 *)
+(* homework.sml *)
+
 (* Problem 3.3.2 *)
 
 fun flip nil = nil
