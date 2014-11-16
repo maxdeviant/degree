@@ -1,5 +1,13 @@
 (* Problem 3.3.2 *)
 
+fun flip nil = nil
+    | flip (x::y::xs) = y :: x :: flip xs
+    | flip (x::xs) = x :: flip xs;
+
+flip [1, 2, 3, 4, 5];
+flip [1, 2, 3, 4, 5, 6];
+flip [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+
 (* Problem 3.3.3 *)
 
 (* Problem 3.3.9 *)
