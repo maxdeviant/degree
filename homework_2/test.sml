@@ -26,7 +26,10 @@ beginsWithVowel "egg";
 beginsWithVowel "igloo";
 beginsWithVowel "oxen";
 beginsWithVowel "ukelele";
-beginsWithVowel "matt";
+beginsWithVowel "yosemite";
+beginsWithVowel "cat";
+beginsWithVowel "dog";
+beginsWithVowel "";
 
 (* Problem 3.3.10 *)
 
