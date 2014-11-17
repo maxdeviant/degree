@@ -19,14 +19,14 @@ flip [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
 
 fun beginsWithVowel S =
     let
-        fun isVowel "a" = true
-        | isVowel "e" = true
-        | isVowel "i" = true
-        | isVowel "o" = true
-        | isVowel "u" = true
+        fun isVowel #"a" = true
+        | isVowel #"e" = true
+        | isVowel #"i" = true
+        | isVowel #"o" = true
+        | isVowel #"u" = true
         | isVowel _ = false
     in
-        isVowel(substring(S, 0, 1))
+        isVowel(hd(explode S))
     end;
 
 beginsWithVowel "apple";
