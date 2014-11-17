@@ -40,11 +40,11 @@ beginsWithVowel "matt";
 
 fun piglatinize W =
     let
-        fun doVowel W = W ^ "yay"
+        fun doVowel L = implode(L) ^ "yay"
 
-        fun doConsonant W = substring(W, 1, size(W) - 1) ^ substring(W, 0, 1) ^ "ay"
+        fun doConsonant L = implode(tl(L) @ [hd(L)]) ^ "ay"
     in
-        if beginsWithVowel W then doVowel(W) else doConsonant(W)
+        if beginsWithVowel W then doVowel(explode(W)) else doConsonant(explode(W))
     end;
 
 piglatinize "apple";
