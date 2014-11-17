@@ -39,7 +39,8 @@ fun beginsWithVowel "" = false
 
 (* Problem 3.3.10 *)
 
-fun piglatinize W =
+fun piglatinize "" = ""
+| piglatinize W =
     let
         (* Split word into individual characters *)
         val w = explode W;
