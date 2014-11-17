@@ -10,11 +10,6 @@ fun flip nil = nil
 | flip (x::y::xs) = y :: x :: flip xs
 | flip (x::xs) = x :: flip xs;
 
-flip [1, 2, 3, 4, 5];
-flip [1, 2, 3, 4, 5, 6];
-flip [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
-flip [#"a", #"b", #"c", #"d", #"e"];
-
 (* Problem 3.3.3 *)
 
 (* Problem 3.3.9 *)
@@ -33,13 +28,6 @@ fun beginsWithVowel S =
         (* Extract the first character of the string and check if it is a vowel *)
         isVowel (hd (explode S))
     end;
-
-beginsWithVowel "apple";
-beginsWithVowel "egg";
-beginsWithVowel "igloo";
-beginsWithVowel "oxen";
-beginsWithVowel "ukelele";
-beginsWithVowel "matt";
 
 (* Problem 3.3.10 *)
 
@@ -69,9 +57,3 @@ fun piglatinize W =
     in
         if isVowel (hd w) then doVowel w else if hasVowel w then doConsonant w else implode w
     end;
-
-piglatinize "apple";
-piglatinize "boy";
-piglatinize "able";
-piglatinize "stripe";
-piglatinize "try";
