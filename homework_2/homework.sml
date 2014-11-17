@@ -12,8 +12,10 @@ fun flip nil = nil
 
 (* Problem 3.3.3 *)
 
+(* Delete the ith element of a list, if it exists *)
 fun deleteIth (L, i) =
     let
+        (* Delete the element of a list at index i *)
         fun delete (nil, i, position) = nil
         | delete (x::xs, i, position) = if i = position then xs else x :: delete (xs, i, position + 1)
     in
@@ -40,6 +42,7 @@ fun beginsWithVowel "" = false
 
 (* Problem 3.3.10 *)
 
+(* Convert string into piglatin *)
 fun piglatinize "" = ""
 | piglatinize W =
     let
