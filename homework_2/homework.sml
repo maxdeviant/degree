@@ -17,7 +17,7 @@ fun deleteIth (L, i) =
         fun delete (nil, i, position) = nil
         | delete (x::xs, i, position) = if i = position then xs else x :: delete (xs, i, position + 1)
     in
-        if i > 0 andalso i < length L then delete (L, i, 0) else L
+        if i >= 0 andalso i < length L then delete (L, i, 0) else L
     end;
 
 (* Problem 3.3.9 *)
