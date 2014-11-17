@@ -14,9 +14,9 @@ fun flip nil = nil
 
 fun deleteIth (L, i) =
     let
-        fun delete (x::xs, i, count) = if i = count then xs else delete (xs, i, count + 1)
+        fun delete (x::xs, i, position) = if i = position then xs else x :: delete (xs, i, position + 1)
     in
-        if i < length L - 1 then delete (L, i, 0) else L
+        if i < length L then delete (L, i, 0) else L
     end;
 
 (* Problem 3.3.9 *)

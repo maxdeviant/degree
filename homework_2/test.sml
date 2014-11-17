@@ -15,6 +15,8 @@ flip [#"a", #"b", #"c", #"d", #"e"];
 (* Problem 3.3.3 *)
 
 deleteIth([1, 2, 3], 0);
+deleteIth([1, 2, 3], 1);
+deleteIth([1, 2, 3], 2);
 deleteIth([1, 2, 3], 3);
 
 (* Problem 3.3.9 *)
