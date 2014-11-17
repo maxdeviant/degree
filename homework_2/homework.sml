@@ -12,6 +12,13 @@ fun flip nil = nil
 
 (* Problem 3.3.3 *)
 
+fun deleteIth (L, i) =
+    let
+        fun delete (x::xs, i, count) = if i = count then xs else delete (xs, i, count + 1)
+    in
+        if i < length L - 1 then delete (L, i, 0) else L
+    end;
+
 (* Problem 3.3.9 *)
 
 (* Check if a given string begins with a vowel *)
@@ -46,7 +53,7 @@ fun piglatinize W =
 
         (* Check if given list of characters contains a vowel *)
         fun hasVowel nil = false
-        | hasVowel (x::xs) = if isVowel x then true else hasVowel xs;
+        | hasVowel (x::xs) = if isVowel x then true else hasVowel xs
 
         (* Convert a word beginning with a vowel to piglatin *)
         fun doVowel L = implode L ^ "yay"
