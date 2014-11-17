@@ -41,11 +41,29 @@ beginsWithVowel "matt";
 
 fun piglatinize W =
     let
-        fun doVowel L = implode(L) ^ "yay"
+        (* Split word into individual characters *)
+        val w = explode W;
 
-        fun doConsonant L = implode(tl(L) @ [hd(L)]) ^ "ay"
+        (* Check if given character is a vowel (excluding semi-vowel 'y') *)
+        fun isVowel #"a" = true
+        | isVowel #"e" = true
+        | isVowel #"i" = true
+        | isVowel #"o" = true
+        | isVowel #"u" = true
+        | isVowel _ = false
+
+        (* Check if given list of characters contains a vowel *)
+        fun hasVowel nil = false
+        | hasVowel (x::xs) = if isVowel x then true else hasVowel xs;
+
+        (* Convert a word beginning with a vowel to piglatin *)
+        fun doVowel L = implode L ^ "yay"
+
+        (* Convert a word beginning with a consonant to piglatin *)
+        fun doConsonant nil = ""
+        | doConsonant (x::xs) = if isVowel (hd xs) then implode (xs @ [x]) ^ "ay" else doConsonant (xs @ [x])
     in
-        if beginsWithVowel W then doVowel(explode(W)) else doConsonant(explode(W))
+        if isVowel (hd w) then doVowel w else if hasVowel w then doConsonant w else implode w
     end;
 
 piglatinize "apple";
