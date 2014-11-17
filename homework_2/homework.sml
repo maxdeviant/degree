@@ -22,7 +22,8 @@ fun deleteIth (L, i) =
 (* Problem 3.3.9 *)
 
 (* Check if a given string begins with a vowel *)
-fun beginsWithVowel S =
+fun beginsWithVowel "" = false
+| beginsWithVowel S =
     let
         (* Check if given character is a vowel (excluding semi-vowel 'y') *)
         fun isVowel #"a" = true
