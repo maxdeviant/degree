@@ -11,6 +11,7 @@ flip [1, 2, 3, 4, 5];
 flip [1, 2, 3, 4, 5, 6];
 flip [1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
 flip [#"a", #"b", #"c", #"d", #"e"];
+flip ["ab","bc", "cd", "de", "ef"];
 
 (* Problem 3.3.3 *)
 
@@ -18,6 +19,7 @@ deleteIth([1, 2, 3], 0);
 deleteIth([1, 2, 3], 1);
 deleteIth([1, 2, 3], 2);
 deleteIth([1, 2, 3], 3);
+deleteIth([1, 2, 3], ~1);
 
 (* Problem 3.3.9 *)
 
@@ -38,3 +40,4 @@ piglatinize "boy";
 piglatinize "able";
 piglatinize "stripe";
 piglatinize "try";
+piglatinize "";
