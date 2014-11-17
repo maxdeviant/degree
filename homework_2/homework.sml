@@ -5,6 +5,7 @@
 
 (* Problem 3.3.2 *)
 
+(* Flip alternate elements of any given list *)
 fun flip nil = nil
 | flip (x::y::xs) = y :: x :: flip xs
 | flip (x::xs) = x :: flip xs;
@@ -18,8 +19,10 @@ flip [#"a", #"b", #"c", #"d", #"e"];
 
 (* Problem 3.3.9 *)
 
+(* Check if a given string begins with a vowel *)
 fun beginsWithVowel S =
     let
+        (* Check if given character is a vowel (excluding semi-vowel 'y') *)
         fun isVowel #"a" = true
         | isVowel #"e" = true
         | isVowel #"i" = true
@@ -27,7 +30,8 @@ fun beginsWithVowel S =
         | isVowel #"u" = true
         | isVowel _ = false
     in
-        isVowel(hd(explode S))
+        (* Extract the first character of the string and check if it is a vowel *)
+        isVowel (hd (explode S))
     end;
 
 beginsWithVowel "apple";
