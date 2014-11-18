@@ -1,0 +1,10 @@
+{
+  "name": "node-webkit-example",
+  "main": "index.html",
+  "window": {
+    "toolbar": false
+  },
+  "dependencies": {
+    "markdown": "^0.5.0"
+  }
+}
