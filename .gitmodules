@@ -1,3 +1,6 @@
 [submodule "project_one"]
 	path = project_one
 	url = https://github.com/WCU-CSC496-F14/Proj1TeamA.git
+[submodule "project_two"]
+	path = project_two
+	url = https://github.com/WCU-CSC496-F14/Proj2TeamD
