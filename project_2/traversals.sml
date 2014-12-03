@@ -3,9 +3,9 @@
 (* 9 December 2014 *)
 (* traversals.sml *)
 
-datatype 'a Tree = empty | bTree of 'a * 'a Tree * 'a Tree ;
+datatype 'a BinaryTree = empty | tree of 'a * 'a BinaryTree * 'a BinaryTree ;
 
-fun preOrder nil = nil;
+fun preOrder (tree(root, left, right)) = root;
 
 fun inOrder nil = nil;
 
