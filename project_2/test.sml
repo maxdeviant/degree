@@ -1,7 +1,10 @@
 (* Marshall Bowers *)
 (* Dr Richard Wyatt *)
 (* 9 December 2014 *)
-(* traversals.sml *)
+(* test.sml *)
+
+Control.Print.printDepth := 200;
+Control.Print.printLength := 200;
 
 use "traversals.sml";
 
