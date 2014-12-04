@@ -39,12 +39,12 @@ fun displayTree (t, printf) =
     let
         fun indent n = if n = 0 then "" else "  " ^ (indent (n - 1));
 
-        fun helper (tree(root, right, left), printf, n) = (
+        fun helper (tree(root, left, right), printf, n) = (
             print(indent n);
             printf root;
             print("\n");
-            if right = empty then print(indent(n + 1) ^ "-\n") else helper(right, printf, (n + 1));
-            if left = empty then print(indent(n + 1) ^ "-\n") else helper(left, printf, (n + 1))
+            if left = empty then print(indent(n + 1) ^ "-\n") else helper(left, printf, (n + 1));
+            if right = empty then print(indent(n + 1) ^ "-\n") else helper(right, printf, (n + 1))
         );
     in
         helper(t, printf, 0)
