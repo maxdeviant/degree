@@ -22,7 +22,7 @@ fun postOrder (tree(root, empty, empty)) = [root]
 
 (* Print Functions *)
 
-fun printInt n = print(Int.toString n ^ "\n");
+fun printInt n = print(Int.toString n);
 
 fun printReal n = print(Real.toString n);
 
@@ -41,13 +41,13 @@ val tab = 2;
 fun displayTree (t, printf) =
     let
         fun indent n = if n = 0 then "" else "  " ^ (indent (n - 1));
-        (*fun spaces n = if n = 0 then "" else " " ^ (spaces (n - 1));*)
 
         fun helper (tree(root, right, left), printf, n) = (
             print(indent n);
             printf root;
-            if right = empty then print "" else helper(right, printf, (n + 1));
-            if left = empty then print "" else helper(left, printf, (n + 1))
+            print("\n");
+            if right = empty then print(indent(n + 1) ^ "-\n") else helper(right, printf, (n + 1));
+            if left = empty then print(indent(n + 1) ^ "-\n") else helper(left, printf, (n + 1))
         );
     in
         helper(t, printf, 0)

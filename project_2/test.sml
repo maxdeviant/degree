@@ -36,10 +36,12 @@ val t4 =  tree("A",
 preOrder t1;
 inOrder t1;
 postOrder t1;
+displayTree(t1, printInt);
 
 preOrder t2;
 inOrder t2;
 postOrder t2;
+displayTree(t2, printX);
 
 preOrder t3;
 inOrder t3;
@@ -48,4 +50,4 @@ postOrder t3;
 preOrder t4;
 inOrder t4;
 postOrder t4;
-displayTree(t1, printInt);
+displayTree(t4, print);
