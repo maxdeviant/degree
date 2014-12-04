@@ -5,9 +5,10 @@
 
 datatype 'a BinaryTree = empty | tree of 'a * 'a BinaryTree * 'a BinaryTree ;
 
-fun preOrder (tree(root, empty, right)) = root :: []
-| preOrder (tree(root, left, empty)) = root :: []
-| preOrder (tree(root, left, right)) = root :: [];
+fun preOrder (tree(root, empty, empty)) = [root]
+| preOrder (tree(root, empty, right)) = root :: preOrder right
+| preOrder (tree(root, left, empty)) = root :: preOrder left
+| preOrder (tree(root, left, right)) = [root] @ preOrder left @ preOrder right;
 
 fun inOrder nil = nil;
 
