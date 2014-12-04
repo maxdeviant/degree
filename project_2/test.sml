@@ -19,7 +19,11 @@ val t2 =  tree(A,
             tree(B, tree(D, empty, empty), tree(E, empty, empty)),
             tree(C, tree(F, empty, empty), tree(G, empty, empty)));
 
-val t3 =  tree(1.22, tree(2.33, empty, empty), tree(3.44, empty, empty));
+val t3 =  tree(1.22,
+            tree(2.33, empty, empty), tree(3.44, empty, empty));
+
+val tt =  tree(1,
+            tree(2, empty, empty), tree(3, empty, empty));
 
 val t4 =  tree("A",
             tree("B",
@@ -46,6 +50,7 @@ displayTree(t2, printX);
 preOrder t3;
 inOrder t3;
 postOrder t3;
+displayTree(t3, printReal);
 
 preOrder t4;
 inOrder t4;
