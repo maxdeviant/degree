@@ -5,6 +5,7 @@
 
 Control.Print.printDepth := 200;
 Control.Print.printLength := 200;
+Control.MC.matchNonExhaustiveWarn := false;
 
 datatype X = A | B | C | D | E | F | G | H;
 
