@@ -45,12 +45,18 @@ fun displayTree (t, printf) =
             print("\n")
         )     
         | helper (tree(root, empty, right), printf, n) = (
-            print(indent n ^ "-\n");
+            print(indent n);
+            printf root;
+            print("\n");
+            print(indent(n + 1) ^ "-\n");
             helper(right, printf, (n + 1))
         )
         | helper (tree(root, left, empty), printf, n) = (
-            print(indent n ^ "-\n");
-            helper(left, printf, (n + 1))
+            print(indent n);
+            printf root;
+            print("\n");
+            helper(left, printf, (n + 1));
+            print(indent(n + 1) ^ "-\n")
         )
         | helper (tree(root, left, right), printf, n) = (
             print(indent n);
