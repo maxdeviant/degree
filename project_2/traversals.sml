@@ -20,4 +20,19 @@ fun postOrder (tree(root, empty, empty)) = [root]
 | postOrder (tree(root, left, empty)) = postOrder left @ [root]
 | postOrder (tree(root, left, right)) = postOrder left @ postOrder right @ [root];
 
+(* Print Functions *)
+
+fun printInt n = print(Int.toString n);
+
+fun printReal n = print(Real.toString n);
+
+fun printX A = print "A"
+| printX B = print "B"
+| printX C = print "C"
+| printX D = print "D"
+| printX E = print "E"
+| printX F = print "F"
+| printX G = print "G"
+| printX H = print "H";
+
 fun displayTree nil = nil;

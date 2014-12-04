@@ -6,9 +6,9 @@
 Control.Print.printDepth := 200;
 Control.Print.printLength := 200;
 
-use "traversals.sml";
-
 datatype X = A | B | C | D | E | F | G | H;
+
+use "traversals.sml";
 
 val t1 =  tree(1,
             tree(2, tree(3, empty, empty), tree(4, empty, empty)),
