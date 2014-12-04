@@ -67,7 +67,6 @@ fun displayTree (t, printf) =
             displayEmptyNode n
         ) (* If neither tree is empty *)
         | helper (tree(root, left, right), printf, n) = (
-            (* Display the root node *)
             displayNode (root, n);
             helper(left, printf, (n + 1));
             helper(right, printf, (n + 1))
