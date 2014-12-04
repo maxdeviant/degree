@@ -35,9 +35,6 @@ fun printX A = print "A"
 | printX G = print "G"
 | printX H = print "H";
 
-val indentLevel = 0;
-val tab = 2;
-
 fun displayTree (t, printf) =
     let
         fun indent n = if n = 0 then "" else "  " ^ (indent (n - 1));
