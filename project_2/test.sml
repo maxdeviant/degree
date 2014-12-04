@@ -10,3 +10,5 @@ val t1 =  tree(1,
             tree(5, tree(6, empty, empty), tree(7, empty, empty)));
 
 preOrder t1;
+inOrder t1;
+postOrder t1;

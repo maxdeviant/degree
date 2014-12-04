@@ -10,8 +10,14 @@ fun preOrder (tree(root, empty, empty)) = [root]
 | preOrder (tree(root, left, empty)) = root :: preOrder left
 | preOrder (tree(root, left, right)) = [root] @ preOrder left @ preOrder right;
 
-fun inOrder nil = nil;
+fun inOrder (tree(root, empty, empty)) = [root]
+| inOrder (tree(root, empty, right)) = root :: inOrder right
+| inOrder (tree(root, left, empty)) = inOrder left @ [root]
+| inOrder (tree(root, left, right)) = inOrder left @ [root] @ inOrder right;
 
-fun postOrder nil = nil;
+fun postOrder (tree(root, empty, empty)) = [root]
+| postOrder (tree(root, empty, right)) = postOrder right @ [root]
+| postOrder (tree(root, left, empty)) = postOrder left @ [root]
+| postOrder (tree(root, left, right)) = postOrder left @ postOrder right @ [root];
 
 fun displayTree nil = nil;
