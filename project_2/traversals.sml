@@ -35,4 +35,21 @@ fun printX A = print "A"
 | printX G = print "G"
 | printX H = print "H";
 
-fun displayTree nil = nil;
+val indentLevel = 0;
+val tab = 2;
+
+fun displayTree (t, printf) =
+    let
+        fun spaces n = if n = 0 then "" else " " ^ (spaces (n - 1));
+
+        fun helper (tree(root, empty, left), printf, n) = (print((spaces n) ^ "-\n"))
+        | helper (tree(root, right, empty), printf, n) = print((spaces n) ^ "-\n")
+        | helper (tree(root, right, left), printf, n) = (
+            helper(right, printf, (n + 2));
+            print(spaces n);
+            printf root;
+            helper(left, printf, (n + 2))
+        );
+    in
+        helper(t, printf, 0)
+    end;

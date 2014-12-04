@@ -48,3 +48,4 @@ postOrder t3;
 preOrder t4;
 inOrder t4;
 postOrder t4;
+displayTree(t1, printInt);
