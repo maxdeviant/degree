@@ -43,11 +43,11 @@ public class RSA {
 
         BigInteger encrypted = plaintext.modPow(e, n);
 
-        return encrypted.toString();
+        return encrypted.toString(16);
     }
 
     public String decrypt(String encryptedText, String publicKey) {
-        BigInteger encrypted = new BigInteger(encryptedText);
+        BigInteger encrypted = new BigInteger(encryptedText, 16);
 
         BigInteger decrypted = encrypted.modPow(d, n);
 
