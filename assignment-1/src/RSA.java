@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 /**
@@ -17,22 +18,12 @@ public class RSA {
     private BigInteger d;
 
     public RSA() {
-        p = BigInteger.probablePrime(256, new Random());
-        q = BigInteger.probablePrime(256, new Random());
-
-//        p = new BigInteger("61");
-//        q = new BigInteger("53");
-
-//        System.out.println(p);
-//        System.out.println(q);
+        p = BigInteger.probablePrime(1024, new Random());
+        q = BigInteger.probablePrime(1024, new Random());
 
         n = p.multiply(q);
 
-//        System.out.println(n);
-
         phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-
-        System.out.println(phi);
 
         e = BigInteger.ONE;
 
@@ -44,11 +35,23 @@ public class RSA {
             }
         }
 
-        System.out.println(e);
-
         d = e.modInverse(phi);
+    }
 
-        System.out.println(d);
+    public String encrypt(String message) {
+        BigInteger plaintext = new BigInteger(message.getBytes(StandardCharsets.UTF_8));
+
+        BigInteger encrypted = plaintext.modPow(e, n);
+
+        return encrypted.toString();
+    }
+
+    public String decrypt(String encryptedText, String publicKey) {
+        BigInteger encrypted = new BigInteger(encryptedText);
+
+        BigInteger decrypted = encrypted.modPow(d, n);
+
+        return new String(decrypted.toByteArray());
     }
 
 }
