@@ -15,9 +15,9 @@ public class RSA {
 
     private BigInteger signature;
 
-    public RSA() {
-        BigInteger p = BigInteger.probablePrime(1024, new Random());
-        BigInteger q = BigInteger.probablePrime(1024, new Random());
+    public RSA(int bitLength) {
+        BigInteger p = BigInteger.probablePrime(bitLength, new Random());
+        BigInteger q = BigInteger.probablePrime(bitLength, new Random());
 
         BigInteger n = p.multiply(q);
 

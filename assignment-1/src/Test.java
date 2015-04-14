@@ -7,7 +7,7 @@
 public class Test {
 
     public static void main(String[] argv) {
-        RSA rsa = new RSA();
+        RSA rsa = new RSA(1024);
 
         String message = "Hello, World!";
 
