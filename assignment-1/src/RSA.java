@@ -35,6 +35,14 @@ public class RSA {
         privateKey = new PrivateKey(d, n);
     }
 
+    public String getPublicKey() {
+        return publicKey.toString();
+    }
+
+    public String getPrivateKey() {
+        return privateKey.toString();
+    }
+
     public String encrypt(String message) {
         BigInteger plaintext = new BigInteger(message.getBytes(StandardCharsets.UTF_8));
 

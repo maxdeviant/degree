@@ -24,4 +24,8 @@ public class PublicKey {
         return n;
     }
 
+    public String toString() {
+        return "<" + e + ", " + n + ">";
+    }
+
 }

@@ -24,5 +24,8 @@ public class PrivateKey {
         return n;
     }
 
+    public String toString() {
+        return "<" + d + ", " + n + ">";
+    }
 
 }

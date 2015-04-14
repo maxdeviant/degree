@@ -11,15 +11,22 @@ public class Test {
 
         String message = "Hello, World!";
 
+        System.out.println("Public Key: " + rsa.getPublicKey());
+        System.out.println("Private Key: " + rsa.getPrivateKey());
+
+        System.out.println("Original Message:  " + message);
+
         String encrypted = rsa.encrypt(message);
 
-        System.out.println(encrypted);
+        System.out.println("Encrypted Message: " + encrypted);
 
         String decrypted = rsa.decrypt(encrypted);
 
+        System.out.println("Decrypted Message: " + decrypted);
+
         System.out.println(decrypted);
 
-        System.out.println(rsa.isVerified(message));
+        System.out.println("Verified: " + rsa.isVerified(message));
     }
 
 }
