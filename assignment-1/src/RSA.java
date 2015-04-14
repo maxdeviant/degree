@@ -10,11 +10,11 @@ import java.util.Random;
 
 public class RSA {
 
-    private BigInteger s;
-    private BigInteger m;
-
     private PublicKey publicKey;
     private PrivateKey privateKey;
+
+    private BigInteger signature;
+    private BigInteger verification;
 
     public RSA() {
         BigInteger p = BigInteger.probablePrime(1024, new Random());
@@ -45,6 +45,9 @@ public class RSA {
 
         BigInteger encrypted = plaintext.modPow(publicKey.getE(), publicKey.getN());
 
+        signature = generateSignature(plaintext);
+        verification = generateVerification(signature);
+
         return encrypted.toString(16);
     }
 
@@ -54,6 +57,14 @@ public class RSA {
         BigInteger decrypted = encrypted.modPow(privateKey.getD(), privateKey.getN());
 
         return new String(decrypted.toByteArray());
+    }
+
+    private BigInteger generateSignature(BigInteger message) {
+        return message.modPow(privateKey.getD(), privateKey.getN());
+    }
+
+    private BigInteger generateVerification(BigInteger signature) {
+        return signature.modPow(publicKey.getE(), publicKey.getN());
     }
 
 }
