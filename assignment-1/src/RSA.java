@@ -14,7 +14,6 @@ public class RSA {
     private PrivateKey privateKey;
 
     private BigInteger signature;
-    private BigInteger verification;
 
     public RSA() {
         BigInteger p = BigInteger.probablePrime(1024, new Random());
@@ -46,7 +45,6 @@ public class RSA {
         BigInteger encrypted = plaintext.modPow(publicKey.getE(), publicKey.getN());
 
         signature = generateSignature(plaintext);
-        verification = generateVerification(signature);
 
         return encrypted.toString(16);
     }
@@ -57,6 +55,16 @@ public class RSA {
         BigInteger decrypted = encrypted.modPow(privateKey.getD(), privateKey.getN());
 
         return new String(decrypted.toByteArray());
+    }
+
+    public boolean isVerified(String message) {
+        BigInteger plaintext = new BigInteger(message.getBytes(StandardCharsets.UTF_8));
+
+        return isVerified(plaintext);
+    }
+
+    private boolean isVerified(BigInteger message) {
+        return generateVerification(signature).equals(message);
     }
 
     private BigInteger generateSignature(BigInteger message) {
