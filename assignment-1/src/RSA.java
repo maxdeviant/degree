@@ -21,16 +21,12 @@ public class RSA {
 
         BigInteger n = p.multiply(q);
 
-        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+        BigInteger phi = (p.subtract(BigInteger.ONE)).multiply(q.subtract(BigInteger.ONE));
 
-        BigInteger e = BigInteger.ONE;
+        BigInteger e = new BigInteger("3");
 
-        while (e.intValue() < phi.intValue()) {
-            e = e.nextProbablePrime();
-
-            if (phi.gcd(e).equals(BigInteger.ONE)) {
-                break;
-            }
+        while (!phi.gcd(e).equals(BigInteger.ONE)) {
+            e = e.add(new BigInteger("2"));
         }
 
         BigInteger d = e.modInverse(phi);
