@@ -13,7 +13,7 @@ public class Test {
 
         System.out.println(encrypted);
 
-        String decrypted = rsa.decrypt(encrypted, null);
+        String decrypted = rsa.decrypt(encrypted);
 
         System.out.println(decrypted);
     }

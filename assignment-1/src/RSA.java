@@ -10,46 +10,48 @@ import java.util.Random;
 
 public class RSA {
 
-    private BigInteger p;
-    private BigInteger q;
-    private BigInteger n;
-    private BigInteger phi;
-    private BigInteger e;
-    private BigInteger d;
+    private BigInteger s;
+    private BigInteger m;
+
+    private PublicKey publicKey;
+    private PrivateKey privateKey;
 
     public RSA() {
-        p = BigInteger.probablePrime(1024, new Random());
-        q = BigInteger.probablePrime(1024, new Random());
+        BigInteger p = BigInteger.probablePrime(1024, new Random());
+        BigInteger q = BigInteger.probablePrime(1024, new Random());
 
-        n = p.multiply(q);
+        BigInteger n = p.multiply(q);
 
-        phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
 
-        e = BigInteger.ONE;
+        BigInteger e = BigInteger.ONE;
 
         while (e.intValue() < phi.intValue()) {
             e = e.nextProbablePrime();
 
-            if (phi.gcd(e).intValue() == 1) {
+            if (phi.gcd(e).equals(BigInteger.ONE)) {
                 break;
             }
         }
 
-        d = e.modInverse(phi);
+        BigInteger d = e.modInverse(phi);
+
+        publicKey = new PublicKey(e, n);
+        privateKey = new PrivateKey(d, n);
     }
 
     public String encrypt(String message) {
         BigInteger plaintext = new BigInteger(message.getBytes(StandardCharsets.UTF_8));
 
-        BigInteger encrypted = plaintext.modPow(e, n);
+        BigInteger encrypted = plaintext.modPow(publicKey.getE(), publicKey.getN());
 
         return encrypted.toString(16);
     }
 
-    public String decrypt(String encryptedText, String publicKey) {
+    public String decrypt(String encryptedText) {
         BigInteger encrypted = new BigInteger(encryptedText, 16);
 
-        BigInteger decrypted = encrypted.modPow(d, n);
+        BigInteger decrypted = encrypted.modPow(privateKey.getD(), privateKey.getN());
 
         return new String(decrypted.toByteArray());
     }
