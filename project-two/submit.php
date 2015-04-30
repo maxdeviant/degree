@@ -1,41 +1,41 @@
 <!-- Marshall Bowers -->
 <?php
-	require_once "include/session.php";
-	require_once "include/db.php";
+    require_once "include/session.php";
+    require_once "include/db.php";
 
-	$session = new Session();
-	DB::init();
+    $session = new Session();
+    DB::init();
 
-	R::setStrictTyping(false);
+    R::setStrictTyping(false);
 
-	if (isset($session->user)) {
-		$date = new DateTime();
+    if (isset($session->user)) {
+        $date = new DateTime();
 
-		$order = R::dispense('order');
+        $order = R::dispense('order');
 
-		$order->user_id = $session->user->id;
-		$order->created_at = $date->getTimestamp();
+        $order->user_id = $session->user->id;
+        $order->created_at = $date->getTimestamp();
 
-		$id = R::store($order);
+        $id = R::store($order);
 
-		foreach ($session->cart as $key => $value) {
-			$item = R::findOne('item', 'id=?', array($key));
+        foreach ($session->cart as $key => $value) {
+            $item = R::findOne('item', 'id=?', array($key));
 
-			$joined = R::dispense('item_order');
+            $joined = R::dispense('item_order');
 
-			$joined->item_id = $key;
-			$joined->order_id = $id;
-			$joined->quantity = $value;
-			$joined->price = $item->price;
+            $joined->item_id = $key;
+            $joined->order_id = $id;
+            $joined->quantity = $value;
+            $joined->price = $item->price;
 
-			$foo = R::store($joined);
-		}
+            $foo = R::store($joined);
+        }
 
-		$session->cart = [];
+        $session->cart = [];
 
-		header("location: .");
-	} else {
-		$session->redirect = "cart.php";
-		header("location: login.php");
-	}
+        header("location: .");
+    } else {
+        $session->redirect = "cart.php";
+        header("location: login.php");
+    }
 ?>

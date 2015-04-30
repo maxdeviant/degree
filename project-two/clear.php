@@ -1,10 +1,10 @@
 <!-- Marshall Bowers -->
 <?php
-	require_once "include/session.php";
+    require_once "include/session.php";
 
-	$session = new Session();
+    $session = new Session();
 
-	$session->cart = [];
+    $session->cart = [];
 
-	header("location: cart.php");
+    header("location: cart.php");
 ?>
