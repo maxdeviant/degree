@@ -1,16 +1,16 @@
 <!-- Marshall Bowers -->
 <?php require_once(__DIR__ . '/../header.php'); ?>
 <body>
-	<div class="container">
-		<div class="container-fluid">
-			<h1>404</h1>
+    <div class="container">
+        <div class="container-fluid">
+            <h1>404</h1>
 
-			<?php require_once(__DIR__ . '/../navigation.php'); ?>
+            <?php require_once(__DIR__ . '/../navigation.php'); ?>
 
-			<hr />
+            <hr />
 
-			<h2>Page not found.</h2>
-		</div>
-	</div>
+            <h2>Page not found.</h2>
+        </div>
+    </div>
 </body>
 </html>

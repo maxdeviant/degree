@@ -1,33 +1,33 @@
 <!-- Marshall Bowers -->
 <?php
-	class Controller_Items extends Controller {
-		public function get_details() {
-			$view = ViewModel::forge('items/details');
+    class Controller_Items extends Controller {
+        public function get_details() {
+            $view = ViewModel::forge('items/details');
 
-			$id = $this->param('id');
+            $id = $this->param('id');
 
-			$item = DB::select()->from('item')->where('id', $id)->execute()->as_array();
+            $item = DB::select()->from('item')->where('id', $id)->execute()->as_array();
 
-			if (count($item) > 0) {
-				$view->item = $item[0];
-			} else {
-				return Response::forge(ViewModel::forge('main/404'), 404);
-			}
+            if (count($item) > 0) {
+                $view->item = $item[0];
+            } else {
+                return Response::forge(ViewModel::forge('main/404'), 404);
+            }
 
-			$view->set('description', $view->item['description'], false);
+            $view->set('description', $view->item['description'], false);
 
-			return Response::forge($view);
-		}
+            return Response::forge($view);
+        }
 
-		public function post_details() {
-			$id = $_POST['id'];
-			$quantity = $_POST['quantity'];
+        public function post_details() {
+            $id = $_POST['id'];
+            $quantity = $_POST['quantity'];
 
-			$cart = Session::get('cart');
+            $cart = Session::get('cart');
 
-			$cart[$id] = $quantity;
+            $cart[$id] = $quantity;
 
-			Session::set('cart', $cart);
-		}
-	}
+            Session::set('cart', $cart);
+        }
+    }
 ?>
