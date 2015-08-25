@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="StraightLineProgramInterpreter" default="build" basedir=".">
+    <description>
+        Builds, tests, and runs the StraightLineProgramInterpreter.
+    </description>
+
+    <!-- set global properties for use in this ant script -->
+    <property name="src" location="src"/>
+    <property name="build" location="build/classes"/>
+    <property name="lib" location="lib"/>
+
+    <!-- libraries to be included on class path for compiler -->
+    <path id="build.path">
+        <pathelement location="${lib}/junit-4.12.jar"/>
+    </path>
+    
+    <!-- libraries to be included on class path at runtime -->
+    <path id="runtime.path">
+        <pathelement location="${build}" />
+        <pathelement location="${lib}/junit-4.12.jar" />
+        <pathelement location="${lib}/hamcrest-core-1.3.jar" />
+    </path>    
+    
+    <target name="init" description="minor housekeeping">
+        <!-- creates directory if it doesn't already exist -->
+        <mkdir dir="build/classes" />
+    </target>
+    
+    <target name="build" depends="init" description="compile the source code">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" classpathref="build.path" includeantruntime="false" debug="on"/>
+    </target>
+              
+    <target name="runDriver" description="execute the code on a supplied program" depends="build">
+        <java classname="slpinterpreter.Driver" dir="${build}" />
+    </target>
+
+    <target name="testSingle"  depends="build" description="single test">
+        <echo>Running Single Test Case...</echo>
+        <junit printsummary="on" showoutput="on" fork="yes" haltonfailure="no" >
+            <classpath>
+                <path refid="runtime.path" />
+                <pathelement location="${build}" />
+            </classpath>
+            <formatter type="plain"/>
+            <test name="slpinterpreter.test.Prog1SingleTest" />
+        </junit>
+    </target>
+
+    <target name="testAll" depends="build" description="run tests via ant and junit" >
+        <echo>Running Test Cases...</echo>
+        <junit printsummary="yes">
+            <classpath>
+                <path refid="runtime.path" />
+                <pathelement location="${build}" />
+            </classpath>     
+            <formatter type="plain"/>       
+            <batchtest fork="yes" haltonfailure="no">
+                <fileset dir="${build}">
+                    <include name="slpinterpreter/test/*Test.class" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>
