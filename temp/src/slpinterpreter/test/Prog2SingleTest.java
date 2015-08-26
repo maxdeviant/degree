@@ -1,14 +1,19 @@
 package slpinterpreter.test;
 
+import java.io.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import slpinterpreter.grammar.Stm;
+import org.junit.Test;
 
 /**
+ *
  * @author richardburns
  */
-public class Prog3SingleTest {
+public class Prog2SingleTest {
 
-    static Stm probToRun = slpinterpreter.test.TestPrograms.prog3;
-
+    static Stm probToRun = slpinterpreter.test.TestPrograms.prog2;
+    
     /*
     @Test
     public void evaluatesMaxArgs() {
@@ -17,10 +22,10 @@ public class Prog3SingleTest {
             assertEquals(1, maxargs);
         } catch (Exception e) {
             fail(e.toString());
-        }
+        } 
     }
     */
-
+    
     /*
     @Test
     public void evaluatesInterpreter() {
@@ -29,18 +34,17 @@ public class Prog3SingleTest {
         OutputStream os = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
-
+        
         // perform tests
         try {
             String separator = System.getProperty("line.separator");
             Interpreter.interp(probToRun);
-            assertEquals(
-                    "8"+separator,
+            assertEquals("5"+separator,
                     os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }
-
+        
         // restore normal System.output operation
         System.setOut(originalOut);
     }

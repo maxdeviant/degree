@@ -4,8 +4,8 @@ import slpinterpreter.grammar.Stm;
 import slpinterpreter.test.TestPrograms;
 
 /**
- * Driver.
- *
+ * Driver. 
+ * 
  * @author richardburns
  */
 
@@ -13,14 +13,14 @@ public class Driver {
 
     public static void main(String[] args) {
         Stm probToRun = TestPrograms.prog0;
-
+                
         System.out.println("Maxargs: ");
         // System.out.println(MaxArgs.maxargs(probToRun));   // functional
         // System.out.println(prog0.maxargs());              // oo
-
+        
         System.out.println("Interpreted Result:");
         // Interpreter.interp(probToRun);                    // functional
         // probToRun.interp();                               // oo
     }
-
+    
 }
