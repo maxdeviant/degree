@@ -1,6 +1,16 @@
 package slpinterpreter.test;
 
+import org.junit.Test;
+import slpinterpreter.Interpreter;
+import slpinterpreter.MaxArgs;
 import slpinterpreter.grammar.Stm;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author richardburns
@@ -9,22 +19,18 @@ public class Prog0SingleTest {
 
     static Stm probToRun = slpinterpreter.test.TestPrograms.prog0;
 
-    /*
     @Test
     public void evaluatesMaxArgs() {
         try {
-            // choose between using a FUNCTIONAL or OBJECT-ORIENTED design
             int maxargs = MaxArgs.maxargs(probToRun);   // FUNCTIONAL call
-            int maxargs = probToRun.maxargs();          // OBJECT-ORIENTED call
 
             assertEquals(2, maxargs);
         } catch (Exception e) {
             fail(e.toString());
         }
     }
-    */
 
-    /*
+
     @Test
     public void evaluatesInterpreter() {
         // prepare to capture System.output
@@ -37,13 +43,11 @@ public class Prog0SingleTest {
         try {
             String separator = System.getProperty("line.separator");
 
-            // choose between using a FUNCTIONAL or OBJECT-ORIENTED design
-            Interpreter.interp(probToRun);   // FUNCTIONAL call
-            probToRun.interp();              // OBJECT-ORIENTED call
+            Interpreter.interp(probToRun);
 
             assertEquals(
-                    "8 7"+separator+
-                    "80"+separator,
+                    "8 7" + separator +
+                            "80" + separator,
                     os.toString());
         } catch (Exception e) {
             fail(e.toString());
@@ -52,5 +56,4 @@ public class Prog0SingleTest {
         // restore normal System.output operation
         System.setOut(originalOut);
     }
-    */
 }

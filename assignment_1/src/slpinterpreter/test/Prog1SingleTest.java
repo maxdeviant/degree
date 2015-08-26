@@ -1,6 +1,16 @@
 package slpinterpreter.test;
 
+import org.junit.Test;
+import slpinterpreter.Interpreter;
+import slpinterpreter.MaxArgs;
 import slpinterpreter.grammar.Stm;
+
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author richardburns
@@ -9,7 +19,6 @@ public class Prog1SingleTest {
 
     static Stm probToRun = slpinterpreter.test.TestPrograms.prog1;
 
-    /*
     @Test
     public void evaluatesMaxArgs() {
         try {
@@ -19,9 +28,7 @@ public class Prog1SingleTest {
             fail(e.toString());
         }
     }
-    */
 
-    /*
     @Test
     public void evaluatesInterpreter() {
         // prepare to capture System.output
@@ -43,5 +50,5 @@ public class Prog1SingleTest {
         // restore normal System.output operation
         System.setOut(originalOut);
     }
-    */
+
 }

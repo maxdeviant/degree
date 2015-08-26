@@ -15,12 +15,10 @@ public class Driver {
         Stm probToRun = TestPrograms.prog0;
 
         System.out.println("Maxargs: ");
-        // System.out.println(MaxArgs.maxargs(probToRun));   // functional
-        // System.out.println(prog0.maxargs());              // oo
+        System.out.println(MaxArgs.maxargs(probToRun));
 
         System.out.println("Interpreted Result:");
-        // Interpreter.interp(probToRun);                    // functional
-        // probToRun.interp();                               // oo
+        Interpreter.interp(probToRun);
     }
 
 }
