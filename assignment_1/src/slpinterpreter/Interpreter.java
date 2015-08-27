@@ -59,13 +59,16 @@ public class Interpreter {
 
     private static Table interpStm(Stm stm, Table table) {
         if (stm instanceof CompoundStm) {
-            return interpStm(((CompoundStm) stm).stm2, interpStm(((CompoundStm) stm).stm1, table));
+            CompoundStm compoundStm = (CompoundStm) stm;
+
+            return interpStm(compoundStm.stm2, interpStm(compoundStm.stm1, table));
         }
 
         if (stm instanceof AssignStm) {
-            IntAndTable intTable = interpExp(((AssignStm) stm).exp, table);
+            AssignStm assignStm = (AssignStm) stm;
+            IntAndTable intAndTable = interpExp(assignStm.exp, table);
 
-            return new Table(((AssignStm) stm).id, intTable.i, intTable.table);
+            return new Table(assignStm.id, intAndTable.i, intAndTable.table);
         }
 
         return print(((PrintStm) stm).exps, table);
@@ -73,23 +76,31 @@ public class Interpreter {
 
     private static IntAndTable interpExp(Exp exp, Table table) {
         if (exp instanceof IdExp) {
-            return new IntAndTable(lookup(table, ((IdExp) exp).id), table);
+            IdExp idExp = (IdExp) exp;
+
+            return new IntAndTable(lookup(table, idExp.id), table);
         }
 
         if (exp instanceof NumExp) {
-            return new IntAndTable(((NumExp) exp).num, table);
+            NumExp numExp = (NumExp) exp;
+
+            return new IntAndTable(numExp.num, table);
         }
 
         if (exp instanceof EseqExp) {
-            return interpExp(((EseqExp) exp).exp, interpStm(((EseqExp) exp).stm, table));
+            EseqExp eseqExp = (EseqExp) exp;
+
+            return interpExp(eseqExp.exp, interpStm(eseqExp.stm, table));
         }
 
-        IntAndTable lhsIntAndTable = interpExp(((OpExp) exp).left, table);
-        IntAndTable rhsIntAndTable = interpExp(((OpExp) exp).right, lhsIntAndTable.table);
+        OpExp opExp = (OpExp) exp;
+
+        IntAndTable lhsIntAndTable = interpExp(opExp.left, table);
+        IntAndTable rhsIntAndTable = interpExp(opExp.right, lhsIntAndTable.table);
 
         int result = 0;
 
-        switch (((OpExp) exp).oper) {
+        switch (opExp.oper) {
             case OpExp.Plus:
                 result = lhsIntAndTable.i + rhsIntAndTable.i;
                 break;
@@ -109,10 +120,14 @@ public class Interpreter {
 
     private static Table print(ExpList expList, Table table) {
         if (expList instanceof PairExpList) {
-            return print((PairExpList) expList, table);
+            PairExpList pairExpList = (PairExpList) expList;
+
+            return print(pairExpList, table);
         }
 
-        return print((LastExpList) expList, table);
+        LastExpList lastExpList = (LastExpList) expList;
+
+        return print(lastExpList, table);
     }
 
     private static Table print(PairExpList pairExpList, Table table) {
