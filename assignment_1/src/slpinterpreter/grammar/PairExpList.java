@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Pair Expression List
+ */
 public class PairExpList extends ExpList {
 
     public Exp head;

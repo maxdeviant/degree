@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Expression Sequence Expression
+ */
 public class EseqExp extends Exp {
 
     public Stm stm;

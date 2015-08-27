@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Print Statement
+ */
 public class PrintStm extends Stm {
 
     public ExpList exps;

@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Assignment Statement
+ */
 public class AssignStm extends Stm {
 
     public String id;

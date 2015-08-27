@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Operation Expression
+ */
 public class OpExp extends Exp {
 
     public Exp left, right;

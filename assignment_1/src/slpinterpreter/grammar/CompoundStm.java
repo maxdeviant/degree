@@ -1,5 +1,8 @@
 package slpinterpreter.grammar;
 
+/**
+ * Compound Statement
+ */
 public class CompoundStm extends Stm {
 
     public Stm stm1, stm2;
