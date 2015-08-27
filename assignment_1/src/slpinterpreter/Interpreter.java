@@ -187,7 +187,7 @@ public class Interpreter {
      *
      * @param operation The integer value representing an arithmetic operation to perform.
      * @param lhs       The integer on the left-hand side of the operator.
-     * @param rhs       The interger on the right-hand side of the operator.
+     * @param rhs       The integer on the right-hand side of the operator.
      * @return The result of the evaluated operation.
      * @throws IllegalArgumentException Operation must be one of the ones defined in {@link slpinterpreter.grammar.OpExp}.
      */
