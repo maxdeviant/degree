@@ -144,7 +144,7 @@ public class Interpreter {
         if (newline) {
             System.out.println(intAndTable.i);
         } else {
-            System.out.println(intAndTable.i + " ");
+            System.out.print(intAndTable.i + " ");
         }
 
         return intAndTable.table;
