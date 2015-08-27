@@ -203,7 +203,7 @@ public class Interpreter {
                 return lhs / rhs;
         }
 
-        throw new IllegalArgumentException("Operation not recognized.");
+        throw new IllegalArgumentException(String.format("Operation '%s' not recognized.", operation));
     }
 
 }
