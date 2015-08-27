@@ -15,18 +15,24 @@ public class MaxArgs {
      */
     public static int maxargs(Stm stm) {
         if (stm instanceof CompoundStm) {
-            int lhsMax = maxargs(((CompoundStm) stm).stm1);
-            int rhsMax = maxargs(((CompoundStm) stm).stm2);
+            CompoundStm compoundStm = (CompoundStm) stm;
+
+            int lhsMax = maxargs(compoundStm.stm1);
+            int rhsMax = maxargs(compoundStm.stm2);
 
             return Math.max(lhsMax, rhsMax);
         }
 
         if (stm instanceof AssignStm) {
-            return maxargs(((AssignStm) stm).exp);
+            AssignStm assignStm = (AssignStm) stm;
+
+            return maxargs(assignStm.exp);
         }
 
-        int length = length(((PrintStm) stm).exps);
-        int max = maxargs(((PrintStm) stm).exps);
+        PrintStm printStm = (PrintStm) stm;
+
+        int length = length(printStm.exps);
+        int max = maxargs(printStm.exps);
 
         return Math.max(length, max);
     }
@@ -39,15 +45,19 @@ public class MaxArgs {
      */
     private static int maxargs(Exp exp) {
         if (exp instanceof EseqExp) {
-            int stmMax = maxargs(((EseqExp) exp).stm);
-            int expMax = maxargs(((EseqExp) exp).exp);
+            EseqExp eseqExp = (EseqExp) exp;
+
+            int stmMax = maxargs(eseqExp.stm);
+            int expMax = maxargs(eseqExp.exp);
 
             return Math.max(stmMax, expMax);
         }
 
         if (exp instanceof OpExp) {
-            int lhsMax = maxargs(((OpExp) exp).left);
-            int rhsMax = maxargs(((OpExp) exp).right);
+            OpExp opExp = (OpExp) exp;
+
+            int lhsMax = maxargs(opExp.left);
+            int rhsMax = maxargs(opExp.right);
 
             return Math.max(lhsMax, rhsMax);
         }
@@ -63,13 +73,17 @@ public class MaxArgs {
      */
     private static int maxargs(ExpList expList) {
         if (expList instanceof PairExpList) {
-            int headMax = maxargs(((PairExpList) expList).head);
-            int tailMax = maxargs(((PairExpList) expList).tail);
+            PairExpList pairExpList = (PairExpList) expList;
+
+            int headMax = maxargs(pairExpList.head);
+            int tailMax = maxargs(pairExpList.tail);
 
             return Math.max(headMax, tailMax);
         }
 
-        return maxargs(((LastExpList) expList).head);
+        LastExpList lastExpList = (LastExpList) expList;
+
+        return maxargs(lastExpList.head);
     }
 
     /**
@@ -80,7 +94,9 @@ public class MaxArgs {
      */
     private static int length(ExpList expList) {
         if (expList instanceof PairExpList) {
-            return 1 + length(((PairExpList) expList).tail);
+            PairExpList pairExpList = (PairExpList) expList;
+
+            return 1 + length(pairExpList.tail);
         }
 
         return 1;
