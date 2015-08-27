@@ -42,9 +42,7 @@ public class Prog3SingleTest {
         try {
             String separator = System.getProperty("line.separator");
             Interpreter.interp(probToRun);
-            assertEquals(
-                    "8" + separator,
-                    os.toString());
+            assertEquals("8" + separator, os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }

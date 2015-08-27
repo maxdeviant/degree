@@ -41,10 +41,7 @@ public class Prog4SingleTest {
         try {
             String separator = System.getProperty("line.separator");
             Interpreter.interp(probToRun);
-            assertEquals(
-                    "10 9 8 11 10 9 8 7" + separator +
-                            "5" + separator,
-                    os.toString());
+            assertEquals("10 9 8 11 10 9 8 7" + separator + "5" + separator, os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }

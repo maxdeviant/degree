@@ -30,7 +30,6 @@ public class Prog0SingleTest {
         }
     }
 
-
     @Test
     public void evaluatesInterpreter() {
         // prepare to capture System.output
@@ -45,10 +44,7 @@ public class Prog0SingleTest {
 
             Interpreter.interp(probToRun);
 
-            assertEquals(
-                    "8 7" + separator +
-                            "80" + separator,
-                    os.toString());
+            assertEquals("8 7" + separator + "80" + separator, os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }
@@ -56,4 +52,5 @@ public class Prog0SingleTest {
         // restore normal System.output operation
         System.setOut(originalOut);
     }
+
 }

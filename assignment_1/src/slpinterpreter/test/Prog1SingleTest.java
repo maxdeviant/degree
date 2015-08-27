@@ -41,8 +41,7 @@ public class Prog1SingleTest {
         try {
             String separator = System.getProperty("line.separator");
             Interpreter.interp(probToRun);
-            assertEquals("",
-                    os.toString());
+            assertEquals("", os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }
