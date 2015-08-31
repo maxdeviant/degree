@@ -12,7 +12,7 @@ The assignment follow the Ch 1 introductory programming exercise in [Appel's com
 
 The wording and description in the Appel book is very, very dense. Anticipate reading the few pages in Ch. 1 many times before getting comforable enough to start coding. This is okay!
 
-1.  This is potentially challenging <del><u>individual</u></del> programming assignment. You may work with a classmate if you wish. However, you should be able to explain all code that submit, if I ask you to. Utilize our Piazza message board for help. Start now. Start now. Start now.
+1.  This is potentially challenging ~~<u>individual</u>~~ programming assignment. You may work with a classmate if you wish. However, you should be able to explain all code that submit, if I ask you to. Utilize our Piazza message board for help. Start now. Start now. Start now.
 2.  Our programming projects will involve a substantial number of files, and a full-featured IDE will facilitate working with them. I recommend using NetBeans or Eclipse.
 3.  Create a new project. Download the project [starter files](http://www.cs.wcupa.edu/rburns/Compilers/prog_assignments/prog1/SLPInterpreterStudent.zip). Import them into your working project.
 4.  Understand the starter code. Note the use of three different packages in the code: `slpinterpreter`, `slpinterpreter.grammar`, and `slpinternpreter.test`.
@@ -35,17 +35,20 @@ The wording and description in the Appel book is very, very dense. Anticipate re
 
 In summary, here is the directory structure for the assignment:
 
-    SLPInterpreter
-      - build.xml                       (Ant build file)
-      - src/                            (source code)
-      - src/slpinterpreter/
-      - src/slpinterpreter/Driver.java  (driver file, no testing, no JUnit)
-      - src/slpinterpreter/grammar/*    (implementation of Appel grammar 1.3)
-      - src/slpinterpreter/test         (package for test cases)
-      - src/slpinterpreter/test/TestPrograms.java  (definitions of some Striaght Line Programs)
-      - src/slpinterpreter/test/ProgXSingleTest.java (JUnit tests corresponding to defined programs in TestPrograms.java)
-      - build/classes                   (compiled files are generated here)
-      - lib/                            (JUnit libraries)
+```
+SLPInterpreter
+  - build.xml                       (Ant build file)
+  - src/                            (source code)
+  - src/slpinterpreter/
+  - src/slpinterpreter/Driver.java  (driver file, no testing, no JUnit)
+  - src/slpinterpreter/grammar/*    (implementation of Appel grammar 1.3)
+  - src/slpinterpreter/test         (package for test cases)
+  - src/slpinterpreter/test/TestPrograms.java  (definitions of some Striaght Line Programs)
+  - src/slpinterpreter/test/ProgXSingleTest.java (JUnit tests corresponding to defined programs in TestPrograms.java)
+  - build/classes                   (compiled files are generated here)
+  - lib/                            (JUnit libraries)
+
+```
 
 ## Submission instructions:
 
