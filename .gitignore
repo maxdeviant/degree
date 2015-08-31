@@ -70,5 +70,8 @@ crashlytics-build.properties
 # CSC416
 #
 
+# Unit test output
+*Test.txt
+
 # Submissions
 *.tar.bz2
