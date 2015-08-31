@@ -122,4 +122,10 @@ public class TestPrograms {
             )
     );
 
+    public static Stm bowersProg1 = null;
+    public static Stm bowersProg2 = null;
+    public static Stm bowersProg3 = null;
+    public static Stm bowersProg4 = null;
+    public static Stm bowersProg5 = null;
+
 }
