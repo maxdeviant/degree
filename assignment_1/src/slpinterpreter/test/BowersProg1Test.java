@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- * @author Marshall Bowres
+ * @author Marshall Bowers
  */
 public class BowersProg1Test {
 
