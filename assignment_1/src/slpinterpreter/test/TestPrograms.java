@@ -121,8 +121,63 @@ public class TestPrograms {
                     new NumExp(3)
             )
     );
+        
+    public static Stm bowersProg1 = new CompoundStm(
+            new AssignStm(
+                    "a",
+                    new OpExp(
+                            new NumExp(2),
+                            OpExp.Times,
+                            new NumExp(2)
+                    )
+            ),
+            new CompoundStm(
+                    new AssignStm(
+                            "b",
+                            new OpExp(
+                                    new NumExp(4),
+                                    OpExp.Times,
+                                    new NumExp(4)
+                            )
+                    ),
+                    new CompoundStm(
+                            new AssignStm(
+                                    "c",
+                                    new OpExp(
+                                            new NumExp(8),
+                                            OpExp.Times,
+                                            new NumExp(8)
+                                    )
+                            ),
+                            new CompoundStm(
+                                    new PrintStm(
+                                            new PairExpList(
+                                                    new IdExp("a"),
+                                                    new PairExpList(
+                                                            new IdExp("b"),
+                                                            new LastExpList(
+                                                                    new IdExp("c")
+                                                            )
+                                                    )
+                                            )
+                                    ),
+                                    new CompoundStm(
+                                            new PrintStm(
+                                                    new LastExpList(
+                                                            new IdExp("b")
+                                                    )
+                                            ),
+                                            new PrintStm(
+                                                    new LastExpList(
+                                                            new IdExp("c")
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            )
+    );
 
-    public static Stm bowersProg1 = null;
     public static Stm bowersProg2 = null;
     public static Stm bowersProg3 = null;
     public static Stm bowersProg4 = null;
