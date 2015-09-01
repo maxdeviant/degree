@@ -121,7 +121,7 @@ public class TestPrograms {
                     new NumExp(3)
             )
     );
-        
+
     public static Stm bowersProg1 = new CompoundStm(
             new AssignStm(
                     "a",
@@ -178,7 +178,152 @@ public class TestPrograms {
             )
     );
 
-    public static Stm bowersProg2 = null;
+    public static Stm bowersProg2 = new CompoundStm(
+            new CompoundStm(
+                    new CompoundStm(
+                            new AssignStm(
+                                    "a",
+                                    new NumExp(1)
+                            ),
+                            new AssignStm(
+                                    "b",
+                                    new NumExp(1)
+                            )
+                    ),
+                    new PrintStm(
+                            new PairExpList(
+                                    new IdExp("a"),
+                                    new LastExpList(
+                                            new IdExp("b")
+
+                                    )
+                            )
+                    )
+            ),
+            new CompoundStm(
+                    new CompoundStm(
+                            new CompoundStm(
+                                    new CompoundStm(
+                                            new AssignStm(
+                                                    "a",
+                                                    new OpExp(
+                                                            new IdExp("a"),
+                                                            OpExp.Plus,
+                                                            new IdExp("b")
+                                                    )
+                                            ),
+                                            new AssignStm(
+                                                    "b",
+                                                    new OpExp(
+                                                            new IdExp("b"),
+                                                            OpExp.Plus,
+                                                            new IdExp("a")
+                                                    )
+                                            )
+                                    ),
+                                    new PrintStm(
+                                            new PairExpList(
+                                                    new IdExp("a"),
+                                                    new LastExpList(
+                                                            new IdExp("b")
+
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new CompoundStm(
+                                    new CompoundStm(
+                                            new AssignStm(
+                                                    "a",
+                                                    new OpExp(
+                                                            new IdExp("a"),
+                                                            OpExp.Plus,
+                                                            new IdExp("b")
+                                                    )
+                                            ),
+                                            new AssignStm(
+                                                    "b",
+                                                    new OpExp(
+                                                            new IdExp("b"),
+                                                            OpExp.Plus,
+                                                            new IdExp("a")
+                                                    )
+                                            )
+                                    ),
+                                    new PrintStm(
+                                            new PairExpList(
+                                                    new IdExp("a"),
+                                                    new LastExpList(
+                                                            new IdExp("b")
+
+                                                    )
+                                            )
+                                    )
+                            )
+                    ),
+                    new CompoundStm(
+                            new CompoundStm(
+                                    new CompoundStm(
+                                            new AssignStm(
+                                                    "a",
+                                                    new OpExp(
+                                                            new IdExp("a"),
+                                                            OpExp.Plus,
+                                                            new IdExp("b")
+                                                    )
+                                            ),
+                                            new AssignStm(
+                                                    "b",
+                                                    new OpExp(
+                                                            new IdExp("b"),
+                                                            OpExp.Plus,
+                                                            new IdExp("a")
+                                                    )
+                                            )
+                                    ),
+                                    new PrintStm(
+                                            new PairExpList(
+                                                    new IdExp("a"),
+                                                    new LastExpList(
+                                                            new IdExp("b")
+
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new CompoundStm(
+                                    new CompoundStm(
+                                            new AssignStm(
+                                                    "a",
+                                                    new OpExp(
+                                                            new IdExp("a"),
+                                                            OpExp.Plus,
+                                                            new IdExp("b")
+                                                    )
+                                            ),
+                                            new AssignStm(
+                                                    "b",
+                                                    new OpExp(
+                                                            new IdExp("b"),
+                                                            OpExp.Plus,
+                                                            new IdExp("a")
+                                                    )
+                                            )
+                                    ),
+                                    new PrintStm(
+                                            new PairExpList(
+                                                    new IdExp("a"),
+                                                    new LastExpList(
+                                                            new IdExp("b")
+
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            )
+    );
+
     public static Stm bowersProg3 = null;
     public static Stm bowersProg4 = null;
     public static Stm bowersProg5 = null;

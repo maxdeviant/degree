@@ -24,7 +24,7 @@ public class BowersProg2Test {
         try {
             int maxargs = MaxArgs.maxargs(probToRun);
 
-            assertEquals(-1, maxargs);
+            assertEquals(2, maxargs);
         } catch (Exception e) {
             fail(e.toString());
         }
@@ -44,7 +44,7 @@ public class BowersProg2Test {
 
             Interpreter.interp(probToRun);
 
-            assertEquals("", os.toString());
+            assertEquals("1 1" + separator + "2 3" + separator + "5 8" + separator + "13 21" + separator + "34 55" + separator, os.toString());
         } catch (Exception e) {
             fail(e.toString());
         }
