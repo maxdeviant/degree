@@ -445,6 +445,49 @@ public class TestPrograms {
             )
     );
 
-    public static Stm bowersProg5 = null;
+    public static Stm bowersProg5 = new CompoundStm(
+            new CompoundStm(
+                    new CompoundStm(
+                            new AssignStm(
+                                    "a",
+                                    new NumExp(42)
+                            ),
+                            new AssignStm(
+                                    "b",
+                                    new OpExp(
+                                            new NumExp(21),
+                                            OpExp.Plus,
+                                            new NumExp(21)
+                                    )
+                            )
+                    ),
+                    new PrintStm(
+                            new PairExpList(
+                                    new IdExp("a"),
+                                    new LastExpList(
+                                            new IdExp("b")
+                                    )
+                            )
+                    )
+            ),
+            new PrintStm(
+                    new PairExpList(
+                            new EseqExp(
+                                    new AssignStm(
+                                            "a",
+                                            new OpExp(
+                                                    new IdExp("a"),
+                                                    OpExp.Div,
+                                                    new NumExp(2)
+                                            )
+                                    ),
+                                    new IdExp("a")
+                            ),
+                            new LastExpList(
+                                    new IdExp("b")
+                            )
+                    )
+            )
+    );
 
 }
