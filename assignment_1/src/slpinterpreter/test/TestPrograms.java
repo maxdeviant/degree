@@ -376,7 +376,75 @@ public class TestPrograms {
             )
     );
 
-    public static Stm bowersProg4 = null;
+    public static Stm bowersProg4 = new PrintStm(
+            new PairExpList(
+                    new NumExp(0),
+                    new PairExpList(
+                            new EseqExp(
+                                    new CompoundStm(
+                                            new CompoundStm(
+                                                    new CompoundStm(
+                                                            new AssignStm(
+                                                                    "New Emergency Services",
+                                                                    new NumExp(118)
+                                                            ),
+                                                            new AssignStm(
+                                                                    "The",
+                                                                    new NumExp(999)
+                                                            )
+                                                    ),
+                                                    new CompoundStm(
+                                                            new AssignStm(
+                                                                    "IT",
+                                                                    new NumExp(881)
+                                                            ),
+                                                            new AssignStm(
+                                                                    "Crowd",
+                                                                    new NumExp(999)
+                                                            )
+                                                    )
+                                            ),
+                                            new CompoundStm(
+                                                    new CompoundStm(
+                                                            new AssignStm(
+                                                                    "Series 1",
+                                                                    new NumExp(119)
+                                                            ),
+                                                            new AssignStm(
+                                                                    "Episode 2",
+                                                                    new NumExp(725)
+                                                            )
+                                                    ),
+                                                    new AssignStm(
+                                                            "Calamity Jen",
+                                                            new NumExp(3)
+                                                    )
+                                            )
+                                    ),
+                                    new IdExp("New Emergency Services")
+                            ),
+                            new PairExpList(
+                                    new IdExp("The"),
+                                    new PairExpList(
+                                            new IdExp("IT"),
+                                            new PairExpList(
+                                                    new IdExp("Crowd"),
+                                                    new PairExpList(
+                                                            new IdExp("Series 1"),
+                                                            new PairExpList(
+                                                                    new IdExp("Episode 2"),
+                                                                    new LastExpList(
+                                                                            new IdExp("Calamity Jen")
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            )
+    );
+
     public static Stm bowersProg5 = null;
 
 }
