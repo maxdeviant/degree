@@ -38,6 +38,27 @@ public class MaxArgs {
     }
 
     /**
+     * Counts the maximum number of arguments for any `print` statement within any subexpression of the given expression list.
+     *
+     * @param expList The expression list to count the maximum number of arguments in.
+     * @return The maximum number of arguments.
+     */
+    private static int maxargs(ExpList expList) {
+        if (expList instanceof PairExpList) {
+            PairExpList pairExpList = (PairExpList) expList;
+
+            int headMax = maxargs(pairExpList.head);
+            int tailMax = maxargs(pairExpList.tail);
+
+            return Math.max(headMax, tailMax);
+        }
+
+        LastExpList lastExpList = (LastExpList) expList;
+
+        return maxargs(lastExpList.head);
+    }
+
+    /**
      * Counts the maximum number of arguments for any `print` statement within any subexpression of the given expression.
      *
      * @param exp The expression to count the maximum number of arguments in.
@@ -63,27 +84,6 @@ public class MaxArgs {
         }
 
         return 0;
-    }
-
-    /**
-     * Counts the maximum number of arguments for any `print` statement within any subexpression of the given expression list.
-     *
-     * @param expList The expression list to count the maximum number of arguments in.
-     * @return The maximum number of arguments.
-     */
-    private static int maxargs(ExpList expList) {
-        if (expList instanceof PairExpList) {
-            PairExpList pairExpList = (PairExpList) expList;
-
-            int headMax = maxargs(pairExpList.head);
-            int tailMax = maxargs(pairExpList.tail);
-
-            return Math.max(headMax, tailMax);
-        }
-
-        LastExpList lastExpList = (LastExpList) expList;
-
-        return maxargs(lastExpList.head);
     }
 
     /**
