@@ -15,3 +15,6 @@ clean:
 bin: $(NAME)
 $(NAME): main.o fibonacci.o error.o
 	$(CC) $(CLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS)
+
+dist:
+	tar -cjvf bowers_assignment1.tar.bz2 Makefile src/* include/*
