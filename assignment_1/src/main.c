@@ -11,27 +11,22 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include "error.h"
 #include "fibonacci.h"
 
-int main(int argc, char const *argv[]) {
+int main(int argc, const char *argv[]) {
     if (argc < 2) {
-        printf("%s\n", "ERROR: No input provided.");
-
-        return 0;
+        error_and_die("No input provided.");
     }
 
     int n = atoi(argv[1]);
 
     if (n < 0) {
-        printf("%s\n", "ERROR: n cannot be negative.");
-
-        return 0;
+        error_and_die("Input cannot be negative.");
     }
 
     if (n > 93) {
-        printf("%s\n", "ERROR: n too large.");
-
-        return 0;
+        error_and_die("Input too large.");
     }
 
     pid_t pid;
@@ -39,9 +34,7 @@ int main(int argc, char const *argv[]) {
     pid = fork();
 
     if (pid < 0) {
-        printf("%s\n", "ERROR: An error occurred while forking the child process.");
-
-        return 0;
+        error_and_die("An unhandled error occurred while forking the child process.");
     }
 
     if (pid == 0) {
