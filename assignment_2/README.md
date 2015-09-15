@@ -37,9 +37,8 @@ Tasks:
 7.  _[Generating the Lexer:]_ Run the appropriate Ant target. Look at the created Java file in the <samp>frontend.scanner.generated</samp> package.
 8.  _[Testing the Lexer:]_ Create a good sample of Ram15 programs and run your generated Lexer on them. How can you do this? Is the output of the Lexer what you expected? (More specifically, create an additional five programs written in Ram. Two should be valid programs, and three should have lexical errors.)
 9.  To be clear, your project directory probably looks like the following:
-    `
-
-    <pre>Ram15Compiler
+    ```
+    Ram15Compiler
       - build.xml                                  (Ant build file)
       - src/                                       (source code)
       - src/frontend/                              (package for our front end components)
@@ -51,9 +50,7 @@ Tasks:
       - tests/pass/                                (Ram15 programs with no lexical errors)
       - tests/fail/                                (Ram15 programs that have lexical errors)
       - tests/junit/JFlexScannerTest.java          (a junit class for running all tests)
-    </pre>
-
-    `
+    ```
 
 ## Submission instructions:
 
