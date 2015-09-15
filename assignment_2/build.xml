@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Ram15Compiler" default="default" basedir=".">
+<project name="Ram15Compiler" default="testScanner" basedir=".">
     <description>Builds, tests, and runs the project Ram15Compiler.</description>
 
 
