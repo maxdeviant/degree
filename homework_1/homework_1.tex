@@ -1,13 +1,17 @@
 \documentclass[11pt, oneside]{exam}
 \usepackage{geometry}
+\usepackage{pifont}
 \usepackage[parfill]{parskip}
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{float}
 
 \geometry{letterpaper}
+\usetikzlibrary{arrows,automata}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
 
 \title{CSC416 - Homework 1}
 \author{Marshall Bowers}
@@ -53,11 +57,20 @@ matches it:
 
 \begin{parts}
 \part[4] \begin{verbatim}(ab)*c|a*b*c*\end{verbatim}
-{\tt cc}
+{\tt cc} \cmark
+\newline {\tt ababb} \xmark
+\newline {\tt bbcab} \xmark
+\newline {\tt ccbbab} \xmark
 \part[4] \begin{verbatim}(ab|bc*)+\end{verbatim}
-{\tt ababb}
+{\tt cc} \xmark
+\newline {\tt ababb} \cmark
+\newline {\tt bbcab} \xmark
+\newline {\tt ccbbab} \xmark
 \part[4] \begin{verbatim}[ab]*cc?(ab)*\end{verbatim}
-{\tt cc}, {\tt bbcab}
+{\tt cc} \cmark
+\newline {\tt ababb} \xmark
+\newline {\tt bbcab} \cmark
+\newline {\tt ccbbab} \xmark
 \end{parts}
 
 \section*{Lexical Specifications}
@@ -100,10 +113,10 @@ Token Class      Regex
      C            10+
 \end{verbatim}
 \begin{enumerate}
-\item 1000001 \checkmark
-\item 1110010 \checkmark
-\item 01100100 \checkmark
-\item 10011001 \checkmark
+\item 1000001 \cmark
+\item 1110010 \cmark
+\item 01100100 \cmark
+\item 10011001 \cmark
 \end{enumerate}
 
 \section*{Finite Automata}
