@@ -5,6 +5,7 @@
 \usetikzlibrary{arrows,automata}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{float}
 
 \geometry{letterpaper}
 
@@ -197,6 +198,16 @@ Convert these NFAs into DFAs.
     \path[->] (4) edge [bend left=-30] node {$\epsilon$} (1);
 \end{tikzpicture}
 
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state, accepting] (2) [right of=1] {2};
+    \node[state, accepting] (3) [below of=1] {3};
+
+    \path[->](1) edge node {x} (2);
+    \path[->](1) edge node {y} (3);
+    \path[->](2) edge [bend left=30] node {z} (1);
+\end{tikzpicture}
+
 \part[6]
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
     \node[initial,state] (1) {1};
@@ -213,6 +224,21 @@ Convert these NFAs into DFAs.
     \path[->] (3) edge [bend left] node {a} (2);
     \path[->] (2) edge [loop below] node {b} (2);
 \end{tikzpicture}
+
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state] (3) [right of=2] {3};
+    \node[state, accepting] (4) [right of=3] {4};
+
+    \path[->] (1) edge [loop above] node {b} (1);
+    \path[->] (1) edge node {a} (2);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (3) edge node {b} (4);
+    \path[->] (3) edge [bend left=30] node {a} (2);
+    \path[->] (4) edge [bend left=50] node {a} (1);
+\end{tikzpicture}
+
 \end{parts}
 
 \question
@@ -221,10 +247,153 @@ Construct DFA's for each of the following regular expressions. Do it in two step
 \begin{parts}
 \part[6] \begin{verbatim}a*|b*\end{verbatim}
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state, accepting] (3) [right of=2] {3};
+
+    \path[->] (1) edge [loop above] node {a} (1);
+    \path[->] (1) edge node {$\epsilon$} (2);
+    \path[->] (2) edge [loop above] node {b} (2);
+    \path[->] (2) edge node {$\epsilon$} (3);
+\end{tikzpicture}
+\caption{NFA}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial, accepting] (1) {1};
+    \node[state, accepting] (2) [right of=1] {2};
+    \node[state, accepting] (3) [below of=2] {3};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (1) edge node {b} (3);
+    \path[->] (2) edge [loop above] node {a} (2);
+    \path[->] (2) edge [loop right] node {b} (2);
+    \path[->] (3) edge [loop above] node {a} (3);
+    \path[->] (3) edge [loop right] node {b} (3);
+\end{tikzpicture}
+\caption{DFA}
+\end{figure}
+
 \part[7] \begin{verbatim}a*(ab)*a*\end{verbatim}
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial, accepting] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state, accepting] (3) [right of=2] {3};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (3) edge [loop above] node {a} (3);
+\end{tikzpicture}
+\caption{NFA}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial, accepting] (1) {1};
+    \node[state, accepting] (2) [right of=1] {2};
+    \node[state, accepting] (3) [right of=2] {3};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (2) edge [loop above] node {a} (2);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (3) edge [loop above] node {a} (3);
+\end{tikzpicture}
+\caption{DFA}
+\end{figure}
+
 \part[7] {\bf CSC416 ONLY: } \begin{verbatim}[ab]*abab\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state] (3) [right of=2] {3};
+    \node[state] (4) [right of=3] {4};
+    \node[state, accepting] (5) [right of=4] {5};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (1) edge [loop above] node {a} (1);
+    \path[->] (1) edge [loop below] node {b} (1);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (3) edge node {a} (4);
+    \path[->] (4) edge node {b} (5);
+\end{tikzpicture}
+\caption{NFA}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state] (3) [right of=2] {3};
+    \node[state] (4) [right of=3] {4};
+    \node[state, accepting] (5) [right of=4] {5};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (1) edge [loop above] node {b} (1);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (2) edge [loop above] node {a} (2);
+    \path[->] (3) edge node {a} (4);
+    \path[->] (4) edge node {b} (5);
+\end{tikzpicture}
+\caption{DFA}
+\end{figure}
+
 {\bf CSC565 ONLY: } \begin{verbatim}[ab]*abab[ab]*\end{verbatim}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state] (3) [right of=2] {3};
+    \node[state] (4) [right of=3] {4};
+    \node[state, accepting] (5) [right of=4] {5};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (1) edge [loop above] node {a} (1);
+    \path[->] (1) edge [loop below] node {b} (1);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (3) edge node {a} (4);
+    \path[->] (4) edge node {b} (5);
+    \path[->] (5) edge [loop above] node {a} (5);
+    \path[->] (5) edge [loop below] node {b} (5);
+\end{tikzpicture}
+\caption{NFA}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+    \node[state, initial] (1) {1};
+    \node[state] (2) [right of=1] {2};
+    \node[state] (3) [right of=2] {3};
+    \node[state] (4) [right of=3] {4};
+    \node[state, accepting] (5) [right of=4] {5};
+
+    \path[->] (1) edge node {a} (2);
+    \path[->] (1) edge [loop above] node {b} (1);
+    \path[->] (2) edge node {b} (3);
+    \path[->] (2) edge [loop above] node {a} (2);
+    \path[->] (3) edge node {a} (4);
+    \path[->] (4) edge node {b} (5);
+    \path[->] (5) edge [loop above] node {a} (5);
+    \path[->] (5) edge [loop below] node {b} (5);
+\end{tikzpicture}
+\caption{DFA}
+\end{figure}
+
 \end{parts}
 
 \end{questions}
