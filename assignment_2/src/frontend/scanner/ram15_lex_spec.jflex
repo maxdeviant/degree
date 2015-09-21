@@ -40,19 +40,27 @@ package frontend.scanner.generated;
     }
 %}
 
-WhiteSpace = [ \t]
+Whitespace = [\s\t]
 
-Operator = {ArithmeticOperator} | {BooleanOperator}
+Identifier = [:jletter:] [:jletterdigit:]*
 
+Operator = {AssignmentOperator} | {ArithmeticOperator} | {BooleanOperator} | EqualityOperator
+
+AssignmentOperator = "="
 BooleanOperator = "and" | "or"
 ArithmeticOperator = "+" | "-" | "*" | "/"
+EqualityOperator = "==" | "<" | ">" | "lt" | "gt"
+
+DecimalIntegerLiteral = 0 | [1-9][0-9]*
+
+StringLiteral = \" ( \\\" | [^\"\n\r] )* \"
 
 Comment = {TraditionalComment} | {DocumentationComment} | {LineComment}
 
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent = ( [^*] | \*+ [^/*] )*
-LineComment = {WhiteSpace}* "//" .*
+LineComment = {Whitespace}* "//" .*
 
 %%
 
@@ -63,7 +71,7 @@ LineComment = {WhiteSpace}* "//" .*
  */
 
 {Comment}        { found("COMMENT"); }
-{WhiteSpace}     {  }
+{Whitespace}     {  }
 {Operator}       { found("OPERATOR"); }
 "("              { found("LEFT_PARENTHESIS"); }
 ")"              { found("RIGHT_PARENTHESIS"); }
@@ -71,9 +79,11 @@ LineComment = {WhiteSpace}* "//" .*
 "]"              { found("RIGHT_BRACKET"); }
 "{"              { found("LEFT_BRACE"); }
 "}"              { found("RIGHT_BRACE"); }
+";"              { found("SEMICOLON"); }
 "class"         { found("CLASS"); }
 "public"        { found("PUBLIC"); }
 "static"        { found("STATIC"); }
 "new"             { found("NEW"); }
-[a-zA-Z][a-zA-Z0-9]* { found("IDENTIFIER"); }
+{DecimalIntegerLiteral} { found("INTEGER_LITERAL"); }
+{Identifier} { found("IDENTIFIER"); }
 .               { error(); }
