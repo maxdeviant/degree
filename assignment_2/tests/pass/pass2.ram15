@@ -1,13 +1,13 @@
 class Test2 {
     public static void main(String[] a) {
-        Test2Class().method1()!
-        Test2Class().method2()!
+        Test2Class().method1();
+        Test2Class().method2();
     }
 }//a single line comment
 
 class Test2Class {
     public void method1() {
-        print(5)!
+        print(5);
     }
 /*
 #$%?
@@ -19,7 +19,7 @@ class Test2Class {
 /*
 
 */
-        print(6)!
+        print(6);
 /*
 *
 */
