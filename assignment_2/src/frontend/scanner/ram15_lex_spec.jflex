@@ -46,7 +46,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
 
 Operator = {AssignmentOperator} | {ArithmeticOperator} | {BooleanOperator} | EqualityOperator
 
-AssignmentOperator = "="
+AssignmentOperator = "=" | "+=" | "-="
 BooleanOperator = "and" | "or"
 ArithmeticOperator = "+" | "-" | "*" | "/"
 EqualityOperator = "==" | "<" | ">" | "lt" | "gt"
@@ -80,10 +80,14 @@ LineComment = {Whitespace}* "//" .*
 "{"              { found("LEFT_BRACE"); }
 "}"              { found("RIGHT_BRACE"); }
 ";"              { found("SEMICOLON"); }
+"."              { found("PERIOD"); }
 "class"         { found("CLASS"); }
 "public"        { found("PUBLIC"); }
 "static"        { found("STATIC"); }
+"void"           { found("VOID"); }
+"main"           { found("MAIN"); }
 "new"             { found("NEW"); }
+"println"       { found("PRINT"); }
 {DecimalIntegerLiteral} { found("INTEGER_LITERAL"); }
 {Identifier} { found("IDENTIFIER"); }
 .               { error(); }
