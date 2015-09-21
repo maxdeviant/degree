@@ -1,4 +1,3 @@
-
 /*
  *    User Code Section
  *
@@ -15,12 +14,10 @@ package frontend.scanner.generated;
  * This section is for any jflex declarations and options settings.
  *
  */
-
 %public       /* Makes the generated class public */
 %standalone   /* Creates a main method in the generated class that expects an input file.
                  Also instructs Scanner to send any unmatched input to java.lang.System.out and resume scanning,
                  instead of aborting. */
-
 
 /* Any following code in between the symbols %{  %}
  * is copied verbatim into the generated class. It can
@@ -31,8 +28,6 @@ package frontend.scanner.generated;
 
     /*  Call me to say what you found */
     public void found(String tokenClass) {
-       // System.out.println("\nFound |" + str + "| from text -->" + yytext() + "<--");
-
        System.out.println("< " + tokenClass + " , \"" + yytext() + "\" >");
        System.out.flush();
     }
@@ -45,9 +40,19 @@ package frontend.scanner.generated;
     }
 %}
 
+WhiteSpace = [ \t]
 
-/* Any abbreviations that we are defining. */
-DIGIT = [0-9]
+Operator = {ArithmeticOperator} | {BooleanOperator}
+
+BooleanOperator = "and" | "or"
+ArithmeticOperator = "+" | "-" | "*" | "/"
+
+Comment = {TraditionalComment} | {DocumentationComment} | {LineComment}
+
+TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+DocumentationComment = "/**" {CommentContent} "*"+ "/"
+CommentContent = ( [^*] | \*+ [^/*] )*
+LineComment = {WhiteSpace}* "//" .*
 
 %%
 
@@ -57,17 +62,18 @@ DIGIT = [0-9]
  * Finally, patterns of interest and what to do upon finding them.
  */
 
-
-"hello"			{ found("GREETING"); }
-("0"|"1")+		{ found("BINARY_INT"); }
-"("             { found("LPAREN"); }
-")"             { found("RPAREN"); }
-"["             { found("LSQBRACE"); }
-"]"             { found("RSQBRACE"); }
-// "{"             { found("LCURLY"); }
-"}"             { found("RCURLY"); }
-":"             { found("COLON"); }
-";"             { found("SEMICOLON"); }
-"."             { found("DOT"); }
+{Comment}        { found("COMMENT"); }
+{WhiteSpace}     {  }
+{Operator}       { found("OPERATOR"); }
+"("              { found("LEFT_PARENTHESIS"); }
+")"              { found("RIGHT_PARENTHESIS"); }
+"["              { found("LEFT_BRACKET"); }
+"]"              { found("RIGHT_BRACKET"); }
+"{"              { found("LEFT_BRACE"); }
+"}"              { found("RIGHT_BRACE"); }
+"class"         { found("CLASS"); }
 "public"        { found("PUBLIC"); }
+"static"        { found("STATIC"); }
+"new"             { found("NEW"); }
+[a-zA-Z][a-zA-Z0-9]* { found("IDENTIFIER"); }
 .               { error(); }
