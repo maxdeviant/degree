@@ -47,7 +47,7 @@ Write regular expressions for each of the following.
 \part[4] All strings of digits that represent even numbers.
 \newline $([1-9][0-9])^{*}(0|2|4|6|8)$
 \part[4] Strings over the alphabet \{a,b,c\} with an even number of {\tt a}'s.
-\newline $((aa)^{+}(b|c)^{*})|((b|c)^{*}(aa)^{+}(b|c)^{*})|((b|c)^{*}(aa)^{+})$
+\newline $(a(b|c)^{*}a)|((aa)^{*}|b^{*}|c^{*})$
 \part[4] Strings over the alphabet \{a,b\} that contain an odd number of {\tt a}'s or an odd number of {\tt b}'s (or both).
 \newline $a(aa)^{*}|b(bb)^{*}|a(bb^{*})b(aa)^{*}$
 \end{parts}
@@ -162,7 +162,7 @@ A single {\tt a}, optionally followed by any number of sequences consisting of 5
     \path[->] (1) edge [loop below] node {b} (1);
 \end{tikzpicture}
 
-Any number of {\tt a}'s or {\tt b}'s, followed by an {\tt a}, followed by a comibination of 4 {\tt a}'s and {\tt b}'s.
+Any number of {\tt a}'s or {\tt b}'s, followed by an {\tt a}, followed by a combination of 4 {\tt a}'s and {\tt b}'s.
 
 \end{parts}
 
