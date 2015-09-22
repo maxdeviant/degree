@@ -1,17 +1,65 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 ---
 name: Ram15
+uuid: 7881ddba-5951-4e62-824e-35c7c887e322
 scopeName: source.ram15
 fileTypes: [ram15]
-uuid: 7881ddba-5951-4e62-824e-35c7c887e322
 
 patterns:
-- comment: Public
-  name: keyword.other.ram15
-  match: "public"
-- comment: Static
-  name: keyword.other.ram15
-  match: "static"
-- comment: Comparison Operators
-  name: keyword.operator.ram15
-  match: ==
+- include: '#code'
+repository:
+  code:
+    patterns:
+    - include: '#comments'
+    # - include: '#class'
+    - begin: '{'
+      end: '}'
+      patterns:
+      - include: '#code'
+    # - include: '#assertions'
+    # - include: '#parens'
+    # - include: '#constants-and-special-vars'
+    # - include: '#anonymous-classes-and-new'
+    # - include: '#keywords'
+    - include: '#storage-modifiers'
+    # - include: '#strings'
+    - include: '#all-types'
+  all-types:
+    patterns:
+    - include: '#primitive-arrays'
+    - include: '#primitive-types'
+  comments:
+    patterns:
+    - captures:
+        '0':
+          name: punctuation.definition.comment.ram15
+      match: /\*\*/
+      name: comment.block.empty.ram15
+    - include: '#comments-inline'
+  comments-inline:
+    patterns:
+    - begin: /\*
+      captures:
+        '0':
+          name: punctuation.definition.comment.ram15
+      end: \*/
+      name: comment.block.ram15
+    - captures:
+        '1':
+          name: comment.line.double-slash.ram15
+        '2':
+          name: punctuation.definition.comment.ram15
+      match: \s*((//).*$\n?)
+  primitive-arrays:
+    patterns:
+    - match: \b(?:int)(\[\])*\b
+      name: storage.type.primitive.array.ram15
+  primitive-types:
+    patterns:
+    - match: \b(?:void|bool|int)\b
+      name: storage.type.primitive.ram15
+  storage-modifiers:
+    captures:
+      '1':
+        name: storage.modifier.ram15
+    match: \b(public|static)\b
