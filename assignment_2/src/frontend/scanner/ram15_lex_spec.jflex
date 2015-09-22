@@ -70,8 +70,8 @@ LineComment = {Whitespace}* "//" .*
  * Finally, patterns of interest and what to do upon finding them.
  */
 
-{Comment}        { found("COMMENT"); }
 {Whitespace}     {  }
+{Comment}        { found("COMMENT"); }
 {Operator}       { found("OPERATOR"); }
 "("              { found("LEFT_PARENTHESIS"); }
 ")"              { found("RIGHT_PARENTHESIS"); }
@@ -79,15 +79,18 @@ LineComment = {Whitespace}* "//" .*
 "]"              { found("RIGHT_BRACKET"); }
 "{"              { found("LEFT_BRACE"); }
 "}"              { found("RIGHT_BRACE"); }
+":"              { found("COLON"); }
 ";"              { found("SEMICOLON"); }
 "."              { found("PERIOD"); }
+","              { found("COMMA"); }
 "class"         { found("CLASS"); }
 "public"        { found("PUBLIC"); }
 "static"        { found("STATIC"); }
 "void"           { found("VOID"); }
 "main"           { found("MAIN"); }
 "new"             { found("NEW"); }
-"println"       { found("PRINT"); }
+"println"       { found("PRINTLN"); }
+"print"         { found("PRINT"); }
 {DecimalIntegerLiteral} { found("INTEGER_LITERAL"); }
 {Identifier} { found("IDENTIFIER"); }
 .               { error(); }
