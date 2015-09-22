@@ -31,8 +31,6 @@ public class JFlexScannerTest extends TestCase {
             if (files[i].toString().endsWith(".ram15")) {
                 String[] args = null;
                 System.out.printf("Running scanner on %s ...\n", files[i].toString());
-//                args = new String[] { "-t", files[i].toString() };
-//                JavaCCMain.main(args);
 
                 args = new String[]{files[i].toString()};
                 frontend.scanner.generated.Yylex.error_flag = false;
@@ -47,6 +45,32 @@ public class JFlexScannerTest extends TestCase {
 
         // We want all tests to pass
         assertFalse(errorHasOccurred);
+    }
+
+    /**
+     * Run the scanner against each fail-test file under the folder specified by
+     * FAIL_TESTS_DIR property.
+     */
+    public void testFail() {
+        System.out.println("In the testFail method.");
+        File failTestsDir = new File(System.getProperty("FAIL_TESTS_DIR"));
+        File[] files = failTestsDir.listFiles();
+        boolean errorHasntOccurred = true;
+        for (int i = 0; files != null && i < files.length; i++) {
+            if (files[i].toString().endsWith(".ram15")) {
+                String[] args = null;
+                System.out.printf("Running scanner on %s ...\n", files[i].toString());
+
+                args = new String[]{files[i].toString()};
+                frontend.scanner.generated.Yylex.error_flag = false;
+                frontend.scanner.generated.Yylex.main(args);
+
+                System.out.printf("\n");
+
+                // false if any test doesn't fail
+                errorHasntOccurred &= frontend.scanner.generated.Yylex.error_flag;
+            }
+        }
     }
 
     /**

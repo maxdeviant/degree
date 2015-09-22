@@ -53,7 +53,8 @@
         <!-- Executes the scanner on a specified input file -->
         <java classname="frontend.scanner.generated.Yylex" dir="${build}" fork="true" failonerror="true"
               logError="true">
-            <arg value="${test}/pass/pass1.ram15"/>
+            <!-- <arg value="${test}/pass/pass1.ram15" /> -->
+            <arg value="${test}/fail/fail1.ram15"/>
         </java>
     </target>
     <!--
@@ -83,6 +84,7 @@
         <property name="FAIL_TESTS_DIR" value="${basedir}/tests/fail"/>
         <junit printsummary="yes" haltonfailure="no" showoutput="yes">
             <sysproperty key="PASS_TESTS_DIR" value="${PASS_TESTS_DIR}"/>
+            <sysproperty key="FAIL_TESTS_DIR" value="${FAIL_TESTS_DIR}"/>
             <classpath>
                 <path refid="runtime.path"/>
                 <pathelement location="${build}"/>
@@ -93,6 +95,4 @@
             </test>
         </junit>
     </target>
-
-
 </project>
