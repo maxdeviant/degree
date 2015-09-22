@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>ram15</string>
+	</array>
+	<key>name</key>
+	<string>Ram15</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Public</string>
+			<key>match</key>
+			<string>public</string>
+			<key>name</key>
+			<string>keyword.other.ram15</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Static</string>
+			<key>match</key>
+			<string>static</string>
+			<key>name</key>
+			<string>keyword.other.ram15</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Comparison Operators</string>
+			<key>match</key>
+			<string>==</string>
+			<key>name</key>
+			<string>keyword.operator.ram15</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.ram15</string>
+	<key>uuid</key>
+	<string>7881ddba-5951-4e62-824e-35c7c887e322</string>
+</dict>
+</plist>
