@@ -42,9 +42,11 @@ package frontend.scanner.generated;
 
 Whitespace = [\s\t]
 
+TypeDeclaration = "bool" | "int" | "int[]"
+
 Identifier = [:jletter:] [:jletterdigit:]*
 
-Operator = {AssignmentOperator} | {ArithmeticOperator} | {BooleanOperator} | EqualityOperator
+Operator = {AssignmentOperator} | {ArithmeticOperator} | {BooleanOperator} | {EqualityOperator}
 
 AssignmentOperator = "=" | "+=" | "-="
 BooleanOperator = "and" | "or"
@@ -52,6 +54,7 @@ ArithmeticOperator = "+" | "-" | "*" | "/"
 EqualityOperator = "==" | "<" | ">" | "lt" | "gt"
 
 DecimalIntegerLiteral = 0 | [1-9][0-9]*
+BooleanLiteral = "true" | "false"
 
 StringLiteral = \" ( \\\" | [^\"\n\r] )* \"
 
@@ -73,6 +76,7 @@ LineComment = {Whitespace}* "//" .*
 {Whitespace}                   {  }
 {Comment}                      { found("COMMENT"); }
 {Operator}                     { found("OPERATOR"); }
+{TypeDeclaration}              { found("TYPE_DECLARATION"); }
 "("                            { found("LEFT_PARENTHESIS"); }
 ")"                            { found("RIGHT_PARENTHESIS"); }
 "["                            { found("LEFT_BRACKET"); }
@@ -91,6 +95,7 @@ LineComment = {Whitespace}* "//" .*
 "new"                          { found("NEW"); }
 "println"                      { found("PRINTLN"); }
 "print"                        { found("PRINT"); }
+{BooleanLiteral}               { found("BOOLEAN_LITERAL"); }
 {DecimalIntegerLiteral}        { found("INTEGER_LITERAL"); }
 {Identifier}                   { found("IDENTIFIER"); }
 .                              { error(); }
