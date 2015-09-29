@@ -56,8 +56,6 @@ EqualityOperator = "==" | "<" | ">" | "lt" | "gt"
 DecimalIntegerLiteral = 0 | [1-9][0-9]*
 BooleanLiteral = "true" | "false"
 
-StringLiteral = \" ( \\\" | [^\"\n\r] )* \"
-
 Comment = {TraditionalComment} | {DocumentationComment} | {LineComment}
 
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
