@@ -6,6 +6,13 @@ class Types {
 
     public static void main(String[] args) {
         /**
+         * An empty types
+         */
+        bool foo;
+        int bar;
+        int[] bar;
+
+        /**
          * An booleans
          */
         bool anBool = false;
