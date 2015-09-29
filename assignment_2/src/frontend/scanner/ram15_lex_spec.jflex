@@ -84,6 +84,7 @@ LineComment = {Whitespace}* "//" .*
 "static"                       { found("STATIC"); }
 "void"                         { found("VOID"); }
 "main"                         { found("MAIN"); }
+"while"                        { found("WHILE"); }
 "new"                          { found("NEW"); }
 "println"                      { found("PRINTLN"); }
 "print"                        { found("PRINT"); }
