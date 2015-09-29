@@ -85,6 +85,8 @@ LineComment = {Whitespace}* "//" .*
 "void"                         { found("VOID"); }
 "main"                         { found("MAIN"); }
 "return"                       { found("RETURN"); }
+"if"                           { found("IF"); }
+"else"                         { found("ELSE"); }
 "while"                        { found("WHILE"); }
 "this"                         { found("THIS"); }
 "new"                          { found("NEW"); }
