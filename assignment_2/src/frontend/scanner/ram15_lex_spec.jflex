@@ -99,6 +99,7 @@ LineComment = {Whitespace}* "//" .*
 "}"                            { found("RIGHT_BRACE"); }
 ":"                            { found("COLON"); }
 ";"                            { found("SEMICOLON"); }
+"!"                            { found("EXCLAMATION_MARK"); }
 "."                            { found("PERIOD"); }
 ","                            { found("COMMA"); }
 {Identifier}                   { found("IDENTIFIER"); }
