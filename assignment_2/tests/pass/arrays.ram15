@@ -16,6 +16,10 @@ class Arrays {
         println(b.length);   // 3
         println(c.length);   // 4
         println(d.length);   // 5
+
+        int lengthA = a.length;
+
+        println(lengthA);    // 3
     }
 
 }

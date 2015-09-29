@@ -92,7 +92,7 @@ LineComment = {Whitespace}* "//" .*
 "new"                          { found("NEW"); }
 "println"                      { found("PRINTLN"); }
 "print"                        { found("PRINT"); }
-".length"                      { found("LENGTH"); }
+"length"                       { found("LENGTH"); }
 "("                            { found("LEFT_PARENTHESIS"); }
 ")"                            { found("RIGHT_PARENTHESIS"); }
 "["                            { found("LEFT_BRACKET"); }

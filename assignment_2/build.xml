@@ -54,7 +54,7 @@
         <java classname="frontend.scanner.generated.Yylex" dir="${build}" fork="true" failonerror="true"
               logError="true">
             <!-- <arg value="${test}/pass/pass1.ram15" /> -->
-            <arg value="${test}/fail/failing.ram15"/>
+            <arg value="${test}/pass/arrays.ram15"/>
         </java>
     </target>
     <!--
