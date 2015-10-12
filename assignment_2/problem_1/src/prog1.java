@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,15 +36,15 @@ public class prog1 {
         System.out.println("Input values         x = " + joinArray(x));
         System.out.println("After initialization w = " + joinArray(w));
 
-        Thread[] threads = new Thread[n - 1];
+        ArrayList<Thread> threads = new ArrayList<>();
 
-        for (int i = 0; i < n - 1; i++) {
-            threads[i] = new Thread(new Comparator(i, i + 1, x, w));
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                threads.add(new Thread(new Comparator(i, j, x, w)));
+            }
         }
 
-        for (Thread thread : threads) {
-            thread.start();
-        }
+        threads.forEach(java.lang.Thread::start);
 
         for (Thread thread : threads) {
             thread.join();
