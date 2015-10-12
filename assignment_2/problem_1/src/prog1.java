@@ -35,11 +35,17 @@ public class prog1 {
         System.out.println("Input values         x = " + joinArray(x));
         System.out.println("After initialization w = " + joinArray(w));
 
+        Thread[] threads = new Thread[3];
+
         for (int i = 0; i < x.length - 1; i++) {
-            Thread thread = new Thread(new Comparator(i, i + 1, x, w));
+            threads[i] = new Thread(new Comparator(i, i + 1, x, w));
+        }
 
+        for (Thread thread : threads) {
             thread.start();
+        }
 
+        for (Thread thread : threads) {
             thread.join();
         }
 
