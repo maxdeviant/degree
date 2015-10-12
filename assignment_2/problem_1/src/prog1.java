@@ -8,13 +8,26 @@ public class prog1 {
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
-        int n = input.nextInt();
+        boolean isCLIMode = args.length > 0;
+
+        int n;
+
+        if (isCLIMode) {
+            n = Integer.valueOf(args[0]);
+        } else {
+            n = input.nextInt();
+        }
 
         int[] x = new int[n];
         int[] w = new int[n];
 
         for (int i = 0; i < n; i++) {
-            x[i] = input.nextInt();
+            if (isCLIMode) {
+                x[i] = Integer.valueOf(args[i + 1]);
+            } else {
+                x[i] = input.nextInt();
+            }
+
             w[i] = 1;
         }
 
