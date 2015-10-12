@@ -14,7 +14,7 @@ public class Problem2 {
 
        while (true) {
            threads[runningThread % threads.length].run();
-           threads[runningThread % threads.length].interrupt();
+           threads[runningThread % threads.length].join();
 
            if (++runningThread == 3000) {
                break;
