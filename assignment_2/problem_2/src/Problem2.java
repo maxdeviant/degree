@@ -12,7 +12,6 @@ public class Problem2 {
 
        int runningThread = 0;
 
-
        while (true) {
            threads[runningThread % threads.length].run();
            threads[runningThread % threads.length].interrupt();
