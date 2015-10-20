@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Ram15Compiler" default="testParser" basedir=".">
+<project name="Ram15Compiler" default="default" basedir=".">
     <description>Builds, tests, and runs the project Ram15Compiler.</description>
 
 
@@ -115,7 +115,7 @@
     -->
     <target name="testScanner" depends="build">
         <echo message="Running JFlex scanner on the test programs..."/>
-        <javac srcdir="${basedir}/tests/"
+        <javac srcdir="${basedir}/tests/junit/lexer"
                destdir="${BUILD_DIR}"
                includeantruntime="false"
                debug="on">
@@ -127,7 +127,7 @@
             </classpath>
         </javac>
         <property name="PASS_TESTS_DIR" value="${basedir}/tests/pass"/>
-        <property name="FAIL_TESTS_DIR" value="${basedir}/tests/lexicalerrors/fail"/>
+        <property name="FAIL_TESTS_DIR" value="${basedir}/tests/fail/lexicalerrors"/>
         <junit printsummary="yes" haltonfailure="no" showoutput="yes">
             <sysproperty key="PASS_TESTS_DIR" value="${PASS_TESTS_DIR}"/>
             <sysproperty key="FAIL_TESTS_DIR" value="${FAIL_TESTS_DIR}"/>
@@ -142,6 +142,7 @@
         </junit>
     </target>
 
+
     <!-- ******************** PARSER ANT TARGETS **************************** -->
 
     <!-- generateParser: Generates JavaCC scanner and parser. -->
@@ -149,8 +150,8 @@
         <echo message="Generating JavaCC parser .java files..."/>
         <javacc target="${SRC_DIR}/frontend/parser/RamGrammar.jj"
                 outputdirectory="${SRC_DIR}/frontend/parser/generated"
-                javacchome="${LIB_DIR}"
-                static="true"/>
+                javacchome="${LIB_DIR}">
+        </javacc>
     </target>
 
     <!-- runParser: Runs the genereated parser on a test file. -->
@@ -158,15 +159,41 @@
         <echo message="Running parser on specified input file..."/>
         <java classname="frontend.parser.generated.RamParser"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <!-- <arg value="${TEST_DIR}/pass/pass1.ram15" /> -->
-            <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15"/>
+            <arg value="${TEST_DIR}/pass/pass1.ram15"/>
+            <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
 
     <!-- testParser: Tests our parser by running it on all tests
     under tests/pass directory. -->
     <target name="testParser" depends="generateParser, build">
-        <echo message="TODO: get on this, Burns!"></echo>
+        <echo message="Running JFlex scanner on the test programs..."/>
+        <javac srcdir="${basedir}/tests/junit/parser"
+               destdir="${BUILD_DIR}"
+               includeantruntime="false"
+               debug="on">
+            <!-- Uncomment the following to see compiler warnings. -->
+            <!-- <compilerarg value="-Xlint" />                    -->
+            <classpath>
+                <path refid="build.path"/>
+                <pathelement location="${BUILD_DIR}"/>
+            </classpath>
+        </javac>
+        <property name="PASS_TESTS_DIR" value="${basedir}/tests/pass"/>
+        <property name="FAIL_TESTS_DIR" value="${basedir}/tests/fail/syntaxerrors"/>
+        <junit printsummary="yes" haltonfailure="no" showoutput="yes">
+            <sysproperty key="PASS_TESTS_DIR" value="${PASS_TESTS_DIR}"/>
+            <sysproperty key="FAIL_TESTS_DIR" value="${FAIL_TESTS_DIR}"/>
+            <classpath>
+                <path refid="runtime.path"/>
+                <pathelement location="${BUILD_DIR}"/>
+            </classpath>
+            <test name="junit.JavaCCParserTest"
+                  haltonfailure="no">
+                <formatter type="plain" usefile="false"/>
+            </test>
+        </junit>
     </target>
+
 
 </project>
