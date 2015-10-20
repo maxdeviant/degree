@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Ram15Compiler" default="default" basedir=".">
+<project name="Ram15Compiler" default="testTarser" basedir=".">
     <description>Builds, tests, and runs the project Ram15Compiler.</description>
 
 
@@ -150,7 +150,8 @@
         <echo message="Generating JavaCC parser .java files..."/>
         <javacc target="${SRC_DIR}/frontend/parser/RamGrammar.jj"
                 outputdirectory="${SRC_DIR}/frontend/parser/generated"
-                javacchome="${LIB_DIR}">
+                javacchome="${LIB_DIR}"
+                static="false">
         </javacc>
     </target>
 

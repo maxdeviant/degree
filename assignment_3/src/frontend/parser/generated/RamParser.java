@@ -17,12 +17,12 @@
             }
         }
 
-  static final public void Goal() throws ParseException {
+  final public void Goal() throws ParseException {
     Program();
     jj_consume_token(0);
   }
 
-  static final public void RamToken() throws ParseException {
+  final public void RamToken() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case CLASS:{
       jj_consume_token(CLASS);
@@ -199,7 +199,7 @@
     }
   }
 
-  static final public void Program() throws ParseException {
+  final public void Program() throws ParseException {
     MainClass();
     label_1:
     while (true) {
@@ -216,7 +216,7 @@
     }
   }
 
-  static final public void MainClass() throws ParseException {
+  final public void MainClass() throws ParseException {
     jj_consume_token(CLASS);
     jj_consume_token(IDENTIFIER);
     jj_consume_token(LBRACE);
@@ -236,7 +236,7 @@
     jj_consume_token(RBRACE);
   }
 
-  static final public void ClassDecl() throws ParseException {
+  final public void ClassDecl() throws ParseException {
     jj_consume_token(CLASS);
     jj_consume_token(IDENTIFIER);
     jj_consume_token(RBRACE);
@@ -244,11 +244,11 @@
     jj_consume_token(RBRACE);
   }
 
-  static final public void Statement() throws ParseException {
+  final public void Statement() throws ParseException {
     jj_consume_token(IDENTIFIER);
   }
 
-  static final public void Operator() throws ParseException {
+  final public void Operator() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case AND:{
       jj_consume_token(AND);
@@ -285,17 +285,16 @@
     }
   }
 
-  static private boolean jj_initialized_once = false;
   /** Generated Token Manager. */
-  static public RamParserTokenManager token_source;
-  static JavaCharStream jj_input_stream;
+  public RamParserTokenManager token_source;
+  JavaCharStream jj_input_stream;
   /** Current token. */
-  static public Token token;
+  public Token token;
   /** Next token. */
-  static public Token jj_nt;
-  static private int jj_ntk;
-  static private int jj_gen;
-  static final private int[] jj_la1 = new int[3];
+  public Token jj_nt;
+  private int jj_ntk;
+  private int jj_gen;
+  final private int[] jj_la1 = new int[3];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -315,13 +314,6 @@
   }
   /** Constructor with InputStream and supplied encoding */
   public RamParser(java.io.InputStream stream, String encoding) {
-    if (jj_initialized_once) {
-      System.out.println("ERROR: Second call to constructor of static parser.  ");
-      System.out.println("       You must either use ReInit() or set the JavaCC option STATIC to false");
-      System.out.println("       during parser generation.");
-      throw new Error();
-    }
-    jj_initialized_once = true;
     try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source = new RamParserTokenManager(jj_input_stream);
     token = new Token();
@@ -331,11 +323,11 @@
   }
 
   /** Reinitialise. */
-  static public void ReInit(java.io.InputStream stream) {
+  public void ReInit(java.io.InputStream stream) {
      ReInit(stream, null);
   }
   /** Reinitialise. */
-  static public void ReInit(java.io.InputStream stream, String encoding) {
+  public void ReInit(java.io.InputStream stream, String encoding) {
     try { jj_input_stream.ReInit(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source.ReInit(jj_input_stream);
     token = new Token();
@@ -346,13 +338,6 @@
 
   /** Constructor. */
   public RamParser(java.io.Reader stream) {
-    if (jj_initialized_once) {
-      System.out.println("ERROR: Second call to constructor of static parser. ");
-      System.out.println("       You must either use ReInit() or set the JavaCC option STATIC to false");
-      System.out.println("       during parser generation.");
-      throw new Error();
-    }
-    jj_initialized_once = true;
     jj_input_stream = new JavaCharStream(stream, 1, 1);
     token_source = new RamParserTokenManager(jj_input_stream);
     token = new Token();
@@ -362,7 +347,7 @@
   }
 
   /** Reinitialise. */
-  static public void ReInit(java.io.Reader stream) {
+  public void ReInit(java.io.Reader stream) {
     jj_input_stream.ReInit(stream, 1, 1);
     token_source.ReInit(jj_input_stream);
     token = new Token();
@@ -373,13 +358,6 @@
 
   /** Constructor with generated Token Manager. */
   public RamParser(RamParserTokenManager tm) {
-    if (jj_initialized_once) {
-      System.out.println("ERROR: Second call to constructor of static parser. ");
-      System.out.println("       You must either use ReInit() or set the JavaCC option STATIC to false");
-      System.out.println("       during parser generation.");
-      throw new Error();
-    }
-    jj_initialized_once = true;
     token_source = tm;
     token = new Token();
     jj_ntk = -1;
@@ -396,7 +374,7 @@
     for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
-  static private Token jj_consume_token(int kind) throws ParseException {
+  private Token jj_consume_token(int kind) throws ParseException {
     Token oldToken;
     if ((oldToken = token).next != null) token = token.next;
     else token = token.next = token_source.getNextToken();
@@ -412,7 +390,7 @@
 
 
 /** Get the next Token. */
-  static final public Token getNextToken() {
+  final public Token getNextToken() {
     if (token.next != null) token = token.next;
     else token = token.next = token_source.getNextToken();
     jj_ntk = -1;
@@ -421,7 +399,7 @@
   }
 
 /** Get the specific Token. */
-  static final public Token getToken(int index) {
+  final public Token getToken(int index) {
     Token t = token;
     for (int i = 0; i < index; i++) {
       if (t.next != null) t = t.next;
@@ -430,19 +408,19 @@
     return t;
   }
 
-  static private int jj_ntk_f() {
+  private int jj_ntk_f() {
     if ((jj_nt=token.next) == null)
       return (jj_ntk = (token.next=token_source.getNextToken()).kind);
     else
       return (jj_ntk = jj_nt.kind);
   }
 
-  static private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
-  static private int[] jj_expentry;
-  static private int jj_kind = -1;
+  private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
+  private int[] jj_expentry;
+  private int jj_kind = -1;
 
   /** Generate ParseException. */
-  static public ParseException generateParseException() {
+  public ParseException generateParseException() {
     jj_expentries.clear();
     boolean[] la1tokens = new boolean[53];
     if (jj_kind >= 0) {
@@ -476,11 +454,11 @@
   }
 
   /** Enable tracing. */
-  static final public void enable_tracing() {
+  final public void enable_tracing() {
   }
 
   /** Disable tracing. */
-  static final public void disable_tracing() {
+  final public void disable_tracing() {
   }
 
     }
