@@ -1,5 +1,6 @@
 options {
     JAVA_UNICODE_ESCAPE = true;
+    DEBUG_PARSER = true;
 }
 
 PARSER_BEGIN(RamParser)
@@ -96,11 +97,10 @@ TOKEN :
 void Goal() :
 {}
 {
-  /* ( RamToken() )*  <EOF> */
   Program() <EOF>
 }
 
-void RamToken():
+void RamToken() :
 {}
 {
     <CLASS>
@@ -150,39 +150,115 @@ void RamToken():
 void Program() :
 {}
 {
-    MainClass() ( ClassDecl() )*
+    MainClass()
+    ( ClassDeclaration() )*
 }
 
 void MainClass() :
 {}
 {
-    <CLASS> <IDENTIFIER> <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN>
-    <STRING> <LSQPAREN> <RSQPAREN> <IDENTIFIER> <RPAREN> <LBRACE>
-    Statement()
-    <RBRACE> <RBRACE>
-}
-
-void ClassDecl():
-{}
-{
-    <CLASS> <IDENTIFIER> <RBRACE>
-    Statement()
+    <CLASS> <IDENTIFIER> <LBRACE>
+        <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN> <IDENTIFIER> <RPAREN> <LBRACE>
+            Statement()
+        <RBRACE>
     <RBRACE>
 }
 
-void Statement():
+void ClassDeclaration() :
+{}
+{
+    <CLASS> <IDENTIFIER> <RBRACE>
+        ( VariableDeclaration() )*
+        ( MethodDeclaration() )*
+    <RBRACE>
+}
+
+void VariableDeclaration() :
+{}
+{
+    Type() <IDENTIFIER> <SEMICOLON>
+}
+
+void MethodDeclaration() :
+{}
+{
+    <PUBLIC> Type() <IDENTIFIER> <LPAREN> FormalList() <RPAREN> <LBRACE>
+        ( LOOKAHEAD(2) VariableDeclaration() )*
+        ( Statement() )*
+        <RETURN> Expression() <SEMICOLON>
+    <RBRACE>
+}
+
+void FormalList() :
+{}
+{
+    Type() <IDENTIFIER> ( FormalRest() )*
+}
+
+void FormalRest() :
+{}
+{
+    <COMMA> Type() <IDENTIFIER>
+}
+
+void Type() :
+{}
+{
+    ( <INTEGER> TypePrime() )
+    | <BOOLEAN>
+    | <IDENTIFIER>
+}
+
+void TypePrime() :
+{}
+{
+    [ <LSQPAREN> <RSQPAREN> ]
+}
+
+void Statement() :
+{}
+{
+    <LBRACE> ( Statement() )* <RBRACE>
+    | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
+    | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
+    | <PRINT> <LPAREN> ExpressionList() <RPAREN> <SEMICOLON>
+    | <PRINTLN> <LPAREN> ExpressionList() <RPAREN> <SEMICOLON>
+    | <IDENTIFIER> StatementPrime()
+}
+
+void StatementPrime() :
+{}
+{
+    <ASSIGN> Expression() <SEMICOLON>
+    | <PLUSEQUALS> Expression() <SEMICOLON>
+    | <LSQPAREN> Expression() <RSQPAREN> <ASSIGN> Expression() <SEMICOLON>
+}
+
+void Expression() :
 {}
 {
     <IDENTIFIER>
 }
 
-void Operator():
+void ExpressionList() :
+{}
+{
+    Expression() ( ExpressionRest() )*
+}
+
+void ExpressionRest() :
+{}
+{
+    <COMMA> Expression()
+}
+
+void Operator() :
 {}
 {
     <AND>
     | <OR>
-    | <EQUALITY>
     | <LESSTHAN>
+    | <EQUALITY>
     | <PLUS>
     | <MINUS>
     | <TIMES>
