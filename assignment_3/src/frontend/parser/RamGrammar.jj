@@ -237,13 +237,44 @@ void StatementPrime() :
 void Expression() :
 {}
 {
-    <IDENTIFIER>
+    <INTEGER_LITERAL> ExpressionPrime()
+    | <TRUE> ExpressionPrime()
+    | <FALSE> ExpressionPrime()
+    | <IDENTIFIER> ExpressionPrime()
+    | <THIS> ExpressionPrime()
+    | <NEW> ExpressionPrime()
+    | <EXCLAMATION> ExpressionPrime()
+    | <LPAREN> Expression() <RPAREN> ExpressionPrime()
+}
+
+void ExpressionPrime() :
+{}
+{
+    [
+        ( Operator() Expression() )
+        | ( <LSQPAREN> Expression() <RSQPAREN> )
+        | ( <DOT> ExpressionTriplePrime() )
+    ]
+}
+
+void ExpressionDoublePrime() :
+{}
+{
+    ( <INTEGER> <LSQPAREN> Expression() <RSQPAREN> )
+    | <IDENTIFIER> <LPAREN> <RPAREN>
+}
+
+void ExpressionTriplePrime() :
+{}
+{
+    <LENGTH>
+    | <IDENTIFIER> <LPAREN> ExpressionList() <RPAREN>
 }
 
 void ExpressionList() :
 {}
 {
-    Expression() ( ExpressionRest() )*
+    [ Expression() ( ExpressionRest() )* ]
 }
 
 void ExpressionRest() :
