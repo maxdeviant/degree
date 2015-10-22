@@ -155,7 +155,8 @@ void MainClass() :
 {
     <CLASS> <IDENTIFIER> <LBRACE>
         <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN> <IDENTIFIER> <RPAREN> <LBRACE>
-            ( LOOKAHEAD(2) VariableDeclaration() | Statement() ) *
+            ( LOOKAHEAD(2)  VariableDeclaration() )*
+            ( Statement() )*
         <RBRACE>
     <RBRACE>
 }
@@ -164,7 +165,8 @@ void ClassDeclaration() :
 {}
 {
     <CLASS> <IDENTIFIER> <LBRACE>
-        ( VariableDeclaration() | MethodDeclaration() )*
+        ( VariableDeclaration() )*
+        ( MethodDeclaration() )*
     <RBRACE>
 }
 
@@ -178,7 +180,8 @@ void MethodDeclaration() :
 {}
 {
     <PUBLIC> Type() <IDENTIFIER> <LPAREN> FormalList() <RPAREN> <LBRACE>
-        ( LOOKAHEAD(2) VariableDeclaration() | Statement() ) *
+        ( LOOKAHEAD(2) VariableDeclaration() ) *
+        ( Statement() ) *
         <RETURN> Expression() <SEMICOLON>
     <RBRACE>
 }

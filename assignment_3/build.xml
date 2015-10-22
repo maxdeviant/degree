@@ -155,12 +155,12 @@
         </javacc>
     </target>
 
-    <!-- runParser: Runs the genereated parser on a test file. -->
+    <!-- runParser: Runs the generated parser on a test file. -->
     <target name="runParser" depends="generateParser, build">
         <echo message="Running parser on specified input file..."/>
         <java classname="frontend.parser.generated.RamParser"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/intermixed_declarations.ram15"/>
+            <arg value="${TEST_DIR}/pass/arrays.ram15"/>
             <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
