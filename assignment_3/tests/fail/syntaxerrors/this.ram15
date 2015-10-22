@@ -1,0 +1,30 @@
+/**
+ * Test: `this`
+ * @author Marshall Bowers
+ */
+class TestThis {
+
+    public static void main(String[] args) {
+        TestThisToo test;
+        bool result;
+
+        test = new TestThisToo();
+
+        result = test.initialize(5, 10);
+    }
+
+}
+
+class TestThisToo {
+
+    int x;
+    int y;
+
+    public bool initialize(int x, int y) {
+        this.x = x;
+        this.y = y;
+
+        return true;
+    }
+
+}

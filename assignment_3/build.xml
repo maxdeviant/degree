@@ -161,7 +161,7 @@
         <java classname="frontend.parser.generated.RamParser"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
             <arg value="${TEST_DIR}/pass/arrays.ram15"/>
-            <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
+            <!--<arg value="${TEST_DIR}/fail/syntaxerrors/this.ram15"/>-->
         </java>
     </target>
 
