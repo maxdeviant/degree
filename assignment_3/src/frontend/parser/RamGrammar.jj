@@ -164,8 +164,7 @@ void ClassDeclaration() :
 {}
 {
     <CLASS> <IDENTIFIER> <LBRACE>
-        ( VariableDeclaration() )*
-        ( MethodDeclaration() )*
+        ( VariableDeclaration() | MethodDeclaration() )*
     <RBRACE>
 }
 
@@ -179,8 +178,7 @@ void MethodDeclaration() :
 {}
 {
     <PUBLIC> Type() <IDENTIFIER> <LPAREN> FormalList() <RPAREN> <LBRACE>
-        ( LOOKAHEAD(2) VariableDeclaration() )*
-        ( Statement() )*
+        ( LOOKAHEAD(2) VariableDeclaration() | Statement() ) *
         <RETURN> Expression() <SEMICOLON>
     <RBRACE>
 }
