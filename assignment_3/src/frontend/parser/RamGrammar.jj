@@ -155,7 +155,7 @@ void MainClass() :
 {
     <CLASS> <IDENTIFIER> <LBRACE>
         <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN> <IDENTIFIER> <RPAREN> <LBRACE>
-            Statement()
+            ( LOOKAHEAD(2) VariableDeclaration() | Statement() ) *
         <RBRACE>
     <RBRACE>
 }
@@ -248,7 +248,8 @@ void ExpressionPrime() :
 {
     [
         ( Operator() Expression() )
-        | ( <LSQPAREN> Expression() <RSQPAREN> )
+        | LOOKAHEAD(2) ( <LSQPAREN> Expression() <COLON> <RSQPAREN> )
+        | LOOKAHEAD(2) ( <LSQPAREN> <COLON>  Expression() <RSQPAREN> )
         | ( <DOT> ExpressionTriplePrime() )
     ]
 }
