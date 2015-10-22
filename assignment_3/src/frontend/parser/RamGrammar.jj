@@ -239,7 +239,7 @@ void Expression() :
     | <IDENTIFIER> ExpressionPrime()
     | <THIS> ExpressionPrime()
     | <NEW> ExpressionDoublePrime() ExpressionPrime()
-    | <EXCLAMATION> ExpressionPrime()
+    | <EXCLAMATION> Expression()
     | <LPAREN> Expression() <RPAREN> ExpressionPrime()
 }
 

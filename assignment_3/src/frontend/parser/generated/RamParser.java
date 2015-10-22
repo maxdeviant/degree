@@ -523,7 +523,7 @@
       }
     case EXCLAMATION:{
       jj_consume_token(EXCLAMATION);
-      ExpressionPrime();
+      Expression();
       break;
       }
     case LPAREN:{
@@ -711,19 +711,6 @@
     finally { jj_save(0, xla); }
   }
 
-  private boolean jj_3_1()
- {
-    if (jj_3R_9()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_9()
- {
-    if (jj_3R_10()) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
   private boolean jj_3R_11()
  {
     if (jj_scan_token(INTEGER)) return true;
@@ -756,6 +743,19 @@
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3R_13()) jj_scanpos = xsp;
+    return false;
+  }
+
+  private boolean jj_3_1()
+ {
+    if (jj_3R_9()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_9()
+ {
+    if (jj_3R_10()) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
