@@ -248,6 +248,7 @@ void ExpressionPrime() :
 {
     [
         ( Operator() Expression() )
+        | LOOKAHEAD(3) ( <LSQPAREN> Expression() <RSQPAREN> )
         | LOOKAHEAD(2) ( <LSQPAREN> Expression() <COLON> ( Expression() )? <RSQPAREN> )
         | LOOKAHEAD(2) ( <LSQPAREN> Expression() <COLON> <RSQPAREN> )
         | LOOKAHEAD(2) ( <LSQPAREN> <COLON> (Expression())? <RSQPAREN> )
