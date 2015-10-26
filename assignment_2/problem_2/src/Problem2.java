@@ -13,7 +13,7 @@ public class Problem2 {
        int runningThread = 0;
 
        while (true) {
-           threads[runningThread % threads.length].run();
+           threads[runningThread % threads.length].start();
            threads[runningThread % threads.length].join();
 
            if (++runningThread == 3000) {
