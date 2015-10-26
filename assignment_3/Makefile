@@ -13,7 +13,7 @@ clean:
 	$(CC) $(CFLAGS) $(LIB_INCLUDES) $(INCLUDES) -c $<
 
 bin: $(NAME)
-$(NAME): main.o error.o
+$(NAME): main.o buffer.o error.o
 	$(CC) $(CLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS)
 
 dist:
