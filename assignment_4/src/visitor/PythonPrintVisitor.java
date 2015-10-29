@@ -63,10 +63,12 @@ public class PythonPrintVisitor implements Visitor {
 
         System.out.print(":");
 
+//        indent();
+
         for (int i = 0; i < n.methodDeclList.size(); i++) {
             System.out.println();
 
-            indent();
+            printIndent();
 
             n.methodDeclList.elementAt(i).accept(this);
         }
@@ -81,7 +83,7 @@ public class PythonPrintVisitor implements Visitor {
     public void visit(VarDecl n) {
         sendVisitAlert(n);
 
-        n.identifier.accept(this);
+//        n.identifier.accept(this);
     }
 
     @Override
@@ -106,11 +108,31 @@ public class PythonPrintVisitor implements Visitor {
 
         System.out.println(":");
 
+        indent();
+
         for (int i = 0; i < n.varDeclList.size(); i++) {
-            indent();
+            printIndent();
 
             n.varDeclList.elementAt(i).accept(this);
         }
+
+        for (int i = 0; i < n.statementList.size(); i++) {
+            printIndent();
+
+            n.statementList.elementAt(i).accept(this);
+
+            if (i < n.statementList.size()) {
+                System.out.println();
+            }
+        }
+
+        printIndent();
+
+        System.out.print("return ");
+
+        n.exp.accept(this);
+
+        unindent();
     }
 
     @Override
@@ -166,11 +188,25 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Assign n) {
         sendVisitAlert(n);
+
+        n.identifier.accept(this);
+
+        System.out.print(" = ");
+
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(ArrayAssign n) {
         sendVisitAlert(n);
+
+        n.identifier.accept(this);
+
+        System.out.print(" = ");
+
+        n.lhs.accept(this);
+
+        n.rhs.accept(this);
     }
 
     @Override
@@ -306,27 +342,31 @@ public class PythonPrintVisitor implements Visitor {
     /**
      * Indents the source code.
      */
-    private void indent() {
-        indent(++indentLevel);
+    private void printIndent() {
+        printIndent(indentLevel);
     }
 
     /**
      * Indents the source code by the given number of levels.
      *
-     * @param levels The number of levels to indent by.
+     * @param levels The number of levels to printIndent by.
      */
-    private void indent(int levels) {
+    private void printIndent(int levels) {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < levels; i++) {
-            builder.append("    ");
+            builder.append("····");
         }
 
         System.out.print(builder.toString());
     }
 
+    private void indent() {
+        indentLevel++;
+    }
+
     private void unindent() {
-        --indentLevel;
+        indentLevel--;
     }
 
     private void sendVisitAlert(Object o) {
