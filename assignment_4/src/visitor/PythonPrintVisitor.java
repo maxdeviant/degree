@@ -94,6 +94,12 @@ public class PythonPrintVisitor implements Visitor {
 
         System.out.print("(");
 
+        System.out.print("self");
+
+        if (n.formalList.size() > 0) {
+            System.out.print(", ");
+        }
+
         for (int i = 0; i < n.formalList.size(); i++) {
             n.formalList.elementAt(i).accept(this);
 
@@ -204,6 +210,14 @@ public class PythonPrintVisitor implements Visitor {
         sendVisitAlert(n);
 
         System.out.print("print ");
+
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i != n.expList.size() - 1) {
+                System.out.print("+\" \"+");
+            }
+        }
     }
 
     @Override
@@ -211,6 +225,14 @@ public class PythonPrintVisitor implements Visitor {
         sendVisitAlert(n);
 
         System.out.print("print ");
+
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i != n.expList.size() - 1) {
+                System.out.print("+\" \"+");
+            }
+        }
     }
 
     @Override
@@ -415,8 +437,6 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(NewObject n) {
         sendVisitAlert(n);
-
-        System.out.print("new ");
 
         System.out.print(n.identifier.string);
 

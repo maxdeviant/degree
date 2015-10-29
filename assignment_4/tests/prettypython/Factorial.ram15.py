@@ -1,5 +1,5 @@
 class Fac():
-    def ComputeFac(num):
+    def ComputeFac(self, num):
         if num < 1:
             num_aux = 1
         else:
@@ -8,4 +8,4 @@ class Fac():
         return num_aux
 
 if __name__ == '__main__':
-    print 
+    print Fac().ComputeFac(10)
