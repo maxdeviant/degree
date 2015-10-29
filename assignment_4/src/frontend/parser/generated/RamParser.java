@@ -18,10 +18,10 @@
                 // parser.Goal();
                 Program root = parser.Goal();
 
-                // root.accept(new ASTPrintVisitor());
-                root.accept(new JavaPrintVisitor());
+                //root.accept(new ASTPrintVisitor());
+                //root.accept(new JavaPrintVisitor());
                 //root.accept(new RamPrintVisitor());
-                // root.accept(new PythonPrintVisitor());
+                root.accept(new PythonPrintVisitor());
             }
         }
 
