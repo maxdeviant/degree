@@ -3,21 +3,23 @@ package syntaxtree;
 import java.util.Vector;
 
 public class ExpList {
-    private Vector list;
+
+    private Vector expList;
 
     public ExpList() {
-        list = new Vector();
+        expList = new Vector();
     }
 
-    public void addElement(Exp n) {
-        list.addElement(n);
+    public void addElement(Exp exp) {
+        expList.addElement(exp);
     }
 
-    public Exp elementAt(int i) {
-        return (Exp) list.elementAt(i);
+    public Exp elementAt(int index) {
+        return (Exp) expList.elementAt(index);
     }
 
     public int size() {
-        return list.size();
+        return expList.size();
     }
+
 }

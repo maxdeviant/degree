@@ -1,18 +1,21 @@
 package syntaxtree;
 
+import visitor.Visitable;
 import visitor.Visitor;
 
-public class VarDecl {
-    public Type t;
-    public Identifier i;
+public class VarDecl implements Visitable {
 
-    public VarDecl(Type at, Identifier ai) {
-        t = at;
-        i = ai;
+    public Type type;
+    public Identifier identifier;
+
+    public VarDecl(Type type, Identifier identifier) {
+        this.type = type;
+        this.identifier = identifier;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

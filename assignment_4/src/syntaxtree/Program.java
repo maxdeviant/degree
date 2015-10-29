@@ -1,18 +1,21 @@
 package syntaxtree;
 
+import visitor.Visitable;
 import visitor.Visitor;
 
-public class Program {
-    public MainClass m;
-    public ClassDeclList cl;
+public class Program implements Visitable {
 
-    public Program(MainClass am, ClassDeclList acl) {
-        m = am;
-        cl = acl;
+    public MainClass mainClass;
+    public ClassDeclList classDeclList;
+
+    public Program(MainClass mainClass, ClassDeclList classDeclList) {
+        this.mainClass = mainClass;
+        this.classDeclList = classDeclList;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

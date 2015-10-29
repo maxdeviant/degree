@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class IntegerLiteral extends Exp {
-    public int i;
 
-    public IntegerLiteral(int ai) {
-        i = ai;
+    public int integer;
+
+    public IntegerLiteral(int integer) {
+        this.integer = integer;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

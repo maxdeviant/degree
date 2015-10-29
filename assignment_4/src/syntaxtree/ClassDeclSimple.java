@@ -3,18 +3,20 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class ClassDeclSimple extends ClassDecl {
-    public Identifier i;
-    public VarDeclList vl;
-    public MethodDeclList ml;
 
-    public ClassDeclSimple(Identifier ai, VarDeclList avl, MethodDeclList aml) {
-        i = ai;
-        vl = avl;
-        ml = aml;
+    public Identifier identifier;
+    public VarDeclList varDeclList;
+    public MethodDeclList methodDeclList;
+
+    public ClassDeclSimple(Identifier identifier, VarDeclList varDeclList, MethodDeclList methodDeclList) {
+        this.identifier = identifier;
+        this.varDeclList = varDeclList;
+        this.methodDeclList = methodDeclList;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

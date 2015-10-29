@@ -1,7 +1,11 @@
 package syntaxtree;
 
+import visitor.Visitable;
 import visitor.Visitor;
 
-public abstract class Statement {
-    public abstract void accept(Visitor v);
+public abstract class Statement implements Visitable {
+
+    @Override
+    public abstract void accept(Visitor visitor);
+
 }

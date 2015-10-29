@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class IdentifierExp extends Exp {
-    public String s;
 
-    public IdentifierExp(String as) {
-        s = as;
+    public String string;
+
+    public IdentifierExp(String string) {
+        this.string = string;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

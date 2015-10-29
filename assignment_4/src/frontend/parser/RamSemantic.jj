@@ -11,7 +11,7 @@ PARSER_BEGIN(RamParser)
     import syntaxtree.*;
 
     public class RamParser {
-        public static void main(String[] args) 
+        public static void main(String[] args)
         throws ParseException, TokenMgrError, FileNotFoundException
         {
             if (args.length == 0) {
@@ -23,17 +23,17 @@ PARSER_BEGIN(RamParser)
                 // parser.Goal();
                 Program root = parser.Goal();
 
-                root.accept(new ASTPrintVisitor());
-                // root.accept(new JavaPrintVisitor());
-                // root.accept(new RamPrintVisitor());
+                // root.accept(new ASTPrintVisitor());
+                root.accept(new JavaPrintVisitor());
+                //root.accept(new RamPrintVisitor());
                 // root.accept(new PythonPrintVisitor());
-            }       
+            }
         }
     }
 PARSER_END(RamParser)
 
 
-// Insert a specification of a lexical analysis here. 
+// Insert a specification of a lexical analysis here.
 
 SKIP : /* WHITE SPACE */
 {
@@ -51,7 +51,7 @@ SPECIAL_TOKEN : /* COMMENTS */
 | <MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">     // regex: http://regexpal.com/   /\*([^*])*\*(\*|([^*/]([^*])*\*))*/         */
 }
 
-TOKEN : 
+TOKEN :
 {
   < LPAREN: "(" >
 | < RPAREN: ")" >
@@ -70,16 +70,16 @@ TOKEN :
 | < PLUS: "+" >
 | < MINUS: "-" >
 | < TIMES: "*" >
-| < AND : "and" >   
+| < AND : "and" >
 | < OR : "or" >
-| < EXCLAMATION : "!" >   
-| < BOOLEAN: "bool" >   
+| < EXCLAMATION : "!" >
+| < BOOLEAN: "bool" >
 | < CLASS: "class" >
 | < ELSE: "else" >
 | < FALSE: "false" >
 | < IF: "if" >
 | < WHILE: "while" >
-| < INTEGER: "int" >   
+| < INTEGER: "int" >
 | < LENGTH: "length" >
 | < MAIN: "main" >
 | < NEW: "new" >
@@ -91,19 +91,19 @@ TOKEN :
 | < TRUE: "true" >
 | < PRINT: "print" >
 | < PRINTLN: "println" >
-| < VOID: "void" >  
-| < INTEGER_LITERAL: ( ["1"-"9"] (["0"-"9"])* | "0" ) >  
-| < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>|"_")* > 
+| < VOID: "void" >
+| < INTEGER_LITERAL: ( ["1"-"9"] (["0"-"9"])* | "0" ) >
+| < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>|"_")* >
 | < #LETTER: ["a"-"z","A"-"Z"] >
-| < #DIGIT: ["0"-"9"] >  
+| < #DIGIT: ["0"-"9"] >
 }
 
 
 /*
 void Goal() :
 {}
-{  
-    ( RamToken() )*  <EOF> 
+{
+    ( RamToken() )*  <EOF>
 }
 
 void RamToken():
@@ -121,12 +121,12 @@ void RamToken():
 
 Program Goal() :
 {
-    MainClass m; 
+    MainClass m;
     ClassDeclList cl = new ClassDeclList();
     ClassDecl c;
 }
 {
-    m = MainClass() 
+    m = MainClass()
     ( c = ClassDecl() { cl.addElement(c); } )*
     <EOF>
     { return new Program(m, cl); }
@@ -139,17 +139,17 @@ MainClass MainClass() :
     Statement s;
 }
 {
-    <CLASS> 
+    <CLASS>
     <IDENTIFIER> { i1 = new Identifier(token.image); }
-    <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN> 
+    <LBRACE> <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN>
     <IDENTIFIER> { i2 = new Identifier(token.image); }
-    <RPAREN> <LBRACE> 
-    s = Statement() 
+    <RPAREN> <LBRACE>
+    s = Statement()
     <RBRACE> <RBRACE>
     { return new MainClass(i1, i2, s); }
 }
 
-ClassDecl ClassDecl() : 
+ClassDecl ClassDecl() :
 {
     Identifier i;
     VarDeclList vl = new VarDeclList();
@@ -158,12 +158,12 @@ ClassDecl ClassDecl() :
     MethodDecl m;
 }
 {
-    <CLASS> 
+    <CLASS>
     <IDENTIFIER> { i = new Identifier(token.image); }
-    <LBRACE> 
-    ( v = VarDecl() { vl.addElement(v); } )* 
-    ( m = MethodDecl() { ml.addElement(m); } )* 
-    <RBRACE> 
+    <LBRACE>
+    ( v = VarDecl() { vl.addElement(v); } )*
+    ( m = MethodDecl() { ml.addElement(m); } )*
+    <RBRACE>
     { return new ClassDeclSimple(i, vl, ml); }
 }
 
@@ -173,7 +173,7 @@ VarDecl VarDecl() :
     Identifier i;
 }
 {
-    t = Type() 
+    t = Type()
     <IDENTIFIER> { i = new Identifier(token.image); }
     <SEMICOLON>
     { return new VarDecl(t, i); }
@@ -191,62 +191,62 @@ MethodDecl MethodDecl() :
     Exp e;
 }
 {
-    <PUBLIC> 
+    <PUBLIC>
     t = Type()
     <IDENTIFIER> { i = new Identifier(token.image); }
-    <LPAREN> 
+    <LPAREN>
     fl = FormalList()
-    <RPAREN> <LBRACE> 
-    ( LOOKAHEAD(2) v = VarDecl() { vl.addElement(v); } )* 
-    ( s = Statement() { sl.addElement(s); } )* 
-    <RETURN> 
-    e = Exp() 
-    <SEMICOLON> <RBRACE>    
+    <RPAREN> <LBRACE>
+    ( LOOKAHEAD(2) v = VarDecl() { vl.addElement(v); } )*
+    ( s = Statement() { sl.addElement(s); } )*
+    <RETURN>
+    e = Exp()
+    <SEMICOLON> <RBRACE>
     { return new MethodDecl(t, i, fl, vl, sl, e); }
 }
 
 Formal Formal() :
-{ 
-    Type t; 
+{
+    Type t;
     Identifier i;
 }
 {
-    t = Type() 
+    t = Type()
     <IDENTIFIER> { i = new Identifier(token.image); }
     { return new Formal(t, i); }
 }
 
 FormalList FormalList() :
-{ 
-    FormalList fl = new FormalList(); 
-    Type t; 
+{
+    FormalList fl = new FormalList();
+    Type t;
     Identifier i;
     Formal f;
 }
 {
-    [ 
+    [
         t = Type()
         <IDENTIFIER> { i = new Identifier(token.image); }
         { fl.addElement(new Formal(t, i)); }
-        ( f = FormalRest() { fl.addElement(f); } )* 
+        ( f = FormalRest() { fl.addElement(f); } )*
     ]
     { return fl; }
 }
 
 Formal FormalRest() :
-{ 
-    Type t; 
+{
+    Type t;
     Identifier i;
 }
 {
-    <COMMA> 
-    t = Type() 
+    <COMMA>
+    t = Type()
     <IDENTIFIER> { i = new Identifier(token.image); }
     { return new Formal(t, i); }
 }
 
 Type Type() :
-{ 
+{
 }
 {
     LOOKAHEAD(3)
@@ -272,77 +272,77 @@ Statement Statement() :
     ExpList el;
 }
 {
-    <LBRACE> 
-    ( s1 = Statement() { sl.addElement(s1); } )* 
-    <RBRACE> 
+    <LBRACE>
+    ( s1 = Statement() { sl.addElement(s1); } )*
+    <RBRACE>
     { return new Block(sl); }
-    | 
-    <IF> <LPAREN> 
+    |
+    <IF> <LPAREN>
     e1 = Exp()
-    <RPAREN> 
+    <RPAREN>
     s1 = Statement()
-    <ELSE> 
+    <ELSE>
     s2 = Statement()
     { return new If(e1, s1, s2); }
-    | 
-    <WHILE> <LPAREN> 
+    |
+    <WHILE> <LPAREN>
     e1 = Exp()
-    <RPAREN> 
+    <RPAREN>
     s1 = Statement()
-    { return new While(e1, s1); } 
+    { return new While(e1, s1); }
     |
-    <PRINT> <LPAREN> 
-    el = ExpList() 
-    <RPAREN> <SEMICOLON> 
-    { return new Print(el); } 
+    <PRINT> <LPAREN>
+    el = ExpList()
+    <RPAREN> <SEMICOLON>
+    { return new Print(el); }
     |
-    <PRINTLN> <LPAREN> 
-    el = ExpList() 
-    <RPAREN> <SEMICOLON> 
-    { return new Print(el); } 
-    | 
+    <PRINTLN> <LPAREN>
+    el = ExpList()
+    <RPAREN> <SEMICOLON>
+    { return new Print(el); }
+    |
     LOOKAHEAD(2)
     <IDENTIFIER> { i = new Identifier(token.image); }
-    <LSQPAREN> 
-    e1 = Exp() 
-    <RSQPAREN> 
-    <ASSIGN> 
-    e2 = Exp() 
+    <LSQPAREN>
+    e1 = Exp()
+    <RSQPAREN>
+    <ASSIGN>
+    e2 = Exp()
     <SEMICOLON>
     { return new ArrayAssign(i, e1, e2); }
     |
     LOOKAHEAD(2)
     <IDENTIFIER> { i = new Identifier(token.image); }
-    <PLUSEQUALS> 
-    e1 = Exp() 
+    <PLUSEQUALS>
+    e1 = Exp()
     <SEMICOLON>
     { return new PlusEquals(i, e1); }
     |
-    <IDENTIFIER> { i = new Identifier(token.image); }    
-    <ASSIGN>     
-    e1 = Exp() 
+    <IDENTIFIER> { i = new Identifier(token.image); }
+    <ASSIGN>
+    e1 = Exp()
     <SEMICOLON>
     { return new Assign(i, e1); }
 }
 
-Exp Exp() : 
+Exp Exp() :
 {
     Exp e;
-} 
-{        
+}
+{
     e = OrExp()
     { return e; }
 }
 
-Exp OrExp() : 
+Exp OrExp() :
 {
     Exp e1, e2;
-} 
-{        
+}
+{
     e1 = AndExp()
     (
         LOOKAHEAD(2)
-        <OR> 
+        <OR>
         e2 = AndExp()
         { e1 = new Or(e1, e2); }
     )*
@@ -350,15 +350,15 @@ Exp OrExp() :
     { return e1; }
 }
 
-Exp AndExp() : 
+Exp AndExp() :
 {
     Exp e1, e2;
-} 
-{        
+}
+{
     e1 = EqualityExp()
     (
         LOOKAHEAD(2)
-        <AND> 
+        <AND>
         e2 = EqualityExp()
         { e1 = new And(e1, e2); }
     )*
@@ -366,11 +366,11 @@ Exp AndExp() :
     { return e1; }
 }
 
-Exp EqualityExp() : 
+Exp EqualityExp() :
 {
     Exp e1, e2;
-} 
-{        
+}
+{
     e1 = RelationalExp()
     (
         LOOKAHEAD(2)
@@ -381,33 +381,33 @@ Exp EqualityExp() :
     { return e1; }
 }
 
-Exp RelationalExp() : 
+Exp RelationalExp() :
 {
     Exp e1, e2;
-} 
+}
 {
     e1 = AdditiveExp()
     (
         LOOKAHEAD(2)
-        <LESSTHAN> 
+        <LESSTHAN>
         e2 = AdditiveExp()
         { e1 = new LessThan(e1, e2); }
-    )*    
+    )*
 
     { return e1; }
 }
 
-Exp AdditiveExp() : 
+Exp AdditiveExp() :
 {
     Exp e1, e2;
-} 
+}
 {
     e1 = MultiplicativeExp()
     (
         LOOKAHEAD(2)
         <PLUS> e2 = MultiplicativeExp()
         { e1 = new Plus(e1, e2); }
-        | 
+        |
         <MINUS> e2 = MultiplicativeExp()
         { e1 = new Minus(e1, e2); }
     )*
@@ -415,16 +415,16 @@ Exp AdditiveExp() :
     { return e1; }
 }
 
-Exp MultiplicativeExp() : 
+Exp MultiplicativeExp() :
 {
     Exp e1, e2;
-} 
+}
 {
     e1 = UnaryExp()
-    
+
     (
         LOOKAHEAD(2)
-        <TIMES> 
+        <TIMES>
         e2 = UnaryExp()
         { e1 = new Times(e1, e2); }
     )*
@@ -432,15 +432,15 @@ Exp MultiplicativeExp() :
     { return e1; }
 }
 
-Exp UnaryExp() : 
+Exp UnaryExp() :
 {
     Exp e;
     boolean inNot = false;
-} 
+}
 {
     ( <EXCLAMATION> { inNot = !inNot; } )*
     e = SuffixExp()
-    { if (inNot) 
+    { if (inNot)
         return new Not(e);
       else
         return e; }
@@ -454,20 +454,20 @@ Exp SuffixExp() :
     Identifier i;
 }
 {
-    e1 = PrefixExp() 
-    (   
-        <LSQPAREN> 
-        e2 = Exp() 
+    e1 = PrefixExp()
+    (
+        <LSQPAREN>
+        e2 = Exp()
 	<RSQPAREN>
-        { e1 = new ArrayLookup(e1, e2); }	
-	| 
-        LOOKAHEAD(2) 
+        { e1 = new ArrayLookup(e1, e2); }
+	|
+        LOOKAHEAD(2)
         <DOT> <IDENTIFIER> { i = new Identifier(token.image); }
-	<LPAREN> 
-        el = ExpList() 
+	<LPAREN>
+        el = ExpList()
 	<RPAREN>
-        { e1 = new Call(e1, i, el); } 
-        | 
+        { e1 = new Call(e1, i, el); }
+        |
         <DOT> <LENGTH> { e1 = new ArrayLength(e1); }
     )*
     { return e1; }
@@ -480,11 +480,11 @@ Exp PrefixExp() :
 }
 {
     <INTEGER_LITERAL> { return new IntegerLiteral(Integer.parseInt(token.image)); }
-    | 
+    |
     <TRUE> { return new True(); }
     |
     <FALSE> { return new False(); }
-    | 
+    |
     <IDENTIFIER> { return new IdentifierExp(token.image); }
     |
     <LPAREN>
@@ -495,26 +495,26 @@ Exp PrefixExp() :
     <THIS> { return new This(); }
     |
     LOOKAHEAD(2)
-    <NEW> <INTEGER> <LSQPAREN> 
-    e = Exp() 
+    <NEW> <INTEGER> <LSQPAREN>
+    e = Exp()
     <RSQPAREN>
     { return new NewArray(e); }
-    | 
-    <NEW> 
+    |
+    <NEW>
     <IDENTIFIER> { i = new Identifier(token.image); }
-    <LPAREN> <RPAREN> 
+    <LPAREN> <RPAREN>
     { return new NewObject(i); }
 }
 
 ExpList ExpList() :
-{ 
-    ExpList el = new ExpList(); 
+{
+    ExpList el = new ExpList();
     Exp e;
 }
 {
-    [ 
-        e = Exp() { el.addElement(e); } 
-        ( e = ExpRest() { el.addElement(e); } )* 
+    [
+        e = Exp() { el.addElement(e); }
+        ( e = ExpRest() { el.addElement(e); } )*
     ]
     { return el; }
 }
@@ -524,7 +524,7 @@ Exp ExpRest() :
     Exp e;
 }
 {
-    <COMMA> 
+    <COMMA>
     e = Exp()
     { return e; }
 }

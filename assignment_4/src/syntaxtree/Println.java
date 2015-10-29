@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class Println extends Statement {
-    public ExpList el;
 
-    public Println(ExpList ael) {
-        el = ael;
+    public ExpList expList;
+
+    public Println(ExpList expList) {
+        this.expList = expList;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

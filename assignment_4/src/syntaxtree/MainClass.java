@@ -1,19 +1,23 @@
 package syntaxtree;
 
+import visitor.Visitable;
 import visitor.Visitor;
 
-public class MainClass {
-    public Identifier i1, i2;
-    public Statement s;
+public class MainClass implements Visitable {
 
-    public MainClass(Identifier ai1, Identifier ai2, Statement as) {
-        i1 = ai1;
-        i2 = ai2;
-        s = as;
+    public Identifier identifier;
+    public Identifier identifierTwo;
+    public Statement statement;
+
+    public MainClass(Identifier identifier, Identifier identifierTwo, Statement statement) {
+        this.identifier = identifier;
+        this.identifierTwo = identifierTwo;
+        this.statement = statement;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class ArrayLength extends Exp {
-    public Exp e;
 
-    public ArrayLength(Exp ae) {
-        e = ae;
+    public Exp exp;
+
+    public ArrayLength(Exp exp) {
+        this.exp = exp;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

@@ -3,16 +3,19 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class PlusEquals extends Statement {
-    public Identifier i;
-    public Exp e;
 
-    public PlusEquals(Identifier ai, Exp ae) {
-        i = ai;
-        e = ae;
+    public Identifier identifier;
+    public Exp exp;
+
+    public PlusEquals(Identifier identifier, Exp exp) {
+        this.identifier = identifier;
+        this.exp = exp;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
+
 }
 

@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class NewArray extends Exp {
-    public Exp e;
 
-    public NewArray(Exp ae) {
-        e = ae;
+    public Exp exp;
+
+    public NewArray(Exp exp) {
+        this.exp = exp;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

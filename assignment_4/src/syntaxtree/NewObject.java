@@ -3,14 +3,16 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class NewObject extends Exp {
-    public Identifier i;
 
-    public NewObject(Identifier ai) {
-        i = ai;
+    public Identifier identifier;
+
+    public NewObject(Identifier identifier) {
+        this.identifier = identifier;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }

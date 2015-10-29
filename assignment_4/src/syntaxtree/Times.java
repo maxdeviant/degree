@@ -3,15 +3,18 @@ package syntaxtree;
 import visitor.Visitor;
 
 public class Times extends Exp {
-    public Exp e1, e2;
 
-    public Times(Exp ae1, Exp ae2) {
-        e1 = ae1;
-        e2 = ae2;
+    public Exp lhs;
+    public Exp rhs;
+
+    public Times(Exp lhs, Exp rhs) {
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 }
