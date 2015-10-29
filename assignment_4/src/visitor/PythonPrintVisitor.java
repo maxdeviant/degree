@@ -65,6 +65,8 @@ public class PythonPrintVisitor implements Visitor {
             printIndent();
 
             n.methodDeclList.elementAt(i).accept(this);
+
+            System.out.println();
         }
 
         System.out.println();
@@ -114,11 +116,9 @@ public class PythonPrintVisitor implements Visitor {
 
         indent();
 
-        for (int i = 0; i < n.varDeclList.size(); i++) {
-            n.varDeclList.elementAt(i).accept(this);
-        }
-
         for (int i = 0; i < n.statementList.size(); i++) {
+            printIndent();
+
             n.statementList.elementAt(i).accept(this);
 
             if (i < n.statementList.size()) {
@@ -165,13 +165,22 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Block n) {
         sendVisitAlert(n);
+
+        for (int i = 0; i < n.statementList.size(); i++) {
+
+            n.statementList.elementAt(i).accept(this);
+
+            System.out.println();
+
+            if (i + 1 < n.statementList.size()) {
+                printIndent();
+            }
+        }
     }
 
     @Override
     public void visit(If n) {
         sendVisitAlert(n);
-
-        printIndent();
 
         System.out.print("if ");
 
@@ -180,6 +189,8 @@ public class PythonPrintVisitor implements Visitor {
         System.out.println(":");
 
         indent();
+
+        printIndent();
 
         n.statement.accept(this);
 
@@ -193,6 +204,8 @@ public class PythonPrintVisitor implements Visitor {
 
         indent();
 
+        printIndent();
+
         n.statementTwo.accept(this);
 
         System.out.println();
@@ -203,6 +216,20 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(While n) {
         sendVisitAlert(n);
+
+        System.out.print("while ");
+
+        n.exp.accept(this);
+
+        System.out.println(":");
+
+        indent();
+
+        printIndent();
+
+        n.statement.accept(this);
+
+        unindent();
     }
 
     @Override
@@ -238,8 +265,6 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Assign n) {
         sendVisitAlert(n);
-
-        printIndent();
 
         n.identifier.accept(this);
 
@@ -356,6 +381,15 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(ArrayLookup n) {
         sendVisitAlert(n);
+
+
+        n.lhs.accept(this);
+
+        System.out.print("[");
+
+        n.rhs.accept(this);
+
+        System.out.print("]");
     }
 
     @Override
@@ -447,7 +481,7 @@ public class PythonPrintVisitor implements Visitor {
     public void visit(Not n) {
         sendVisitAlert(n);
 
-        System.out.print(" not ");
+        System.out.print("not ");
 
         n.exp.accept(this);
     }
