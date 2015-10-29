@@ -66,6 +66,10 @@ public class PythonPrintVisitor implements Visitor {
 
             n.methodDeclList.elementAt(i).accept(this);
         }
+
+        System.out.println();
+
+        unindent();
     }
 
     @Override
@@ -105,8 +109,6 @@ public class PythonPrintVisitor implements Visitor {
         indent();
 
         for (int i = 0; i < n.varDeclList.size(); i++) {
-            printIndent();
-
             n.varDeclList.elementAt(i).accept(this);
         }
 
@@ -130,6 +132,8 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Formal n) {
         sendVisitAlert(n);
+
+        n.identifier.accept(this);
     }
 
     @Override
@@ -161,19 +165,21 @@ public class PythonPrintVisitor implements Visitor {
     public void visit(If n) {
         sendVisitAlert(n);
 
+        printIndent();
+
         System.out.print("if ");
 
         n.exp.accept(this);
 
         System.out.println(":");
 
-        System.out.println();
-
-        printIndent();
+        indent();
 
         n.statement.accept(this);
 
         System.out.println();
+
+        unindent();
 
         printIndent();
 
@@ -181,9 +187,9 @@ public class PythonPrintVisitor implements Visitor {
 
         indent();
 
-        printIndent();
-
         n.statementTwo.accept(this);
+
+        System.out.println();
 
         unindent();
     }
@@ -203,11 +209,15 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Println n) {
         sendVisitAlert(n);
+
+        System.out.print("print ");
     }
 
     @Override
     public void visit(Assign n) {
         sendVisitAlert(n);
+
+        printIndent();
 
         n.identifier.accept(this);
 
@@ -329,6 +339,12 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(ArrayLength n) {
         sendVisitAlert(n);
+
+        System.out.print("len(");
+
+        n.exp.accept(this);
+
+        System.out.print(")");
     }
 
     @Override
