@@ -452,6 +452,12 @@ public class PythonPrintVisitor implements Visitor {
         System.out.print(n.string);
     }
 
+    /**
+     * Retrieves the list of class variables for the specified class.
+     *
+     * @param className The name of the class to retrieve the class variables for.
+     * @return The list of class variables for the specified class.
+     */
     private ArrayList<String> getClassVariables(String className) {
         if (classVariables.size() > 0 && classVariables.containsKey(className)) {
             return classVariables.get(className);
@@ -460,6 +466,12 @@ public class PythonPrintVisitor implements Visitor {
         return new ArrayList<>();
     }
 
+    /**
+     * Registers the specified class-level variable to the specified class.
+     *
+     * @param className The class to register the variable to.
+     * @param variableName The name of the class-level variable.
+     */
     private void setClassVariable(String className, String variableName) {
         ArrayList<String> variables = getClassVariables(className);
 
@@ -501,10 +513,16 @@ public class PythonPrintVisitor implements Visitor {
         System.out.print(builder.toString());
     }
 
+    /**
+     * Increase the current indentation level by one.
+     */
     private void indent() {
         indentLevel++;
     }
 
+    /**
+     * Decrease the current indentation level by one.
+     */
     private void unindent() {
         indentLevel--;
     }
