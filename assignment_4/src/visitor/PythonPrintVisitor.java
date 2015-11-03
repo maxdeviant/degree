@@ -49,19 +49,23 @@ public class PythonPrintVisitor implements Visitor {
 
         currentClassName = n.identifier.string;
 
-        isClassLevelDeclaration = true;
+        if (n.varDeclList.size() > 0) {
+            isClassLevelDeclaration = true;
 
-        for (int i = 0; i < n.varDeclList.size(); i++) {
-            printIndent();
+            for (int i = 0; i < n.varDeclList.size(); i++) {
+                printIndent();
 
-            n.varDeclList.elementAt(i).accept(this);
+                n.varDeclList.elementAt(i).accept(this);
 
-            if (i + 1 < n.varDeclList.size()) {
-                System.out.println();
+                if (i + 1 < n.varDeclList.size()) {
+                    System.out.println();
+                }
             }
-        }
 
-        isClassLevelDeclaration = false;
+            isClassLevelDeclaration = false;
+
+            System.out.println();
+        }
 
         for (int i = 0; i < n.methodDeclList.size(); i++) {
             System.out.println();
@@ -85,6 +89,8 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(VarDecl n) {
         n.identifier.accept(this);
+
+        System.out.print(" = None");
 
         if (isClassLevelDeclaration) {
             setClassVariable(currentClassName, n.identifier.string);

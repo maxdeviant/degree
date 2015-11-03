@@ -1,6 +1,7 @@
 class LS():
-    number
-    size
+    number = None
+    size = None
+
     def Start(self, sz):
         aux01 = self.Init(sz)
         aux02 = self.Print()
