@@ -2,13 +2,22 @@
  * Test: Loops
  * @author Marshall Bowers
  */
-class Loops {
+class Main {
 
     public static void main(String[] args) {
+        print(new Loops().run());
+    }
+
+}
+
+class Loops {
+
+    public bool run() {
         int[] list;
         int i;
         int power;
 
+        list = new int[10];
         i = 0;
 
         while (i < 10) {
@@ -19,11 +28,13 @@ class Loops {
 
         power = 0;
 
-        while (true) {
+        while (power < 9000) {
             power += 1;
 
             println(power);
         }
+
+        return true;
     }
 
 }
