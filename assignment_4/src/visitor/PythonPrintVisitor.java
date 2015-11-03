@@ -99,6 +99,7 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(ClassDeclExtends n) {
+        // do we need this?
     }
 
     @Override
@@ -166,18 +167,58 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(IntArrayType n) {
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(BooleanType n) {
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(IntegerType n) {
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(IdentifierType n) {
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
