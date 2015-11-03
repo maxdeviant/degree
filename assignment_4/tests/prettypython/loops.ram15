@@ -1,0 +1,29 @@
+/**
+ * Test: Loops
+ * @author Marshall Bowers
+ */
+class Loops {
+
+    public static void main(String[] args) {
+        int[] list;
+        int i;
+        int power;
+
+        i = 0;
+
+        while (i < 10) {
+            list[i] = i * i;
+
+            i += 1;
+        }
+
+        power = 0;
+
+        while (true) {
+            power += 1;
+
+            println(power);
+        }
+    }
+
+}

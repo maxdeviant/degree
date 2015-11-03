@@ -1,4 +1,6 @@
 class LS():
+    number
+    size
     def Start(self, sz):
         aux01 = self.Init(sz)
         aux02 = self.Print()
@@ -11,8 +13,8 @@ class LS():
 
     def Print(self):
         j = 1
-        while j < size:
-            print number[j]
+        while j < self.size:
+            print self.number[j]
             j += 1
 
         return 0
@@ -21,8 +23,8 @@ class LS():
         j = 1
         ls01 = False
         ifound = 0
-        while j < size:
-            aux01 = number[j]
+        while j < self.size:
+            aux01 = self.number[j]
             aux02 = num + 1
             if aux01 < num:
                 nt = 0
@@ -32,7 +34,7 @@ class LS():
                 else:
                     ls01 = True
                     ifound = 1
-                    j = size
+                    j = self.size
 
 
 
@@ -41,14 +43,14 @@ class LS():
         return ifound
 
     def Init(self, sz):
-        size = sz
-        number = []
+        self.size = sz
+        self.number = [None] * sz
         j = 1
-        k = size + 1
-        while j < size:
+        k = self.size + 1
+        while j < self.size:
             aux01 = 2 * j
             aux02 = k - 3
-            number[j] = aux01 + aux02
+            self.number[j] = aux01 + aux02
             j += 1
             k = k - 1
 

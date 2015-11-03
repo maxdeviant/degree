@@ -6,10 +6,11 @@ class Factorial{
 
 class Fac {
     public int ComputeFac(int num) {
+        int[] numbers;
 		int num_aux ;
 		if (num < 1)   // is num < 1?
 			num_aux = 1 ;
-		else 
+		else
 			num_aux = num * (this.ComputeFac(num-1));
 		return num_aux ;
     }

@@ -1,4 +1,5 @@
 class Helper():
+
     def go(self):
         print 5 * 4 + 3
         print 3 - 2 * 6

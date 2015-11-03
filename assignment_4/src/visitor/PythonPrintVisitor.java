@@ -2,12 +2,18 @@ package visitor;
 
 import syntaxtree.*;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 /**
  * @author Marshall Bowers
  */
 public class PythonPrintVisitor implements Visitor {
 
     private int indentLevel = 0;
+    private String currentClassName;
+    private boolean isClassLevelDeclaration = false;
+    private Hashtable<String, ArrayList<String>> classVariables = new Hashtable<>();
 
     @Override
     public void visit(Program n) {
@@ -37,21 +43,25 @@ public class PythonPrintVisitor implements Visitor {
 
         n.identifier.accept(this);
 
-        System.out.print("(");
+        System.out.println("():");
+
+        indent();
+
+        currentClassName = n.identifier.string;
+
+        isClassLevelDeclaration = true;
 
         for (int i = 0; i < n.varDeclList.size(); i++) {
+            printIndent();
+
             n.varDeclList.elementAt(i).accept(this);
 
             if (i + 1 < n.varDeclList.size()) {
-                System.out.print("");
+                System.out.println();
             }
         }
 
-        System.out.print(")");
-
-        System.out.print(":");
-
-        indent();
+        isClassLevelDeclaration = false;
 
         for (int i = 0; i < n.methodDeclList.size(); i++) {
             System.out.println();
@@ -74,7 +84,11 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(VarDecl n) {
-//        n.identifier.accept(this);
+        n.identifier.accept(this);
+
+        if (isClassLevelDeclaration) {
+            setClassVariable(currentClassName, n.identifier.string);
+        }
     }
 
     @Override
@@ -390,6 +404,10 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(IdentifierExp n) {
+        if (isClassLevelVariable(currentClassName, n.string)) {
+            System.out.print("self.");
+        }
+
         System.out.print(n.string);
     }
 
@@ -400,7 +418,9 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(NewArray n) {
-        System.out.print("[]");
+        System.out.print("[None] * ");
+
+        n.exp.accept(this);
     }
 
     @Override
@@ -419,7 +439,38 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(Identifier n) {
+        if (isClassLevelVariable(currentClassName, n.string)) {
+            System.out.print("self.");
+        }
+
         System.out.print(n.string);
+    }
+
+    private ArrayList<String> getClassVariables(String className) {
+        if (classVariables.size() > 0 && classVariables.containsKey(className)) {
+            return classVariables.get(className);
+        }
+
+        return new ArrayList<>();
+    }
+
+    private void setClassVariable(String className, String variableName) {
+        ArrayList<String> variables = getClassVariables(className);
+
+        variables.add(variableName);
+
+        classVariables.put(currentClassName, variables);
+    }
+
+    /**
+     * Returns whether or not the variable name is a class-level variable for the specified class.
+     *
+     * @param className    The name of the class to check class-level variables for.
+     * @param variableName The name of the variable to check for being class-level.
+     * @return Whether or not the specified variable is a class-level member of the specified class.
+     */
+    private boolean isClassLevelVariable(String className, String variableName) {
+        return getClassVariables(className).contains(variableName);
     }
 
     /**
@@ -432,7 +483,7 @@ public class PythonPrintVisitor implements Visitor {
     /**
      * Indents the source code by the given number of levels.
      *
-     * @param levels The number of levels to printIndent by.
+     * @param levels The number of levels to indent by.
      */
     private void printIndent(int levels) {
         StringBuilder builder = new StringBuilder();
