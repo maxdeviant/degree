@@ -43,7 +43,7 @@ public class PythonPrintVisitor implements Visitor {
             n.varDeclList.elementAt(i).accept(this);
 
             if (i + 1 < n.varDeclList.size()) {
-                System.out.println();
+                System.out.print("");
             }
         }
 
@@ -438,7 +438,6 @@ public class PythonPrintVisitor implements Visitor {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < levels; i++) {
-//            builder.append("····");
             builder.append("    ");
         }
 

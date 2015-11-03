@@ -1,5 +1,4 @@
-class LS(
-):
+class LS():
     def Start(self, sz):
         aux01 = self.Init(sz)
         aux02 = self.Print()
