@@ -1,7 +1,7 @@
 package visitor;
 
 /**
- *
+ * @author Marshall Bowers
  */
 public interface Visitable {
 

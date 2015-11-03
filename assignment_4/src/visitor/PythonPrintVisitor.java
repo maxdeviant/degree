@@ -10,9 +10,24 @@ import java.util.Hashtable;
  */
 public class PythonPrintVisitor implements Visitor {
 
+    /**
+     * The current indentation level.
+     */
     private int indentLevel = 0;
+
+    /**
+     * The current class name.
+     */
     private String currentClassName;
+
+    /**
+     * A flag indicating whether or not the variable currently being declared should be a class-level variable.
+     */
     private boolean isClassLevelDeclaration = false;
+
+    /**
+     * A symbol table containing all of the class-level variables in the program.
+     */
     private Hashtable<String, ArrayList<String>> classVariables = new Hashtable<>();
 
     @Override
@@ -469,7 +484,7 @@ public class PythonPrintVisitor implements Visitor {
     /**
      * Registers the specified class-level variable to the specified class.
      *
-     * @param className The class to register the variable to.
+     * @param className    The class to register the variable to.
      * @param variableName The name of the class-level variable.
      */
     private void setClassVariable(String className, String variableName) {
