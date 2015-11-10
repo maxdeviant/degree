@@ -399,6 +399,15 @@ public class PythonPrintVisitor implements Visitor {
     }
 
     @Override
+    public void visit(MinusEquals n) {
+        n.identifier.accept(this);
+
+        System.out.print(" -= ");
+
+        n.exp.accept(this);
+    }
+
+    @Override
     public void visit(Times n) {
         n.lhs.accept(this);
 

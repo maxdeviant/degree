@@ -281,6 +281,15 @@ public class ASTPrintVisitor implements Visitor {
         System.out.print(")");
     }
 
+    @Override
+    public void visit(MinusEquals n) {
+        System.out.print("MinusEquals(");
+        n.identifier.accept(this);
+        System.out.print(", ");
+        n.exp.accept(this);
+        System.out.print(")");
+    }
+
     // Exp lhs,rhs;
     public void visit(Times n) {
         System.out.print("Times(");

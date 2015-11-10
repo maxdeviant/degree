@@ -285,6 +285,13 @@ public class JavaPrintVisitor implements Visitor {
         System.out.print(")");
     }
 
+    @Override
+    public void visit(MinusEquals n) {
+        n.identifier.accept(this);
+        System.out.print(" -= ");
+        n.exp.accept(this);
+    }
+
     // Exp lhs,rhs;
     public void visit(Times n) {
         System.out.print("(");

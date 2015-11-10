@@ -54,6 +54,8 @@ public interface Visitor {
 
     void visit(Minus n);
 
+    void visit(MinusEquals n);
+
     void visit(Times n);
 
     void visit(ArrayLookup n);
