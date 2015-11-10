@@ -7,19 +7,54 @@ import syntaxtree.*;
  */
 public class RamPrintVisitor implements Visitor {
 
+    /**
+     * The current indentation level.
+     */
+    private int indentLevel = 0;
+
     @Override
     public void visit(Program n) {
+        for (int i = 0; i < n.classDeclList.size(); i++) {
+            n.classDeclList.elementAt(i).accept(this);
 
+            System.out.println();
+        }
+
+        n.mainClass.accept(this);
     }
 
     @Override
     public void visit(MainClass n) {
+        System.out.print("class ");
 
+        n.identifier.accept(this);
+
+        System.out.println(" {");
+
+        indent();
+
+        printIndent();
+
+        System.out.print("public static void main (String[] ");
+
+        n.identifierTwo.accept(this);
+
+        System.out.println(") {");
+
+        printIndent();
+
+        n.statement.accept(this);
+
+        System.out.println();
+
+        unindent();
+
+        System.out.print("}");
     }
 
     @Override
     public void visit(ClassDeclSimple n) {
-
+        
     }
 
     @Override
@@ -89,7 +124,11 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(Assign n) {
+        n.identifier.accept(this);
 
+        System.out.print(" = ");
+
+        n.exp.accept(this);
     }
 
     @Override
@@ -204,7 +243,43 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(Identifier n) {
+        System.out.print(n.string);
+    }
 
+    /**
+     * Indents the source code by the given number of levels.
+     *
+     * @param levels The number of levels to indent by.
+     */
+    private void printIndent(int levels) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < levels; i++) {
+            builder.append("    ");
+        }
+
+        System.out.print(builder.toString());
+    }
+
+    /**
+     * Indents the source code using the current indent level.
+     */
+    private void printIndent() {
+        printIndent(indentLevel);
+    }
+
+    /**
+     * Increase the current indentation level by one.
+     */
+    private void indent() {
+        indentLevel++;
+    }
+
+    /**
+     * Decrease the current indentation level by one.
+     */
+    private void unindent() {
+        indentLevel--;
     }
 
 }

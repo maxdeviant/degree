@@ -2,9 +2,17 @@
  * Test: Arrays
  * @author Marshall Bowers
  */
-class Arrays {
+class Main {
 
     public static void main(String[] args) {
+        print(new Arrays().run());
+    }
+
+}
+
+class Arrays {
+
+    public bool run() {
         int[] list;
         int i;
         int[] a;
@@ -13,25 +21,29 @@ class Arrays {
         int[] d;
         int lengthA;
 
+        list = new int[5];
         i = 0;
 
         while (i < 5) {
             list[i] = i + 1;
+            i += 1;
         }
 
-        a = list[1:3];       // [2, 3, 4]
-        b = list[2:];        // [3, 4, 5]
-        c = list[:3];        // [1, 2, 3, 4]
-        d = list[:];         // [1, 2, 3, 4, 5]
+        a = list[1:3];
+        b = list[2:];
+        c = list[:3];
+        d = list[:];
 
-        println(a.length);   // 3
-        println(b.length);   // 3
-        println(c.length);   // 4
-        println(d.length);   // 5
+        println(a.length);
+        println(b.length);
+        println(c.length);
+        println(d.length);
 
         lengthA = a.length;
 
-        println(lengthA);    // 3
+        println(lengthA);
+
+        return true;
     }
 
 }
