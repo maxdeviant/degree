@@ -350,6 +350,11 @@ public class JavaPrintVisitor implements Visitor {
         System.out.print(n.string);
     }
 
+    @Override
+    public void visit(Slice n) {
+
+    }
+
     public void visit(This n) {
         System.out.print("this");
     }

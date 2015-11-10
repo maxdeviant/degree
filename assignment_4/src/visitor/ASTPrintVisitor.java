@@ -351,6 +351,23 @@ public class ASTPrintVisitor implements Visitor {
         System.out.print("IdentifierExp(" + n.string + ")");
     }
 
+    @Override
+    public void visit(Slice n) {
+        System.out.print("Slice(");
+
+        n.expOne.accept(this);
+
+        System.out.print(", ");
+
+        n.expTwo.accept(this);
+
+        System.out.print(", ");
+
+        n.expThree.accept(this);
+
+        System.out.print(")");
+    }
+
     public void visit(This n) {
         System.out.print("This()");
     }

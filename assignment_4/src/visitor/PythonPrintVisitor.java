@@ -426,7 +426,6 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(ArrayLookup n) {
-
         n.lhs.accept(this);
 
         System.out.print("[");

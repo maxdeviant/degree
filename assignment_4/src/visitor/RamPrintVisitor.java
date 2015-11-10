@@ -178,6 +178,11 @@ public class RamPrintVisitor implements Visitor {
     }
 
     @Override
+    public void visit(Slice n) {
+
+    }
+
+    @Override
     public void visit(This n) {
 
     }
