@@ -66,6 +66,7 @@ TOKEN :
 | < ASSIGN: "=" >
 | < LESSTHAN: "<" >
 | < PLUSEQUALS: "+=" >
+| < MINUSEQUALS: "-=" >
 | < EQUALITY: "eq" >
 | < PLUS: "+" >
 | < MINUS: "-" >
@@ -317,6 +318,13 @@ Statement Statement() :
     e1 = Exp()
     <SEMICOLON>
     { return new PlusEquals(i, e1); }
+    |
+    LOOKAHEAD(2)
+    <IDENTIFIER> { i = new Identifier(token.image); }
+    <MINUSEQUALS>
+    e1 = Exp()
+    <SEMICOLON>
+    { return new MinusEquals(i, e1); }
     |
     <IDENTIFIER> { i = new Identifier(token.image); }
     <ASSIGN>
