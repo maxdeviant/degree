@@ -565,13 +565,6 @@ public class PythonPrintVisitor implements Visitor {
     }
 
     /**
-     * Indents the source code.
-     */
-    private void printIndent() {
-        printIndent(indentLevel);
-    }
-
-    /**
      * Indents the source code by the given number of levels.
      *
      * @param levels The number of levels to indent by.
@@ -584,6 +577,13 @@ public class PythonPrintVisitor implements Visitor {
         }
 
         System.out.print(builder.toString());
+    }
+
+    /**
+     * Indents the source code using the current indent level.
+     */
+    private void printIndent() {
+        printIndent(indentLevel);
     }
 
     /**
