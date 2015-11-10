@@ -1,6 +1,7 @@
 class LS():
-    number = None
-    size = None
+    def __init__(self):
+        self.number = None
+        self.size = None
 
     def Start(self, sz):
         aux01 = self.Init(sz)
