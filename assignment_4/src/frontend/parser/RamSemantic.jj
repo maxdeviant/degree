@@ -465,20 +465,46 @@ Exp SuffixExp() :
     e1 = PrefixExp()
     (
         <LSQPAREN>
-        e2 = Exp()
-	<RSQPAREN>
-        { e1 = new ArrayLookup(e1, e2); }
-	|
+        e1 = SliceExp(e1)
+        <RSQPAREN>
+    |
         LOOKAHEAD(2)
         <DOT> <IDENTIFIER> { i = new Identifier(token.image); }
-	<LPAREN>
+        <LPAREN>
         el = ExpList()
-	<RPAREN>
+        <RPAREN>
         { e1 = new Call(e1, i, el); }
         |
         <DOT> <LENGTH> { e1 = new ArrayLength(e1); }
     )*
     { return e1; }
+}
+
+Exp SliceExp(Exp e) :
+{
+    Exp e1;
+    Exp e2;
+    boolean isSlice = false;
+}
+{
+    LOOKAHEAD(2)
+    <COLON>
+    e1 = Exp() { return new Slice(e, null, e1); }
+    |
+    LOOKAHEAD(2)
+    <COLON>   { return new Slice(e, null, null); }
+    |
+    LOOKAHEAD(3)
+    e1 = Exp()
+    <COLON>
+    e2 = Exp() { return new Slice(e, e1, e2); }
+    |
+    LOOKAHEAD(2)
+    e1 = Exp()
+    <COLON> { return new Slice(e, e1, null); }
+    |
+    e1 = Exp()
+    { return new ArrayLookup(e, e1);}
 }
 
 Exp PrefixExp() :

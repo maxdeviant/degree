@@ -491,6 +491,25 @@ public class PythonPrintVisitor implements Visitor {
     }
 
     @Override
+    public void visit(Slice n) {
+        n.expOne.accept(this);
+
+        System.out.print("[");
+
+        if (n.expTwo != null) {
+            n.expTwo.accept(this);
+        }
+
+        System.out.print(":");
+
+        if (n.expThree != null) {
+            n.expThree.accept(this);
+        }
+
+        System.out.print("]");
+    }
+
+    @Override
     public void visit(This n) {
         System.out.print("self");
     }

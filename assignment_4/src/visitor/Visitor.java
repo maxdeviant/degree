@@ -72,6 +72,8 @@ public interface Visitor {
 
     void visit(IdentifierExp n);
 
+    void visit(Slice n);
+
     void visit(This n);
 
     void visit(NewArray n);
