@@ -38,8 +38,6 @@ class LS():
                     ifound = 1
                     j = self.size
 
-
-
             j = j + 1
 
         return ifound

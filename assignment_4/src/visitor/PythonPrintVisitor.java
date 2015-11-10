@@ -271,8 +271,6 @@ public class PythonPrintVisitor implements Visitor {
 
         n.statementTwo.accept(this);
 
-        System.out.println();
-
         unindent();
     }
 
