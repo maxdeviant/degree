@@ -45,7 +45,7 @@ public class RamPrintVisitor implements Visitor {
 
         n.statement.accept(this);
 
-        System.out.println();
+        System.out.println("}");
 
         unindent();
 
@@ -54,7 +54,7 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(ClassDeclSimple n) {
-        
+
     }
 
     @Override
@@ -64,7 +64,13 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(VarDecl n) {
+        n.type.accept(this);
 
+        System.out.print(" ");
+
+        n.identifier.accept(this);
+
+        System.out.print(";");
     }
 
     @Override
@@ -74,37 +80,74 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(Formal n) {
+        n.type.accept(this);
 
+        System.out.print(" ");
+
+        n.identifier.accept(this);
     }
 
     @Override
     public void visit(IntArrayType n) {
-
+        System.out.print("int[]");
     }
 
     @Override
     public void visit(BooleanType n) {
-
+        System.out.print("bool");
     }
 
     @Override
     public void visit(IntegerType n) {
-
+        System.out.print("int");
     }
 
     @Override
     public void visit(IdentifierType n) {
-
+        System.out.print(n.string);
     }
 
     @Override
     public void visit(Block n) {
+        System.out.println("{");
 
+        for (int i = 0; i < n.statementList.size(); i++) {
+
+            printIndent();
+
+            n.statementList.elementAt(i).accept(this);
+
+            System.out.println();
+        }
+
+        printIndent();
+
+        System.out.println("}");
     }
 
     @Override
     public void visit(If n) {
+        System.out.print("if (");
 
+        n.exp.accept(this);
+
+        System.out.println(") {");
+
+        indent();
+
+        printIndent();
+
+        n.statement.accept(this);
+
+        System.out.println();
+
+        printIndent();
+
+        System.out.println("} else {");
+
+        n.statementTwo.accept(this);
+
+        System.out.println("}");
     }
 
     @Override
@@ -114,7 +157,17 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(Print n) {
+        System.out.print("System.out.print(");
 
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i != n.expList.size() - 1) {
+                System.out.print("+\" \"+");
+            }
+        }
+
+        System.out.print(")");
     }
 
     @Override
@@ -203,12 +256,12 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(True n) {
-
+        System.out.print("true");
     }
 
     @Override
     public void visit(False n) {
-
+        System.out.print("false");
     }
 
     @Override
@@ -223,22 +276,32 @@ public class RamPrintVisitor implements Visitor {
 
     @Override
     public void visit(This n) {
-
+        System.out.print("this");
     }
 
     @Override
     public void visit(NewArray n) {
+        System.out.print("new int[");
 
+        n.exp.accept(this);
+
+        System.out.print("]");
     }
 
     @Override
     public void visit(NewObject n) {
+        System.out.print("new ");
 
+        System.out.print(n.identifier.string);
+
+        System.out.print("()");
     }
 
     @Override
     public void visit(Not n) {
+        System.out.print("!");
 
+        n.exp.accept(this);
     }
 
     @Override
