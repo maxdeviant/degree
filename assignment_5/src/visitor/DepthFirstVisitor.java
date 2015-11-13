@@ -26,9 +26,11 @@ public class DepthFirstVisitor implements Visitor {
     // MethodDeclList ml;
     public void visit(ClassDeclSimple n) {
         n.i.accept(this);
+
         for (int i = 0; i < n.vl.size(); i++) {
             n.vl.elementAt(i).accept(this);
         }
+
         for (int i = 0; i < n.ml.size(); i++) {
             n.ml.elementAt(i).accept(this);
         }
@@ -124,6 +126,11 @@ public class DepthFirstVisitor implements Visitor {
         n.e.accept(this);
     }
 
+    @Override
+    public void visit(Println n) {
+
+    }
+
     // Identifier i;
     // Exp e;
     public void visit(Assign n) {
@@ -145,16 +152,31 @@ public class DepthFirstVisitor implements Visitor {
         n.e2.accept(this);
     }
 
+    @Override
+    public void visit(Or n) {
+
+    }
+
     // Exp e1,e2;
     public void visit(LessThan n) {
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
+    @Override
+    public void visit(Equals n) {
+
+    }
+
     // Exp e1,e2;
     public void visit(Plus n) {
         n.e1.accept(this);
         n.e2.accept(this);
+    }
+
+    @Override
+    public void visit(PlusEquals n) {
+
     }
 
     // Exp e1,e2;
