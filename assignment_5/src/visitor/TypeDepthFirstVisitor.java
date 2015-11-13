@@ -4,90 +4,90 @@ import syntaxtree.*;
 
 public class TypeDepthFirstVisitor implements TypeVisitor {
 
-    // MainClass m;
-    // ClassDeclList cl;
+    // MainClass mainClass;
+    // ClassDeclList classDeclList;
     public Type visit(Program n) {
-        n.m.accept(this);
-        for (int i = 0; i < n.cl.size(); i++) {
-            n.cl.elementAt(i).accept(this);
+        n.mainClass.accept(this);
+        for (int i = 0; i < n.classDeclList.size(); i++) {
+            n.classDeclList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // Identifier i1,i2;
-    // Statement s;
+    // Identifier identifier,identifierTwo;
+    // Statement string;
     public Type visit(MainClass n) {
-        n.i1.accept(this);
-        n.i2.accept(this);
-        n.s.accept(this);
+        n.identifier.accept(this);
+        n.identifierTwo.accept(this);
+        n.statement.accept(this);
         return null;
     }
 
-    // Identifier i;
-    // VarDeclList vl;
-    // MethodDeclList ml;
+    // Identifier identifier;
+    // VarDeclList varDeclList;
+    // MethodDeclList methodDeclList;
     public Type visit(ClassDeclSimple n) {
-        n.i.accept(this);
-        for (int i = 0; i < n.vl.size(); i++) {
-            n.vl.elementAt(i).accept(this);
+        n.identifier.accept(this);
+        for (int i = 0; i < n.varDeclList.size(); i++) {
+            n.varDeclList.elementAt(i).accept(this);
         }
-        for (int i = 0; i < n.ml.size(); i++) {
-            n.ml.elementAt(i).accept(this);
+        for (int i = 0; i < n.methodDeclList.size(); i++) {
+            n.methodDeclList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // Identifier i;
-    // Identifier j;
-    // VarDeclList vl;
-    // MethodDeclList ml;
+    // Identifier identifier;
+    // Identifier identifierTwo;
+    // VarDeclList varDeclList;
+    // MethodDeclList methodDeclList;
     public Type visit(ClassDeclExtends n) {
-        n.i.accept(this);
-        n.j.accept(this);
-        for (int i = 0; i < n.vl.size(); i++) {
-            n.vl.elementAt(i).accept(this);
+        n.identifier.accept(this);
+        n.identifierTwo.accept(this);
+        for (int i = 0; i < n.varDeclList.size(); i++) {
+            n.varDeclList.elementAt(i).accept(this);
         }
-        for (int i = 0; i < n.ml.size(); i++) {
-            n.ml.elementAt(i).accept(this);
+        for (int i = 0; i < n.methodDeclList.size(); i++) {
+            n.methodDeclList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // Type t;
-    // Identifier i;
+    // Type type;
+    // Identifier identifier;
     public Type visit(VarDecl n) {
-        n.t.accept(this);
-        n.i.accept(this);
+        n.type.accept(this);
+        n.identifier.accept(this);
         return null;
     }
 
-    // Type t;
-    // Identifier i;
-    // FormalList fl;
-    // VarDeclList vl;
-    // StatementList sl;
-    // Exp e;
+    // Type type;
+    // Identifier identifier;
+    // FormalList formalList;
+    // VarDeclList varDeclList;
+    // StatementList statementList;
+    // Exp lhs;
     public Type visit(MethodDecl n) {
-        n.t.accept(this);
-        n.i.accept(this);
-        for (int i = 0; i < n.fl.size(); i++) {
-            n.fl.elementAt(i).accept(this);
+        n.type.accept(this);
+        n.identifier.accept(this);
+        for (int i = 0; i < n.formalList.size(); i++) {
+            n.formalList.elementAt(i).accept(this);
         }
-        for (int i = 0; i < n.vl.size(); i++) {
-            n.vl.elementAt(i).accept(this);
+        for (int i = 0; i < n.varDeclList.size(); i++) {
+            n.varDeclList.elementAt(i).accept(this);
         }
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
+        for (int i = 0; i < n.statementList.size(); i++) {
+            n.statementList.elementAt(i).accept(this);
         }
-        n.e.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Type t;
-    // Identifier i;
+    // Type type;
+    // Identifier identifier;
     public Type visit(Formal n) {
-        n.t.accept(this);
-        n.i.accept(this);
+        n.type.accept(this);
+        n.identifier.accept(this);
         return null;
     }
 
@@ -103,120 +103,120 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // String s;
+    // String string;
     public Type visit(IdentifierType n) {
         return null;
     }
 
-    // StatementList sl;
+    // StatementList statementList;
     public Type visit(Block n) {
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
+        for (int i = 0; i < n.statementList.size(); i++) {
+            n.statementList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // Exp e;
-    // Statement s1,s2;
+    // Exp lhs;
+    // Statement statement,statementTwo;
     public Type visit(If n) {
-        n.e.accept(this);
-        n.s1.accept(this);
-        n.s2.accept(this);
+        n.exp.accept(this);
+        n.statement.accept(this);
+        n.statementTwo.accept(this);
         return null;
     }
 
-    // Exp e;
-    // Statement s;
+    // Exp lhs;
+    // Statement string;
     public Type visit(While n) {
-        n.e.accept(this);
-        n.s.accept(this);
+        n.exp.accept(this);
+        n.statement.accept(this);
         return null;
     }
 
-    // Exp e;
+    // Exp lhs;
     public Type visit(Print n) {
         n.e.accept(this);
         return null;
     }
 
-    // Identifier i;
-    // Exp e;
+    // Identifier identifier;
+    // Exp lhs;
     public Type visit(Assign n) {
-        n.i.accept(this);
-        n.e.accept(this);
+        n.identifier.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Identifier i;
-    // Exp e1,e2;
+    // Identifier identifier;
+    // Exp lhs,rhs;
     public Type visit(ArrayAssign n) {
-        n.i.accept(this);
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.identifier.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(And n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(LessThan n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(Plus n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(Minus n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(Times n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     public Type visit(ArrayLookup n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e;
+    // Exp lhs;
     public Type visit(ArrayLength n) {
-        n.e.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Exp e;
-    // Identifier i;
-    // ExpList el;
+    // Exp lhs;
+    // Identifier identifier;
+    // ExpList expList;
     public Type visit(Call n) {
-        n.e.accept(this);
-        n.i.accept(this);
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);
+        n.exp.accept(this);
+        n.identifier.accept(this);
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // int i;
+    // int identifier;
     public Type visit(IntegerLiteral n) {
         return null;
     }
@@ -229,7 +229,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // String s;
+    // String string;
     public Type visit(IdentifierExp n) {
         return null;
     }
@@ -238,24 +238,24 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e;
+    // Exp lhs;
     public Type visit(NewArray n) {
-        n.e.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Identifier i;
+    // Identifier identifier;
     public Type visit(NewObject n) {
         return null;
     }
 
-    // Exp e;
+    // Exp lhs;
     public Type visit(Not n) {
-        n.e.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // String s;
+    // String string;
     public Type visit(Identifier n) {
         return null;
     }

@@ -4,20 +4,22 @@ import visitor.TypeVisitor;
 import visitor.Visitor;
 
 public class While extends Statement {
-    public Exp e;
-    public Statement s;
 
-    public While(Exp ae, Statement as) {
-        e = ae;
-        s = as;
+    public Exp exp;
+    public Statement statement;
+
+    public While(Exp exp, Statement statement) {
+        this.exp = exp;
+        this.statement = statement;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
+
 }
 

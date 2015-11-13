@@ -4,28 +4,29 @@ import visitor.TypeVisitor;
 import visitor.Visitor;
 
 public class MethodDecl {
-    public Type t;
-    public Identifier i;
-    public FormalList fl;
-    public VarDeclList vl;
-    public StatementList sl;
-    public Exp e;
 
-    public MethodDecl(Type at, Identifier ai, FormalList afl, VarDeclList avl,
-                      StatementList asl, Exp ae) {
-        t = at;
-        i = ai;
-        fl = afl;
-        vl = avl;
-        sl = asl;
-        e = ae;
+    public Type type;
+    public Identifier identifier;
+    public FormalList formalList;
+    public VarDeclList varDeclList;
+    public StatementList statementList;
+    public Exp exp;
+
+    public MethodDecl(Type type, Identifier identifier, FormalList formalList, VarDeclList varDeclList, StatementList statementList, Exp exp) {
+        this.type = type;
+        this.identifier = identifier;
+        this.formalList = formalList;
+        this.varDeclList = varDeclList;
+        this.statementList = statementList;
+        this.exp = exp;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
+
 }

@@ -1,22 +1,25 @@
 package syntaxtree;
 
 import visitor.TypeVisitor;
+import visitor.Visitable;
 import visitor.Visitor;
 
-public class Formal {
-    public Type t;
-    public Identifier i;
+public class Formal implements Visitable {
 
-    public Formal(Type at, Identifier ai) {
-        t = at;
-        i = ai;
+    public Type type;
+    public Identifier identifier;
+
+    public Formal(Type type, Identifier identifier) {
+        this.type = type;
+        this.identifier = identifier;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
+
 }

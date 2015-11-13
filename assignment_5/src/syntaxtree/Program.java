@@ -4,12 +4,13 @@ import visitor.TypeVisitor;
 import visitor.Visitor;
 
 public class Program {
-    public MainClass m;
-    public ClassDeclList cl;
 
-    public Program(MainClass am, ClassDeclList acl) {
-        m = am;
-        cl = acl;
+    public MainClass mainClass;
+    public ClassDeclList classDeclList;
+
+    public Program(MainClass mainClass, ClassDeclList classDeclList) {
+        this.mainClass = mainClass;
+        this.classDeclList = classDeclList;
     }
 
     public void accept(Visitor v) {
@@ -19,4 +20,5 @@ public class Program {
     public Type accept(TypeVisitor v) {
         return v.visit(this);
     }
+
 }

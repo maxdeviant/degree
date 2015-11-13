@@ -4,17 +4,19 @@ import visitor.TypeVisitor;
 import visitor.Visitor;
 
 public class Print extends Statement {
-    public ExpList el;
 
-    public Print(ExpList ael) {
-        el = ael;
+    public ExpList expList;
+
+    public Print(ExpList expList) {
+        this.expList = expList;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
+
 }

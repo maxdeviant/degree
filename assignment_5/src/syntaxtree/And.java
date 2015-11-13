@@ -4,18 +4,19 @@ import visitor.TypeVisitor;
 import visitor.Visitor;
 
 public class And extends Exp {
-    public Exp e1, e2;
+    public Exp lhs;
+    public Exp rhs;
 
-    public And(Exp ae1, Exp ae2) {
-        e1 = ae1;
-        e2 = ae2;
+    public And(Exp lhs, Exp rhs) {
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
 }
