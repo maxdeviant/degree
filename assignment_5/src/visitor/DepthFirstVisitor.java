@@ -187,13 +187,20 @@ public class DepthFirstVisitor implements Visitor {
 
     @Override
     public void visit(PlusEquals n) {
-
+        n.identifier.accept(this);
+        n.exp.accept(this);
     }
 
     // Exp lhs,rhs;
     public void visit(Minus n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+    }
+
+    @Override
+    public void visit(MinusEquals n) {
+        n.identifier.accept(this);
+        n.exp.accept(this);
     }
 
     // Exp lhs,rhs;
@@ -237,6 +244,11 @@ public class DepthFirstVisitor implements Visitor {
 
     // String string;
     public void visit(IdentifierExp n) {
+    }
+
+    @Override
+    public void visit(Slice n) {
+
     }
 
     public void visit(This n) {

@@ -216,6 +216,11 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
+    @Override
+    public Type visit(MinusEquals n) {
+        return null;
+    }
+
     // Exp lhs,rhs;
     public Type visit(Times n) {
         n.lhs.accept(this);
@@ -268,6 +273,11 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
 
     // String string;
     public Type visit(IdentifierExp n) {
+        return null;
+    }
+
+    @Override
+    public Type visit(Slice n) {
         return null;
     }
 
