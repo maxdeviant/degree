@@ -113,6 +113,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         for (int i = 0; i < n.statementList.size(); i++) {
             n.statementList.elementAt(i).accept(this);
         }
+
         return null;
     }
 
@@ -122,6 +123,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         n.exp.accept(this);
         n.statement.accept(this);
         n.statementTwo.accept(this);
+
         return null;
     }
 
@@ -130,12 +132,21 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(While n) {
         n.exp.accept(this);
         n.statement.accept(this);
+
         return null;
     }
 
     // Exp lhs;
     public Type visit(Print n) {
-        n.e.accept(this);
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Type visit(Println n) {
         return null;
     }
 
@@ -144,6 +155,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Assign n) {
         n.identifier.accept(this);
         n.exp.accept(this);
+
         return null;
     }
 
@@ -153,6 +165,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         n.identifier.accept(this);
         n.lhs.accept(this);
         n.rhs.accept(this);
+
         return null;
     }
 
@@ -160,6 +173,12 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(And n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
+        return null;
+    }
+
+    @Override
+    public Type visit(Or n) {
         return null;
     }
 
@@ -167,6 +186,12 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(LessThan n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
+        return null;
+    }
+
+    @Override
+    public Type visit(Equals n) {
         return null;
     }
 
@@ -174,6 +199,12 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Plus n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
+        return null;
+    }
+
+    @Override
+    public Type visit(PlusEquals n) {
         return null;
     }
 
@@ -181,6 +212,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Minus n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
         return null;
     }
 
@@ -188,6 +220,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Times n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
         return null;
     }
 
@@ -195,12 +228,14 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(ArrayLookup n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
+
         return null;
     }
 
     // Exp lhs;
     public Type visit(ArrayLength n) {
         n.exp.accept(this);
+
         return null;
     }
 
@@ -210,9 +245,11 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Call n) {
         n.exp.accept(this);
         n.identifier.accept(this);
+
         for (int i = 0; i < n.expList.size(); i++) {
             n.expList.elementAt(i).accept(this);
         }
+
         return null;
     }
 
@@ -241,6 +278,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     // Exp lhs;
     public Type visit(NewArray n) {
         n.exp.accept(this);
+
         return null;
     }
 
@@ -252,6 +290,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     // Exp lhs;
     public Type visit(Not n) {
         n.exp.accept(this);
+
         return null;
     }
 
@@ -259,4 +298,5 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     public Type visit(Identifier n) {
         return null;
     }
+
 }

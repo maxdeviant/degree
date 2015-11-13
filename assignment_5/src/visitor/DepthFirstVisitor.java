@@ -8,6 +8,7 @@ public class DepthFirstVisitor implements Visitor {
     // ClassDeclList classDeclList;
     public void visit(Program n) {
         n.mainClass.accept(this);
+
         for (int i = 0; i < n.classDeclList.size(); i++) {
             n.classDeclList.elementAt(i).accept(this);
         }
@@ -43,9 +44,11 @@ public class DepthFirstVisitor implements Visitor {
     public void visit(ClassDeclExtends n) {
         n.identifier.accept(this);
         n.identifierTwo.accept(this);
+
         for (int i = 0; i < n.varDeclList.size(); i++) {
             n.varDeclList.elementAt(i).accept(this);
         }
+
         for (int i = 0; i < n.methodDeclList.size(); i++) {
             n.methodDeclList.elementAt(i).accept(this);
         }
@@ -127,12 +130,16 @@ public class DepthFirstVisitor implements Visitor {
 
     // Exp lhs;
     public void visit(Print n) {
-        n.e.accept(this);
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+        }
     }
 
     @Override
     public void visit(Println n) {
-
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+        }
     }
 
     // Identifier identifier;
@@ -212,6 +219,7 @@ public class DepthFirstVisitor implements Visitor {
     public void visit(Call n) {
         n.exp.accept(this);
         n.identifier.accept(this);
+
         for (int i = 0; i < n.expList.size(); i++) {
             n.expList.elementAt(i).accept(this);
         }
