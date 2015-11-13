@@ -5,6 +5,8 @@ import visitor.Visitor;
 
 public class BooleanType extends Type {
 
+    public static final String name = "boolean";
+
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }

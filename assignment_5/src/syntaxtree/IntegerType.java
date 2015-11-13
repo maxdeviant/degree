@@ -5,6 +5,8 @@ import visitor.Visitor;
 
 public class IntegerType extends Type {
 
+    public static final String name = "integer";
+
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }

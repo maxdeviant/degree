@@ -1,7 +1,8 @@
 package ram15compiler;
 
-
-import frontend.parser.generated.*;
+import frontend.parser.generated.ParseException;
+import frontend.parser.generated.RamParser;
+import frontend.parser.generated.TokenMgrError;
 import syntaxtree.Program;
 import visitor.BuildSymbolTableVisitor;
 import visitor.TypeCheckVisitor;
@@ -14,7 +15,6 @@ public class Ram15Compiler {
     static PrintWriter debug = new PrintWriter(System.out);
 
     public static void main(String[] args) throws ParseException, TokenMgrError, FileNotFoundException {
-
         if (args.length == 0) {
             RamParser parser = new RamParser(System.in);
             parser.Goal();
@@ -30,27 +30,29 @@ public class Ram15Compiler {
             //root.accept(new PythonPrintVisitor());
 
             System.out.println("Program lexed and parsed successfully");
-
             System.out.println("Abstract syntax tree built");
 
-
             // build symbol table
-            BuildSymbolTableVisitor v = new BuildSymbolTableVisitor();  // note that this is necessary so we can access our table later
-            root.accept(v); // build symbol table
+            BuildSymbolTableVisitor visitor = new BuildSymbolTableVisitor();  // note that this is necessary so we can access our table later
+
+            root.accept(visitor);
+
             System.out.println("Symbol Table built");
 
             // print symbol table
             System.out.println("Begin print of symbol table");
-            System.out.println(v.getSymbolTable());
+
+            System.out.println(visitor.getSymbolTable());
+
             System.out.println("End print of symbol table");
 
 
             // perform type checking
-            root.accept(new TypeCheckVisitor(v.getSymbolTable()));
+            root.accept(new TypeCheckVisitor(visitor.getSymbolTable()));
+
             System.out.println("Semantic Analysis: Type Checking complete");
 
-
         }
-
     }
+
 }
