@@ -259,7 +259,7 @@
         <echo message="Running semantic analysis (symbol table, type checking) ..."/>
         <java classname="ram15compiler.Ram15Compiler"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/pass1.ram15"/>
+            <arg value="${TEST_DIR}/pass/LinearSearch.ram15"/>
             <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
