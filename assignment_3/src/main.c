@@ -19,6 +19,75 @@ buffer_item buffer[BUFFER_SIZE];
 pthread_mutex_t mutex;
 rk_sema_t empty;
 rk_sema_t full;
+int buffer_index = 0;
+
+void *producer(void *param) {
+    buffer_item random;
+    int r;
+
+    while (1) {
+        r = rand() % 5;
+
+        sleep(r);
+
+        random = rand();
+
+        if (insert_item(random)) {
+            error_and_die("An error occurred while producing.");
+        }
+
+        printf("Producer produced %d\n", random);
+    }
+}
+
+void *consumer(void *param) {
+    buffer_item random;
+    int r;
+
+    while (1) {
+        r = rand() % 5;
+
+        sleep(r);
+
+        if (remove_item(&random)) {
+            error_and_die("An error occurred while consuming.");
+        }
+
+        printf("Consumer consumed %d\n", random);
+    }
+}
+
+int insert_item(buffer_item item) {
+    rk_sema_wait(&empty);
+
+    pthread_mutex_lock(&mutex);
+
+    buffer[buffer_index++] = item;
+
+    buffer_index++;
+
+    pthread_mutex_unlock(&mutex);
+
+    rk_sema_post(&full);
+
+    return 0;
+}
+
+int remove_item(buffer_item *item) {
+    rk_sema_wait(&full);
+
+    pthread_mutex_lock(&mutex);
+
+    *item = buffer[buffer_index];
+
+    buffer_index--;
+
+    pthread_mutex_unlock(&mutex);
+
+    rk_sema_post(&empty);
+
+    return 0;
+}
 
 int main(int argc, const char *argv[]) {
     if (argc != 4) {
