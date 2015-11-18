@@ -62,7 +62,7 @@ int insert_item(buffer_item item) {
 
     pthread_mutex_lock(&mutex);
 
-    buffer[buffer_index++] = item;
+    buffer[buffer_index] = item;
 
     buffer_index++;
 
