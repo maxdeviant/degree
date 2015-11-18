@@ -14,7 +14,7 @@ clean:
 
 bin: $(NAME)
 $(NAME): main.o buffer.o error.o
-	$(CC) $(CLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS)
+	$(CC) $(CFLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS)
 
 dist:
 	tar -cvf bowers_assignment3.tar Makefile src/* include/*
