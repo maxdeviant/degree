@@ -2,7 +2,7 @@
  * Marshall Bowers
  * Dr. Bin Lu
  * CSC331-80
- * 16 November 2015
+ * 18 November 2015
  * error.h
  */
 
