@@ -1,4 +1,4 @@
-package junit.semantic;
+package junit;
 
 import frontend.parser.generated.RamParser;
 import junit.framework.TestCase;
@@ -43,7 +43,7 @@ public class Pass1Test extends TestCase {
         // build symbol table
         BuildSymbolTableVisitor v = new BuildSymbolTableVisitor();
         root.accept(v); // build symbol table
-        System.out.println("Symbol Table built");
+        System.out.println("Symbol table built");
 
         symTab = v.getSymTab();
 

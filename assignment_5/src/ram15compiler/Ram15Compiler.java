@@ -37,7 +37,7 @@ public class Ram15Compiler {
 
             root.accept(visitor);
 
-            System.out.println("Symbol Table built");
+            System.out.println("Symbol table built");
 
             // print symbol table
             System.out.println("Begin print of symbol table");

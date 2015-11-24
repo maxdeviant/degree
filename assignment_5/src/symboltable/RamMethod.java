@@ -175,7 +175,41 @@ public class RamMethod {
      */
     @Override
     public String toString() {
-        return "FOOBAR";
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(String.format("%s %s\n", type.getClass(), identifier));
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Params:\n");
+
+        for (RamVariable ramVariable : parameters.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramVariable.toString()));
+        }
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Locals:\n");
+
+        for (RamVariable ramVariable : variables.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramVariable.toString()));
+        }
+
+        return stringBuilder.toString();
     }
 
 }
