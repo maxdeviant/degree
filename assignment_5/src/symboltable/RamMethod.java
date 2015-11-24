@@ -84,12 +84,21 @@ public class RamMethod {
 
     /**
      * Retrieves the parameter at the specified index of the method arguments.
-     * @param index
-     * @return
+     *
+     * @param index The index to get the parameter at.
+     * @return The parameter at the specified index of the method arguments.
      */
     public RamVariable getParamAt(int index) {
         if (index > parameters.size()) {
             return null;
+        }
+
+        int counter = 0;
+
+        for (RamVariable variable : parameters.values()) {
+            if (counter == index) {
+                return variable;
+            }
         }
 
         return null;
@@ -106,8 +115,7 @@ public class RamMethod {
     }
 
     public int numParams() {
-        // TODO: Return a real result here
-        return 0;
+        return parameters.size();
     }
 
     /**
@@ -167,7 +175,7 @@ public class RamMethod {
      */
     @Override
     public String toString() {
-        return super.toString();
+        return "FOOBAR";
     }
 
 }

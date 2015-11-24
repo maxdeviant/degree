@@ -21,4 +21,15 @@ public class ErrorMsg {
         System.out.println(message);
     }
 
+    /**
+     * Complain about the provided error message.
+     *
+     * @param message The error message to display.
+     */
+    public void complain(int lineNumber, String message) {
+        hasErrors = true;
+
+        System.out.println(String.format("%d: %s", lineNumber, message));
+    }
+
 }
