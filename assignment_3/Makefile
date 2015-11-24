@@ -13,8 +13,8 @@ clean:
 	$(CC) $(CFLAGS) $(LIB_INCLUDES) $(INCLUDES) -c $<
 
 bin: $(NAME)
-$(NAME): main.o buffer.o error.o
-	$(CC) $(CFLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS)
+$(NAME): main.o error.o
+	$(CC) $(CFLAGS) $(LIB_INCLUDES) $(INCLUDES) -o $(NAME) $^ -lm $(LIBS) -pthread
 
 dist:
 	tar -cvf bowers_assignment3.tar Makefile src/* include/*

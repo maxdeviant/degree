@@ -10,15 +10,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <semaphore.h>
 
 #include "error.h"
-#include "semaphore.h"
 #include "buffer.h"
 
 buffer_item buffer[BUFFER_SIZE];
 pthread_mutex_t mutex;
-rk_sema_t empty;
-rk_sema_t full;
+sem_t empty;
+sem_t full;
 int buffer_index = 0;
 
 void *producer(void *param) {
@@ -58,7 +58,7 @@ void *consumer(void *param) {
 }
 
 int insert_item(buffer_item item) {
-    rk_sema_wait(&empty);
+    sem_wait(&empty);
 
     pthread_mutex_lock(&mutex);
 
@@ -68,13 +68,13 @@ int insert_item(buffer_item item) {
 
     pthread_mutex_unlock(&mutex);
 
-    rk_sema_post(&full);
+    sem_post(&full);
 
     return 0;
 }
 
 int remove_item(buffer_item *item) {
-    rk_sema_wait(&full);
+    sem_wait(&full);
 
     pthread_mutex_lock(&mutex);
 
@@ -84,7 +84,7 @@ int remove_item(buffer_item *item) {
 
     pthread_mutex_unlock(&mutex);
 
-    rk_sema_post(&empty);
+    sem_post(&empty);
 
     return 0;
 }
@@ -101,8 +101,8 @@ int main(int argc, const char *argv[]) {
     int consumer_count = atoi(argv[3]);
 
     printf("%d\n", pthread_mutex_init(&mutex, NULL));
-    printf("%d\n", rk_sema_init(&empty, 5));
-    printf("%d\n", rk_sema_init(&full, 0));
+    printf("%d\n", sem_init(&empty, 0, 5));
+    printf("%d\n", sem_init(&full, 0, 0));
 
     srand(time(0));
 
