@@ -1,4 +1,4 @@
-package visitor;
+package symboltable;
 
 /**
  * A class for handling error message in the compiler.
@@ -15,7 +15,7 @@ public class ErrorMsg {
      *
      * @param message The error message to display.
      */
-    void complain(String message) {
+    public void complain(String message) {
         hasErrors = true;
 
         System.out.println(message);
