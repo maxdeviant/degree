@@ -1,7 +1,9 @@
-package junit;
+package junit.semantic;
 
 import frontend.parser.generated.RamParser;
 import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 import symboltable.Table;
 import syntaxtree.Program;
 import visitor.BuildSymbolTableVisitor;

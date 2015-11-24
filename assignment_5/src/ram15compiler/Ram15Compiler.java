@@ -42,13 +42,13 @@ public class Ram15Compiler {
             // print symbol table
             System.out.println("Begin print of symbol table");
 
-            System.out.println(visitor.getSymbTab());
+            System.out.println(visitor.getSymTab());
 
             System.out.println("End print of symbol table");
 
 
             // perform type checking
-            root.accept(new TypeCheckVisitor(visitor.getSymbTab()));
+            root.accept(new TypeCheckVisitor(visitor.getSymTab()));
 
             System.out.println("Semantic Analysis: Type Checking complete");
 

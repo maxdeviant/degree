@@ -12,6 +12,10 @@ public class RamVariable {
         this.type = type;
     }
 
+    public String id() {
+        return identifier;
+    }
+
     public Type type() {
         return type;
     }

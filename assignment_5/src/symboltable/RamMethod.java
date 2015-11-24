@@ -105,6 +105,11 @@ public class RamMethod {
         return parameters.contains(identifier);
     }
 
+    public int numParams() {
+        // TODO: Return a real result here
+        return 0;
+    }
+
     /**
      * Adds a variable with the specified name and type to the method.
      *
