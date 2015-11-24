@@ -47,7 +47,7 @@ public class RamMethod {
      *
      * @return The name of this method.
      */
-    public String getIdentifier() {
+    public String getId() {
         return identifier;
     }
 
@@ -58,8 +58,8 @@ public class RamMethod {
      * @param type       The type of the parameter to add.
      * @return True if the parameter was added (i.e., does not already exist), false otherwise.
      */
-    public boolean addParameter(String identifier, Type type) {
-        if (containsParameter(identifier)) {
+    public boolean addParam(String identifier, Type type) {
+        if (containsParam(identifier)) {
             return false;
         }
 
@@ -74,8 +74,8 @@ public class RamMethod {
      * @param identifier THe name of the parameter to retrieve.
      * @return The parameter with the specified name, if it exists.
      */
-    public RamVariable getParameter(String identifier) {
-        if (!containsParameter(identifier)) {
+    public RamVariable getParam(String identifier) {
+        if (!containsParam(identifier)) {
             return null;
         }
 
@@ -87,7 +87,7 @@ public class RamMethod {
      * @param index
      * @return
      */
-    public RamVariable getParameterAt(int index) {
+    public RamVariable getParamAt(int index) {
         if (index > parameters.size()) {
             return null;
         }
@@ -101,7 +101,7 @@ public class RamMethod {
      * @param identifier The name of the parameter to check if the method contains.
      * @return A flag indicating whether or not the method contains the specified parameter.
      */
-    public boolean containsParameter(String identifier) {
+    public boolean containsParam(String identifier) {
         return parameters.contains(identifier);
     }
 
@@ -112,8 +112,8 @@ public class RamMethod {
      * @param type       The type of the variable to add.
      * @return True if the variable was added (i.e., does not already exist), false otherwise.
      */
-    public boolean addVariable(String identifier, Type type) {
-        if (containsVariable(identifier)) {
+    public boolean addVar(String identifier, Type type) {
+        if (containsVar(identifier)) {
             return false;
         }
 
@@ -128,8 +128,8 @@ public class RamMethod {
      * @param identifier THe name of the variable to retrieve.
      * @return The variable with the specified name, if it exists.
      */
-    public RamVariable getVariable(String identifier) {
-        if (!containsVariable(identifier)) {
+    public RamVariable getVar(String identifier) {
+        if (!containsVar(identifier)) {
             return null;
         }
 
@@ -142,7 +142,7 @@ public class RamMethod {
      * @param identifier The name of the variable to check if the method contains.
      * @return A flag indicating whether or not the method contains the specified variable.
      */
-    public boolean containsVariable(String identifier) {
+    public boolean containsVar(String identifier) {
         return variables.contains(identifier);
     }
 
