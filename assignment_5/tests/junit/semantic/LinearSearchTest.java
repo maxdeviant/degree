@@ -1,4 +1,4 @@
-package junit.semantic;
+package junit;
 
 import frontend.parser.generated.RamParser;
 import junit.framework.TestCase;
@@ -46,12 +46,6 @@ public class LinearSearchTest extends TestCase {
         System.out.println("Symbol table built");
 
         symTab = v.getSymTab();
-
-        System.out.println("Begin print of symbol table");
-
-        System.out.println(symTab);
-
-        System.out.println("End print of symbol table");
 
         // perform type checking
         root.accept(new TypeCheckVisitor(v.getSymTab()));

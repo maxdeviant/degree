@@ -1,4 +1,4 @@
-package junit.semantic;
+package junit;
 
 import frontend.parser.generated.RamParser;
 import junit.framework.TestCase;
