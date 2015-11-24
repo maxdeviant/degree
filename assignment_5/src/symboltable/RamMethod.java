@@ -5,7 +5,7 @@ import syntaxtree.Type;
 import java.util.Hashtable;
 
 /**
- * A symbole table representation of a method.
+ * A symbol table representation of a method.
  *
  * @author Marshall Bowers
  */
@@ -111,7 +111,7 @@ public class RamMethod {
      * @return A flag indicating whether or not the method contains the specified parameter.
      */
     public boolean containsParam(String identifier) {
-        return parameters.contains(identifier);
+        return parameters.containsKey(identifier);
     }
 
     public int numParams() {
@@ -156,7 +156,7 @@ public class RamMethod {
      * @return A flag indicating whether or not the method contains the specified variable.
      */
     public boolean containsVar(String identifier) {
-        return variables.contains(identifier);
+        return variables.containsKey(identifier);
     }
 
     /**
