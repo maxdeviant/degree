@@ -47,6 +47,12 @@ public class LinearSearchTest extends TestCase {
 
         symTab = v.getSymTab();
 
+        if (symTab.anyErrors()) {
+            System.out.println("Symbol table contained errors.");
+
+            System.exit(-1);
+        }
+
         // perform type checking
         root.accept(new TypeCheckVisitor(v.getSymTab()));
         System.out.println("Semantic Analysis: Type Checking complete");
