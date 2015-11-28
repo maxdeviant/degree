@@ -1,2 +1,2 @@
 dist:
-	tar -cjvf bowers_assignment4.tar.bz2 build.xml src/* tests/* lib/* build/*
+	tar -cjvf bowers_assignment5.tar.bz2 build.xml src/* tests/* lib/* build/*
