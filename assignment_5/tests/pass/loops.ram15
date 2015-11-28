@@ -1,0 +1,40 @@
+/**
+ * Test: Loops
+ * @author Marshall Bowers
+ */
+class Main {
+
+    public static void main(String[] args) {
+        print(new Loops().run());
+    }
+
+}
+
+class Loops {
+
+    public bool run() {
+        int[] list;
+        int i;
+        int power;
+
+        list = new int[10];
+        i = 0;
+
+        while (i < 10) {
+            list[i] = i * i;
+
+            i += 1;
+        }
+
+        power = 0;
+
+        while (power < 9000) {
+            power += 1;
+
+            println(power);
+        }
+
+        return true;
+    }
+
+}
