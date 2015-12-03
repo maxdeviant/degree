@@ -19,8 +19,9 @@ public class Factory {
         int numOfResources = args.length;
         int[] resources = new int[numOfResources];
 
-        for (int i = 0; i < numOfResources; i++)
+        for (int i = 0; i < numOfResources; i++) {
             resources[i] = Integer.parseInt(args[i].trim());
+        }
 
         Bank theBank = new BankImpl(resources);
         int[] maxDemand = new int[numOfResources];
@@ -39,6 +40,7 @@ public class Factory {
 
             for (int i = 0; i < Customer.COUNT; i++) {
                 line = inFile.readLine();
+
                 StringTokenizer tokens = new StringTokenizer(line, ",");
 
                 while (tokens.hasMoreTokens()) {
