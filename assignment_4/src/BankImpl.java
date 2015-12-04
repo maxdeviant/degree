@@ -61,7 +61,9 @@ public class BankImpl implements Bank {
 
             System.out.print(allocation[i][m - 1] + "]");
         }
+
         System.out.print("\nMax = ");
+
         for (int i = 0; i < n; i++) {
             System.out.print("[");
 
