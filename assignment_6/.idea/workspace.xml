@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cb33c72-6d0b-4301-9df4-ac64a8437406" name="Default" comment="" />
+    <list default="true" id="9cb33c72-6d0b-4301-9df4-ac64a8437406" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/And.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/And.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/And.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ArrayTest.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ArrayTest.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ArrayTest.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ClassLevel.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ClassLevel.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/ClassLevel.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/CodeGenTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial0.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial0.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial0.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial1.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial1.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial10.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial10.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Factorial10.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfFalse.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfFalse.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfFalse.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfTrue.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfTrue.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/IfTrue.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/LessThan.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/LessThan.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/LessThan.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/MethodCall.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/MethodCall.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/MethodCall.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/NewObject.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/NewObject.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/NewObject.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not1.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not1.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not2.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Not2.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Plus.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Plus.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Plus.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Print.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Print.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/codegen/Print.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/lexicalerrors/fail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/lexicalerrors/notgoodinput.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/semanticerrors/pass1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/PrintStegosaurusBreaks.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/fail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/fail2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/ipod.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/ramgram_pro.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/return.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/pass/Bool.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/pass/LinearSearch.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/pass/ParsePass2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/pass/Sigma.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/pass/pass1.ram15" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_5/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../assignment_5/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/JavaCharStream.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/JavaCharStream.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParser.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserConstants.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserTokenManager.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserTokenManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java" afterPath="$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java" afterPath="$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java" afterPath="$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java" />
+    </list>
     <ignored path="CSC416 - Assignment 6.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,18 +94,82 @@
     <favorites_list name="CSC416 - Assignment 6" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="build.xml" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31333333">
-              <caret line="317" column="72" selection-start-line="317" selection-start-column="72" selection-end-line="317" selection-end-column="72" />
+            <state vertical-scroll-proportion="-1.25">
+              <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ram15Compiler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.60126585">
+              <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeDepthFirstVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+              <folding>
+                <element signature="e#3136#3137#0" expanded="true" />
+                <element signature="e#3163#3164#0" expanded="true" />
+                <element signature="e#3674#3675#0" expanded="true" />
+                <element signature="e#3701#3702#0" expanded="true" />
+                <element signature="e#3886#3887#0" expanded="true" />
+                <element signature="e#3913#3914#0" expanded="true" />
+                <element signature="e#4098#4099#0" expanded="true" />
+                <element signature="e#4125#4126#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeCheckVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaPrintVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DepthFirstVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -42,7 +179,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java" />
         <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java" />
+        <option value="$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java" />
+        <option value="$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java" />
       </list>
     </option>
   </component>
@@ -51,7 +192,7 @@
     <option name="width" value="1440" />
     <option name="height" value="840" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -121,12 +262,48 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="visitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSC416 - Assignment 6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assignment_6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSC416 - Assignment 6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assignment_6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ram15compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,6 +559,9 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9cb33c72-6d0b-4301-9df4-ac64a8437406" name="Default" comment="" />
@@ -393,31 +573,39 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="840" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328877" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328877" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -430,15 +618,101 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <targetFilters>
+        <filter targetName="help" isVisible="false" />
+        <filter targetName="init" isVisible="true" />
+        <filter targetName="build" isVisible="true" />
+        <filter targetName="clean" isVisible="false" />
+        <filter targetName="generateScanner" isVisible="true" />
+        <filter targetName="runScanner" isVisible="true" />
+        <filter targetName="testScanner" isVisible="false" />
+        <filter targetName="generateParser" isVisible="false" />
+        <filter targetName="runParser" isVisible="false" />
+        <filter targetName="testParser" isVisible="false" />
+        <filter targetName="generateSemantic" isVisible="false" />
+        <filter targetName="runSemantic" isVisible="false" />
+        <filter targetName="testPython" isVisible="false" />
+        <filter targetName="runSA" isVisible="false" />
+        <filter targetName="testSA" isVisible="false" />
+        <filter targetName="runCodeGen" isVisible="false" />
+        <filter targetName="testCodeGen" isVisible="false" />
+      </targetFilters>
       <expanded value="true" />
     </buildFile>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31333333">
-          <caret line="317" column="72" selection-start-line="317" selection-start-column="72" selection-end-line="317" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+          <folding>
+            <element signature="e#3136#3137#0" expanded="true" />
+            <element signature="e#3163#3164#0" expanded="true" />
+            <element signature="e#3674#3675#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
+            <element signature="e#3886#3887#0" expanded="true" />
+            <element signature="e#3913#3914#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4125#4126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60126585">
+          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -499,6 +773,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -506,7 +781,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Mars4_5</last-edited>
+          <last-edited>javacc</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
