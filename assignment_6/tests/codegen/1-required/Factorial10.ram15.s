@@ -1,82 +1,79 @@
 	.text
 	.globl main
 main:
-	# begin prologue -- main
-	subu $sp, $sp, 16                       # stack frame is at least 16 bytes
-	sw $fp, 8($sp)                          # save caller's frame pointer
-	sw $ra, 0($sp)                          # save return address
-	addu $fp, $sp, 12                       # set main's frame pointer
-	# end prologue -- main
-	# begin println
-	# start call
-	li $v0, 10                              # move int val to $v0
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save arg to stack
-	jal ComputeFac                          # jump to ComputeFac
-	addi $sp, $sp, 4                        # pop the stack
-	move $a0, $v0                           # move int to syscall arg
-	li $v0, 1                               # set syscall to print int
-	syscall                                 # print int
-	la $a0, newline                         # move newline to syscall arg
-	li $v0, 4                               # set syscall to print string
-	syscall                                 # print newline
-	# end println
-	# begin epilogue -- main
-	lw $ra, -4($fp)                         # restore return address
-	lw $fp, -12($fp)                        # restore caller's frame pointer
-	addi $sp, $sp, 16                       # pop the stack
-	# end epilogue -- main
-	li $v0, 10                              # set syscall to exit
-	syscall                                 # exit
+	subu $sp, $sp, 16
+	sw $fp, 8($sp)
+	sw $ra, 0($sp)
+	addu $fp, $sp, 12
+	# begin Println
+	# start Call
+	li $v0, 10
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	jal ComputeFac
+	addi $sp, $sp, 4
+	# end Call
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	# end Println
+	lw $ra, -4($fp)
+	lw $fp, -12($fp)
+	addi $sp, $sp, 16
+	li $v0, 10
+	syscall
 ComputeFac:
-	subu $sp, $sp, 16                       # stack frame is at least 16 bytes
-	sw $fp, 8($sp)                          # save caller's frame pointer
-	sw $ra, 0($sp)                          # save return address
-	addu $fp, $sp, 12                       # set ComputeFac's frame pointer
-	addi $v0, $fp, 4                        # save memory location of identifier to $v0
-	addi $v0, $fp, -16                      # save memory location of identifier to $v0
-	# start lessThan
-	addi $v0, $fp, 4                        # save memory location of identifier to $v0
-	lw $v0, ($v0)                           # load identifier from stack
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save int to stack
-	li $v0, 1                               # move int val to $v0
-	lw $t1, ($sp)                           # load int from stack
-	addu $sp, $sp, 4                        # pop int from stack
-	slt $v0, $t1, $v0                       # calculate lessThan
-	# end lessThan
-	beqz $v0, ifFalse12                     # if false, goto branch 'ifFalse12'
-	li $v0, 1                               # move int val to $v0
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save exp result to stack
-	addi $v0, $fp, -16                      # save memory location of identifier to $v0
-	lw $t1, ($sp)                           # load exp result from stack
-	addu $sp, $sp, 4                        # pop exp result from stack
-	sw $t1, ($v0)                           # assign value to memory address of identifier
+	subu $sp, $sp, 16
+	sw $fp, 8($sp)
+	sw $ra, 0($sp)
+	addu $fp, $sp, 12
+	addi $v0, $fp, 4
+	addi $v0, $fp, -16
+	# start LessThan
+	addi $v0, $fp, 4
+	lw $v0, ($v0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	li $v0, 1
+	lw $t1, ($sp)
+	addu $sp, $sp, 4
+	slt $v0, $t1, $v0
+	# end LessThan
+	beqz $v0, ifFalse12
+	li $v0, 1
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	addi $v0, $fp, -16
+	lw $t1, ($sp)
+	addu $sp, $sp, 4
+	sw $t1, ($v0)
 	j isDone12
 ifFalse12:
-	# begin times
-	addi $v0, $fp, 4                        # save memory location of identifier to $v0
-	lw $v0, ($v0)                           # load identifier from stack
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save multiplicand to stack
-	lw $t1, ($sp)                           # load multiplicand from stack
-	addu $sp, $sp, 4                        # pop multiplicand from stack
-	mul $v0, $t1, $v0                       # calculate product
-	# end times
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save exp result to stack
-	addi $v0, $fp, -16                      # save memory location of identifier to $v0
-	lw $t1, ($sp)                           # load exp result from stack
-	addu $sp, $sp, 4                        # pop exp result from stack
-	sw $t1, ($v0)                           # assign value to memory address of identifier
+	# begin Times
+	addi $v0, $fp, 4
+	lw $v0, ($v0)
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	lw $t1, ($sp)
+	addu $sp, $sp, 4
+	mul $v0, $t1, $v0
+	# end Times
+	subu $sp, $sp, 4
+	sw $v0, ($sp)
+	addi $v0, $fp, -16
+	lw $t1, ($sp)
+	addu $sp, $sp, 4
+	sw $t1, ($v0)
 isDone12:
-	addi $v0, $fp, -16                      # save memory location of identifier to $v0
-	lw $v0, ($v0)                           # load identifier from stack
-	lw $ra, -12($fp)                        # restore return address
-	lw $fp, -4($fp)                         # restore caller's frame pointer
-	addi $sp, $sp, 16                       # pop the stack
-	jr $ra                                  # jump to previous call
+	addi $v0, $fp, -16
+	lw $v0, ($v0)
+	lw $ra, -12($fp)
+	lw $fp, -4($fp)
+	addi $sp, $sp, 16
+	jr $ra
 	
 	.data
 newline: .asciiz "\n"

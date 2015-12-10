@@ -74,140 +74,139 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         emitLabel("main");
 
-        emitComment("begin prologue -- main");
-        emit("subu $sp, $sp, 16", "stack frame is at least 16 bytes");
-        emit("sw $fp, 8($sp)", "save caller's frame pointer");
-        emit("sw $ra, 0($sp)", "save return address");
-        emit("addu $fp, $sp, 12", "set main's frame pointer");
-        emitComment("end prologue -- main");
+        emit("subu $sp, $sp, 16");
+        emit("sw $fp, 8($sp)");
+        emit("sw $ra, 0($sp)");
+        emit("addu $fp, $sp, 12");
 
         n.statement.accept(this);
 
-        emitComment("begin epilogue -- main");
-        emit("lw $ra, -4($fp)", "restore return address");
-        emit("lw $fp, -12($fp)", "restore caller's frame pointer");
-        emit("addi $sp, $sp, 16", "pop the stack");
-        emitComment("end epilogue -- main");
+        emit("lw $ra, -4($fp)");
+        emit("lw $fp, -12($fp)");
+        emit("addi $sp, $sp, 16");
 
-        emit("li $v0, 10", "set syscall to exit");
-        emit("syscall", "exit");
+        emit("li $v0, 10");
+        emit("syscall");
 
         currentClass = null;
     }
 
     @Override
     public void visit(IntegerLiteral n) {
-        emit("li $v0, " + n.integer, "move int val to $v0");
+        emit("li $v0, " + n.integer);
     }
 
     @Override
     public void visit(Print n) {
-        emitComment("begin print");
+        emitComment("begin Print");
 
         for (int i = 0; i < n.expList.size(); i++) {
             n.expList.elementAt(i).accept(this);
 
-            emit("move $a0, $v0", "move int to syscall arg");
-            emit("li $v0, 1", "set syscall to print int");
-            emit("syscall", "print int");
+            emit("move $a0, $v0");
+            emit("li $v0, 1");
+            emit("syscall");
 
             if (i < n.expList.size() - 1) {
-                emit("la $a0, space", "move space to syscall arg");
-                emit("li $v0, 4", "set syscall to print string");
-                emit("syscall", "print space");
+                emit("la $a0, space");
+                emit("li $v0, 4");
+                emit("syscall");
             }
         }
 
-        emitComment("end print");
+        emitComment("end Print");
     }
 
     @Override
     public void visit(Println n) {
-        emitComment("begin println");
+        emitComment("begin Println");
 
         for (int i = 0; i < n.expList.size(); i++) {
             n.expList.elementAt(i).accept(this);
 
-            emit("move $a0, $v0", "move int to syscall arg");
-            emit("li $v0, 1", "set syscall to print int");
-            emit("syscall", "print int");
+            emit("move $a0, $v0");
+            emit("li $v0, 1");
+            emit("syscall");
 
             if (i < n.expList.size() - 1) {
-                emit("la $a0, space", "move space to syscall arg");
-                emit("li $v0, 4", "set syscall to print string");
-                emit("syscall", "print space");
+                emit("la $a0, space");
+                emit("li $v0, 4");
+                emit("syscall");
             }
         }
 
-        emit("la $a0, newline", "move newline to syscall arg");
-        emit("li $v0, 4", "set syscall to print string");
-        emit("syscall", "print newline");
+        emit("la $a0, newline");
+        emit("li $v0, 4");
+        emit("syscall");
 
-        emitComment("end println");
+        emitComment("end Println");
     }
 
     @Override
     public void visit(Plus n) {
-        emitComment("begin plus");
+        emitComment("begin Plus");
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save addend to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load addend from stack");
-        emit("addu $sp, $sp, 4", "pop addend from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("add $v0, $t1, $v0", "calculate sum");
-        emitComment("end plus");
+        emit("add $v0, $t1, $v0");
+
+        emitComment("end Plus");
     }
 
     @Override
     public void visit(Minus n) {
-        emitComment("begin minus");
+        emitComment("begin Minus");
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save minuend to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load minuend from stack");
-        emit("addu $sp, $sp, 4", "pop minuend from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("sub $v0, $t1, $v0", "calculate difference");
-        emitComment("end minus");
+        emit("sub $v0, $t1, $v0");
+
+        emitComment("end Minus");
     }
 
     @Override
     public void visit(Times n) {
-        emitComment("begin times");
+        emitComment("begin Times");
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save multiplicand to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load multiplicand from stack");
-        emit("addu $sp, $sp, 4", "pop multiplicand from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("mul $v0, $t1, $v0", "calculate product");
-        emitComment("end times");
+        emit("mul $v0, $t1, $v0");
+
+        emitComment("end Times");
     }
 
     @Override
     public void visit(True n) {
-        emit("li $v0, 1", "move true val to $v0");
+        emit("li $v0, 1");
     }
 
     @Override
     public void visit(False n) {
-        emit("li $v0, 0", "move false val to $v0");
+        emit("li $v0, 0");
     }
 
     @Override
@@ -216,7 +215,7 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         n.exp.accept(this);
 
-        emit("beqz $v0, ifFalse" + label, "if false, goto branch 'ifFalse" + label + "'");
+        emit(String.format("beqz $v0, ifFalse%d", label));
 
         n.statement.accept(this);
 
@@ -230,20 +229,21 @@ public class CodeGenerator extends DepthFirstVisitor {
 
     @Override
     public void visit(And n) {
-        emitComment("start and");
+        emitComment("start And");
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save bool to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load bool from stack");
-        emit("addu $sp, $sp, 4", "pop bool from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("and $v0, $t1, $v0", "calculate and");
-        emitComment("end and");
+        emit("and $v0, $t1, $v0");
+
+        emitComment("end And");
     }
 
     @Override
@@ -252,15 +252,16 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save bool to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load bool from stack");
-        emit("addu $sp, $sp, 4", "pop bool from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("or $v0, $t1, $v0", "calculate or");
+        emit("or $v0, $t1, $v0");
+
         emitComment("end Or");
     }
 
@@ -270,56 +271,64 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         n.lhs.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save int to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.rhs.accept(this);
 
-        emit("lw $t1, ($sp)", "load int from stack");
-        emit("addu $sp, $sp, 4", "pop int from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("slt $v0, $t1, $v0", "calculate lessThan");
+        emit("slt $v0, $t1, $v0");
+
         emitComment("end LessThan");
     }
 
     @Override
     public void visit(Equals n) {
-        emitComment("start equals");
-        n.lhs.accept(this); // resulting bool saved in $v0
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save bool to stack");
+        emitComment("start Equals");
 
-        n.rhs.accept(this); // resulting int saved in $v0
-        emit("lw $t1, ($sp)", "load bool from stack");
-        emit("addu $sp, $sp, 4", "pop bool from stack");
+        n.lhs.accept(this);
 
-        emit("seq $v0, $t1, $v0", "calculate equals");
-        emitComment("end equals");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
+
+        n.rhs.accept(this);
+
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
+
+        emit("seq $v0, $t1, $v0");
+
+        emitComment("end Equals");
     }
 
     @Override
     public void visit(Not n) {
-        emitComment("start not");
+        emitComment("start Not");
 
         n.exp.accept(this);
 
-        emit("xori $v0, $v0, 1", "calculate not");
+        emit("xori $v0, $v0, 1");
 
-        emitComment("end not");
+        emitComment("end Not");
     }
 
     @Override
     public void visit(Call n) {
-        emitComment("start call");
+        emitComment("start Call");
 
         for (int i = n.expList.size() - 1; i >= 0; i--) {
             n.expList.elementAt(i).accept(this);
 
-            emit("subu $sp, $sp, 4", "increase stack by one word");
-            emit("sw $v0, ($sp)", "save arg to stack");
+            emit("subu $sp, $sp, 4");
+            emit("sw $v0, ($sp)");
         }
-        emit("jal " + n.identifier.string, "jump to " + n.identifier.string);
-        emit("addi $sp, $sp, 4", "pop the stack");
+
+        emit("jal " + n.identifier.string);
+        emit("addi $sp, $sp, 4");
+
+        emitComment("end Call");
     }
 
     @Override
@@ -328,17 +337,17 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         emitLabel(n.identifier.string);
 
-        emit("subu $sp, $sp, 16", "stack frame is at least 16 bytes");
-        emit("sw $fp, 8($sp)", "save caller's frame pointer");
-        emit("sw $ra, 0($sp)", "save return address");
-        emit("addu $fp, $sp, 12", "set " + n.identifier.string + "'s frame pointer");
+        emit("subu $sp, $sp, 16");
+        emit("sw $fp, 8($sp)");
+        emit("sw $ra, 0($sp)");
+        emit("addu $fp, $sp, 12");
 
         super.visit(n);
 
-        emit("lw $ra, -12($fp)", "restore return address");
-        emit("lw $fp, -4($fp)", "restore caller's frame pointer");
-        emit("addi $sp, $sp, 16", "pop the stack");
-        emit("jr $ra", "jump to previous call");
+        emit("lw $ra, -12($fp)");
+        emit("lw $fp, -4($fp)");
+        emit("addi $sp, $sp, 16");
+        emit("jr $ra");
 
         currentMethod = null;
     }
@@ -368,7 +377,7 @@ public class CodeGenerator extends DepthFirstVisitor {
         }
 
         if (variable != null) {
-            emit("addi $v0, $fp, " + variable.offset(), "save identifier memory reference in $v0");
+            emit("addi $v0, $fp, " + variable.offset());
         }
     }
 
@@ -387,8 +396,8 @@ public class CodeGenerator extends DepthFirstVisitor {
         }
 
         if (variable != null) {
-            emit("addi $v0, $fp, " + variable.offset(), "save identifier memory reference in $v0");
-            emit("lw $v0, ($v0)", "load identifier from stack");
+            emit("addi $v0, $fp, " + variable.offset());
+            emit("lw $v0, ($v0)");
         }
     }
 
@@ -396,15 +405,15 @@ public class CodeGenerator extends DepthFirstVisitor {
     public void visit(Assign n) {
         n.exp.accept(this);
 
-        emit("subu $sp, $sp, 4", "increase stack by one word");
-        emit("sw $v0, ($sp)", "save exp result to stack");
+        emit("subu $sp, $sp, 4");
+        emit("sw $v0, ($sp)");
 
         n.identifier.accept(this);
 
-        emit("lw $t1, ($sp)", "load exp result from stack");
-        emit("addu $sp, $sp, 4", "pop exp result from stack");
+        emit("lw $t1, ($sp)");
+        emit("addu $sp, $sp, 4");
 
-        emit("sw $t1, ($v0)", "assign value to memory address of identifier");
+        emit("sw $t1, ($v0)");
     }
 
 }
