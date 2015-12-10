@@ -2,10 +2,84 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3273db5-b394-42d5-8d7c-b385a05de6ae" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/ParenExp.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/ErrorMsg.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclExtends.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitable.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/ErrorMsg.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/.idea/misc.xml" afterPath="$PROJECT_DIR$/../assignment_6/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/Ram15Compiler.java" afterPath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/Ram15Compiler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamClass.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamMethod.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamVariable.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamVariable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/Table.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/Table.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/And.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/And.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayAssign.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayAssign.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLength.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLength.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLookup.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLookup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Assign.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Assign.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Block.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Block.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/BooleanType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/BooleanType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Call.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Call.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclSimple.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclSimple.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Equals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Equals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Exp.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Exp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ExpList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ExpList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/False.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/False.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Formal.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Formal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/FormalList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/FormalList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Identifier.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Identifier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierExp.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierExp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/If.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/If.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntArrayType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntArrayType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerLiteral.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerLiteral.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/LessThan.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/LessThan.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MainClass.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MainClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Minus.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Minus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MinusEquals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MinusEquals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewArray.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewArray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewObject.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Not.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Not.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Or.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Or.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Plus.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Plus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/PlusEquals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/PlusEquals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Print.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Print.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Println.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Println.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Program.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Program.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Slice.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Slice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Statement.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Statement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/StatementList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/StatementList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/This.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/This.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Times.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Times.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/True.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/True.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Type.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Type.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/While.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/While.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/BuildSymbolTableVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/BuildSymbolTableVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/CodeGenerator.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/CodeGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/DepthFirstVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/DepthFirstVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/PythonPrintVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/PythonPrintVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckExpVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckExpVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeDepthFirstVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeDepthFirstVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s.output" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s.output" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/junit/semantic/TypeCheckerTest.java" afterPath="$PROJECT_DIR$/../assignment_6/tests/junit/semantic/TypeCheckerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/pass/lexical/1/pass3.ram15" afterPath="$PROJECT_DIR$/../assignment_6/tests/pass/lexical/1/pass3.ram15" />
     </list>
     <ignored path="CSC 416 - Assignment 5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,87 +101,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Table.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/symboltable/Table.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#631#632#0" expanded="true" />
-                <element signature="e#670#671#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#765#766#0" expanded="true" />
-                <element signature="e#3205#3206#0" expanded="true" />
-                <element signature="e#3250#3251#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinearSearchTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LinearSearchTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7271468">
+              <caret line="53" column="9" selection-start-line="47" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Plus.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Plus.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#1637#1638#0" expanded="true" />
-                <element signature="e#1689#1690#0" expanded="true" />
-                <element signature="e#3242#3243#0" expanded="true" />
-                <element signature="e#3309#3310#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pass1Test.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/junit/semantic/Pass1Test.java">
+      <file leaf-file-name="Formal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Formal.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arrays.ram15" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/pass/arrays.ram15">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fibonacci.ram15" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/pass/fibonacci.ram15">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loops.ram15" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/pass/loops.ram15">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.041551247">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -116,42 +139,80 @@
         <entry file="file://$PROJECT_DIR$/src/visitor/BuildSymbolTableVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+              <caret line="52" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#336#337#0" expanded="true" />
-                <element signature="e#377#378#0" expanded="true" />
+                <element signature="e#409#410#0" expanded="true" />
+                <element signature="e#443#444#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RamMethod.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/symboltable/RamMethod.java">
+      <file leaf-file-name="DepthFirstVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+              <caret line="231" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/MainClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2986#2987#0" expanded="true" />
-                <element signature="e#3043#3044#0" expanded="true" />
-                <element signature="e#4372#4373#0" expanded="true" />
-                <element signature="e#4428#4429#0" expanded="true" />
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#497#498#0" expanded="true" />
+                <element signature="e#544#545#0" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeCheckVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+      <file leaf-file-name="Visitable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visitor/Visitable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlusEquals.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/PlusEquals.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#390#391#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdentifierExp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/IdentifierExp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassDeclExtends.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ClassDeclExtends.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -176,8 +237,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/syntaxtree/LessThan.java" />
-        <option value="$PROJECT_DIR$/src/syntaxtree/MainClass.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/MethodDecl.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/MethodDeclList.java" />
         <option value="$PROJECT_DIR$/src/syntaxtree/Minus.java" />
@@ -227,6 +286,8 @@
         <option value="$PROJECT_DIR$/tests/pass/fibonacci.ram15" />
         <option value="$PROJECT_DIR$/tests/pass/loops.ram15" />
         <option value="$PROJECT_DIR$/Makefile" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/IdentifierExp.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/MainClass.java" />
       </list>
     </option>
   </component>
@@ -442,8 +503,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -675,10 +734,12 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/commons-io-2.4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -686,6 +747,11 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/syntaxtree" />
+    </key>
   </component>
   <component name="RunManager" selected="JUnit.LinearSearchTest.testClassA">
     <configuration default="false" name="Ram15Compiler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -1121,7 +1187,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328877" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1188,108 +1254,10 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/StatementList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/This.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Times.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/True.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VarDecl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VarDeclList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/While.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/frontend/parser/RamSemantic.jj">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/LessThan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28481013">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/MethodDeclList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Slice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/MinusEquals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/BooleanType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IntegerType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1321,13 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/Visitable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15822785">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/symboltable/ErrorMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1353,13 +1314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12658228">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1398,13 +1352,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/visitor/Visitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18987341">
@@ -1412,52 +1359,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18987341">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Println.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25316456">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="278" column="13" selection-start-line="278" selection-start-column="13" selection-end-line="278" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symboltable/RamClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symboltable/RamVariable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckExpVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.333333">
-          <caret line="205" column="26" selection-start-line="205" selection-start-column="26" selection-end-line="205" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1475,41 +1380,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/symboltable/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#670#671#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#3205#3206#0" expanded="true" />
-            <element signature="e#3250#3251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
-          <folding>
-            <element signature="e#1637#1638#0" expanded="true" />
-            <element signature="e#1689#1690#0" expanded="true" />
-            <element signature="e#3242#3243#0" expanded="true" />
-            <element signature="e#3309#3310#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/junit/semantic/Pass1Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="104" column="1" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1540,35 +1416,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.041551247">
+        <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/BuildSymbolTableVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/symboltable/RamMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2986#2987#0" expanded="true" />
-            <element signature="e#3043#3044#0" expanded="true" />
-            <element signature="e#4372#4373#0" expanded="true" />
-            <element signature="e#4428#4429#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1577,10 +1427,215 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#332#333#0" expanded="false" />
+            <element signature="e#390#391#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/RamVariable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/RamMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="32" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/symboltable/RamClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckExpVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Slice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Minus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#281#282#0" expanded="false" />
+            <element signature="e#316#317#0" expanded="false" />
+            <element signature="e#363#364#0" expanded="false" />
+            <element signature="e#405#406#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/MethodDecl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#689#690#0" expanded="false" />
+            <element signature="e#724#725#0" expanded="false" />
+            <element signature="e#771#772#0" expanded="false" />
+            <element signature="e#813#814#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/VarDeclList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Plus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Formal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/PlusEquals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/IdentifierExp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ClassDeclExtends.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/BuildSymbolTableVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#443#444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="231" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/MainClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+            <element signature="e#544#545#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visitor/Visitable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7271468">
+          <caret line="53" column="9" selection-start-line="47" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

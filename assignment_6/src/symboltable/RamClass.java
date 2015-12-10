@@ -1,36 +1,30 @@
 package symboltable;
 
-import symboltable.RamClass;
-import symboltable.RamMethod;
-import symboltable.RamVariable;
 import syntaxtree.IdentifierType;
 import syntaxtree.Type;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 public class RamClass {
 
-    private String id;
-    private Map<String, RamMethod> methods;
-    private Map<String, RamVariable> globals;
+    private String identifier;
+    private Hashtable<String, RamMethod> methods;
+    private Hashtable<String, RamVariable> globals;
     private Type type;
 
-    public RamClass(String id) {
-        this.id = id;
-        type = new IdentifierType(id);
-        methods = new LinkedHashMap<>();
-        globals = new LinkedHashMap<>();
+    public RamClass(String identifier) {
+        this.identifier = identifier;
+        type = new IdentifierType(identifier);
+        methods = new Hashtable<>();
+        globals = new Hashtable<>();
     }
 
     public RamClass() {
     }
 
-    public String getId() {
-        return id;
+    public String getIdentifier() {
+        return identifier;
     }
 
     public Type type() {
@@ -40,39 +34,49 @@ public class RamClass {
     public boolean addMethod(String id, Type type) {
         if (containsMethod(id)) {
             return false;
-        } else {
-            methods.put(id, new RamMethod(id, type));
-            return true;
         }
+
+        methods.put(id, new RamMethod(id, type));
+
+        return true;
     }
 
-    public Set<RamMethod> getMethods() {
-        return new LinkedHashSet<>(methods.values());
+    public Set<String> getMethods() {
+        return methods.keySet();
     }
 
     public RamMethod getMethod(String id) {
-        return methods.get(id);
+        if (containsMethod(id)) {
+            return methods.get(id);
+        }
+
+        return null;
     }
 
     public int numMethods() {
         return methods.size();
     }
 
+    public int numGlobals() {
+        return globals.size();
+    }
+
     public boolean addVar(String id, Type type) {
         if (globals.containsKey(id)) {
             return false;
-        } else {
-            globals.put(id, new RamVariable(id, type));
-            return true;
         }
+
+        globals.put(id, new RamVariable(id, type));
+
+        return true;
     }
 
     public RamVariable getVar(String id) {
-        return globals.get(id);
-    }
+        if (containsVar(id)) {
+            return globals.get(id);
+        }
 
-    public Set<RamVariable> getVars() {
-        return new LinkedHashSet<>(globals.values());
+        return null;
     }
 
     public boolean containsVar(String id) {
@@ -83,22 +87,36 @@ public class RamClass {
         return methods.containsKey(id);
     }
 
-    public int numGlobals() {
-        return globals.size();
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(String.format("%s\n", identifier));
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Fields:\n");
+
+        for (RamVariable ramVariable : globals.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramVariable.toString()));
+        }
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Methods:\n");
+
+        for (RamMethod ramMethod : methods.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramMethod.toString()));
+        }
+
+        return stringBuilder.toString();
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("    ").append(id).append("\n");
-        sb.append("        Fields:\n");
-        for (RamVariable v : getVars()) {
-            sb.append("            ").append(v).append("\n");
-        }
-        sb.append("        Methods:\n");
-        for (RamMethod m : getMethods()) {
-            sb.append(m);
-        }
-        return sb.toString();
-    }
 }
 

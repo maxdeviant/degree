@@ -51,13 +51,10 @@ public class Ram15Compiler {
             root.accept(new TypeCheckVisitor(v.getSymTab()));
             System.out.println("Semantic Analysis: Type Checking complete");
 
-            ErrorMsg errors = ErrorMsg.getInstance();
-            if (errors.hasErrors()) {
-                System.out.printf("Errors (%d):\n", errors.errorCount());
-                errors.print();
-                return;
-            } else {
-                System.out.println("No errors.");
+            if (v.getSymTab().anyErrors()) {
+                System.out.println("Symbol table contained errors.");
+
+                System.exit(-1);
             }
 
             System.out.println("Generating code:");

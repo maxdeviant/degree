@@ -1,339 +1,466 @@
 package visitor;
 
-
 import syntaxtree.*;
-import visitor.Visitor;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Hashtable;
 
+/**
+ * @author Marshall Bowers
+ */
 public class PythonPrintVisitor implements Visitor {
 
-    private List<Identifier> instanceVars;
-    private List<Identifier> localVars;
-    private int depth;  // indentation depth
+    /**
+     * The current indentation level.
+     */
+    private int indentLevel = 0;
 
-    public PythonPrintVisitor() {
-        instanceVars = new ArrayList<>();
-        localVars = new ArrayList<>();
-        depth = 0;
-    }
+    /**
+     * The current class name.
+     */
+    private String currentClassName;
 
-    private void printIndent(int depth) {
-        for (int i = 0; i < depth; i++) {
-            System.out.print("\t");
-        }
-    }
+    /**
+     * A flag indicating whether or not the variable currently being declared should be a class-level variable.
+     */
+    private boolean isClassLevelDeclaration = false;
+
+    /**
+     * A symbol table containing all of the class-level variables in the program.
+     */
+    private Hashtable<String, ArrayList<String>> classVariables = new Hashtable<>();
 
     @Override
     public void visit(Program n) {
-        for (int i = 0; i < n.cl.size(); i++) {
-            n.cl.elementAt(i).accept(this);
+        for (int i = 0; i < n.classDeclList.size(); i++) {
+            n.classDeclList.elementAt(i).accept(this);
+
             System.out.println();
         }
-        n.m.accept(this);
+
+        n.mainClass.accept(this);
     }
 
     @Override
     public void visit(MainClass n) {
         System.out.println("if __name__ == '__main__':");
-        depth++;
-        n.s.accept(this);
-        depth--;
+
+        indent();
+
+        printIndent();
+
+        n.statement.accept(this);
     }
 
     @Override
     public void visit(ClassDeclSimple n) {
         System.out.print("class ");
-        n.i.accept(this);
-        System.out.println(":");
-        depth++;
 
-        instanceVars = new ArrayList<>();
-        for (int i = 0; i < n.vl.size(); i++) {
-            instanceVars.add(n.vl.elementAt(i).i);
-        }
+        n.identifier.accept(this);
 
-        for (int i = 0; i < n.ml.size(); i++) {
-            n.ml.elementAt(i).accept(this);
-            if (i < n.ml.size() - 1) {
-                System.out.println();
+        System.out.println("():");
+
+        indent();
+
+        currentClassName = n.identifier.string;
+
+        if (n.varDeclList.size() > 0) {
+            printIndent();
+
+            System.out.println("def __init__(self):");
+
+            indent();
+
+            isClassLevelDeclaration = true;
+
+            for (int i = 0; i < n.varDeclList.size(); i++) {
+                printIndent();
+
+                n.varDeclList.elementAt(i).accept(this);
+
+                if (i + 1 < n.varDeclList.size()) {
+                    System.out.println();
+                }
             }
+
+            unindent();
+
+            isClassLevelDeclaration = false;
+
+            System.out.println();
         }
 
-        depth--;
+        for (int i = 0; i < n.methodDeclList.size(); i++) {
+            System.out.println();
+
+            printIndent();
+
+            n.methodDeclList.elementAt(i).accept(this);
+
+            System.out.println();
+        }
+
         System.out.println();
+
+        unindent();
     }
 
     @Override
     public void visit(VarDecl n) {
-        throw new UnsupportedOperationException("No var declarations needed for python");
+        if (isClassLevelDeclaration) {
+            setClassVariable(currentClassName, n.identifier.string);
+        }
+
+        n.identifier.accept(this);
+
+        System.out.print(" = None");
     }
 
     @Override
     public void visit(MethodDecl n) {
-        printIndent(depth);
         System.out.print("def ");
-        n.i.accept(this);
-        System.out.print("(self");
-        for (int i = 0; i < n.fl.size(); i++) {
+
+        n.identifier.accept(this);
+
+        System.out.print("(");
+
+        System.out.print("self");
+
+        if (n.formalList.size() > 0) {
             System.out.print(", ");
-            n.fl.elementAt(i).accept(this);
-        }
-        System.out.print("):\n");
-        depth++;
-
-        localVars = new ArrayList<>();
-        for (int i = 0; i < n.vl.size(); i++) {
-            localVars.add(n.vl.elementAt(i).i);
         }
 
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
-            System.out.println();
+        for (int i = 0; i < n.formalList.size(); i++) {
+            n.formalList.elementAt(i).accept(this);
+
+            if (i + 1 < n.formalList.size()) {
+                System.out.print(", ");
+            }
         }
 
-        printIndent(depth);
+        System.out.print(")");
+
+        System.out.println(":");
+
+        indent();
+
+        for (int i = 0; i < n.statementList.size(); i++) {
+            printIndent();
+
+            n.statementList.elementAt(i).accept(this);
+
+            if (i < n.statementList.size()) {
+                System.out.println();
+            }
+        }
+
+        printIndent();
+
         System.out.print("return ");
-        n.e.accept(this);
-        System.out.println();
-        depth--;
+
+        n.exp.accept(this);
+
+        unindent();
     }
 
     @Override
     public void visit(Formal n) {
-        n.i.accept(this);
+        n.identifier.accept(this);
     }
 
     @Override
     public void visit(IntArrayType n) {
-        throw new UnsupportedOperationException("No type declarations needed for python");
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(BooleanType n) {
-        throw new UnsupportedOperationException("No type declarations needed for python");
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(IntegerType n) {
-        throw new UnsupportedOperationException("No type declarations needed for python");
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(IdentifierType n) {
-        throw new UnsupportedOperationException("No type declarations needed for python");
+        /*
+         *        YAY, DUCK TYPING!
+         *                        _
+         *                /`6\__
+         *         ,_     \ _.=='
+         *        `) `""""`~~\
+         *      -~ \  '~-.   / ~-
+         *       ~- `~-====-' ~_ ~-
+         *     ~ - ~ ~- ~ - ~ -
+         */
     }
 
     @Override
     public void visit(Block n) {
         for (int i = 0; i < n.statementList.size(); i++) {
+
             n.statementList.elementAt(i).accept(this);
-            if (i < n.statementList.size() - 1) {
-                System.out.println();
+
+            System.out.println();
+
+            if (i + 1 < n.statementList.size()) {
+                printIndent();
             }
         }
     }
 
     @Override
     public void visit(If n) {
-        printIndent(depth);
         System.out.print("if ");
-        n.e.accept(this);
+
+        n.exp.accept(this);
+
         System.out.println(":");
 
-        depth++;
-        n.s1.accept(this);
-        System.out.println();
-        depth--;
+        indent();
 
-        printIndent(depth);
+        printIndent();
+
+        n.statement.accept(this);
+
+        System.out.println();
+
+        unindent();
+
+        printIndent();
+
         System.out.println("else:");
 
-        depth++;
-        n.s2.accept(this);
-        depth--;
+        indent();
+
+        printIndent();
+
+        n.statementTwo.accept(this);
+
+        unindent();
     }
 
     @Override
     public void visit(While n) {
-        printIndent(depth);
         System.out.print("while ");
-        n.e.accept(this);
-        System.out.print(":\n");
 
-        depth++;
-        n.s.accept(this);
-        depth--;
+        n.exp.accept(this);
+
+        System.out.println(":");
+
+        indent();
+
+        printIndent();
+
+        n.statement.accept(this);
+
+        unindent();
     }
 
     @Override
     public void visit(Print n) {
-        printIndent(depth);
-        System.out.print("print(");
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);
-            System.out.print(", ");
+        System.out.print("print ");
+
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i != n.expList.size() - 1) {
+                System.out.print("+\" \"+");
+            }
         }
-        if (n.el.size() > 1) {
-            System.out.print("sep=\"\", ");
-        }
-        System.out.print("end=\"\")");
     }
 
     @Override
     public void visit(Println n) {
-        printIndent(depth);
-        System.out.print("print(");
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);
-            if (i < n.el.size() - 1) {
-                System.out.print(", ");
+        System.out.print("print ");
+
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i != n.expList.size() - 1) {
+                System.out.print("+\" \"+");
             }
         }
-        if (n.el.size() > 1) {
-            System.out.print("sep=\"\"");
-        }
-        System.out.print(")");
     }
 
     @Override
     public void visit(Assign n) {
-        printIndent(depth);
         n.identifier.accept(this);
+
         System.out.print(" = ");
+
         n.exp.accept(this);
     }
 
     @Override
     public void visit(ArrayAssign n) {
-        printIndent(depth);
         n.identifier.accept(this);
+
         System.out.print("[");
+
         n.lhs.accept(this);
-        System.out.print("] = ");
+
+        System.out.print("]");
+
+        System.out.print(" = ");
+
         n.rhs.accept(this);
     }
 
     @Override
     public void visit(And n) {
         n.lhs.accept(this);
+
         System.out.print(" and ");
+
         n.rhs.accept(this);
     }
 
     @Override
     public void visit(Or n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
+
         System.out.print(" or ");
-        n.e2.accept(this);
+
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(LessThan n) {
-        n.e1.accept(this);
-        System.out.print(" < ");
-        n.e2.accept(this);
-    }
+        n.lhs.accept(this);
 
-    @Override
-    public void visit(ParenExp n) {
-        System.out.print("(");
-        n.e1.accept(this);
-        System.out.print(")");
+        System.out.print(" < ");
+
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(Equals n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
+
         System.out.print(" == ");
-        n.e2.accept(this);
+
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(Plus n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
+
         System.out.print(" + ");
-        n.e2.accept(this);
+
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(PlusEquals n) {
-        printIndent(depth);
-        n.i.accept(this);
-        System.out.print(" += ");
-        n.e.accept(this);
-    }
+        n.identifier.accept(this);
 
-    @Override
-    public void visit(MinusEquals n) {
-        printIndent(depth);
-        n.i.accept(this);
-        System.out.print(" -= ");
-        n.e.accept(this);
+        System.out.print(" += ");
+
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(Minus n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
+
         System.out.print(" - ");
-        n.e2.accept(this);
+
+        n.rhs.accept(this);
+    }
+
+    @Override
+    public void visit(MinusEquals n) {
+        n.identifier.accept(this);
+
+        System.out.print(" -= ");
+
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(Times n) {
-        n.e1.accept(this);
-        System.out.print(" * ");
-        n.e2.accept(this);
-    }
+        n.lhs.accept(this);
 
-    @Override
-    public void visit(Slice n) {
-        n.e1.accept(this);
-        System.out.print("[");
-        if (n.e2 != null) {
-            n.e2.accept(this);
-        }
-        System.out.print(":");
-        if (n.e3 != null) {
-            n.e3.accept(this);
-        }
-        System.out.print("]");
+        System.out.print(" * ");
+
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(ArrayLookup n) {
         n.lhs.accept(this);
+
         System.out.print("[");
+
         n.rhs.accept(this);
+
         System.out.print("]");
     }
 
     @Override
     public void visit(ArrayLength n) {
         System.out.print("len(");
+
         n.exp.accept(this);
+
         System.out.print(")");
     }
 
     @Override
     public void visit(Call n) {
-        n.e.accept(this);
+        n.exp.accept(this);
+
         System.out.print(".");
-        n.i.accept(this);
+
+        n.identifier.accept(this);
+
         System.out.print("(");
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);
-            if (i + 1 < n.el.size()) {
+
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);
+
+            if (i + 1 < n.expList.size()) {
                 System.out.print(", ");
             }
         }
+
         System.out.print(")");
     }
 
     @Override
     public void visit(IntegerLiteral n) {
-        System.out.print(n.i);
+        System.out.print(n.integer);
     }
 
     @Override
@@ -348,20 +475,30 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(IdentifierExp n) {
-        for (Identifier i : localVars) {
-            if (i.s.equals(n.s)) {
-                System.out.print(n.s);
-                return;
-            }
+        if (isClassLevelVariable(currentClassName, n.string)) {
+            System.out.print("self.");
         }
 
-        for (Identifier i : instanceVars) {
-            if (i.s.equals(n.s)) {
-                System.out.print("self." + n.s);
-                return;
-            }
+        System.out.print(n.string);
+    }
+
+    @Override
+    public void visit(Slice n) {
+        n.expOne.accept(this);
+
+        System.out.print("[");
+
+        if (n.expTwo != null) {
+            n.expTwo.accept(this);
         }
-        System.out.print(n.s);
+
+        System.out.print(":");
+
+        if (n.expThree != null) {
+            n.expThree.accept(this);
+        }
+
+        System.out.print("]");
     }
 
     @Override
@@ -371,37 +508,117 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(NewArray n) {
-        System.out.print("[None]*");
-        n.e.accept(this);
+        System.out.print("[None] * ");
+
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(NewObject n) {
-        System.out.print(n.i.s);
+        System.out.print(n.identifier.string);
+
         System.out.print("()");
     }
 
     @Override
     public void visit(Not n) {
-        System.out.print(" not ");
-        n.e.accept(this);
+        System.out.print("not ");
+
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(Identifier n) {
-        for (Identifier i : localVars) {
-            if (i.s.equals(n.s)) {
-                System.out.print(n.s);
-                return;
-            }
+        if (isClassLevelVariable(currentClassName, n.string)) {
+            System.out.print("self.");
         }
 
-        for (Identifier i : instanceVars) {
-            if (i.s.equals(n.s)) {
-                System.out.print("self." + n.s);
-                return;
-            }
-        }
-        System.out.print(n.s);
+        System.out.print(n.string);
     }
+
+    @Override
+    public void visit(ParenExp n) {
+
+    }
+
+    @Override
+    public void visit(ClassDeclExtends n) {
+
+    }
+
+    /**
+     * Retrieves the list of class variables for the specified class.
+     *
+     * @param className The name of the class to retrieve the class variables for.
+     * @return The list of class variables for the specified class.
+     */
+    private ArrayList<String> getClassVariables(String className) {
+        if (classVariables.size() > 0 && classVariables.containsKey(className)) {
+            return classVariables.get(className);
+        }
+
+        return new ArrayList<>();
+    }
+
+    /**
+     * Registers the specified class-level variable to the specified class.
+     *
+     * @param className    The class to register the variable to.
+     * @param variableName The name of the class-level variable.
+     */
+    private void setClassVariable(String className, String variableName) {
+        ArrayList<String> variables = getClassVariables(className);
+
+        variables.add(variableName);
+
+        classVariables.put(currentClassName, variables);
+    }
+
+    /**
+     * Returns whether or not the variable name is a class-level variable for the specified class.
+     *
+     * @param className    The name of the class to check class-level variables for.
+     * @param variableName The name of the variable to check for being class-level.
+     * @return Whether or not the specified variable is a class-level member of the specified class.
+     */
+    private boolean isClassLevelVariable(String className, String variableName) {
+        return getClassVariables(className).contains(variableName);
+    }
+
+    /**
+     * Indents the source code by the given number of levels.
+     *
+     * @param levels The number of levels to indent by.
+     */
+    private void printIndent(int levels) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < levels; i++) {
+            builder.append("    ");
+        }
+
+        System.out.print(builder.toString());
+    }
+
+    /**
+     * Indents the source code using the current indent level.
+     */
+    private void printIndent() {
+        printIndent(indentLevel);
+    }
+
+    /**
+     * Increase the current indentation level by one.
+     */
+    private void indent() {
+        indentLevel++;
+    }
+
+    /**
+     * Decrease the current indentation level by one.
+     */
+    private void unindent() {
+        indentLevel--;
+    }
+
 }

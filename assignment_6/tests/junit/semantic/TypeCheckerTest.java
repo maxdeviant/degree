@@ -18,7 +18,6 @@ import org.junit.runners.Parameterized.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 import org.junit.runner.notification.Failure;
-import ram15compiler.ErrorMsg;
 import symboltable.Table;
 import syntaxtree.Program;
 import visitor.BuildSymbolTableVisitor;

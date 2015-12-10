@@ -3,21 +3,23 @@ package syntaxtree;
 import java.util.Vector;
 
 public class VarDeclList {
-    private Vector<VarDecl> list;
+
+    private Vector<VarDecl> varDecls;
 
     public VarDeclList() {
-        list = new Vector<VarDecl>();
+        varDecls = new Vector<>();
     }
 
-    public void addElement(VarDecl n) {
-        list.addElement(n);
+    public void addElement(VarDecl varDecl) {
+        varDecls.addElement(varDecl);
     }
 
-    public VarDecl elementAt(int i) {
-        return list.elementAt(i);
+    public VarDecl elementAt(int index) {
+        return varDecls.elementAt(index);
     }
 
     public int size() {
-        return list.size();
+        return varDecls.size();
     }
+
 }

@@ -3,25 +3,24 @@ package syntaxtree;
 import visitor.TypeVisitor;
 import visitor.Visitor;
 
-
 public class Call extends Exp {
-    public Exp e;
-    public Identifier i;
-    public ExpList el;
 
-    public Call(Exp ae, Identifier ai, ExpList ael) {
-        e = ae;
-        i = ai;
-        el = ael;
+    public Exp exp;
+    public Identifier identifier;
+    public ExpList expList;
+
+    public Call(Exp exp, Identifier identifier, ExpList expList) {
+        this.exp = exp;
+        this.identifier = identifier;
+        this.expList = expList;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
-
 
 }

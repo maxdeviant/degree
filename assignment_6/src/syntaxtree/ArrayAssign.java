@@ -15,12 +15,10 @@ public class ArrayAssign extends Statement {
         this.rhs = rhs;
     }
 
-    @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
-    @Override
     public Type accept(TypeVisitor visitor) {
         return visitor.visit(this);
     }

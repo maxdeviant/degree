@@ -3,94 +3,225 @@ package symboltable;
 import syntaxtree.Type;
 import visitor.CodeGenerator;
 
-import java.util.*;
+import java.util.Hashtable;
 
+/**
+ * A symbol table representation of a method.
+ *
+ * @author Marshall Bowers
+ */
 public class RamMethod {
 
-    private String id;
-    private Type type;
-    private Map<String, RamVariable> params;
-    private Map<String, RamVariable> vars;
-    private int varOffset = -CodeGenerator.FRAME_MIN;
-    private int paramOffset = 4;
+    /**
+     * The name of the method.
+     */
+    private final String identifier;
 
-    public RamMethod(String id, Type type) {
-        this.id = id;
+    /**
+     * The return type of the method.
+     */
+    private final Type type;
+
+    /**
+     * A collection of all the parameters for this method.
+     */
+    private Hashtable<String, RamVariable> parameters = new Hashtable<>();
+
+    /**
+     * A collection of all the variables for this method.
+     */
+    private Hashtable<String, RamVariable> variables = new Hashtable<>();
+
+    private int variableOffset = -CodeGenerator.FRAME_MIN;
+    private int parameterOffset = 4;
+
+    /**
+     * Creates a new method with the specified name and return type.
+     *
+     * @param identifier The name of the method.
+     * @param type       The return type of the method.
+     */
+    public RamMethod(String identifier, Type type) {
+        this.identifier = identifier;
         this.type = type;
-        this.params = new LinkedHashMap<>();
-        this.vars = new HashMap<>();
     }
 
-    public boolean addParam(String id, Type type) {
-        if (params.containsKey(id)) {
-            return false;
-        }
-        params.put(id, new RamVariable(id, type, paramOffset));
-        paramOffset += 4;
-        return true;
-    }
-
-    public boolean addVar(String id, Type type) {
-        if (vars.containsKey(id)) {
-            return false;
-        }
-        vars.put(id, new RamVariable(id, type, varOffset));
-        varOffset -= 4;
-        return true;
-    }
-
-    public boolean containsParam(String id) {
-        return params.containsKey(id);
-    }
-
-    public boolean containsVar(String id) {
-        return vars.containsKey(id);
-    }
-
+    /**
+     * Retrieves the name of this method.
+     *
+     * @return The name of this method.
+     */
     public String getId() {
-        return id;
+        return identifier;
     }
 
-    public RamVariable getParam(String id) {
-        return params.get(id);
+    /**
+     * Adds a parameter with the specified name and type to the method.
+     *
+     * @param identifier The name of the parameter to add.
+     * @param type       The type of the parameter to add.
+     * @return True if the parameter was added (identifier.e., does not already exist), false otherwise.
+     */
+    public boolean addParam(String identifier, Type type) {
+        if (containsParam(identifier)) {
+            return false;
+        }
+
+        parameters.put(identifier, new RamVariable(identifier, type, parameterOffset));
+
+        parameterOffset += 4;
+
+        return true;
     }
 
-    public RamVariable getParamAt(int i) {
-        return new LinkedList<>(params.values()).get(i);
+    /**
+     * Retrieves the parameter with the specified name.
+     *
+     * @param identifier THe name of the parameter to retrieve.
+     * @return The parameter with the specified name, if it exists.
+     */
+    public RamVariable getParam(String identifier) {
+        if (!containsParam(identifier)) {
+            return null;
+        }
+
+        return parameters.get(identifier);
     }
 
-    public Set<RamVariable> getParams() {
-        return new LinkedHashSet<>(params.values());
+    /**
+     * Retrieves the parameter at the specified index of the method arguments.
+     *
+     * @param index The index to get the parameter at.
+     * @return The parameter at the specified index of the method arguments.
+     */
+    public RamVariable getParamAt(int index) {
+        if (index > parameters.size()) {
+            return null;
+        }
+
+        int counter = 0;
+
+        for (RamVariable variable : parameters.values()) {
+            if (counter == index) {
+                return variable;
+            }
+        }
+
+        return null;
     }
 
-    public RamVariable getVar(String id) {
-        return vars.get(id);
+    /**
+     * Returns whether or not the method contains a parameter with the specified name.
+     *
+     * @param identifier The name of the parameter to check if the method contains.
+     * @return A flag indicating whether or not the method contains the specified parameter.
+     */
+    public boolean containsParam(String identifier) {
+        return parameters.containsKey(identifier);
     }
 
-    public Set<RamVariable> getVars() {
-        return new LinkedHashSet<>(vars.values());
+    public int numParams() {
+        return parameters.size();
     }
 
+    /**
+     * Adds a variable with the specified name and type to the method.
+     *
+     * @param identifier The name of the variable to add.
+     * @param type       The type of the variable to add.
+     * @return True if the variable was added (identifier.e., does not already exist), false otherwise.
+     */
+    public boolean addVar(String identifier, Type type) {
+        if (containsVar(identifier)) {
+            return false;
+        }
+
+        variables.put(identifier, new RamVariable(identifier, type, variableOffset));
+
+        variableOffset -= 4;
+
+        return true;
+    }
+
+    /**
+     * Retrieves the variable with the specified name.
+     *
+     * @param identifier THe name of the variable to retrieve.
+     * @return The variable with the specified name, if it exists.
+     */
+    public RamVariable getVar(String identifier) {
+        if (!containsVar(identifier)) {
+            return null;
+        }
+
+        return variables.get(identifier);
+    }
+
+    public Hashtable<String, RamVariable> getVars() {
+        return variables;
+    }
+
+    /**
+     * Returns whether or not the method contains a variable with the specified name.
+     *
+     * @param identifier The name of the variable to check if the method contains.
+     * @return A flag indicating whether or not the method contains the specified variable.
+     */
+    public boolean containsVar(String identifier) {
+        return variables.containsKey(identifier);
+    }
+
+    /**
+     * Retrieves the type of the method.
+     *
+     * @return The type of the method.
+     */
     public Type type() {
         return type;
     }
 
-    public int numParams() {
-        return params.size();
-    }
-
+    /**
+     * Retrieves the string representation of this object.
+     *
+     * @return The string representation of this object.
+     */
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("            ").append(id).append(" - ").append(type).append("\n");
-        sb.append("                Params:\n");
-        for (RamVariable v : getParams()) {
-            sb.append("                    ").append(v).append("\n");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(String.format("%s %s\n", type.getClass(), identifier));
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Params:\n");
+
+        for (RamVariable ramVariable : parameters.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramVariable.toString()));
         }
-        sb.append("                Locals:\n");
-        for (RamVariable v : getVars()) {
-            sb.append("                    ").append(v).append("\n");
+
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("    ");
+        stringBuilder.append("Locals:\n");
+
+        for (RamVariable ramVariable : variables.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramVariable.toString()));
         }
-        return sb.toString();
+
+        return stringBuilder.toString();
     }
 
 }

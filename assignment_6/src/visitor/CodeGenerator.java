@@ -6,6 +6,7 @@ import symboltable.RamVariable;
 import symboltable.Table;
 import syntaxtree.*;
 
+import java.util.Hashtable;
 import java.util.Set;
 
 
@@ -61,9 +62,9 @@ public class CodeGenerator extends DepthFirstVisitor {
         emit(".text");
         emit(".globl main");
 
-        n.m.accept(this);
-        for (int i = 0; i < n.cl.size(); i++) {
-            n.cl.elementAt(i).accept(this);
+        n.mainClass.accept(this);
+        for (int i = 0; i < n.classDeclList.size(); i++) {
+            n.classDeclList.elementAt(i).accept(this);
         }
 
         emit("");
@@ -73,7 +74,7 @@ public class CodeGenerator extends DepthFirstVisitor {
 
     @Override
     public void visit(MainClass n) {
-        currClass = symTable.getClass(n.i1.s);
+        currClass = symTable.getClass(n.identifier.string);
         currMethod = currClass.getMethod("main");
         emitLabel("main");
 
@@ -84,7 +85,7 @@ public class CodeGenerator extends DepthFirstVisitor {
         emit("addu $fp, $sp, 12", "set main's frame pointer");
         emitComment("end prologue -- main");
 
-        n.s.accept(this);
+        n.statement.accept(this);
 
         emitComment("begin epilogue -- main");
         emit("lw $ra, -4($fp)", "restore return address");
@@ -100,19 +101,19 @@ public class CodeGenerator extends DepthFirstVisitor {
 
     @Override
     public void visit(IntegerLiteral n) {
-        emit("li $v0, " + n.i, "move int val to $v0");
+        emit("li $v0, " + n.integer, "move int val to $v0");
     }
 
     @Override
     public void visit(Print n) {
         emitComment("begin print");
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);  // resulting int saved in $v0
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);  // resulting int saved in $v0
             emit("move $a0, $v0", "move int to syscall arg");
             emit("li $v0, 1", "set syscall to print int");
             emit("syscall", "print int");
 
-            if (i < n.el.size() - 1) {
+            if (i < n.expList.size() - 1) {
                 emit("la $a0, space", "move space to syscall arg");
                 emit("li $v0, 4", "set syscall to print string");
                 emit("syscall", "print space");
@@ -124,13 +125,13 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Println n) {
         emitComment("begin println");
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);  // resulting int saved in $v0
+        for (int i = 0; i < n.expList.size(); i++) {
+            n.expList.elementAt(i).accept(this);  // resulting int saved in $v0
             emit("move $a0, $v0", "move int to syscall arg");
             emit("li $v0, 1", "set syscall to print int");
             emit("syscall", "print int");
 
-            if (i < n.el.size() - 1) {
+            if (i < n.expList.size() - 1) {
                 emit("la $a0, space", "move space to syscall arg");
                 emit("li $v0, 4", "set syscall to print string");
                 emit("syscall", "print space");
@@ -147,11 +148,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Plus n) {
         emitComment("begin plus");
-        n.e1.accept(this); // resulting int saved in $v0
+        n.lhs.accept(this); // resulting int saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save addend to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load addend from stack");
         emit("addu $sp, $sp, 4", "pop addend from stack");
 
@@ -162,11 +163,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Minus n) {
         emitComment("begin minus");
-        n.e1.accept(this); // resulting int saved in $v0
+        n.lhs.accept(this); // resulting int saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save minuend to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load minuend from stack");
         emit("addu $sp, $sp, 4", "pop minuend from stack");
 
@@ -177,11 +178,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Times n) {
         emitComment("begin times");
-        n.e1.accept(this); // resulting int saved in $v0
+        n.lhs.accept(this); // resulting int saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save multiplicand to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load multiplicand from stack");
         emit("addu $sp, $sp, 4", "pop multiplicand from stack");
 
@@ -202,12 +203,12 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(If n) {
         int label = nextLabel();
-        n.e.accept(this); // resulting bool saved in $v0
+        n.exp.accept(this); // resulting bool saved in $v0
         emit("beqz $v0, ifFalse" + label, "if false, goto branch 'ifFalse" + label + "'");
-        n.s1.accept(this);
+        n.statement.accept(this);
         emit("j isDone" + label);
         emitLabel("ifFalse" + label);
-        n.s2.accept(this);
+        n.statementTwo.accept(this);
         emitLabel("isDone" + label);
     }
 
@@ -229,11 +230,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Or n) {
         emitComment("start or");
-        n.e1.accept(this); // resulting bool saved in $v0
+        n.lhs.accept(this); // resulting bool saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save bool to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load bool from stack");
         emit("addu $sp, $sp, 4", "pop bool from stack");
 
@@ -244,11 +245,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(LessThan n) {
         emitComment("start lessThan");
-        n.e1.accept(this); // resulting int saved in $v0
+        n.lhs.accept(this); // resulting int saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save int to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load int from stack");
         emit("addu $sp, $sp, 4", "pop int from stack");
 
@@ -259,11 +260,11 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Equals n) {
         emitComment("start equals");
-        n.e1.accept(this); // resulting bool saved in $v0
+        n.lhs.accept(this); // resulting bool saved in $v0
         emit("subu $sp, $sp, 4", "increase stack by one word");
         emit("sw $v0, ($sp)", "save bool to stack");
 
-        n.e2.accept(this); // resulting int saved in $v0
+        n.rhs.accept(this); // resulting int saved in $v0
         emit("lw $t1, ($sp)", "load bool from stack");
         emit("addu $sp, $sp, 4", "pop bool from stack");
 
@@ -274,7 +275,7 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Not n) {
         emitComment("start not");
-        n.e.accept(this); // resulting bool saved in $v0
+        n.exp.accept(this); // resulting bool saved in $v0
         emit("xori $v0, $v0, 1", "calculate not");
         emitComment("end not");
     }
@@ -282,26 +283,26 @@ public class CodeGenerator extends DepthFirstVisitor {
     @Override
     public void visit(Call n) {
         emitComment("start call");
-        for (int i = n.el.size() - 1; i >= 0; i--) {   // reverse order so stack can be in ascending order
-            n.el.elementAt(i).accept(this); // result saved in $v0
+        for (int i = n.expList.size() - 1; i >= 0; i--) {   // reverse order so stack can be in ascending order
+            n.expList.elementAt(i).accept(this); // result saved in $v0
             emit("subu $sp, $sp, 4", "increase stack by one word");
             emit("sw $v0, ($sp)", "save arg to stack");
         }
-        emit("jal " + n.i.s, "jump to " + n.i.s);
+        emit("jal " + n.identifier.string, "jump to " + n.identifier.string);
         emit("addi $sp, $sp, 4", "pop the stack");
     }
 
     @Override
     public void visit(MethodDecl n) {
-        currMethod = currClass.getMethod(n.i.s);
-        Set<RamVariable> vars = currMethod.getVars();
+        currMethod = currClass.getMethod(n.identifier.string);
+        Hashtable<String, RamVariable> vars = currMethod.getVars();
         int frameSize = (2 + 2 + vars.size()) * 4; // return address + frame pointer + vars TODO support array alloc
 
-        emitLabel(n.i.s);
+        emitLabel(n.identifier.string);
         emit("subu $sp, $sp, 16", "stack frame is at least 16 bytes");
         emit("sw $fp, 8($sp)", "save caller's frame pointer");
         emit("sw $ra, 0($sp)", "save return address");
-        emit("addu $fp, $sp, 12", "set " + n.i.s + "'s frame pointer");
+        emit("addu $fp, $sp, 12", "set " + n.identifier.string + "'s frame pointer");
 
         super.visit(n);
 
@@ -315,7 +316,7 @@ public class CodeGenerator extends DepthFirstVisitor {
 
     @Override
     public void visit(ClassDeclSimple n) {
-        currClass = symTable.getClass(n.i.s);
+        currClass = symTable.getClass(n.identifier.string);
         currMethod = null;
         super.visit(n);
         currClass = null;
@@ -325,16 +326,16 @@ public class CodeGenerator extends DepthFirstVisitor {
     public void visit(Identifier n) {
         RamVariable v;
         if (currMethod == null) {
-            v = currClass.getVar(n.s);
+            v = currClass.getVar(n.string);
         } else {
-            v = currMethod.getVar(n.s);
+            v = currMethod.getVar(n.string);
             if (v == null) {
-                v = currMethod.getParam(n.s);
+                v = currMethod.getParam(n.string);
             }
         }
 
         if (v != null) {
-            emit("addi $v0, $fp, " + v.getOffset(), "save memory location of identifier to $v0");
+            emit("addi $v0, $fp, " + v.offset(), "save memory location of identifier to $v0");
         }
     }
 
@@ -342,16 +343,16 @@ public class CodeGenerator extends DepthFirstVisitor {
     public void visit(IdentifierExp n) {
         RamVariable v;
         if (currMethod == null) {
-            v = currClass.getVar(n.s);
+            v = currClass.getVar(n.string);
         } else {
-            v = currMethod.getVar(n.s);
+            v = currMethod.getVar(n.string);
             if (v == null) {
-                v = currMethod.getParam(n.s);
+                v = currMethod.getParam(n.string);
             }
         }
 
         if (v != null) {
-            emit("addi $v0, $fp, " + v.getOffset(), "save memory location of identifier to $v0");
+            emit("addi $v0, $fp, " + v.offset(), "save memory location of identifier to $v0");
             emit("lw $v0, ($v0)", "load identifier from stack");
         }
     }

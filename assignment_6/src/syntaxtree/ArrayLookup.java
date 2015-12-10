@@ -13,12 +13,10 @@ public class ArrayLookup extends Exp {
         this.rhs = rhs;
     }
 
-    @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
-    @Override
     public Type accept(TypeVisitor visitor) {
         return visitor.visit(this);
     }

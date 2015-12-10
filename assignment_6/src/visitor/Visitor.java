@@ -3,6 +3,7 @@ package visitor;
 import syntaxtree.*;
 
 public interface Visitor {
+
     void visit(Program n);
 
     void visit(MainClass n);
@@ -82,4 +83,7 @@ public interface Visitor {
     void visit(Identifier n);
 
     void visit(ParenExp n);
+
+    void visit(ClassDeclExtends n);
+
 }

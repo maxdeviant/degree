@@ -3,11 +3,14 @@ package visitor;
 import syntaxtree.*;
 
 public interface TypeVisitor {
+
     Type visit(Program n);
 
     Type visit(MainClass n);
 
     Type visit(ClassDeclSimple n);
+
+    Type visit(ClassDeclExtends n);
 
     Type visit(VarDecl n);
 
@@ -35,6 +38,8 @@ public interface TypeVisitor {
 
     Type visit(Assign n);
 
+    Type visit(ParenExp n);
+
     Type visit(ArrayAssign n);
 
     Type visit(And n);
@@ -49,13 +54,11 @@ public interface TypeVisitor {
 
     Type visit(PlusEquals n);
 
-    Type visit(MinusEquals n);
-
     Type visit(Minus n);
 
-    Type visit(Times n);
+    Type visit(MinusEquals n);
 
-    Type visit(Slice n);
+    Type visit(Times n);
 
     Type visit(ArrayLookup n);
 
@@ -71,6 +74,8 @@ public interface TypeVisitor {
 
     Type visit(IdentifierExp n);
 
+    Type visit(Slice n);
+
     Type visit(This n);
 
     Type visit(NewArray n);
@@ -81,5 +86,4 @@ public interface TypeVisitor {
 
     Type visit(Identifier n);
 
-    Type visit(ParenExp n);
 }

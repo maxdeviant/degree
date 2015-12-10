@@ -3,15 +3,16 @@ package syntaxtree;
 import visitor.TypeVisitor;
 import visitor.Visitor;
 
-
 public class If extends Statement {
-    public Exp e;
-    public Statement s1, s2;
 
-    public If(Exp ae, Statement as1, Statement as2) {
-        e = ae;
-        s1 = as1;
-        s2 = as2;
+    public Exp exp;
+    public Statement statement;
+    public Statement statementTwo;
+
+    public If(Exp ae, Statement statement, Statement statementTwo) {
+        exp = ae;
+        this.statement = statement;
+        this.statementTwo = statementTwo;
     }
 
     public void accept(Visitor visitor) {
@@ -21,7 +22,6 @@ public class If extends Statement {
     public Type accept(TypeVisitor visitor) {
         return visitor.visit(this);
     }
-
 
 }
 

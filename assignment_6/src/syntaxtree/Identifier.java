@@ -1,26 +1,27 @@
 package syntaxtree;
 
 import visitor.TypeVisitor;
+import visitor.Visitable;
 import visitor.Visitor;
 
+public class Identifier implements Visitable {
 
-public class Identifier {
-    public String s;
+    public String string;
 
-    public Identifier(String as) {
-        s = as;
+    public Identifier(String string) {
+        this.string = string;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
-
 
     public String toString() {
-        return s;
+        return string;
     }
+
 }

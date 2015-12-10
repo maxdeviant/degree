@@ -3,12 +3,12 @@ package syntaxtree;
 import visitor.TypeVisitor;
 import visitor.Visitor;
 
-
 public class Println extends Statement {
-    public ExpList el;
 
-    public Println(ExpList ael) {
-        el = ael;
+    public ExpList expList;
+
+    public Println(ExpList expList) {
+        this.expList = expList;
     }
 
     public void accept(Visitor visitor) {
@@ -18,6 +18,5 @@ public class Println extends Statement {
     public Type accept(TypeVisitor visitor) {
         return visitor.visit(this);
     }
-
 
 }

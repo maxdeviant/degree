@@ -1,101 +1,84 @@
 package symboltable;
 
-import ram15compiler.ErrorMsg;
-import ram15compiler.SemanticException;
-import symboltable.RamClass;
-import symboltable.RamMethod;
-import symboltable.Table;
 import syntaxtree.*;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.Hashtable;
 
 public class Table {
 
-    private Map<String, RamClass> table;
-    private ErrorMsg errors;
+    public ErrorMsg errorHandler = new ErrorMsg();
+
+    private Hashtable<String, RamClass> hashtable;
 
     public Table() {
-        table = new HashMap<>();
-        errors = ErrorMsg.getInstance();
+        hashtable = new Hashtable<>();
     }
 
     public boolean addClass(String id) {
         if (containsClass(id)) {
             return false;
-        } else {
-            table.put(id, new RamClass(id));
         }
+
+        hashtable.put(id, new RamClass(id));
+
         return true;
     }
 
     public RamClass getClass(String id) {
         if (containsClass(id)) {
-            return table.get(id);
-        } else {
-            return null;
+            return hashtable.get(id);
         }
-    }
 
-    public Set<RamClass> getClasses() {
-        return new LinkedHashSet<>(table.values());
+        return null;
     }
 
     public int numClasses() {
-        return table.size();
+        return hashtable.size();
     }
 
     public boolean containsClass(String id) {
-        return table.containsKey(id);
+        return hashtable.containsKey(id);
     }
 
-    public Type getVarType(RamMethod m, RamClass c, String id) {
-        if (m != null) {
-            if (m.getVar(id) != null) {
-                return m.getVar(id).type();
+    public Type getVarType(RamMethod ramMethod, RamClass ramClass, String identifier) {
+        if (ramMethod != null) {
+            if (ramMethod.getVar(identifier) != null) {
+                return ramMethod.getVar(identifier).type();
             }
-            if (m.getParam(id) != null) {
-                return m.getParam(id).type();
+
+            if (ramMethod.getParam(identifier) != null) {
+                return ramMethod.getParam(identifier).type();
             }
         }
 
-        if (c.getVar(id) != null) {
-            return c.getVar(id).type();
+        if (ramClass.getVar(identifier) != null) {
+            return ramClass.getVar(identifier).type();
         }
 
-        errors.addError(new SemanticException("Variable " + id
-                + " not defined in current scope"));
+        errorHandler.complain(String.format("Variable %s not defined in current scope.", identifier));
+
         return null;
     }
 
     public RamMethod getMethod(String id, String classScope) {
-        if (getClass(classScope) == null) {
-            errors.addError(new SemanticException("Class " + classScope
-                    + " not defined"));
-            return null;
+        RamClass ramClass = getClass(classScope);
+
+        if (ramClass == null) {
+            errorHandler.complain(String.format("Class %s not defined.", classScope));
         }
 
-        RamClass c = getClass(classScope);
-
-        if (c.getMethod(id) != null) {
-            return c.getMethod(id);
+        if (ramClass.getMethod(id) != null) {
+            return ramClass.getMethod(id);
         }
 
-        errors.addError(new SemanticException("Method " + id + " not defined in class " + classScope));
+        errorHandler.complain(String.format("Method %s not defined in class %s.", id, classScope));
+
         return null;
-    }
-
-    public boolean anyErrors() {
-        return errors.hasErrors();
     }
 
     public Type getMethodType(String id, String classScope) {
         if (getClass(classScope) == null) {
-            errors.addError(new SemanticException("Class " + classScope
-                    + " not defined"));
-            return null;
+            errorHandler.complain(String.format("Class %s not defined.", classScope));
         }
 
         RamClass c = getClass(classScope);
@@ -104,7 +87,8 @@ public class Table {
             return c.getMethod(id).type();
         }
 
-        errors.addError(new SemanticException("Method " + id + " not defined in class " + classScope));
+        errorHandler.complain(String.format("Method %s not defined in class %s", id, classScope));
+
         return null;
     }
 
@@ -117,39 +101,45 @@ public class Table {
         if (t1 instanceof IntegerType && t2 instanceof IntegerType) {
             return true;
         }
-        if (t1 instanceof BooleanType && t2 instanceof BooleanType) {
-            return true;
-        }
 
-        // 1 = true, all other ints = false
-        if (t1 instanceof BooleanType && t2 instanceof IntegerType) {
+        if (t1 instanceof BooleanType && t2 instanceof BooleanType) {
             return true;
         }
 
         if (t1 instanceof IntArrayType && t2 instanceof IntArrayType) {
             return true;
         }
+
         if (t1 instanceof IdentifierType && t2 instanceof IdentifierType) {
             IdentifierType i1 = (IdentifierType) t1;
             IdentifierType i2 = (IdentifierType) t2;
 
-            RamClass c = getClass(i2.s);
+            RamClass c = getClass(i2.string);
 
-            if (i1.s.equals(c.getId())) {
+            if (i1.string.equals(c.getIdentifier())) {
                 return true;
             }
         }
+
         return false;
     }
 
+    public boolean anyErrors() {
+        return errorHandler.hasErrors;
+    }
+
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Classes:\n");
-        for (RamClass c : getClasses()) {
-            sb.append(c).append("\n");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("Classes:\n");
+
+        for (RamClass ramClass : hashtable.values()) {
+            stringBuilder.append("    ");
+            stringBuilder.append(String.format("%s\n", ramClass.toString()));
         }
-        return sb.toString();
+
+        return stringBuilder.toString();
     }
 
 }
-

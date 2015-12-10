@@ -4,38 +4,35 @@ import syntaxtree.Type;
 
 public class RamVariable {
 
-    private String id;
-    private Type type;
-    private Integer offset;
+    private final String identifier;
+    private final Type type;
+    private final Integer offset;
 
-    public RamVariable(String id, Type type) {
-        this(id, type, null);
+    public RamVariable(String identifier, Type type) {
+        this(identifier, type, null);
     }
 
-    public RamVariable(String id, Type type, Integer offset) {
-        this.id = id;
+    public RamVariable(String identifier, Type type, Integer offset) {
+        this.identifier = identifier;
         this.type = type;
         this.offset = offset;
     }
 
-    public String getId() {
-        return id;
+    public String id() {
+        return identifier;
     }
 
     public Type type() {
         return type;
     }
 
-    public int getOffset() {
+    public Integer offset() {
         return offset;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
-
+    @Override
     public String toString() {
-        return id + " - " + type;
+        return String.format("%s %s", type.getClass(), identifier);
     }
 
 }

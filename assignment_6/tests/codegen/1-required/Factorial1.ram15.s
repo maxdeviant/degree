@@ -60,21 +60,6 @@ ifFalse11:
 	lw $v0, ($v0)                           # load identifier from stack
 	subu $sp, $sp, 4                        # increase stack by one word
 	sw $v0, ($sp)                           # save multiplicand to stack
-	# start call
-	# begin minus
-	addi $v0, $fp, 4                        # save memory location of identifier to $v0
-	lw $v0, ($v0)                           # load identifier from stack
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save minuend to stack
-	li $v0, 1                               # move int val to $v0
-	lw $t1, ($sp)                           # load minuend from stack
-	addu $sp, $sp, 4                        # pop minuend from stack
-	sub $v0, $t1, $v0                       # calculate difference
-	# end minus
-	subu $sp, $sp, 4                        # increase stack by one word
-	sw $v0, ($sp)                           # save arg to stack
-	jal ComputeFac                          # jump to ComputeFac
-	addi $sp, $sp, 4                        # pop the stack
 	lw $t1, ($sp)                           # load multiplicand from stack
 	addu $sp, $sp, 4                        # pop multiplicand from stack
 	mul $v0, $t1, $v0                       # calculate product

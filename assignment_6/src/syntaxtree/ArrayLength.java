@@ -11,12 +11,10 @@ public class ArrayLength extends Exp {
         this.exp = exp;
     }
 
-    @Override
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
-    @Override
     public Type accept(TypeVisitor visitor) {
         return visitor.visit(this);
     }

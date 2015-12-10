@@ -3,21 +3,23 @@ package syntaxtree;
 import java.util.Vector;
 
 public class FormalList {
-    private Vector list;
+
+    private Vector formalList;
 
     public FormalList() {
-        list = new Vector();
+        formalList = new Vector();
     }
 
-    public void addElement(Formal n) {
-        list.addElement(n);
+    public void addElement(Formal formal) {
+        formalList.addElement(formal);
     }
 
-    public Formal elementAt(int i) {
-        return (Formal) list.elementAt(i);
+    public Formal elementAt(int index) {
+        return (Formal) formalList.elementAt(index);
     }
 
     public int size() {
-        return list.size();
+        return formalList.size();
     }
+
 }
