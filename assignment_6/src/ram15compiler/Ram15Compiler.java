@@ -5,9 +5,9 @@ import frontend.parser.generated.ParseException;
 import frontend.parser.generated.RamParser;
 import frontend.parser.generated.TokenMgrError;
 import syntaxtree.Program;
-import visitor.impl.BuildSymbolTableVisitor;
-import visitor.impl.CodeGenerator;
-import visitor.impl.TypeCheckVisitor;
+import visitor.BuildSymbolTableVisitor;
+import visitor.CodeGenerator;
+import visitor.TypeCheckVisitor;
 
 import java.io.*;
 

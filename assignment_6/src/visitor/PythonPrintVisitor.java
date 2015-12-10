@@ -1,4 +1,4 @@
-package visitor.impl;
+package visitor;
 
 
 import syntaxtree.*;

@@ -1,90 +1,34 @@
-package visitor.impl;
+package visitor;
 
 import syntaxtree.*;
-import visitor.TypeVisitor;
+import visitor.Visitor;
 
-public class TypeDepthFirstVisitor implements TypeVisitor {
-
-    @Override
-    public Type visit(Println n) {
-        for (int i = 0; i < n.el.size(); i++) {
-            n.el.elementAt(i).accept(this);
-        }
-        return null;
-    }
-
-    @Override
-    public Type visit(Or n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
-        return null;
-    }
-
-    @Override
-    public Type visit(Equals n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
-        return null;
-    }
-
-    @Override
-    public Type visit(PlusEquals n) {
-        n.i.accept(this);
-        n.e.accept(this);
-        return null;
-    }
-
-    @Override
-    public Type visit(MinusEquals n) {
-        n.i.accept(this);
-        n.e.accept(this);
-        return null;
-    }
-
-    @Override
-    public Type visit(Slice n) {
-        n.e1.accept(this);
-        if (n.e2 != null) {
-            n.e2.accept(this);
-        }
-        if (n.e3 != null) {
-            n.e3.accept(this);
-        }
-        return null;
-    }
-
-    @Override
-    public Type visit(ParenExp n) {
-        n.e1.accept(this);
-        return null;
-    }
+public class DepthFirstVisitor implements Visitor {
 
     // MainClass m;
     // ClassDeclList cl;
     @Override
-    public Type visit(Program n) {
+    public void visit(Program n) {
         n.m.accept(this);
         for (int i = 0; i < n.cl.size(); i++) {
             n.cl.elementAt(i).accept(this);
         }
-        return null;
     }
 
     // Identifier i1,i2;
     // Statement s;
     @Override
-    public Type visit(MainClass n) {
+    public void visit(MainClass n) {
         n.i1.accept(this);
         n.i2.accept(this);
         n.s.accept(this);
-        return null;
     }
 
     // Identifier identifier;
     // VarDeclList vl;
     // MethodDeclList ml;
     @Override
-    public Type visit(ClassDeclSimple n) {
+    public void visit(ClassDeclSimple n) {
         n.i.accept(this);
         for (int i = 0; i < n.vl.size(); i++) {
             n.vl.elementAt(i).accept(this);
@@ -92,16 +36,14 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         for (int i = 0; i < n.ml.size(); i++) {
             n.ml.elementAt(i).accept(this);
         }
-        return null;
     }
 
     // Type t;
     // Identifier identifier;
     @Override
-    public Type visit(VarDecl n) {
+    public void visit(VarDecl n) {
         n.t.accept(this);
         n.i.accept(this);
-        return null;
     }
 
     // Type t;
@@ -111,7 +53,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     // StatementList statementList;
     // Exp exp;
     @Override
-    public Type visit(MethodDecl n) {
+    public void visit(MethodDecl n) {
         n.t.accept(this);
         n.i.accept(this);
         for (int i = 0; i < n.fl.size(); i++) {
@@ -124,213 +66,230 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
             n.sl.elementAt(i).accept(this);
         }
         n.e.accept(this);
-        return null;
     }
 
     // Type t;
     // Identifier identifier;
     @Override
-    public Type visit(Formal n) {
+    public void visit(Formal n) {
         n.t.accept(this);
         n.i.accept(this);
-        return null;
     }
 
     @Override
-    public Type visit(IntArrayType n) {
-        return null;
+    public void visit(IntArrayType n) {
     }
 
     @Override
-    public Type visit(BooleanType n) {
-        return null;
+    public void visit(BooleanType n) {
     }
 
     @Override
-    public Type visit(IntegerType n) {
-        return null;
+    public void visit(IntegerType n) {
     }
 
     // String s;
     @Override
-    public Type visit(IdentifierType n) {
-        return null;
+    public void visit(IdentifierType n) {
     }
 
     // StatementList statementList;
     @Override
-    public Type visit(Block n) {
+    public void visit(Block n) {
         for (int i = 0; i < n.statementList.size(); i++) {
             n.statementList.elementAt(i).accept(this);
         }
-        return null;
     }
 
     // Exp exp;
     // Statement s1,s2;
     @Override
-    public Type visit(If n) {
+    public void visit(If n) {
         n.e.accept(this);
         n.s1.accept(this);
         n.s2.accept(this);
-        return null;
     }
 
     // Exp exp;
     // Statement s;
     @Override
-    public Type visit(While n) {
+    public void visit(While n) {
         n.e.accept(this);
         n.s.accept(this);
-        return null;
     }
 
-    // Exp exp;
     @Override
-    public Type visit(Print n) {
+    public void visit(Print n) {
         for (int i = 0; i < n.el.size(); i++) {
             n.el.elementAt(i).accept(this);
         }
-        return null;
+    }
+
+    @Override
+    public void visit(Println n) {
+        for (int i = 0; i < n.el.size(); i++) {
+            n.el.elementAt(i).accept(this);
+        }
     }
 
     // Identifier identifier;
     // Exp exp;
     @Override
-    public Type visit(Assign n) {
+    public void visit(Assign n) {
         n.identifier.accept(this);
         n.exp.accept(this);
-        return null;
     }
 
     // Identifier identifier;
     // Exp lhs,rhs;
     @Override
-    public Type visit(ArrayAssign n) {
+    public void visit(ArrayAssign n) {
         n.identifier.accept(this);
         n.lhs.accept(this);
         n.rhs.accept(this);
-        return null;
     }
 
     // Exp lhs,rhs;
     @Override
-    public Type visit(And n) {
+    public void visit(And n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
-        return null;
     }
 
-    // Exp lhs,rhs;
     @Override
-    public Type visit(LessThan n) {
+    public void visit(Or n) {
         n.e1.accept(this);
         n.e2.accept(this);
-        return null;
     }
 
     // Exp lhs,rhs;
     @Override
-    public Type visit(Plus n) {
+    public void visit(LessThan n) {
         n.e1.accept(this);
         n.e2.accept(this);
-        return null;
     }
 
-    // Exp lhs,rhs;
     @Override
-    public Type visit(Minus n) {
+    public void visit(Equals n) {
         n.e1.accept(this);
         n.e2.accept(this);
-        return null;
     }
 
     // Exp lhs,rhs;
     @Override
-    public Type visit(Times n) {
+    public void visit(Plus n) {
         n.e1.accept(this);
         n.e2.accept(this);
-        return null;
+    }
+
+    @Override
+    public void visit(PlusEquals n) {
+        n.i.accept(this);
+        n.e.accept(this);
+    }
+
+    @Override
+    public void visit(MinusEquals n) {
+        n.i.accept(this);
+        n.e.accept(this);
     }
 
     // Exp lhs,rhs;
     @Override
-    public Type visit(ArrayLookup n) {
+    public void visit(Minus n) {
+        n.e1.accept(this);
+        n.e2.accept(this);
+    }
+
+    // Exp lhs,rhs;
+    @Override
+    public void visit(Times n) {
+        n.e1.accept(this);
+        n.e2.accept(this);
+    }
+
+    @Override
+    public void visit(Slice n) {
+        n.e1.accept(this);
+        if (n.e2 != null) {
+            n.e2.accept(this);
+        }
+        if (n.e3 != null) {
+            n.e3.accept(this);
+        }
+    }
+
+    // Exp lhs,rhs;
+    @Override
+    public void visit(ArrayLookup n) {
         n.lhs.accept(this);
         n.rhs.accept(this);
-        return null;
     }
 
     // Exp exp;
     @Override
-    public Type visit(ArrayLength n) {
+    public void visit(ArrayLength n) {
         n.exp.accept(this);
-        return null;
     }
 
     // Exp exp;
     // Identifier identifier;
     // ExpList el;
     @Override
-    public Type visit(Call n) {
+    public void visit(Call n) {
         n.e.accept(this);
         n.i.accept(this);
         for (int i = 0; i < n.el.size(); i++) {
             n.el.elementAt(i).accept(this);
         }
-        return null;
     }
 
     // int identifier;
     @Override
-    public Type visit(IntegerLiteral n) {
-        return null;
+    public void visit(IntegerLiteral n) {
     }
 
     @Override
-    public Type visit(True n) {
-        return null;
+    public void visit(True n) {
     }
 
     @Override
-    public Type visit(False n) {
-        return null;
+    public void visit(False n) {
     }
 
     // String s;
     @Override
-    public Type visit(IdentifierExp n) {
-        return null;
+    public void visit(IdentifierExp n) {
     }
 
     @Override
-    public Type visit(This n) {
-        return null;
+    public void visit(This n) {
     }
 
     // Exp exp;
     @Override
-    public Type visit(NewArray n) {
+    public void visit(NewArray n) {
         n.e.accept(this);
-        return null;
     }
 
     // Identifier identifier;
     @Override
-    public Type visit(NewObject n) {
-        return null;
+    public void visit(NewObject n) {
     }
 
     // Exp exp;
     @Override
-    public Type visit(Not n) {
+    public void visit(Not n) {
         n.e.accept(this);
-        return null;
     }
 
     // String s;
     @Override
-    public Type visit(Identifier n) {
-        return null;
+    public void visit(Identifier n) {
+    }
+
+    @Override
+    public void visit(ParenExp n) {
+        n.e1.accept(this);
     }
 }
