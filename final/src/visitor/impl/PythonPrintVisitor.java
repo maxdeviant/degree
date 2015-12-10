@@ -127,9 +127,9 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(Block n) {
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
-            if (i < n.sl.size() - 1) {
+        for (int i = 0; i < n.statementList.size(); i++) {
+            n.statementList.elementAt(i).accept(this);
+            if (i < n.statementList.size() - 1) {
                 System.out.println();
             }
         }
@@ -192,7 +192,7 @@ public class PythonPrintVisitor implements Visitor {
             }
         }
         if (n.el.size() > 1) {
-            System.out. print("sep=\"\"");
+            System.out.print("sep=\"\"");
         }
         System.out.print(")");
     }
@@ -200,26 +200,26 @@ public class PythonPrintVisitor implements Visitor {
     @Override
     public void visit(Assign n) {
         printIndent(depth);
-        n.i.accept(this);
+        n.identifier.accept(this);
         System.out.print(" = ");
-        n.e.accept(this);
+        n.exp.accept(this);
     }
 
     @Override
     public void visit(ArrayAssign n) {
         printIndent(depth);
-        n.i.accept(this);
+        n.identifier.accept(this);
         System.out.print("[");
-        n.e1.accept(this);
+        n.lhs.accept(this);
         System.out.print("] = ");
-        n.e2.accept(this);
+        n.rhs.accept(this);
     }
 
     @Override
     public void visit(And n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
         System.out.print(" and ");
-        n.e2.accept(this);
+        n.rhs.accept(this);
     }
 
     @Override
@@ -303,16 +303,16 @@ public class PythonPrintVisitor implements Visitor {
 
     @Override
     public void visit(ArrayLookup n) {
-        n.e1.accept(this);
+        n.lhs.accept(this);
         System.out.print("[");
-        n.e2.accept(this);
+        n.rhs.accept(this);
         System.out.print("]");
     }
 
     @Override
     public void visit(ArrayLength n) {
         System.out.print("len(");
-        n.e.accept(this);
+        n.exp.accept(this);
         System.out.print(")");
     }
 

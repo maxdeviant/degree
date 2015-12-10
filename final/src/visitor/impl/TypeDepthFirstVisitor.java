@@ -80,7 +80,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Identifier i;
+    // Identifier identifier;
     // VarDeclList vl;
     // MethodDeclList ml;
     @Override
@@ -96,7 +96,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public Type visit(VarDecl n) {
         n.t.accept(this);
@@ -105,11 +105,11 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     // FormalList fl;
     // VarDeclList vl;
-    // StatementList sl;
-    // Exp e;
+    // StatementList statementList;
+    // Exp exp;
     @Override
     public Type visit(MethodDecl n) {
         n.t.accept(this);
@@ -128,7 +128,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public Type visit(Formal n) {
         n.t.accept(this);
@@ -157,16 +157,16 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // StatementList sl;
+    // StatementList statementList;
     @Override
     public Type visit(Block n) {
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
+        for (int i = 0; i < n.statementList.size(); i++) {
+            n.statementList.elementAt(i).accept(this);
         }
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     // Statement s1,s2;
     @Override
     public Type visit(If n) {
@@ -176,7 +176,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     // Statement s;
     @Override
     public Type visit(While n) {
@@ -185,7 +185,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public Type visit(Print n) {
         for (int i = 0; i < n.el.size(); i++) {
@@ -194,34 +194,34 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Identifier i;
-    // Exp e;
+    // Identifier identifier;
+    // Exp exp;
     @Override
     public Type visit(Assign n) {
-        n.i.accept(this);
-        n.e.accept(this);
+        n.identifier.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Identifier i;
-    // Exp e1,e2;
+    // Identifier identifier;
+    // Exp lhs,rhs;
     @Override
     public Type visit(ArrayAssign n) {
-        n.i.accept(this);
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.identifier.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(And n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(LessThan n) {
         n.e1.accept(this);
@@ -229,7 +229,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(Plus n) {
         n.e1.accept(this);
@@ -237,7 +237,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(Minus n) {
         n.e1.accept(this);
@@ -245,7 +245,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(Times n) {
         n.e1.accept(this);
@@ -253,23 +253,23 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public Type visit(ArrayLookup n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public Type visit(ArrayLength n) {
-        n.e.accept(this);
+        n.exp.accept(this);
         return null;
     }
 
-    // Exp e;
-    // Identifier i;
+    // Exp exp;
+    // Identifier identifier;
     // ExpList el;
     @Override
     public Type visit(Call n) {
@@ -281,7 +281,7 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // int i;
+    // int identifier;
     @Override
     public Type visit(IntegerLiteral n) {
         return null;
@@ -308,20 +308,20 @@ public class TypeDepthFirstVisitor implements TypeVisitor {
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public Type visit(NewArray n) {
         n.e.accept(this);
         return null;
     }
 
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public Type visit(NewObject n) {
         return null;
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public Type visit(Not n) {
         n.e.accept(this);

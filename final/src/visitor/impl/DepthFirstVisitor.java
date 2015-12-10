@@ -24,7 +24,7 @@ public class DepthFirstVisitor implements Visitor {
         n.s.accept(this);
     }
 
-    // Identifier i;
+    // Identifier identifier;
     // VarDeclList vl;
     // MethodDeclList ml;
     @Override
@@ -39,7 +39,7 @@ public class DepthFirstVisitor implements Visitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public void visit(VarDecl n) {
         n.t.accept(this);
@@ -47,11 +47,11 @@ public class DepthFirstVisitor implements Visitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     // FormalList fl;
     // VarDeclList vl;
-    // StatementList sl;
-    // Exp e;
+    // StatementList statementList;
+    // Exp exp;
     @Override
     public void visit(MethodDecl n) {
         n.t.accept(this);
@@ -69,7 +69,7 @@ public class DepthFirstVisitor implements Visitor {
     }
 
     // Type t;
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public void visit(Formal n) {
         n.t.accept(this);
@@ -93,15 +93,15 @@ public class DepthFirstVisitor implements Visitor {
     public void visit(IdentifierType n) {
     }
 
-    // StatementList sl;
+    // StatementList statementList;
     @Override
     public void visit(Block n) {
-        for (int i = 0; i < n.sl.size(); i++) {
-            n.sl.elementAt(i).accept(this);
+        for (int i = 0; i < n.statementList.size(); i++) {
+            n.statementList.elementAt(i).accept(this);
         }
     }
 
-    // Exp e;
+    // Exp exp;
     // Statement s1,s2;
     @Override
     public void visit(If n) {
@@ -110,7 +110,7 @@ public class DepthFirstVisitor implements Visitor {
         n.s2.accept(this);
     }
 
-    // Exp e;
+    // Exp exp;
     // Statement s;
     @Override
     public void visit(While n) {
@@ -132,28 +132,28 @@ public class DepthFirstVisitor implements Visitor {
         }
     }
 
-    // Identifier i;
-    // Exp e;
+    // Identifier identifier;
+    // Exp exp;
     @Override
     public void visit(Assign n) {
-        n.i.accept(this);
-        n.e.accept(this);
+        n.identifier.accept(this);
+        n.exp.accept(this);
     }
 
-    // Identifier i;
-    // Exp e1,e2;
+    // Identifier identifier;
+    // Exp lhs,rhs;
     @Override
     public void visit(ArrayAssign n) {
-        n.i.accept(this);
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.identifier.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(And n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
     }
 
     @Override
@@ -162,7 +162,7 @@ public class DepthFirstVisitor implements Visitor {
         n.e2.accept(this);
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(LessThan n) {
         n.e1.accept(this);
@@ -175,7 +175,7 @@ public class DepthFirstVisitor implements Visitor {
         n.e2.accept(this);
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(Plus n) {
         n.e1.accept(this);
@@ -194,14 +194,14 @@ public class DepthFirstVisitor implements Visitor {
         n.e.accept(this);
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(Minus n) {
         n.e1.accept(this);
         n.e2.accept(this);
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(Times n) {
         n.e1.accept(this);
@@ -219,21 +219,21 @@ public class DepthFirstVisitor implements Visitor {
         }
     }
 
-    // Exp e1,e2;
+    // Exp lhs,rhs;
     @Override
     public void visit(ArrayLookup n) {
-        n.e1.accept(this);
-        n.e2.accept(this);
+        n.lhs.accept(this);
+        n.rhs.accept(this);
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public void visit(ArrayLength n) {
-        n.e.accept(this);
+        n.exp.accept(this);
     }
 
-    // Exp e;
-    // Identifier i;
+    // Exp exp;
+    // Identifier identifier;
     // ExpList el;
     @Override
     public void visit(Call n) {
@@ -244,7 +244,7 @@ public class DepthFirstVisitor implements Visitor {
         }
     }
 
-    // int i;
+    // int identifier;
     @Override
     public void visit(IntegerLiteral n) {
     }
@@ -266,18 +266,18 @@ public class DepthFirstVisitor implements Visitor {
     public void visit(This n) {
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public void visit(NewArray n) {
         n.e.accept(this);
     }
 
-    // Identifier i;
+    // Identifier identifier;
     @Override
     public void visit(NewObject n) {
     }
 
-    // Exp e;
+    // Exp exp;
     @Override
     public void visit(Not n) {
         n.e.accept(this);

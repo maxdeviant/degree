@@ -14,12 +14,12 @@ public class If extends Statement {
         s2 = as2;
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
-    public Type accept(TypeVisitor v) {
-        return v.visit(this);
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
     }
 
 
