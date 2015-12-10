@@ -2,84 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3273db5-b394-42d5-8d7c-b385a05de6ae" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/syntaxtree/ParenExp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/ErrorMsg.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclExtends.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitable.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/ErrorMsg.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/Ram15Compiler.java" afterPath="$PROJECT_DIR$/../assignment_6/src/ram15compiler/Ram15Compiler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamClass.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamMethod.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamVariable.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/RamVariable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/symboltable/Table.java" afterPath="$PROJECT_DIR$/../assignment_6/src/symboltable/Table.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/And.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/And.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayAssign.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayAssign.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLength.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLength.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLookup.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ArrayLookup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Assign.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Assign.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Block.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Block.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/BooleanType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/BooleanType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Call.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Call.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDecl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclSimple.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ClassDeclSimple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Equals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Equals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Exp.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Exp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ExpList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/ExpList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/False.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/False.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Formal.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Formal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/FormalList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/FormalList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Identifier.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Identifier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierExp.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierExp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IdentifierType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/If.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/If.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntArrayType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntArrayType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerLiteral.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerLiteral.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerType.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/IntegerType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/LessThan.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/LessThan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MainClass.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MainClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDecl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MethodDeclList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Minus.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Minus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MinusEquals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/MinusEquals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewArray.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewArray.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewObject.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/NewObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Not.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Not.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Or.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Or.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Plus.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Plus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/PlusEquals.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/PlusEquals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Print.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Print.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Println.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Println.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Program.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Slice.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Slice.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Statement.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Statement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/StatementList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/StatementList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/This.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/This.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Times.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Times.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/True.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/True.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Type.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/Type.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDecl.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDecl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDeclList.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/VarDeclList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/While.java" afterPath="$PROJECT_DIR$/../assignment_6/src/syntaxtree/While.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/BuildSymbolTableVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/BuildSymbolTableVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/CodeGenerator.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/CodeGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/DepthFirstVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/DepthFirstVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/PythonPrintVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/PythonPrintVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckExpVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckExpVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeCheckVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeDepthFirstVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeDepthFirstVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeVisitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/TypeVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitor.java" afterPath="$PROJECT_DIR$/../assignment_6/src/visitor/Visitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s.output" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s.output" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/junit/semantic/TypeCheckerTest.java" afterPath="$PROJECT_DIR$/../assignment_6/tests/junit/semantic/TypeCheckerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/pass/lexical/1/pass3.ram15" afterPath="$PROJECT_DIR$/../assignment_6/tests/pass/lexical/1/pass3.ram15" />
     </list>
     <ignored path="CSC 416 - Assignment 5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1177,7 +1100,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="840" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
