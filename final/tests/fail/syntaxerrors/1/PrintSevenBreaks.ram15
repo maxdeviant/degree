@@ -1,5 +1,0 @@
-class PrintSevenBreaks {
-    public static void main(String[] a) {
-        println(4 plus 9 divide 3);
-    }
-}

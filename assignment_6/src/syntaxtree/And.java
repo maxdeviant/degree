@@ -1,19 +1,26 @@
 package syntaxtree;
-import visitor.Visitor;
+
 import visitor.TypeVisitor;
+import visitor.Visitor;
 
 public class And extends Exp {
-  public Exp e1,e2;
-  
-  public And(Exp ae1, Exp ae2) { 
-    e1=ae1; e2=ae2;
-  }
 
-  public void accept(Visitor v) {
-    v.visit(this);
-  }
+    public Exp lhs;
+    public Exp rhs;
 
-  public Type accept(TypeVisitor v) {
-    return v.visit(this);
-  }
+    public And(Exp lhs, Exp rhs) {
+        this.lhs = lhs;
+        this.rhs = rhs;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
+    }
+
 }

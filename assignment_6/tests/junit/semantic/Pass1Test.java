@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import symboltable.Table;
 import syntaxtree.Program;
-import visitor.BuildSymbolTableVisitor;
-import visitor.TypeCheckVisitor;
+import visitor.impl.BuildSymbolTableVisitor;
+import visitor.impl.TypeCheckVisitor;
 
 
 

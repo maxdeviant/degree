@@ -54,7 +54,7 @@ public class PythonPrinterTest extends TestCase {
                     PrintStream ps = new PrintStream(os);
                     System.setOut(ps);
                     
-                    root.accept(new visitor.PythonPrintVisitor());
+                    root.accept(new visitor.impl.PythonPrintVisitor());
                     
                     // restore normal System.output operation
                     System.setOut(originalOut);
@@ -85,8 +85,8 @@ public class PythonPrinterTest extends TestCase {
                     writer.close();
                     
                     System.out.println("Comparing Against Expected Output ...");
-                    String s1 = org.apache.commons.io.FileUtils.readFileToString(new java.io.File(files[i].getPath()+".correct"));
-                    String s2 = org.apache.commons.io.FileUtils.readFileToString(new java.io.File(files[i].getPath()+".py"+".output"));
+                    String s1 = org.apache.commons.io.FileUtils.readFileToString(new File(files[i].getPath()+".correct"));
+                    String s2 = org.apache.commons.io.FileUtils.readFileToString(new File(files[i].getPath()+".py"+".output"));
                     s1 = s1.replaceAll("\\r\\n?", "\n");  // normalize line endings for Windows vs. Unix
                     s2 = s2.replaceAll("\\r\\n?", "\n");
                     assertEquals(s1, s2);   
@@ -100,7 +100,7 @@ public class PythonPrinterTest extends TestCase {
                 } catch (FileNotFoundException e) {
                     exceptionHasOccurred = true;
                     System.out.println(e);                    
-                } catch (java.io.IOException e) {
+                } catch (IOException e) {
                     exceptionHasOccurred = true;
                     System.out.println(e);  
                 } catch (AssertionError e) {

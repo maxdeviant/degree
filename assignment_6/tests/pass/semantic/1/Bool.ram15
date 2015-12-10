@@ -6,13 +6,13 @@ class Prog3Test2{
 class BoolTest{
     int i;
     int j;
-    public bool Run(){
+    public int Run(){
         int k;
         int l;
         k = 0;
         j = 1;
         k = k + 3 * j;
-        return k < j;
+        return k;
     }
 
 }

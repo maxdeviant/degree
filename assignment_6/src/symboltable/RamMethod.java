@@ -1,1 +1,33 @@
-package symboltable;import java.util.Iterator;import syntaxtree.Type;import java.util.Map;import java.util.List;public class RamMethod {    String id;    Type type;    List<RamVariable> params;    Map<String, RamVariable> vars;    public RamMethod(String id, Type type) {    }    public int numParams() {        return -1;    }    public boolean addParam(String id, Type type) {        return false;    }    public boolean addVar(String id, Type type) {        return false;    }    public boolean containsParam(String id) {        return false;    }        public boolean containsVar(String id) {        return false;    }        public String getId() {        return null;    }        public RamVariable getParam(String id) {        return null;    }        public RamVariable getParamAt(int i) {        return null;    }        public Iterator<RamVariable> getParams() {        return null;    }    public RamVariable getVar(String id) {        return null;    }        public String toString() {        return null;    }        public Type type() {        return null;    }        } // Method
+package symboltable;
+
+
+import syntaxtree.Type;
+
+import java.util.Set;
+
+public interface RamMethod {
+    boolean addParam(String id, Type type);
+
+    boolean addVar(String id, Type type);
+
+    boolean containsParam(String id);
+
+    boolean containsVar(String id);
+
+    String getId();
+
+    RamVariable getParam(String id);
+
+    RamVariable getParamAt(int i);
+
+    Set<RamVariable> getParams();
+
+    int numParams();
+
+    RamVariable getVar(String id);
+
+    Set<RamVariable> getVars();
+
+    Type type();
+
+}

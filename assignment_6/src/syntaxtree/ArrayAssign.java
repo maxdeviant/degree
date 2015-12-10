@@ -1,22 +1,29 @@
 package syntaxtree;
-import visitor.Visitor;
+
 import visitor.TypeVisitor;
+import visitor.Visitor;
 
 public class ArrayAssign extends Statement {
-  public Identifier i;
-  public Exp e1,e2;
 
-  public ArrayAssign(Identifier ai, Exp ae1, Exp ae2) {
-    i=ai; e1=ae1; e2=ae2;
-  }
+    public Identifier identifier;
+    public Exp lhs;
+    public Exp rhs;
 
-  public void accept(Visitor v) {
-    v.visit(this);
-  }
+    public ArrayAssign(Identifier identifier, Exp lhs, Exp rhs) {
+        this.identifier = identifier;
+        this.lhs = lhs;
+        this.rhs = rhs;
+    }
 
-  public Type accept(TypeVisitor v) {
-    return v.visit(this);
-  }
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public Type accept(TypeVisitor visitor) {
+        return visitor.visit(this);
+    }
 
 }
 

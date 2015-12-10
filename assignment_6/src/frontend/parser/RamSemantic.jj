@@ -23,10 +23,11 @@ PARSER_BEGIN(RamParser)
                 // parser.Goal();
                 Program root = parser.Goal();
 
-                root.accept(new ASTPrintVisitor());
+                // root.accept(new ASTPrintVisitor());
                 // root.accept(new JavaPrintVisitor());
                 // root.accept(new RamPrintVisitor());
                 // root.accept(new PythonPrintVisitor());
+
             }       
         }
     }
@@ -66,7 +67,8 @@ TOKEN :
 | < ASSIGN: "=" >
 | < LESSTHAN: "<" >
 | < PLUSEQUALS: "+=" >
-| < EQUALITY: "eq" >
+| < MINUSEQUALS: "-=" >
+| < EQUALITY: "==" >
 | < PLUS: "+" >
 | < MINUS: "-" >
 | < TIMES: "*" >
@@ -205,17 +207,6 @@ MethodDecl MethodDecl() :
     { return new MethodDecl(t, i, fl, vl, sl, e); }
 }
 
-Formal Formal() :
-{ 
-    Type t; 
-    Identifier i;
-}
-{
-    t = Type() 
-    <IDENTIFIER> { i = new Identifier(token.image); }
-    { return new Formal(t, i); }
-}
-
 FormalList FormalList() :
 { 
     FormalList fl = new FormalList(); 
@@ -299,7 +290,7 @@ Statement Statement() :
     <PRINTLN> <LPAREN> 
     el = ExpList() 
     <RPAREN> <SEMICOLON> 
-    { return new Print(el); } 
+    { return new Println(el); }
     | 
     LOOKAHEAD(2)
     <IDENTIFIER> { i = new Identifier(token.image); }
@@ -317,6 +308,13 @@ Statement Statement() :
     e1 = Exp() 
     <SEMICOLON>
     { return new PlusEquals(i, e1); }
+    |
+    LOOKAHEAD(2)
+    <IDENTIFIER> { i = new Identifier(token.image); }
+    <MINUSEQUALS>
+    e1 = Exp()
+    <SEMICOLON>
+    { return new MinusEquals(i, e1); }
     |
     <IDENTIFIER> { i = new Identifier(token.image); }    
     <ASSIGN>     
@@ -457,20 +455,46 @@ Exp SuffixExp() :
     e1 = PrefixExp() 
     (   
         <LSQPAREN> 
-        e2 = Exp() 
-	<RSQPAREN>
-        { e1 = new ArrayLookup(e1, e2); }	
+        e1 = SliceExp(e1)
+	    <RSQPAREN>
 	| 
         LOOKAHEAD(2) 
         <DOT> <IDENTIFIER> { i = new Identifier(token.image); }
-	<LPAREN> 
+	    <LPAREN>
         el = ExpList() 
-	<RPAREN>
+	    <RPAREN>
         { e1 = new Call(e1, i, el); } 
         | 
         <DOT> <LENGTH> { e1 = new ArrayLength(e1); }
     )*
     { return e1; }
+}
+
+Exp SliceExp(Exp e) :
+{
+    Exp e1;
+    Exp e2;
+    boolean isSlice = false;
+}
+{
+    LOOKAHEAD(2)
+    <COLON>
+    e1 = Exp() { return new Slice(e, null, e1); }
+    |
+    LOOKAHEAD(2)
+    <COLON>   { return new Slice(e, null, null); }
+    |
+    LOOKAHEAD(3)
+    e1 = Exp()
+    <COLON>
+    e2 = Exp() { return new Slice(e, e1, e2); }
+    |
+    LOOKAHEAD(2)
+    e1 = Exp()
+    <COLON> { return new Slice(e, e1, null); }
+    |
+    e1 = Exp()
+    { return new ArrayLookup(e, e1);}
 }
 
 Exp PrefixExp() :
@@ -490,7 +514,7 @@ Exp PrefixExp() :
     <LPAREN>
     e = Exp()
     <RPAREN>
-    { return e; }
+    { return new ParenExp(e); }
     |
     <THIS> { return new This(); }
     |

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Ram15Compiler" default="testCodeGen" basedir=".">
+<project name="Ram15Compiler" basedir=".">
     <description>Builds, tests, and runs the project Ram15Compiler.</description>
 
 
@@ -163,7 +163,7 @@
     <!-- generateParser: Generates JavaCC scanner and parser. -->
     <target name="generateParser">
         <echo message="Generating JavaCC parser .java files..."/>
-        <javacc target="${SRC_DIR}/frontend/parser/RamGrammar.jj"
+        <javacc target="${SRC_DIR}/frontend/parser/RamSemantic.jj"
                 outputdirectory="${SRC_DIR}/frontend/parser/generated"
                 javacchome="${LIB_DIR}">
         </javacc>
@@ -174,7 +174,7 @@
         <echo message="Running parser on specified input file..."/>
         <java classname="frontend.parser.generated.RamParser"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/syntax/2/pass3.ram15"/>
+            <arg value="${TEST_DIR}/pass/syntax/1/Array.ram15"/>
             <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
@@ -226,7 +226,7 @@
         <echo message="Running parser on specified input file..."/>
         <java classname="frontend.parser.generated.RamParser"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/pass1.ram15"/>
+            <arg value="${TEST_DIR}/pass/semantic/1/HelloWorld.ram15"/>
             <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
@@ -254,7 +254,7 @@
                 <path refid="runtime.path"/>
                 <pathelement location="${BUILD_DIR}"/>
             </classpath>
-            <test name="prettypython.PythonCheckerTest"
+            <test name="prettypython.PythonPrinterTest"
                   haltonfailure="no">
                 <formatter type="plain" usefile="true"/>
             </test>
@@ -270,7 +270,7 @@
         <echo message="Running semantic analysis (symbol table, type checking) ..."/>
         <java classname="ram15compiler.Ram15Compiler"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/pass1.ram15"/>
+            <arg value="${TEST_DIR}/pass/semantic/1/Logical.ram15"/>
             <!-- <arg value="${TEST_DIR}/fail/syntaxerrors/fail1.ram15" /> -->
         </java>
     </target>
@@ -291,7 +291,7 @@
         </javac>
 
         <junit printsummary="yes" haltonfailure="no" showoutput="yes">
-            <sysproperty key="TEST_FILE" value="${TEST_DIR}/pass/LinearSearch.ram15"/>
+            <sysproperty key="TEST_FILE" value="${TEST_DIR}/pass/semantic/1/LinearSearch.ram15"/>
             <classpath>
                 <path refid="runtime.path"/>
                 <pathelement location="${BUILD_DIR}"/>
@@ -302,7 +302,7 @@
             </test>
         </junit>
         <junit printsummary="yes" haltonfailure="no" showoutput="yes">
-            <sysproperty key="TEST_FILE" value="${TEST_DIR}/fail/semanticerrors/pass1.ram15"/>
+            <sysproperty key="TEST_FILE" value="${TEST_DIR}/fail/semanticerrors/1/pass1.ram15"/>
             <classpath>
                 <path refid="runtime.path"/>
                 <pathelement location="${BUILD_DIR}"/>
@@ -353,7 +353,7 @@
         <echo message="Performing Code Generation ..."/>
         <java classname="ram15compiler.Ram15Compiler"
               dir="${BUILD_DIR}" fork="true" failonerror="true" logError="true">
-            <arg value="${TEST_DIR}/pass/pass1.ram15"/>
+            <arg value="${TEST_DIR}/codegen/1-required/Factorial10.ram15"/>
             <!-- <arg value="${TEST_DIR}/codegen/And.ram15" /> -->
         </java>
     </target>

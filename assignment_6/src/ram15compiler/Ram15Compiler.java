@@ -1,10 +1,15 @@
 package ram15compiler;
 
 
+import frontend.parser.generated.ParseException;
+import frontend.parser.generated.RamParser;
+import frontend.parser.generated.TokenMgrError;
 import syntaxtree.Program;
-import frontend.parser.generated.*;
+import visitor.impl.BuildSymbolTableVisitor;
+import visitor.impl.CodeGenerator;
+import visitor.impl.TypeCheckVisitor;
+
 import java.io.*;
-import visitor.*;
 
 public class Ram15Compiler {
 
@@ -13,11 +18,11 @@ public class Ram15Compiler {
     public static void main(String[] args) throws ParseException, TokenMgrError, FileNotFoundException {
 
         if (args.length == 0) {
-            RamParser parser = new RamParser( System.in ) ;
+            RamParser parser = new RamParser(System.in);
             parser.Goal();
         } else {
-            java.io.InputStream is = new java.io.FileInputStream(new java.io.File(args[0]));
-            RamParser parser = new RamParser( is ) ;
+            InputStream is = new FileInputStream(new File(args[0]));
+            RamParser parser = new RamParser(is);
             // parser.Goal();
             Program root = parser.Goal();
 
@@ -44,13 +49,20 @@ public class Ram15Compiler {
 
             // perform type checking
             root.accept(new TypeCheckVisitor(v.getSymTab()));
-            System.out.println("Semantic Analysis: Type Checking complete"); 
-            
-            // code generation
-            root.accept(new CodeGenerator(System.out, v.getSymTab()));            
-        
-        
-        }   
-        
+            System.out.println("Semantic Analysis: Type Checking complete");
+
+            ErrorMsg errors = ErrorMsg.getInstance();
+            if (errors.hasErrors()) {
+                System.out.printf("Errors (%d):\n", errors.errorCount());
+                errors.print();
+                return;
+            } else {
+                System.out.println("No errors.");
+            }
+
+            System.out.println("Generating code:");
+            root.accept(new CodeGenerator(new PrintStream(new File("codegen.s")), v.getSymTab()));
+        }
+
     }
 }

@@ -1,1 +1,14 @@
-package symboltable;import syntaxtree.Type;public class RamVariable {    String id;    Type type;    public RamVariable(String id, Type type) {    }    public String id() {        return null;    }    public Type type() {        return null;    }        public String toString()     {        return null;    }    } // Variable
+package symboltable;
+
+
+import syntaxtree.Type;
+
+public interface RamVariable {
+    String getId();
+
+    Type type();
+
+    int getOffset();
+
+    void setOffset(int offset);
+}

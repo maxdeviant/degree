@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static org.junit.Assert.assertEquals;
-import visitor.BuildSymbolTableVisitor;
+import visitor.impl.BuildSymbolTableVisitor;
 
 
 
@@ -62,7 +62,7 @@ public class CodeGenTestOther {
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
         try {
-            root.accept(new visitor.CodeGenerator(System.out, v.getSymTab()));
+            root.accept(new visitor.impl.CodeGenerator(System.out, v.getSymTab()));
         } finally {
             // restore normal System.output operation
             System.setOut(originalOut);            
@@ -95,8 +95,8 @@ public class CodeGenTestOther {
         writer.close();
                     
         System.out.println("Comparing Against Expected Output ...");
-        String s1 = org.apache.commons.io.FileUtils.readFileToString(new java.io.File(testProgram.getPath()+".correct"));
-        String s2 = org.apache.commons.io.FileUtils.readFileToString(new java.io.File(testProgram.getPath()+".s"+".output"));
+        String s1 = org.apache.commons.io.FileUtils.readFileToString(new File(testProgram.getPath()+".correct"));
+        String s2 = org.apache.commons.io.FileUtils.readFileToString(new File(testProgram.getPath()+".s"+".output"));
         s1 = s1.replaceAll("\\r\\n?", "\n");  // normalize line endings for Windows vs. Unix
         s2 = s2.replaceAll("\\r\\n?", "\n");
         assertEquals(s1, s2); 

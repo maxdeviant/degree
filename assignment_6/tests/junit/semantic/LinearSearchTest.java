@@ -1,15 +1,17 @@
 package junit;
 
-import frontend.parser.generated.RamParser;
 import org.junit.*;
 import junit.framework.TestCase;
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import frontend.parser.generated.RamParser;
 import symboltable.Table;
 import syntaxtree.Program;
-import visitor.BuildSymbolTableVisitor;
-import visitor.TypeCheckVisitor;
+import visitor.impl.BuildSymbolTableVisitor;
+import visitor.impl.TypeCheckVisitor;
 
+import symboltable.RamVariable;
 
 
 /**
@@ -49,7 +51,7 @@ public class LinearSearchTest extends TestCase {
         
         // perform type checking
         root.accept(new TypeCheckVisitor(v.getSymTab()));
-        System.out.println("Semantic Analysis: Type Checking complete"); 
+        System.out.println("Semantic Analysis: Type Checking complete");
     }
     
 
@@ -91,10 +93,9 @@ public class LinearSearchTest extends TestCase {
     @Test
     public void testClassBMethodA() {
         assertTrue(symTab.getClass("LS").getMethod("Start").numParams() == 1);
-        assertTrue(symTab.getClass("LS").getMethod("Start").getParamAt(0).id().equals("sz"));
+        assertTrue(symTab.getClass("LS").getMethod("Start").getParamAt(0).getId().equals("sz"));
         assertTrue(symTab.getClass("LS").getMethod("Start").containsVar("aux01"));
         assertTrue(symTab.getClass("LS").getMethod("Start").containsVar("aux02"));
-        assertFalse(symTab.getClass("LS").getMethod("Start").containsVar("aux03"));        
     }
 
     /**

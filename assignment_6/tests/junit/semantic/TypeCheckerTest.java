@@ -25,11 +25,11 @@ import org.junit.runners.Parameterized.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 import org.junit.runner.notification.Failure;
+import ram15compiler.ErrorMsg;
 import symboltable.Table;
 import syntaxtree.Program;
-import visitor.BuildSymbolTableVisitor;
-import visitor.TypeCheckVisitor;
-
+import visitor.impl.BuildSymbolTableVisitor;
+import visitor.impl.TypeCheckVisitor;
 
 @RunWith(Parameterized.class)
 public class TypeCheckerTest {
@@ -58,7 +58,12 @@ public class TypeCheckerTest {
             { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "Array.ram15"), false},            
             { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "ParsePass2.ram15"), false},
             { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "pass1.ram15"), false},
-            { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "Sigma.ram15"), false}            
+            { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "Sigma.ram15"), false},
+            { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "joefail1.ram15"), false},
+            { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "joefail2.ram15"), false},
+            { new File(System.getProperty("FAIL_TESTS_DIR") + File.separator + "1" + File.separator + "joefail3.ram15"), false},
+            { new File(System.getProperty("PASS_TESTS_DIR") + File.separator + "1" + File.separator + "joepass1.ram15"), true},
+            { new File(System.getProperty("PASS_TESTS_DIR") + File.separator + "1" + File.separator + "joepass2.ram15"), true},
 //            { new File(System.getProperty("PASS_TESTS_DIR") + File.separator + "2" + File.separator + "AssignIntegerWorks.ram15"), true},
 //            { new File(System.getProperty("PASS_TESTS_DIR") + File.separator + "2" + File.separator + "InstanceTest.ram15"), true},
 //            { new File(System.getProperty("PASS_TESTS_DIR") + File.separator + "2" + File.separator + "Pass1.ram15"), true},
@@ -96,8 +101,8 @@ public class TypeCheckerTest {
         args = new String[] { testProgram.toString() };
                 
         InputStream is = new FileInputStream(new File(args[0]));
-        frontend.parser.generated.RamParser parser = new frontend.parser.generated.RamParser(is);
-        syntaxtree.Program root = parser.Goal();
+        RamParser parser = new RamParser(is);
+        Program root = parser.Goal();
                     
         System.out.println("Program lexed and parsed successfully");
         System.out.println("Abstract syntax tree built");
@@ -111,9 +116,12 @@ public class TypeCheckerTest {
         
         // perform type checking
         root.accept(new TypeCheckVisitor(v.getSymTab()));
-        System.out.println("Semantic Analysis: Type Checking complete");         
-        
+        System.out.println("Semantic Analysis: Type Checking complete");
+
         System.out.println(!v.getSymTab().anyErrors() + " " + this.shouldPass);
-        assertEquals(!v.getSymTab().anyErrors(), this.shouldPass); 
+        assertEquals(!v.getSymTab().anyErrors(), this.shouldPass);
+
+        ErrorMsg errors = ErrorMsg.getInstance();
+        errors.flush();  // prevents errors from accumulating between tests
     }
 }

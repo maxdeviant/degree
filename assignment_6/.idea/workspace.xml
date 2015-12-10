@@ -1,15 +1,396 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cb33c72-6d0b-4301-9df4-ac64a8437406" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/frontend/scanner/generated/Yylex.java" afterPath="" />
+    <list default="true" id="46ccb659-ee1c-4451-a789-d07748c6531f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/frontend/parser/RamGrammar.jj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/symboltable/ErrorMsg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/syntaxtree/ClassDeclExtends.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/ASTPrintVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/BuildSymbolTableVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/CodeGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/TypeCheckExpVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/ant.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/libraries/Mars4_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/libraries/commons_io_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/libraries/javacc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/libraries/jflex_1_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/Mars4_5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/commons-io-2.4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/hamcrest-core-1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/javacc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/jflex-1.6.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/lib/junit-4.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/RamSemantic.jj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/JavaCharStream.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/ParseException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/RamParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/RamParserConstants.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/RamParserTokenManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/Token.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/parser/generated/TokenMgrError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/frontend/scanner/ram15_lex_spec.jflex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/ram15compiler/ErrorMsg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/ram15compiler/Ram15Compiler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/ram15compiler/SemanticException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/RamClass.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/RamMethod.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/RamVariable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/Table.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/impl/RamClassImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/impl/RamMethodImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/impl/RamVariableImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/symboltable/impl/TableImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/And.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ArrayAssign.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ArrayLength.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ArrayLookup.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Assign.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Block.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/BooleanType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Call.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ClassDecl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ClassDeclList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ClassDeclSimple.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Equals.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Exp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ExpList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/False.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Formal.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/FormalList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Identifier.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/IdentifierExp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/IdentifierType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/If.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/IntArrayType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/IntegerLiteral.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/IntegerType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/LessThan.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/MainClass.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/MethodDecl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/MethodDeclList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Minus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/MinusEquals.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/NewArray.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/NewObject.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Not.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Or.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/ParenExp.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Plus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/PlusEquals.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Print.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Println.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Program.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Slice.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Statement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/StatementList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/This.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Times.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/True.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/Type.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/VarDecl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/VarDeclList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/syntaxtree/While.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/TypeVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/Visitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/BuildSymbolTableVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/CodeGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/DepthFirstVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/PythonPrintVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/TypeCheckExpVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/TypeCheckVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/src/visitor/impl/TypeDepthFirstVisitor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/And.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/And.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/And.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/And.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial0.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial0.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial0.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial0.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial1.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial1.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial1.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial10.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial10.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial10.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Factorial10.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/IfFalse.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/IfFalse.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/IfTrue.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/IfTrue.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/LessThan.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/LessThan.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/LessThan.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/LessThan.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/MethodCall.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/MethodCall.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/MethodCall.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/MethodCall.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/NewObject.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/NewObject.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/NewObject.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/NewObject.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not1.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not1.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not1.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not2.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not2.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Not2.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Plus.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Plus.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Plus.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Plus.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Print.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Print.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Print.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Print.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Println.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Println.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Println.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/1-required/Println.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ArrayTest.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ArrayTest.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ArrayTest.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ArrayTest.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ClassLevel.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ClassLevel.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ClassLevel.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/ClassLevel.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/LinearSearch.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/LinearSearch.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/LinearSearch.ram15.s" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/2-extracredit/LinearSearch.ram15.s.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/CodeGenTestExtra.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/CodeGenTestOther.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/codegen/CodeGenTestRequired.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/lexicalerrors/1/fail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/lexicalerrors/1/fail2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/lexicalerrors/1/fail3.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/lexicalerrors/1/fail4.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/Array.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/ParsePass2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/Sigma.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/joefail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/joefail2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/joefail3.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/semanticerrors/1/pass1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/Error2.ram15.ram" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/Error3.ram15.ram" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/Invalid-VarDeclInMain.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/ParseErr3.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/ParseFail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/PrintSevenBreaks.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/PrintStegosaurusBreaks.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/curly.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/fail1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/fail2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/goodcomment.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/init.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/ipod.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/main.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/plus.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/ramgram_pro.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/return.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/fail/syntaxerrors/1/static.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/junit/lexer/JFlexScannerTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/junit/parser/JavaCCParserTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/junit/semantic/LinearSearchTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/junit/semantic/Pass1Test.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/junit/semantic/TypeCheckerTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/lexical/1/pass1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/lexical/1/pass2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/lexical/1/pass3.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/lexical/1/pass4.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/Bool.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/HelloWorld.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/InfiniteLoop.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/LinearSearch.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/Logical.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/Program2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/joepass1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/joepass2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/semantic/1/smart-tv.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/Array.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/Bool.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/HelloWorld.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/InfiniteLoop.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/LinearSearch.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/Logical.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/ParsePass2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/Program2.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/Sigma.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/pass1.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/pass/syntax/1/smart-tv.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Boolean.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Boolean.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Boolean.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Boolean.ram15.py.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/ComplexMath.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/ComplexMath.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/ComplexMath.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/ComplexMath.ram15.py.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Factorial.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Factorial.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Factorial.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Factorial.ram15.py.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Fib.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Fib.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Fib.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Fib.ram15.py.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/LinearSearch.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/LinearSearch.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/LinearSearch.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/LinearSearch.ram15.py.output" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/PythonPrinterTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Slice.ram15" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Slice.ram15.correct" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Slice.ram15.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../final/tests/prettypython/Slice.ram15.py.output" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/JavaCharStream.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/JavaCharStream.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/RamSemantic.jj" afterPath="$PROJECT_DIR$/src/frontend/parser/RamSemantic.jj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParser.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserConstants.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserConstants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserTokenManager.java" afterPath="$PROJECT_DIR$/src/frontend/parser/generated/RamParserTokenManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/frontend/scanner/ram15_lex_spec.jflex" afterPath="$PROJECT_DIR$/src/frontend/scanner/ram15_lex_spec.jflex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java" afterPath="$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symboltable/RamClass.java" afterPath="$PROJECT_DIR$/src/symboltable/RamClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symboltable/RamMethod.java" afterPath="$PROJECT_DIR$/src/symboltable/RamMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symboltable/RamVariable.java" afterPath="$PROJECT_DIR$/src/symboltable/RamVariable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/symboltable/Table.java" afterPath="$PROJECT_DIR$/src/symboltable/Table.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/And.java" afterPath="$PROJECT_DIR$/src/syntaxtree/And.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ArrayLength.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ArrayLength.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Assign.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Assign.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Block.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Block.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/BooleanType.java" afterPath="$PROJECT_DIR$/src/syntaxtree/BooleanType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Call.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Call.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ClassDecl.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ClassDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ClassDeclList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ClassDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ClassDeclSimple.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ClassDeclSimple.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Equals.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Equals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Exp.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Exp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/ExpList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/ExpList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/False.java" afterPath="$PROJECT_DIR$/src/syntaxtree/False.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Formal.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Formal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/FormalList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/FormalList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Identifier.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Identifier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IdentifierExp.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IdentifierExp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IdentifierType.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IdentifierType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/If.java" afterPath="$PROJECT_DIR$/src/syntaxtree/If.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IntArrayType.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntArrayType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IntegerLiteral.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntegerLiteral.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/IntegerType.java" afterPath="$PROJECT_DIR$/src/syntaxtree/IntegerType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/LessThan.java" afterPath="$PROJECT_DIR$/src/syntaxtree/LessThan.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/MainClass.java" afterPath="$PROJECT_DIR$/src/syntaxtree/MainClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/MethodDecl.java" afterPath="$PROJECT_DIR$/src/syntaxtree/MethodDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/MethodDeclList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/MethodDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Minus.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Minus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/NewArray.java" afterPath="$PROJECT_DIR$/src/syntaxtree/NewArray.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/NewObject.java" afterPath="$PROJECT_DIR$/src/syntaxtree/NewObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Not.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Not.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Or.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Or.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Plus.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Plus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/PlusEquals.java" afterPath="$PROJECT_DIR$/src/syntaxtree/PlusEquals.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Print.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Print.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Println.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Println.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Program.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Program.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Statement.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Statement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/StatementList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/StatementList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/This.java" afterPath="$PROJECT_DIR$/src/syntaxtree/This.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Times.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Times.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/True.java" afterPath="$PROJECT_DIR$/src/syntaxtree/True.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/Type.java" afterPath="$PROJECT_DIR$/src/syntaxtree/Type.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/VarDecl.java" afterPath="$PROJECT_DIR$/src/syntaxtree/VarDecl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/VarDeclList.java" afterPath="$PROJECT_DIR$/src/syntaxtree/VarDeclList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/syntaxtree/While.java" afterPath="$PROJECT_DIR$/src/syntaxtree/While.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visitor/TypeVisitor.java" afterPath="$PROJECT_DIR$/src/visitor/TypeVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/visitor/Visitor.java" afterPath="$PROJECT_DIR$/src/visitor/Visitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/And.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/And.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/And.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/And.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial0.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial0.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial0.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial0.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial1.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial1.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial1.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial1.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial10.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial10.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Factorial10.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Factorial10.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/IfFalse.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/IfFalse.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/IfFalse.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/IfFalse.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/IfTrue.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/IfTrue.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/IfTrue.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/IfTrue.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/LessThan.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/LessThan.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/LessThan.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/LessThan.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/MethodCall.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/MethodCall.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/MethodCall.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/MethodCall.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/NewObject.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/NewObject.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/NewObject.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/NewObject.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Not1.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Not1.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Not1.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Not1.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Not2.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Not2.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Not2.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Not2.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Plus.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Plus.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Plus.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Plus.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Print.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Print.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Print.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Print.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Println.ram15" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Println.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/1-required/Println.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/1-required/Println.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/ArrayTest.ram15" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/ArrayTest.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/ArrayTest.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/ArrayTest.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/ClassLevel.ram15" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/ClassLevel.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/ClassLevel.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/ClassLevel.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/LinearSearch.ram15" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/LinearSearch.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/2-extracredit/LinearSearch.ram15.correct" afterPath="$PROJECT_DIR$/tests/codegen/2-extracredit/LinearSearch.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/CodeGenTestExtra.java" afterPath="$PROJECT_DIR$/tests/codegen/CodeGenTestExtra.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/CodeGenTestOther.java" afterPath="$PROJECT_DIR$/tests/codegen/CodeGenTestOther.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/codegen/CodeGenTestRequired.java" afterPath="$PROJECT_DIR$/tests/codegen/CodeGenTestRequired.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fail/semanticerrors/1/Sigma.ram15" afterPath="$PROJECT_DIR$/tests/fail/semanticerrors/1/Sigma.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Error2.ram15.ram" afterPath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Error2.ram15.ram" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Error3.ram15.ram" afterPath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Error3.ram15.ram" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Invalid-VarDeclInMain.ram15" afterPath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/Invalid-VarDeclInMain.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/fail2.ram15" afterPath="$PROJECT_DIR$/tests/fail/syntaxerrors/1/fail2.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/junit/lexer/JFlexScannerTest.java" afterPath="$PROJECT_DIR$/tests/junit/lexer/JFlexScannerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/junit/parser/JavaCCParserTest.java" afterPath="$PROJECT_DIR$/tests/junit/parser/JavaCCParserTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java" afterPath="$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/junit/semantic/Pass1Test.java" afterPath="$PROJECT_DIR$/tests/junit/semantic/Pass1Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/junit/semantic/TypeCheckerTest.java" afterPath="$PROJECT_DIR$/tests/junit/semantic/TypeCheckerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/pass/semantic/1/Bool.ram15" afterPath="$PROJECT_DIR$/tests/pass/semantic/1/Bool.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/pass/semantic/1/LinearSearch.ram15" afterPath="$PROJECT_DIR$/tests/pass/semantic/1/LinearSearch.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/pass/syntax/1/LinearSearch.ram15" afterPath="$PROJECT_DIR$/tests/pass/syntax/1/LinearSearch.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/pass/syntax/1/Sigma.ram15" afterPath="$PROJECT_DIR$/tests/pass/syntax/1/Sigma.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15" afterPath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15.correct" afterPath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15.py" afterPath="$PROJECT_DIR$/tests/prettypython/ComplexMath.ram15.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15" afterPath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15.correct" afterPath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15.py" afterPath="$PROJECT_DIR$/tests/prettypython/Factorial.ram15.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15" afterPath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15.correct" afterPath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15.correct" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15.py" afterPath="$PROJECT_DIR$/tests/prettypython/LinearSearch.ram15.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/prettypython/PythonPrinterTest.java" afterPath="$PROJECT_DIR$/tests/prettypython/PythonPrinterTest.java" />
     </list>
-    <ignored path="CSC416 - Assignment 6.iws" />
+    <ignored path="CSC 416 - Assignment 6.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +406,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="CSC416 - Assignment 6" />
+    <favorites_list name="CSC 416 - Assignment 6" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -33,17 +414,31 @@
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+              <caret line="18" column="0" selection-start-line="15" selection-start-column="31" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ram15Compiler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java">
+      <file leaf-file-name="And.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/And.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#291#292#0" expanded="true" />
+                <element signature="e#326#327#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrayAssign.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,41 +446,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeDepthFirstVisitor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
+      <file leaf-file-name="Statement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Statement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.0822783">
-              <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeCheckVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+      <file leaf-file-name="ArrayLength.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLength.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JavaPrintVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java">
+      <file leaf-file-name="ArrayLookup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DepthFirstVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+      <file leaf-file-name="Assign.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Assign.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+              <folding>
+                <element signature="e#346#347#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Block.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Block.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5672269">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,12 +512,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java" />
         <option value="$PROJECT_DIR$/build.xml" />
-        <option value="$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java" />
-        <option value="$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java" />
-        <option value="$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/Assign.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/And.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/Statement.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ArrayLength.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java" />
+        <option value="$PROJECT_DIR$/src/syntaxtree/Block.java" />
       </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -143,97 +561,35 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
+              <option name="myItemId" value="CSC 416 - Assignment 6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
+              <option name="myItemId" value="CSC 416 - Assignment 6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assignment_6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assignment_6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assignment_6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="visitor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assignment_6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSC416 - Assignment 6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assignment_6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ram15compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/Mars4_5.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -414,7 +770,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="assignment_6" />
+      <module name="final" />
       <envs />
       <method />
     </configuration>
@@ -484,15 +840,12 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9cb33c72-6d0b-4301-9df4-ac64a8437406" name="Default" comment="" />
-      <created>1448743167133</created>
+      <changelist id="46ccb659-ee1c-4451-a789-d07748c6531f" name="Default" comment="" />
+      <created>1449708923929</created>
       <option name="number" value="Default" />
-      <updated>1448743167133</updated>
+      <updated>1449708923929</updated>
     </task>
     <servers />
   </component>
@@ -502,7 +855,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328877" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -520,17 +873,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328877" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -558,7 +903,8 @@
         <filter targetName="runSemantic" isVisible="false" />
         <filter targetName="testPython" isVisible="false" />
         <filter targetName="runSA" isVisible="false" />
-        <filter targetName="testSA" isVisible="false" />
+        <filter targetName="testSymTable" isVisible="false" />
+        <filter targetName="testTypeChecker" isVisible="false" />
         <filter targetName="runCodeGen" isVisible="false" />
         <filter targetName="testCodeGen" isVisible="false" />
       </targetFilters>
@@ -569,49 +915,80 @@
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+          <caret line="18" column="0" selection-start-line="15" selection-start-column="31" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/And.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLength.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Assign.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          <folding>
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -635,49 +1012,72 @@
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+          <caret line="18" column="0" selection-start-line="15" selection-start-column="31" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/TypeCheckVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/JavaPrintVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/And.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/DepthFirstVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayAssign.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ram15compiler/Ram15Compiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visitor/TypeDepthFirstVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLength.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.0822783">
-          <caret line="137" column="10" selection-start-line="137" selection-start-column="10" selection-end-line="137" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/ArrayLookup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Assign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+          <folding>
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/syntaxtree/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5672269">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -747,7 +1147,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>javacc</last-edited>
+          <last-edited>Mars4_5</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
