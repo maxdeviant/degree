@@ -74,16 +74,22 @@ public class CodeGenerator extends DepthFirstVisitor {
 
         emitLabel("main");
 
-        emit("subu $sp, $sp, 16");
-        emit("sw $fp, 8($sp)");
-        emit("sw $ra, 0($sp)");
-        emit("addu $fp, $sp, 12");
+        emitComment("begin prologue -- main");
+        emit("subu $sp, $sp, 24    # stack frame is at least 24 bytes");
+        emit("sw $fp, 4($sp)       # save caller's frame pointer");
+        emit("sw $ra, 0($sp)       # save return address");
+
+        emit("addi $fp, $sp, 20    # set up main's frame pointer");
+        emitComment("end prologue -- main");
 
         n.statement.accept(this);
 
-        emit("lw $ra, -4($fp)");
-        emit("lw $fp, -12($fp)");
-        emit("addi $sp, $sp, 16");
+        emitComment("begin epilogue -- main");
+        emit("lw $ra, 0($sp)       # restore return address");
+        emit("lw $fp, 4($sp)       # restore caller's frame pointer");
+        emit("addi $sp, $sp, 24    # pop the stack");
+        emitComment("end epilogue -- main");
+
 
         emit("li $v0, 10");
         emit("syscall");
