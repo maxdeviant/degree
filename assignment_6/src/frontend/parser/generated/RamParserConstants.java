@@ -31,9 +31,9 @@ public interface RamParserConstants {
   /** RegularExpression Id. */
   int SEMICOLON = 15;
   /** RegularExpression Id. */
-  int COMMA = 16;
+  int COLON = 16;
   /** RegularExpression Id. */
-  int COLON = 17;
+  int COMMA = 17;
   /** RegularExpression Id. */
   int DOT = 18;
   /** RegularExpression Id. */
@@ -41,69 +41,67 @@ public interface RamParserConstants {
   /** RegularExpression Id. */
   int LESSTHAN = 20;
   /** RegularExpression Id. */
-  int EQUALITY = 21;
+  int PLUSEQUALS = 21;
   /** RegularExpression Id. */
-  int PLUSEQUALS = 22;
+  int EQUALITY = 22;
   /** RegularExpression Id. */
-  int MINUSEQUALS = 23;
+  int PLUS = 23;
   /** RegularExpression Id. */
-  int PLUS = 24;
+  int MINUS = 24;
   /** RegularExpression Id. */
-  int MINUS = 25;
+  int TIMES = 25;
   /** RegularExpression Id. */
-  int TIMES = 26;
+  int AND = 26;
   /** RegularExpression Id. */
-  int AND = 27;
+  int OR = 27;
   /** RegularExpression Id. */
-  int OR = 28;
+  int EXCLAMATION = 28;
   /** RegularExpression Id. */
-  int EXCLAMATION = 29;
+  int BOOLEAN = 29;
   /** RegularExpression Id. */
-  int BOOLEAN = 30;
+  int CLASS = 30;
   /** RegularExpression Id. */
-  int CLASS = 31;
+  int ELSE = 31;
   /** RegularExpression Id. */
-  int ELSE = 32;
+  int FALSE = 32;
   /** RegularExpression Id. */
-  int FALSE = 33;
+  int IF = 33;
   /** RegularExpression Id. */
-  int IF = 34;
+  int WHILE = 34;
   /** RegularExpression Id. */
-  int WHILE = 35;
+  int INTEGER = 35;
   /** RegularExpression Id. */
-  int INTEGER = 36;
+  int LENGTH = 36;
   /** RegularExpression Id. */
-  int LENGTH = 37;
+  int MAIN = 37;
   /** RegularExpression Id. */
-  int MAIN = 38;
+  int NEW = 38;
   /** RegularExpression Id. */
-  int NEW = 39;
+  int PUBLIC = 39;
   /** RegularExpression Id. */
-  int PUBLIC = 40;
+  int RETURN = 40;
   /** RegularExpression Id. */
-  int RETURN = 41;
+  int STATIC = 41;
   /** RegularExpression Id. */
-  int STATIC = 42;
+  int STRING = 42;
   /** RegularExpression Id. */
-  int STRING = 43;
+  int THIS = 43;
   /** RegularExpression Id. */
-  int THIS = 44;
+  int TRUE = 44;
   /** RegularExpression Id. */
-  int TRUE = 45;
+  int PRINT = 45;
   /** RegularExpression Id. */
-  int PRINT = 46;
+  int PRINTLN = 46;
   /** RegularExpression Id. */
-  int PRINTLN = 47;
+  int VOID = 47;
   /** RegularExpression Id. */
-  int VOID = 48;
+  int INTEGER_LITERAL = 48;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 49;
+  int IDENTIFIER = 49;
   /** RegularExpression Id. */
-  int IDENTIFIER = 50;
+  int LETTER = 50;
   /** RegularExpression Id. */
-  int LETTER = 51;
-  /** RegularExpression Id. */
-  int DIGIT = 52;
+  int DIGIT = 51;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -126,14 +124,13 @@ public interface RamParserConstants {
     "\"{\"",
     "\"}\"",
     "\";\"",
-    "\",\"",
     "\":\"",
+    "\",\"",
     "\".\"",
     "\"=\"",
     "\"<\"",
-    "\"==\"",
     "\"+=\"",
-    "\"-=\"",
+    "\"eq\"",
     "\"+\"",
     "\"-\"",
     "\"*\"",
