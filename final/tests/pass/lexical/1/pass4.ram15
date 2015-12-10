@@ -1,0 +1,11 @@
+class Pass4 {
+
+    public static void main(String[] args) {
+        Joe j = new Joe();
+        if (Joe.isAwesome() and Joe.isABoss()) {
+            print(1);
+        } else {
+            print(!false);
+        }
+    }
+}

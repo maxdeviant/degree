@@ -1,0 +1,10 @@
+class Test1 {
+    public static void main(String[] a) {
+        print(new Test1Class().doStuff());
+    }
+}
+class Test1Class {
+    public boolean doStuff() {
+        return true;
+    }
+}

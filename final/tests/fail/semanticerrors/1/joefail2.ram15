@@ -1,0 +1,27 @@
+class Test1 {
+    public static void main(String[] a) {
+        print(new Test1Class().PrintNums());
+    }
+}
+class Test1Class {
+    public int PrintNums() {
+        int[] numbers;
+        bool f;
+        Test1 p;
+        numbers[0] = 5;
+        f = 1;
+        p = new Test1();
+
+/* A longer comment
+spanning lines
+*/
+        while(numbers[0] < p){
+             numbers[p] = numbers[0] + 1;
+             print(numbers[p]);
+        }
+
+        numbers = numbers[:numbers[0]];
+        return p;
+
+    }
+}
