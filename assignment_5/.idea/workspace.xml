@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3273db5-b394-42d5-8d7c-b385a05de6ae" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../assignment_6/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/And.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/And.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial0.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial1.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Factorial10.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/LessThan.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/LessThan.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/MethodCall.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/MethodCall.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/NewObject.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/NewObject.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Not1.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Not1.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Not2.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Not2.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Plus.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Plus.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Print.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Print.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Println.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/1-required/Println.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ArrayTest.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ArrayTest.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/ClassLevel.ram15.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" afterPath="$PROJECT_DIR$/../assignment_6/tests/codegen/2-extracredit/LinearSearch.ram15.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../assignment_6/src/frontend/scanner/ram15_lex_spec.jflex" afterPath="$PROJECT_DIR$/../assignment_6/src/frontend/scanner/ram15_lex_spec.jflex" />
     </list>
     <ignored path="CSC 416 - Assignment 5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,24 +24,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LinearSearchTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LinearSearchTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7271468">
+            <state vertical-scroll-proportion="0.0">
               <caret line="53" column="9" selection-start-line="47" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Plus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/syntaxtree/Plus.java">
+      <file leaf-file-name="ram15_lex_spec.jflex" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/frontend/scanner/ram15_lex_spec.jflex">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.24930748">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="27" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1116,7 +1098,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="840" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1572,8 +1554,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/junit/semantic/LinearSearchTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7271468">
+        <state vertical-scroll-proportion="0.0">
           <caret line="53" column="9" selection-start-line="47" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/frontend/scanner/ram15_lex_spec.jflex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24930748">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="27" selection-end-column="3" />
           <folding />
         </state>
       </provider>

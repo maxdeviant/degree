@@ -1,19 +1,31 @@
-/**
- *  Ram15 Lexical Specification
- *  Author: Joseph Cosentino
+/*
+ *    User Code Section
+ *
+ *    This section has code that will be copied to the top of the generated parser,
+ *    used for package declarations, imports, etc.
  */
 
 package frontend.scanner.generated;
- 
+
 %%
- 
+
+/*
+ * Options and Declarations Section
+ *
+ * This section is for any jflex declarations and options settings.
+ *
+ */
 %public
 %standalone
 
+/* Any following code in between the symbols %{  %}
+ * is copied verbatim into the generated class. It can
+ * report when something interesting is found.
+ */
 %{
     public static boolean error_flag = false;
 
-    public void found(String tokenClass) { 
+    public void found(String tokenClass) {
        // System.out.println("\nFound |" + str + "| from text -->" + yytext() + "<--");
        System.out.println("< " + tokenClass + " , \"" + yytext() + "\" >");
        System.out.flush();
