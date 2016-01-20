@@ -16,5 +16,9 @@ gulp.task('css', () => {
             require('precss')
         ]))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('build'));
 });
+
+gulp.task('default', [
+    'css'
+]);

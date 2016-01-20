@@ -1,3 +1,14 @@
+#
+# CSW131
+#
+
+# Build directory
+build/
+
+#
+# Node
+#
+
 # Logs
 logs
 *.log
