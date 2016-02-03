@@ -9,7 +9,12 @@ const swig = require('swig');
 const app = express();
 
 swig.setDefaults({
-    cache: false
+    cache: false,
+    locals: {
+        meta: {
+            author: 'Marshall Bowers'
+        }
+    }
 });
 
 app.engine('html', swig.renderFile);
@@ -23,6 +28,23 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 app.use('/', require('./routes/home'));
+
+app.use((req, res, next) => {
+    let err = new Error('Not Found');
+    err.status = 404;
+
+    return next(err);
+});
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+
+    return res.render('error', {
+        title: err.message,
+        message: err.message,
+        error: err
+    });
+});
 
 app.set('host', process.env.HOST || '0.0.0.0');
 app.set('port', process.env.PORT || 3000);

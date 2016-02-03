@@ -8,7 +8,7 @@ const nodemon = require('gulp-nodemon');
 const sourcemaps = require('gulp-sourcemaps');
 
 const globs = {
-    css: 'src/**/*.css'
+    css: 'src/css/**/*.css'
 };
 
 gulp.task('css', () => {

@@ -4,9 +4,11 @@ const express = require('express');
 
 const router = express.Router();
 
-router.route('/home')
+router.route('/')
     .get((req, res, next) => {
-        let locals = {};
+        let locals = {
+            title: 'Home'
+        };
 
         return res.render('index', locals, (err, template) => {
             return res.send(template);
