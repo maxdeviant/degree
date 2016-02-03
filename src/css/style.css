@@ -65,6 +65,10 @@ body {
     }
 }
 
+.menu__item--active {
+    border-bottom: 1px solid #222;
+}
+
 .home {
     display: flex;
     flex: 100;
