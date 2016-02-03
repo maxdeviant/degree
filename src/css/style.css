@@ -1,5 +1,29 @@
-/*
- * Styles
- */
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
 
-@import 'partials/home';
+.home {
+    display: flex;
+    flex: 100;
+    flex-layout: column;
+    height: 100%;
+}
+
+.home-hero {
+    flex: 100;
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1439737567250-e9ea931e97a4?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6f360f09a234426c238233a742060faa);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center end;
+}
+
+.home-hero__title {
+    font-family: 'Lato', sans-serif;
+    font-size: 64px;
+    font-weight: 300;
+    padding: 0 1em;
+}

@@ -1,6 +1,8 @@
 'use strict';
 
 const gulp = require('gulp');
+const nano = require('gulp-cssnano');
+const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 
@@ -15,10 +17,16 @@ gulp.task('css', () => {
             require('autoprefixer'),
             require('precss')
         ]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('build'));
+        .pipe(concat('style.min.css'))
+        .pipe(nano())
+        .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('css:watch', () => {
+    gulp.watch(globs.css, ['css']);
 });
 
 gulp.task('default', [
-    'css'
+    'css',
+    'css:watch'
 ]);
