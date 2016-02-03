@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const nano = require('gulp-cssnano');
 const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
+const nodemon = require('gulp-nodemon');
 const sourcemaps = require('gulp-sourcemaps');
 
 const globs = {
@@ -19,14 +20,22 @@ gulp.task('css', () => {
         ]))
         .pipe(concat('style.min.css'))
         .pipe(nano())
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('src/public/css'));
 });
 
 gulp.task('css:watch', () => {
     gulp.watch(globs.css, ['css']);
 });
 
+gulp.task('nodemon', () => {
+    nodemon({
+        script: 'src/index.js',
+        ext: 'js'
+    });
+});
+
 gulp.task('default', [
     'css',
-    'css:watch'
+    'css:watch',
+    'nodemon'
 ]);
