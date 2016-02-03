@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Home",
+        "route": "/",
+        "view": "index",
+        "locals": {}
+    },
+    {
+        "title": "About",
+        "route": "/about",
+        "view": "index",
+        "locals": {
+            "meta": {
+                "keywords": "about"
+            }
+        }
+    }
+]
