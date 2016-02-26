@@ -1,0 +1,146 @@
+; SLIME 2013-04-02
+; Python version 1.1, VM version Intel x86/sse2 on 2014-09-22 13:19:54.
+; Compiling: /home/mb783250/csc345/homework_1/homework.lisp 2014-09-22 13:06:27
+
+
+; /home/mb783250/csc345/homework_1/homework.sse2f written.
+; Compilation finished in 0:00:00.
+; Loading #P"/home/mb783250/csc345/homework_1/homework.sse2f".
+
+; Python version 1.1, VM version Intel x86/sse2 on 2014-09-22 13:20:02.
+; Compiling: /home/mb783250/csc345/homework_1/timing.lisp 2014-09-22 13:11:56
+
+
+; /home/mb783250/csc345/homework_1/timing.sse2f written.
+; Compilation finished in 0:00:00.
+; Loading #P"/home/mb783250/csc345/homework_1/timing.sse2f".
+
+CL-USER> (comparefibonaccis)
+TAIL REC FIBONACCI 10
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   4,002 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 10
+
+; Evaluation took:
+;   0.01 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   23,860 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+=======================================================
+TAIL REC FIBONACCI 15
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   5,249 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 15
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   202,529 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+=======================================================
+TAIL REC FIBONACCI 20
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   11,491 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 20
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   2,211,330 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+=======================================================
+TAIL REC FIBONACCI 25
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   4,654 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 25
+
+; Evaluation took:
+;   0.01 seconds of real time
+;   0.008 seconds of user run time
+;   0.0 seconds of system run time
+;   24,690,022 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+=======================================================
+TAIL REC FIBONACCI 30
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   7,418 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 30
+
+; Evaluation took:
+;   0.07 seconds of real time
+;   0.074 seconds of user run time
+;   0.0 seconds of system run time
+;   213,553,753 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+=======================================================
+TAIL REC FIBONACCI 35
+
+; Evaluation took:
+;   0.0 seconds of real time
+;   0.0 seconds of user run time
+;   0.0 seconds of system run time
+;   4,213 CPU cycles
+;   0 page faults and
+;   0 bytes consed.
+; 
+FIBONACCI 35
+
+; Evaluation took:
+;   0.49 seconds of real time
+;   0.493 seconds of user run time
+;   0.0 seconds of system run time
+;   1,427,077,119 CPU cycles
+;   0 page faults and
+;   8 bytes consed.
+; 
+=======================================================
+NIL
+CL-USER> 
