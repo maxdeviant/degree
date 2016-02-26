@@ -1,0 +1,21 @@
+Yam
+Veggie Co
+1
+Yam
+n
+Bread
+Carb Co
+3
+Wheat
+Water
+Yeast
+n
+Carrot
+Veggie Co
+1
+Carrot
+n
+Peach
+Fruit Co
+1
+Peach
