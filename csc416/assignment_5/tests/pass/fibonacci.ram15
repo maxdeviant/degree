@@ -1,0 +1,45 @@
+/**
+ * Test: Fibonacci
+ * @author Marshall Bowers
+ */
+class Main {
+
+    public static void main(String[] args) {
+        print(new Fibonacci().run());
+    }
+
+}
+
+class Fibonacci {
+
+    public bool run() {
+        int i;
+
+        i = 0;
+
+        while (i < 100) {
+            print(this.fibonacci(i));
+
+            i += 1;
+        }
+
+        return true;
+    }
+
+    public int fibonacci(int n) {
+        return this.fibonacciAux(n, 0, 1);
+    }
+
+    public int fibonacciAux(int n, int a, int b) {
+        int result;
+
+        if (!(n < 0)) {
+            result = this.fibonacciAux(n - 1, b, a + b);
+        } else {
+            result = a;
+        }
+
+        return result;
+    }
+
+}

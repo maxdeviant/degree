@@ -1,0 +1,39 @@
+class Main {
+	
+	public static void main(String[] args) {
+		println(new Slice().slice(6));
+	}
+}
+
+class Slice {
+	
+	int[] arr;
+
+	public int slice(int n) {
+		int i;
+		int sum;
+		int[] newArr;
+
+		arr = new int[n*5];
+		
+		i = 0;
+		while (i < n) {
+			arr[i] = 5;
+			i += 1;
+		}
+
+		newArr = arr[:];
+		newArr = newArr[:n];
+
+		sum = 0;
+		i = 0;
+		while (i < newArr.length) {
+			sum += newArr[i];
+			i += 1;
+		}
+
+		return sum;
+
+	}
+
+}

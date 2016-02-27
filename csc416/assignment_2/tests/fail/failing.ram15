@@ -1,0 +1,15 @@
+/**
+ * Test: Failing
+ * @author Marshall Bowers
+ */
+class Failing {
+
+    public static void main(String[] args) {
+        println("The result is " + this.plusTen(10) + ".");
+    }
+
+    private int plusTen(int a) {
+        return a + 10;
+    }
+
+}

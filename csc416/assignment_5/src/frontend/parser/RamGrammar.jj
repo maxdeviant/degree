@@ -1,0 +1,296 @@
+options {
+    JAVA_UNICODE_ESCAPE = true;
+    DEBUG_PARSER = false;
+}
+
+PARSER_BEGIN(RamParser)
+    package frontend.parser.generated;
+    import java.io.FileNotFoundException;
+
+    public class RamParser {
+        public static void main(String[] args)
+        throws ParseException, TokenMgrError, FileNotFoundException
+        {
+            if (args.length == 0) {
+                RamParser parser = new RamParser( System.in ) ;
+                parser.Goal();
+            } else {
+                java.io.InputStream is = new java.io.FileInputStream(new java.io.File(args[0]));
+                RamParser parser = new RamParser( is ) ;
+                parser.Goal();
+            }
+        }
+    }
+PARSER_END(RamParser)
+
+
+// Insert a specification of a lexical analysis here.
+
+SKIP : /* WHITE SPACE */
+{
+    " "
+    | "\t"
+    | "\n"
+    | "\r"
+    | "\f"
+}
+
+SPECIAL_TOKEN : /* COMMENTS */
+{
+    <SINGLE_LINE_COMMENT: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+    | <FORMAL_COMMENT: "/**" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+    | <MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">     // regex: http://regexpal.com/   /\*([^*])*\*(\*|([^*/]([^*])*\*))*/
+}
+
+TOKEN :
+{
+    < LPAREN: "(" >
+    | < RPAREN: ")" >
+    | < LSQPAREN: "[" >
+    | < RSQPAREN: "]" >
+    | < LBRACE: "{" >
+    | < RBRACE: "}" >
+    | < SEMICOLON: ";" >
+    | < COMMA: "," >
+    | < COLON: ":" >
+    | < DOT: "." >
+    | < ASSIGN: "=" >
+    | < LESSTHAN: "<" >
+    | < EQUALITY: "==" >
+    | < PLUSEQUALS: "+=" >
+    | < MINUSEQUALS: "-=" >
+    | < PLUS: "+" >
+    | < MINUS: "-" >
+    | < TIMES: "*" >
+    | < AND : "and" >
+    | < OR : "or" >
+    | < EXCLAMATION : "!" >
+    | < BOOLEAN: "bool" >
+    | < CLASS: "class" >
+    | < ELSE: "else" >
+    | < FALSE: "false" >
+    | < IF: "if" >
+    | < WHILE: "while" >
+    | < INTEGER: "int" >
+    | < LENGTH: "length" >
+    | < MAIN: "main" >
+    | < NEW: "new" >
+    | < PUBLIC: "public" >
+    | < RETURN: "return" >
+    | < STATIC: "static" >
+    | < STRING: "String" >
+    | < THIS: "this" >
+    | < TRUE: "true" >
+    | < PRINT: "print" >
+    | < PRINTLN: "println" >
+    | < VOID: "void" >
+    | < INTEGER_LITERAL: ( ["1"-"9"] (["0"-"9"])* | "0" ) >
+    | < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>|"_")* >
+    | < #LETTER: ["a"-"z","A"-"Z"] >
+    | < #DIGIT: ["0"-"9"] >
+}
+
+void Goal() :
+{}
+{
+  Program() <EOF>
+}
+
+void RamToken() :
+{}
+{
+    <CLASS>
+    | <IDENTIFIER>
+    | <LBRACE>
+    | <PUBLIC>
+    | <STATIC>
+    | <VOID>
+    | <MAIN>
+    | <LPAREN>
+    | <STRING>
+    | <LSQPAREN>
+    | <RSQPAREN>
+    | <RPAREN>
+    | <RBRACE>
+    | <PLUSEQUALS>
+    | <MINUSEQUALS>
+    | <SEMICOLON>
+    | <RETURN>
+    | <COMMA>
+    | <INTEGER>
+    | <BOOLEAN>
+    | <ASSIGN>
+    | <IF>
+    | <ELSE>
+    | <WHILE>
+    | <COLON>
+    | <PRINT>
+    | <PRINTLN>
+    | <AND>
+    | <OR>
+    | <LESSTHAN>
+    | <EQUALITY>
+    | <PLUS>
+    | <MINUS>
+    | <TIMES>
+    | <DOT>
+    | <LENGTH>
+    | <INTEGER_LITERAL>
+    | <TRUE>
+    | <FALSE>
+    | <THIS>
+    | <NEW>
+    | <EXCLAMATION>
+}
+
+void Program() :
+{}
+{
+    MainClass()
+    ( ClassDeclaration() )*
+}
+
+void MainClass() :
+{}
+{
+    <CLASS> <IDENTIFIER> <LBRACE>
+        <PUBLIC> <STATIC> <VOID> <MAIN> <LPAREN> <STRING> <LSQPAREN> <RSQPAREN> <IDENTIFIER> <RPAREN> <LBRACE>
+            ( LOOKAHEAD(2)  VariableDeclaration() )*
+            ( Statement() )*
+        <RBRACE>
+    <RBRACE>
+}
+
+void ClassDeclaration() :
+{}
+{
+    <CLASS> <IDENTIFIER> <LBRACE>
+        ( VariableDeclaration() )*
+        ( MethodDeclaration() )*
+    <RBRACE>
+}
+
+void VariableDeclaration() :
+{}
+{
+    Type() <IDENTIFIER> <SEMICOLON>
+}
+
+void MethodDeclaration() :
+{}
+{
+    <PUBLIC> Type() <IDENTIFIER> <LPAREN> FormalList() <RPAREN> <LBRACE>
+        ( LOOKAHEAD(2) VariableDeclaration() ) *
+        ( Statement() ) *
+        <RETURN> Expression() <SEMICOLON>
+    <RBRACE>
+}
+
+void FormalList() :
+{}
+{
+    [ Type() <IDENTIFIER> ( FormalRest() )* ]
+}
+
+void FormalRest() :
+{}
+{
+    <COMMA> Type() <IDENTIFIER>
+}
+
+void Type() :
+{}
+{
+    ( <INTEGER> TypePrime() )
+    | <BOOLEAN>
+    | <IDENTIFIER>
+}
+
+void TypePrime() :
+{}
+{
+    [ <LSQPAREN> <RSQPAREN> ]
+}
+
+void Statement() :
+{}
+{
+    <LBRACE> ( Statement() )* <RBRACE>
+    | <IF> <LPAREN> Expression() <RPAREN> Statement() <ELSE> Statement()
+    | <WHILE> <LPAREN> Expression() <RPAREN> Statement()
+    | <PRINT> <LPAREN> ExpressionList() <RPAREN> <SEMICOLON>
+    | <PRINTLN> <LPAREN> ExpressionList() <RPAREN> <SEMICOLON>
+    | <IDENTIFIER> StatementPrime()
+}
+
+void StatementPrime() :
+{}
+{
+    <ASSIGN> Expression() <SEMICOLON>
+    | <PLUSEQUALS> Expression() <SEMICOLON>
+    | <LSQPAREN> Expression() <RSQPAREN> <ASSIGN> Expression() <SEMICOLON>
+}
+
+void Expression() :
+{}
+{
+    <INTEGER_LITERAL> ExpressionPrime()
+    | <TRUE> ExpressionPrime()
+    | <FALSE> ExpressionPrime()
+    | <IDENTIFIER> ExpressionPrime()
+    | <THIS> ExpressionPrime()
+    | <NEW> ExpressionDoublePrime() ExpressionPrime()
+    | <EXCLAMATION> Expression()
+    | <LPAREN> Expression() <RPAREN> ExpressionPrime()
+}
+
+void ExpressionPrime() :
+{}
+{
+    [
+        ( Operator() Expression() )
+        | LOOKAHEAD(3) ( <LSQPAREN> Expression() <RSQPAREN> )
+        | LOOKAHEAD(2) ( <LSQPAREN> Expression() <COLON> ( Expression() )? <RSQPAREN> )
+        | LOOKAHEAD(2) ( <LSQPAREN> Expression() <COLON> <RSQPAREN> )
+        | LOOKAHEAD(2) ( <LSQPAREN> <COLON> (Expression())? <RSQPAREN> )
+        | ( <DOT> ExpressionTriplePrime() )
+    ]
+}
+
+void ExpressionDoublePrime() :
+{}
+{
+    ( <INTEGER> <LSQPAREN> Expression() <RSQPAREN> )
+    | <IDENTIFIER> <LPAREN> <RPAREN>
+}
+
+void ExpressionTriplePrime() :
+{}
+{
+    <LENGTH>
+    | <IDENTIFIER> <LPAREN> ExpressionList() <RPAREN>
+}
+
+void ExpressionList() :
+{}
+{
+    [ Expression() ( ExpressionRest() )* ]
+}
+
+void ExpressionRest() :
+{}
+{
+    <COMMA> Expression()
+}
+
+void Operator() :
+{}
+{
+    <AND>
+    | <OR>
+    | <LESSTHAN>
+    | <EQUALITY>
+    | <PLUS>
+    | <MINUS>
+    | <TIMES>
+}

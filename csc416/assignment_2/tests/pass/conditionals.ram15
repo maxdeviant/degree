@@ -1,0 +1,23 @@
+/**
+ * Test: Conditionals
+ * @author Marshall Bowers
+ */
+class Conditionals {
+
+    public static void main(String[] args) {
+        int a = 1;
+
+        if (true) {
+            a = 2;
+        } else {
+            a = 3;
+        }
+
+        if (a == 3) {
+            a = 4;
+        } else {
+            a = 5;
+        }
+    }
+
+}
