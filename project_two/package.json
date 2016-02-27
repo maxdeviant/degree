@@ -1,0 +1,24 @@
+{
+  "name": "project-two",
+  "version": "1.0.0",
+  "description": "Proj2TeamD ==========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WCU-CSC496-F14/Proj2TeamD.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WCU-CSC496-F14/Proj2TeamD/issues"
+  },
+  "homepage": "https://github.com/WCU-CSC496-F14/Proj2TeamD",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-beautify": "^1.1.0",
+    "gulp-jshint": "^1.8.6"
+  }
+}
