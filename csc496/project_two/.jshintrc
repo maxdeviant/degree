@@ -1,0 +1,8 @@
+{
+    "globalstrict": true,
+    "browser": true,
+    "-W004": true,
+    "globals": {
+        "Quintus": false
+    }
+}

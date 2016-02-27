@@ -1,0 +1,9 @@
+{
+    "globalstrict": true,
+    "browser": true,
+    "globals": {
+        "$": false,
+        "_": false,
+        "Quintus": false
+    }
+}

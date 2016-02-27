@@ -1,0 +1,93 @@
+.wrapper {
+    background: #fff;
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header {
+    font-family: 'Times New Roman', serif;
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.subhead {
+    color: #4183c4;   
+}
+
+.first-name {
+    /* Commented out intentionally for aesthetic value */
+    /*font-size: 18px;*/
+    color: #bbb;
+}
+
+.last-name {
+    /* Commented out intentionally for aesthetic value */
+    /*font-size: 30px;*/
+}
+
+.list {
+    list-style: none;
+}
+
+.contact {
+    line-height: 48px;
+}
+
+.contact a,
+.contact a:visited {
+    color: #4183c4;
+}
+
+.section {
+    margin: 20px;
+    padding: 0px 20px 0px 20px;
+    border: solid 1px #bbb;
+}
+
+#expertise {
+    color: #569e3d;
+}
+
+.experience {
+    margin-left: 40px;
+}
+
+.experience:before {
+    content: '\27a4';
+    display: block;
+    float: left;
+    padding-right: 10px;
+}
+
+div:nth-child(2) {
+    text-decoration: underline;
+}
+
+.company {
+    font-style: italic;
+}
+
+.position {
+    font-weight: bold;
+}
+
+#education {
+    color: #6f316e;
+}
+
+.course {
+    padding-right: 20px;
+    color: #bbb;
+}
+
+#canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
