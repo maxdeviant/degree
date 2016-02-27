@@ -1,0 +1,40 @@
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header h1,
+.header h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.instructions {
+    margin: 10px 0;
+    background: #f5f5f5;
+}
+
+.instructions p {
+    padding: 5px 0;
+}
+
+.example {
+    margin-left: 40px;
+}
+
+.problems {
+}
+
+.col {
+    float: left;
+}
+
+.col.half {
+    min-width: 480px;
+    max-width: 480px;
+}
+
+.button {
+    width: 120px;
+}

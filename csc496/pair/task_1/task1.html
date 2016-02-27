@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="wrapper">
+    <div class="container">
+        <h1 class="head">Marshall Bowers &amp; Matthew Wallace</h1>
+        <h2 class="subhead">Computer Science</h2>
+
+        <div class="info">
+            <span><strong>Address:</strong>&nbsp;West Chester, PA</span>
+            <br>
+            <span class="phone"><strong>Phone:</strong>&nbsp;555-5555</span>
+            <br>
+            <span class="fax"><strong>Fax:</strong>&nbsp;867-5309</span>
+            <br>
+            <span><strong>Current Classes:</strong></span>
+            <ul>
+                <li><a href="http://www.cs.wcupa.edu/rburns/Game/">Game Development</a></li>
+            </ul>
+        </div>
+
+        <div class="hobbies">
+            <h1>Hobbies &amp; Interests</h1>
+            <ul>
+                <li>Programming</li>
+                <li>Gaming</li>
+                <li>Drinking</li>
+            </ul>
+        </div>
+
+        <div id="task-two">
+            <div id="button-one">
+                <button onclick="sum();">One</button>
+                <p id="one-output"></p>
+            </div>
+            <button onclick="age();">Two</button>
+        </div>
+    </div>
+    <script>
+        function sum() {
+            var sum = 0;
+
+            for (var i = 0; i < 5; i++) {
+                sum += parseInt(prompt('Enter the ' + (i + 1) + 'th number.') || 0);
+            }
+
+            document.getElementById('one-output').innerHTML = 'Sum: ' + sum;
+        }
+
+        function age() {
+            var user = {};
+            var now = new Date(Date.now());
+
+            user.name = prompt('Enter your name.');
+            user.age = prompt('Enter your age.');
+
+            if (canDrink(user)) {
+                alert(user.name + ' can get turnt!');
+            } else {
+                alert(user.name + ', you are not old enough to party.');
+            }
+
+            function canDrink(obj) {
+                return obj.age > 20;
+            }
+        }
+    </script>
+</body>
+</html>

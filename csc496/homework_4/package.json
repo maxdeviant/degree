@@ -1,0 +1,16 @@
+{
+  "name": "homework_4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "blockbreak.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-beautify": "^1.1.0",
+    "gulp-jshint": "^1.8.6"
+  }
+}

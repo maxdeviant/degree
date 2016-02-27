@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.row {
+    width: 100%;
+    height: 50vh;
+}
+
+.row.one {
+    margin-bottom: 50px;
+}
+
+.row.one textarea {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.row.two {
+    padding: 20px;
+}

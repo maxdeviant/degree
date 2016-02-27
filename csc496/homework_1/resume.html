@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Marshall Bowers' R&eacute;sum&eacute;</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h1 class="header"><span class="first-name">Marshall</span>&nbsp;<span class="last-name">Bowers</span></h1>
+
+            <ul class="list contact">
+                <li>Email: <a href="mailto:mb783250@wcupa.edu" target="_blank">mb783250@wcupa.edu</a></li>
+                <li>Phone Number: 1.484.401.5263</li>
+            </ul>
+
+            <div class="section" id="expertise">
+                <h2 class="subhead">Expertise</h2>
+
+                <ul class="list">
+                    <li>JavaScript</li>
+                    <li>HTML5/CSS3</li>
+                    <li>Python</li>
+                    <li>VB.NET</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+
+            <div class="section" id="experience">
+                <h2 class="subhead">Experience</h2>
+
+                <div class="experience">
+                    <h3 class="company">Gravic, Inc.</h3>
+                
+                    <ul class="list">
+                        <li>May 2013 &mdash; Present</li>
+                        <li class="position">Programming Intern</li>
+                        <li>
+                            <p>Developed a variety of web applications for internal use.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="experience">
+                    <h3 class="company">ResNet Central</h3>
+                
+                    <ul class="list">
+                        <li>August 2012 &mdash; May 2014</li>
+                        <li class="position">Consultant</li>
+                        <li>
+                            <p>Provided hardware and software troubleshooting and repair.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section" id="education">
+                <h2 class="subhead">Education</h2>
+
+                <ul class="list">
+                    <li><span class="course">CSC142</span>Computer Science II</li>
+                    <li><span class="course">CSC220</span>Foundations of Computer Science</li>
+                    <li><span class="course">CSC240</span>Computer Science III</li>
+                    <li><span class="course">CSC241</span>Data Structures &amp; Algorithms</li>
+                    <li><span class="course">CSC242</span>Computer Organization</li>
+                    <li><span class="course">CSC301</span>Introduction to Computer Security</li>
+                    <li><span class="course">CSC402</span>Software Engineering</li>
+                    <li><span class="course">CSC417</span>User Interfaces</li>
+                    <li><span class="course"></span></li>
+                </ul>
+            </div>
+
+            <canvas id="canvas" width="300" height="200"></canvas>
+        </div>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        var center = {
+            x: canvas.width / 2,
+            y: canvas.height / 2
+        };
+
+        var headSize = 70,
+            eyeSize = 10,
+            mouthSize = 15;
+
+        context.lineWidth = 5;
+        context.fillStyle = '#ffcd35';
+        context.strokeStyle = '#000';
+
+        context.beginPath();
+        context.arc(center.x, center.y, headSize, 0, 2 * Math.PI, false);
+        context.fill();
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x - 30, center.y - 10, eyeSize, 0, 2 * Math.PI, false);
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x + 30, center.y - 10, eyeSize, 0, 2 * Math.PI, false);
+        context.stroke();
+
+        context.beginPath();
+        context.arc(center.x, center.y + 30, mouthSize, 0, Math.PI, false);
+        context.stroke();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>node-webkit - Example</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="row one">
+        <textarea id="input"></textarea>
+    </div>
+    <div id="output" class="row two"></div>
+    <script>
+        var App = require('./app');
+        
+        var app = new App();
+
+        var input = document.getElementById('input');
+        var output = document.getElementById('output');
+
+        input.addEventListener('keyup', function () {
+            output.innerHTML = app.convert(input.value);
+        });
+    </script>
+</body>
+</html>
