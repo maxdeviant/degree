@@ -1,0 +1,59 @@
+/**
+ * Test: Intermixed Declarations
+ * @author Marshall Bowers
+ */
+class TestOne {
+
+    public static void main(String[] args) {
+        bool result;
+
+        int a;
+        a = 5;
+
+        println(a);
+
+        int b;
+        b = 10;
+
+        println(b);
+
+        TestTwo test;
+
+        test = new TestTwo();
+
+        result = test.initialize(a, b);
+
+        result = test.printAB();
+        result = test.printBA();
+    }
+
+}
+
+class TestTwo {
+
+    int a;
+
+    public bool initialize(int ai, int bi) {
+        a = ai;
+        b = bi;
+
+        return true;
+    }
+
+    public bool printAB() {
+        println(a);
+        println(b);
+
+        return true;
+    }
+
+    int b;
+
+    public bool printBA() {
+        println(b);
+        println(a);
+
+        return true;
+    }
+
+}

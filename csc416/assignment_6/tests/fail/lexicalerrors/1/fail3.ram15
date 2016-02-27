@@ -1,0 +1,8 @@
+public Fail3 {
+
+    public static void main(String[] args) {
+        if (5 < 6 && 6 > 7) {
+            print(-1);
+        }
+    }
+}

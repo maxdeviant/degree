@@ -1,0 +1,21 @@
+class Main {
+	
+	public static void main(String[] args) {
+		println(new Fib().fib(5));
+	}
+}
+
+class Fib {
+	
+	public int fib(int n) {
+		int result;
+		if (n < 3) {
+			result = 1;
+		} else {
+			result = this.fib(n - 1) + this.fib(n - 2);
+		}
+		return result;
+	}
+
+}
+

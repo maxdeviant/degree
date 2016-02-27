@@ -1,0 +1,49 @@
+/**
+ * Test: Comments
+ * @author Marshall Bowers
+ */
+class Comments {
+
+    public static void main(String[] args) {
+        println(1);
+    }
+
+    // This is a single line comment
+
+    // Line comments can contain anything
+    // 안녕하세요
+    // See?
+
+    // public static void main(String[] args) {
+    //
+    //    print(7);
+    //
+    // }
+
+    /**
+     * This is a multiline comment
+     */
+
+    /*
+
+    Multiline comments can contain pretty much anything
+
+    // Include line comments
+
+    class Comments {
+
+        // This is a single line comment
+
+        // Line comments can contain anything
+        // 안녕하세요
+        // See?
+
+        // public static void main(String[] args) {
+        //
+        //    print(7);
+        //
+        // }
+
+    }*/
+
+}

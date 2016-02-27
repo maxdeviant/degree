@@ -1,0 +1,19 @@
+class Main {
+	
+	public static void main(String[] args) {
+		println(new Boolean().exp());
+	}
+}
+
+class Boolean {
+	
+	public bool exp() {
+		bool result;
+
+		result = true;
+		result = !result;
+		result = !(result and !result) or result and (result);
+
+		return result and 5 == 5;
+	}
+}

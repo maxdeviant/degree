@@ -1,0 +1,34 @@
+/**
+ * Test: Types
+ * @author Marshall Bowers
+ */
+class Types {
+
+    public static void main(String[] args) {
+        /**
+         * An empty types
+         */
+        bool foo;
+        int bar;
+        int[] bar;
+
+        /**
+         * An booleans
+         */
+        bool anBool = false;
+        bool anOtherBool = true;
+
+        /**
+         * An integers
+         */
+        int anInt = 0;
+        int anOtherInt = 9001;
+
+        /**
+         * An arrays of integers
+         */
+        int[] anArray;
+        int[] anOtherArray;
+    }
+
+}

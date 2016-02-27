@@ -1,0 +1,11 @@
+/**
+ * Test: No Main Method
+ * @author Marshall Bowers
+ */
+class NoMainMethod {
+
+    public int returnOne() {
+        return 1;
+    }
+
+}

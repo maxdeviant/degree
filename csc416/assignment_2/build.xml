@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Ram15Compiler" default="testScanner" basedir=".">
+    <description>Builds, tests, and runs the project Ram15Compiler.</description>
+
+
+    <!-- set global properties for use in this ant script -->
+    <property name="src" location="src"/>
+    <property name="build" location="build/classes"/>
+    <property name="lib" location="lib"/>
+    <property name="test" location="tests"/>
+
+    <!-- libraries to be included on class path for compiler -->
+    <path id="build.path">
+        <pathelement location="${lib}/junit-4.12.jar"/>
+    </path>
+
+    <!-- libraries to be included on class path at runtime -->
+    <path id="runtime.path">
+        <pathelement location="${build}"/>
+        <pathelement location="${lib}/junit-4.12.jar"/>
+        <pathelement location="${lib}/hamcrest-core-1.3.jar"/>
+    </path>
+
+    <!-- define the jflex command (task) and where it's located -->
+    <taskdef classname="jflex.anttask.JFlexTask" name="jflex"
+             classpath="${lib}/jflex-1.6.1.jar"/>
+
+
+    <!-- and now, the Ant targets... -->
+
+    <target name="init" description="minor housekeeping">
+        <!-- creates directory if it doesn't already exist -->
+        <mkdir dir="build"/>
+        <mkdir dir="build/classes"/>
+    </target>
+
+    <target name="generateScanner" description="generate scanner based on lexical specification">
+        <!-- calls jflex on the .flex file and generates Scanner code-->
+        <jflex file="src/frontend/scanner/ram15_lex_spec.jflex"
+               destdir="${src}/"
+               verbose="on"
+               dump="on"
+                />
+    </target>
+
+    <target name="build" depends="init" description="compile the source code">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" classpathref="build.path" includeantruntime="false" debug="on"/>
+    </target>
+
+    <target name="runScanner" depends="build" description="lexes an input file">
+        <!-- Executes the scanner on a specified input file -->
+        <java classname="frontend.scanner.generated.Yylex" dir="${build}" fork="true" failonerror="true"
+              logError="true">
+            <!-- <arg value="${test}/pass/pass1.ram15" /> -->
+            <arg value="${test}/pass/arrays.ram15"/>
+        </java>
+    </target>
+    <!--
+        <target name="runDriver" depends="build" description="execute the code on a supplied program" >
+            <java classname="ram15compiler.Ram15Compiler" dir="${build}" />
+        </target>
+    -->
+
+    <!--
+    testScanner: Tests our scanner by running it on all tests
+    under tests/pass directory.
+    -->
+    <target name="testScanner" depends="build">
+        <echo message="Running JFlex scanner on the programs..."/>
+        <javac srcdir="${basedir}/tests/"
+               destdir="${build}"
+               includeantruntime="false"
+               debug="on">
+            <!-- Uncomment the following to see compiler warnings. -->
+            <!-- <compilerarg value="-Xlint" />                    -->
+            <classpath>
+                <path refid="build.path"/>
+                <pathelement location="${build}"/>
+            </classpath>
+        </javac>
+        <property name="PASS_TESTS_DIR" value="${basedir}/tests/pass"/>
+        <property name="FAIL_TESTS_DIR" value="${basedir}/tests/fail"/>
+        <junit printsummary="yes" haltonfailure="no" showoutput="yes">
+            <sysproperty key="PASS_TESTS_DIR" value="${PASS_TESTS_DIR}"/>
+            <sysproperty key="FAIL_TESTS_DIR" value="${FAIL_TESTS_DIR}"/>
+            <classpath>
+                <path refid="runtime.path"/>
+                <pathelement location="${build}"/>
+            </classpath>
+            <test name="junit.JFlexScannerTest"
+                  haltonfailure="no">
+                <formatter type="plain" usefile="false"/>
+            </test>
+        </junit>
+    </target>
+</project>
