@@ -2,6 +2,7 @@
 
 const gulp = require('gulp');
 const path = require('path');
+const extend = require('extend');
 const data = require('gulp-data');
 const nano = require('gulp-cssnano');
 const concat = require('gulp-concat');
@@ -22,9 +23,12 @@ const globs = {
 gulp.task('html', () => {
     return gulp.src(globs.pages)
         .pipe(data((file) => {
+            let baseData = require('./src/site.json');
             let dataPath = path.join(path.dirname(file.path), path.basename(file.path).replace(/\.[^/.]+$/, '') + '.json');
 
-            return require(dataPath);
+            let pageData = extend(true, baseData, require(dataPath));
+
+            return pageData;
         }))
         .pipe(nunjucks.compile())
         .pipe(gulp.dest('dist'));
