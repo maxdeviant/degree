@@ -2,12 +2,6 @@
 # CSW131
 #
 
-# Build directory
-build/
-
-# Distribution directory
-dist/
-
 #
 # Node
 #
