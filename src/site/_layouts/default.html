@@ -17,10 +17,10 @@
 <body>
     <div class="container">
         <header class="header">
-            <span class="logo">
+            <a class="logo" href="{{base_url}}/">
                 {{site_name}}
             </span>
-            <nav class="menu">
+            <nav class="menu menu__container">
                 {% if active_link == 'home' %}
                     <a class="menu__item menu__item--active" href="{{base_url}}/">Home</a>
                 {% else %}

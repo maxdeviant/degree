@@ -1,13 +1,16 @@
+* {
+    box-sizing: border-box;
+
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
+
 html,
 body {
     height: 100%;
-
-    box-sizing: border-box;
-    margin: 0;
-
-    ::selection {
-
-    }
 }
 
 .container {
@@ -16,12 +19,16 @@ body {
 
 .header {
     min-height: 4em;
+    padding: .5em;
 
     background-color: #0d9fff;
 }
 
 .logo {
-    margin: 10px 20px;
+    display: inline-block;
+    float: left;
+
+    margin: 0 20px;
 
     color: #fff;
 
@@ -32,15 +39,22 @@ body {
 }
 
 .menu {
-    margin: 5px 20px;
+    &__container {
+        display: inline-block;
+        float: right;
+
+        margin: .5em 0;
+    }
+
+
 
     &__item {
         $underline-color: #fff;
 
         display: inline-block;
 
-        margin: 10px 20px;
-        padding: 5px;
+        margin: 0 1em;
+        padding: .25em;
 
         color: #fff;
 
