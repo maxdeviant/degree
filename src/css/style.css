@@ -19,15 +19,19 @@ body {
 .header {
     display: flex;
     flex: 100;
-    justify-content: flex-end;
 
     min-height: 4em;
+
+    background-color: #0d9fff;
 }
 
 .logo {
-    padding: 20px;
+    display: flex;
+    flex: 1;
 
-    color: #222;
+    margin: 10px 20px;
+
+    color: #fff;
 
     font-family: 'Lato', sans-serif;
     font-size: 32px;
@@ -44,12 +48,14 @@ body {
     margin: 5px 20px;
 
     &__item {
+        $underline-color: #fff;
+
         display: flex;
 
         margin: 10px 20px;
         padding: 5px;
 
-        color: #222;
+        color: #fff;
 
         font-family: 'Lato', sans-serif;
         font-weight: 400;
@@ -59,12 +65,12 @@ body {
         border-bottom: 1px solid transparent;
 
         &:hover {
-            border-color: #222;
+            border-color: $underline-color;
             transition: border-color .5s ease;
         }
 
         &--active {
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid $underline-color;
         }
     }
 }
@@ -91,7 +97,7 @@ body {
     flex: auto;
     flex-flow: row wrap;
     align-items: center;
-    
+
     min-height: 50vh;
 
     background: #222;
