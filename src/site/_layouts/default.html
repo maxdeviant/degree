@@ -12,17 +12,37 @@
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400">
 
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="{{base_url}}/css/style.min.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
             <nav class="menu">
-                <a class="menu__item menu__item--active" href="{{base_url}}/">Home</a>
-                <a class="menu__item" href="{{base_url}}#">Wiki</a>
-                <a class="menu__item" href="{{base_url}}#">Articles</a>
-                <a class="menu__item" href="{{base_url}}/about/">About</a>
-                <a class="menu__item" href="{{base_url}}#">Contact</a>
+                {% if active_link == 'home' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/">Home</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/">Home</a>
+                {% endif %}
+                {% if active_link == 'wiki' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/wiki/">Wiki</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/wiki/">Wiki</a>
+                {% endif %}
+                {% if active_link == 'articles' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/articles/">articles</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/articles/">articles</a>
+                {% endif %}
+                {% if active_link == 'about' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/about/">About</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/about/">About</a>
+                {% endif %}
+                {% if active_link == 'contact' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/contact/">Contact</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/contact/">Contact</a>
+                {% endif %}
             </nav>
         </header>
         <section class="content">

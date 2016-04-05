@@ -28,7 +28,13 @@ gulp.task('html', () => {
             let baseData = loadJsonFile.sync('./src/site.json');
             let dataPath = path.join(path.dirname(file.path), path.basename(file.path).replace(/\.[^/.]+$/, '') + '.json');
 
-            let pageData = extend(true, baseData, loadJsonFile.sync(dataPath));
+            let pageData;
+
+            try {
+                pageData = extend(true, baseData, loadJsonFile.sync(dataPath));
+            } catch (err) {
+                console.log(err);
+            }
 
             return pageData;
         }))
