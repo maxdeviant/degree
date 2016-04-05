@@ -19,7 +19,10 @@ const globs = {
         '!src/site/_layouts/*.html'
     ],
     markdown: '',
-    css: 'src/css/**/*.css'
+    css: [
+        'node_modules/normalize.css/normalize.css',
+        'src/css/**/*.css'
+    ]
 };
 
 gulp.task('html', () => {

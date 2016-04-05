@@ -16,7 +16,9 @@
     "url": "https://github.com/maxdeviant/csw131/issues"
   },
   "homepage": "https://github.com/maxdeviant/csw131#readme",
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^4.0.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "browser-sync": "^2.11.2",
