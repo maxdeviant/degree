@@ -25,7 +25,7 @@ const globs = {
 gulp.task('html', () => {
     return gulp.src(globs.pages)
         .pipe(data((file) => {
-            let baseData = require('./src/site.json');
+            let baseData = loadJsonFile.sync('./src/site.json');
             let dataPath = path.join(path.dirname(file.path), path.basename(file.path).replace(/\.[^/.]+$/, '') + '.json');
 
             let pageData = extend(true, baseData, loadJsonFile.sync(dataPath));
