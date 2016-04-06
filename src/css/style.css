@@ -13,8 +13,16 @@ body {
     height: 100%;
 }
 
-.container {
+.wrapper {
     height: 100%;
+}
+
+.container {
+    margin: 0 auto;
+
+    @media (min-width: 1280px) {
+        width: 960px;
+    }
 }
 
 .header {

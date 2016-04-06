@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{base_url}}/css/style.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         <header class="header">
             <a class="logo" href="{{base_url}}/">
                 {{site_name}}
@@ -48,7 +48,7 @@
                 {% endif %}
             </nav>
         </header>
-        <section class="content">
+        <section class="container">
             {% block body %}{% endblock %}
         </section>
         <footer class="footer">
@@ -63,7 +63,7 @@
                 </p>
             </section>
             <section class="footer__column footer__column--3">
-                
+
             </section>
         </footer>
     </div>
