@@ -22,6 +22,9 @@ const globs = {
     css: [
         'node_modules/normalize.css/normalize.css',
         'src/css/**/*.css'
+    ],
+    img: [
+        'src/img/**/*'
     ]
 };
 
@@ -78,6 +81,15 @@ gulp.task('css:watch', () => {
     gulp.watch(globs.css, ['css']);
 });
 
+gulp.task('img', () => {
+    gulp.src(globs.img)
+        .pipe(gulp.dest('dist/img'));
+});
+
+gulp.task('img:watch', () => {
+    gulp.watch(globs.img, ['img']);
+});
+
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -91,5 +103,6 @@ gulp.task('default', [
     'html:watch',
     'css',
     'css:watch',
+    'img',
     'browser-sync'
 ]);
