@@ -3,7 +3,7 @@
 {% block body %}
     <h1>{{title}}</h1>
     <p>
-        If you like the site or have any comments, feel free to get in touch.
+        Feel free to get in touch if you like the site or have any comments. Corrections or additions to the wiki and article list are also very welcome.
     </p>
     <form method="get" action="">
         <div>
@@ -13,6 +13,10 @@
         <div>
             <label for="email">Email</label>
             <input type="email" name="email">
+        </div>
+        <div>
+            <label for="comment">Comment</label>
+            <textarea name="comment"></textarea>
         </div>
         <input type="submit" value="Submit">
     </form>
