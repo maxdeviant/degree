@@ -1,23 +1,25 @@
 {% extends '_layouts/default.html' %}
 
 {% block body %}
-    <h1>{{title}}</h1>
-    <p>
-        Feel free to get in touch if you like the site or have any comments. Corrections or additions to the wiki and article list are also very welcome.
-    </p>
-    <form method="get" action="http://example.com">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name">
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email">
-        </div>
-        <div>
-            <label for="comment">Comment</label>
-            <textarea name="comment"></textarea>
-        </div>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="contact">
+        <h1>{{title}}</h1>
+        <p>
+            Feel free to get in touch if you like the site or have any comments. Corrections or additions to the wiki and article list are also very welcome.
+        </p>
+        <form class="contact contact__form" method="get" action="http://example.com">
+            <div>
+                <label class="contact contact__label" for="name">Name</label>
+                <input class="contact contact__input" type="text" name="name">
+            </div>
+            <div>
+                <label class="contact contact__label" for="email">Email</label>
+                <input class="contact contact__input" type="email" name="email">
+            </div>
+            <div>
+                <label class="contact contact__label" for="comment">Comment</label>
+                <textarea class="contact contact__textarea" name="comment"></textarea>
+            </div>
+            <input class="contact contact__submit" type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock %}
