@@ -69,8 +69,7 @@ gulp.task('css', () => {
             require('autoprefixer'),
             require('precss')
         ]))
-        .pipe(concat('style.min.css'))
-        .pipe(nano())
+        .pipe(concat('style.css'))
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.reload({
             stream: true
