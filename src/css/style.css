@@ -21,7 +21,7 @@ p {
 }
 
 .container {
-    margin: 2em auto;
+    margin: 0 auto;
 
     @media (min-width: 1280px) {
         width: 960px;
@@ -93,12 +93,16 @@ p {
 
 .home-hero {
     &__container {
+        height: 50vh;
         background-image: url('https://images.unsplash.com/photo-1451906278231-17b8ff0a8880?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=1fbb817fbfe2b13a0c81de025e89a890');
         background-repeat: no-repeat;
         background-size: cover;
     }
 
     &__title {
+        /* Clear the header margin */
+        margin: 0;
+
         font-family: 'Lato', sans-serif;
         font-size: 64px;
         font-weight: 300;
