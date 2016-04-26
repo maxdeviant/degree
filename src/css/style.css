@@ -7,9 +7,14 @@
     }
 }
 
-html,
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    height: 100%;
+    /* Set the bottom margin to the footer height, plus some extra padding */
+    margin: 0 0 150px;
 }
 
 p {
@@ -23,6 +28,7 @@ p {
 .container {
     margin: 0 auto;
 
+    /* Responsive breakpoint for large screens */
     @media (min-width: 1280px) {
         width: 960px;
     }
@@ -171,6 +177,15 @@ p {
 }
 
 .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 120px;
+    width: 100%;
+
+    margin-top: 2em;
+    padding: 2em;
+
     background: #00e8b8;
 
     font-family: 'Lato', sans-serif;
@@ -179,6 +194,8 @@ p {
     &__column {
         margin: 20px 0;
         padding: 0 20px;
+
+        text-align: center;
 
         color: #fff;
     }
