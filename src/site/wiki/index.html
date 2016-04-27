@@ -1,6 +1,25 @@
 {% extends '_layouts/default.html' %}
 
 {% block body %}
+    <style>
+        .wiki__chart {
+            margin: 0 auto;
+            border: 1px solid #222;
+        }
+
+        .wiki__chart th {
+            font-weight: bold;
+        }
+
+        .wiki__chart td {
+            padding: 20px 50px;
+        }
+
+        .wiki__chart--title {
+            margin-top: 75px;
+            text-align: center;
+        }
+    </style>
     <h1>{{title}}</h1>
     <p>
         The wiki is the master repository of information for everything you need to bring your software development skills to the next level. It is broken down by language, so choose whichever one suits your fancy and continue your journey.
@@ -27,5 +46,61 @@
                 </a>
             </div>
         </div>
+    </div>
+    <div class="wiki wiki__row">
+        <h3 class="wiki wiki__chart--title">Programming Language Comparison</h3>
+        <table class="wiki wiki__chart">
+            <thead>
+                <tr>
+                    <th>
+                        Language
+                    </th>
+                    <th>
+                        Typing
+                    </th>
+                    <th>
+                        First Appeared
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- JavaScript -->
+                <tr>
+                    <td>
+                        JavaScript
+                    </td>
+                    <td>
+                        Dynamic, Duck
+                    </td>
+                    <td>
+                        1995
+                    </td>
+                </tr>
+                <!-- Go -->
+                <tr>
+                    <td>
+                        Go
+                    </td>
+                    <td>
+                        Static, Strong
+                    </td>
+                    <td>
+                        2009
+                    </td>
+                </tr>
+                <!-- Python -->
+                <tr>
+                    <td>
+                        Python
+                    </td>
+                    <td>
+                        Dynamic, Duck
+                    </td>
+                    <td>
+                        1991
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 {% endblock %}
