@@ -24,7 +24,7 @@ const globs = {
         'src/css/**/*.css'
     ],
     img: [
-        'src/img/**/*'
+        'src/images/**/*'
     ]
 };
 
@@ -82,7 +82,7 @@ gulp.task('css:watch', () => {
 
 gulp.task('img', () => {
     gulp.src(globs.img)
-        .pipe(gulp.dest('dist/img'));
+        .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('img:watch', () => {
