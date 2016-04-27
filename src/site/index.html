@@ -1,19 +1,36 @@
 {% extends '_layouts/default.html' %}
 
 {% block body %}
+    <style>
+        .body__text {
+            line-height: 1.5em;
+            margin: 50px 0;
+            padding: 20px;
+        }
+
+        .body__text a {
+            color: #00e8b8;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        .body__text a:hover {
+            text-decoration: underline;
+        }
+    </style>
     <div class="home">
         <div class="home-hero home-hero__container">
             <h1 class="home-hero__title">
                 {{site_name}}
             </h1>
         </div>
-        <p>
+        <p class="body body__text">
             Welcome to {{site_name}}! Whether you are a seasoned developer or someone who is just starting to learn software development, here you will find material that you can use to level up your developer skills to "superhero" levels.
         </p>
-        <p>
+        <p class="body body__text">
             The site is broken into a number of different areas. The <a href="{{base_url}}/wiki/">wiki</a> is the place to learn more about programming and the different utilities that programming languages provided. The <a href="{{base_url}}/articles/">articles directory</a> is where you want to go if you are looking to read content that other developers have written.
         </p>
-        <p>
+        <p class="body body__text">
             If you want to know more about the site's author, head on over to the <a href="{{base_url}}/about/">about</a> page. Or if you want to get in touch, go to the <a href="{{base_url}}/contact/">contact</a> page.
         </p>
     </div>
