@@ -177,6 +177,11 @@ p {
 }
 
 .contact {
+    &__column {
+        width: 50%;
+        float: left;
+    }
+
     &__form {
         margin: 20px 0;
         width: 310px;
