@@ -13,24 +13,38 @@
             Feel free to get in touch if you like the site or have any comments. Corrections or additions to the wiki and article list are also very welcome.
         </p>
         <div class="contact contact__column">
-            <form class="contact contact__form" method="get" action="http://example.com">
+            <form class="contact contact__form" method="get" action="http://example.com" onsubmit="return validateForm()">
                 <div>
                     <label class="contact contact__label" for="name">Name</label>
-                    <input class="contact contact__input" type="text" name="name">
+                    <input class="contact contact__input" type="text" name="name" required>
                 </div>
                 <div>
                     <label class="contact contact__label" for="email">Email</label>
-                    <input class="contact contact__input" type="email" name="email">
+                    <input class="contact contact__input" type="email" name="email" required>
                 </div>
                 <div>
                     <label class="contact contact__label" for="comment">Comment</label>
-                    <textarea class="contact contact__textarea" name="comment"></textarea>
+                    <textarea class="contact contact__textarea" id="comment" name="comment"></textarea>
                 </div>
                 <input class="contact contact__submit" type="submit" value="Submit">
             </form>
         </div>
+        <button onclick="validateForm()">Test</button>
         <div class="contact contact__column">
             <img class="contact-image" src="{{base_url}}/images/contact.jpg">
         </div>
+        <script>
+            function validateForm(event) {
+                var commentBox = document.getElementById('comment');
+
+                // if the comment box has no value
+                if (!commentBox.value) {
+                    alert('Please enter a comment for me!');
+
+                    // stop the form from submitting
+                    return false;
+                }
+            }
+        </script>
     </div>
 {% endblock %}
