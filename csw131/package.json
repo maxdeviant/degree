@@ -1,0 +1,43 @@
+{
+  "name": "csw131",
+  "version": "1.0.0",
+  "description": "Intro to Web Design (CSW131)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxdeviant/csw131.git"
+  },
+  "author": "Marshall Bowers <elliott.codes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxdeviant/csw131/issues"
+  },
+  "homepage": "https://github.com/maxdeviant/csw131#readme",
+  "dependencies": {
+    "normalize.css": "^4.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "browser-sync": "^2.11.2",
+    "del": "^2.2.0",
+    "extend": "^3.0.0",
+    "greshunkel": "0.0.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-data": "^1.2.1",
+    "gulp-markdown": "^1.2.0",
+    "gulp-nunjucks": "^2.2.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "load-json-file": "^1.1.0",
+    "marked": "^0.3.5",
+    "mkdirp": "^0.5.1",
+    "nunjucks": "^2.4.1",
+    "precss": "^1.4.0",
+    "walkdir": "0.0.11"
+  }
+}

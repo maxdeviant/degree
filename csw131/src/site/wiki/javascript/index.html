@@ -1,0 +1,23 @@
+{% extends '_layouts/default.html' %}
+
+{% block body %}
+    <h1>{{title}}</h1>
+    <img class="wiki-entry wiki-entry__logo" src="{{base_url}}/images/javascript-logo.jpg" alt="JavaScript logo.">
+    <h2>Info</h2>
+    <p>
+        JavaScript is a dynamic programming language for the web. While originally only executed in the browser, recent developments in <a href="https://nodejs.org/en/">Node.js</a> have made JavaScript code able to be executed on the server as well. This has made JavaScript become very popular, since the same programming language can be used for both the server and the client-side code in an application.
+    </p>
+    <h2>Best Practices</h2>
+    <p>
+        Due to its untyped and dynamic nature, coding in JavaScript can be very unstructured when compared to statically typed languages such as C or C++. Because of this, large JavaScript projects can get out of hand very quickly. That is why it is important to adhere to a number of best practices when working with JavaScript.
+    </p>
+    <h2>Frameworks</h2>
+    <h3>Angular</h3>
+    <p>
+        <a href="https://angularjs.org/" target="_blank">Angular</a> is a JavaScript framework from Google.
+    </p>
+    <h3>React</h3>
+    <p>
+        <a href="https://facebook.github.io/react/" target="_blank">React</a> is a JavaScript library for building user interfaces. It is open source, but is made by Facebook.
+    </p>
+{% endblock %}

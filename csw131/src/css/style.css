@@ -1,0 +1,269 @@
+* {
+    box-sizing: border-box;
+
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: Lato, sans-serif;
+}
+
+body {
+    /* Set the bottom margin to the footer height, plus some extra padding */
+    margin: 0 0 150px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.container {
+    margin: 0 auto;
+
+    /* Responsive breakpoint for large screens */
+    @media (min-width: 1280px) {
+        width: 960px;
+    }
+}
+
+.header {
+    min-height: 4em;
+    padding: .5em;
+
+    background-color: #0d9fff;
+}
+
+.logo {
+    display: inline-block;
+    float: left;
+
+    margin: 0 20px;
+
+    color: #fff;
+
+    font-family: 'Lato', sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.menu {
+    &__container {
+        display: inline-block;
+        float: right;
+
+        margin: .5em 0;
+    }
+
+
+
+    &__item {
+        $underline-color: #fff;
+
+        display: inline-block;
+
+        margin: 0 1em;
+        padding: .25em;
+
+        color: #fff;
+
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            border-color: $underline-color;
+            transition: border-color .5s ease;
+        }
+
+        &--active {
+            border-bottom: 1px solid $underline-color;
+        }
+    }
+}
+
+.content {
+
+}
+
+.home-hero {
+    &__container {
+        height: 50vh;
+        background-image: url('../images/hero.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__title {
+        /* Clear the header margin */
+        margin: 0;
+
+        color: #fff;
+        text-shadow: 3px 3px 5px #222;
+        font-family: 'Lato', sans-serif;
+        font-size: 64px;
+        font-weight: 300;
+
+        text-align: center;
+    }
+}
+
+.wiki {
+    &__row {
+        width: 100%;
+    }
+
+    &__col {
+        display: inline-block;
+
+        padding-right: 2em;
+
+        &:last-of-type {
+            padding-right: 0;
+        }
+
+        &--4 {
+            width: 33%;
+        }
+    }
+
+    &__tile {
+        min-width: 30%;
+        height: 128px;
+
+        color: #fff;
+        background-color: #0d9fff;
+
+        &:hover {
+            background-color: #00e8b8;
+            transition: background-color .25s ease;
+        }
+    }
+
+    &__tile-link {
+        display: inline-block;
+
+        width: 100%;
+        height: 100%;
+
+        padding-top: 48px;
+
+        font-size: 1.5em;
+        text-decoration: none;
+        text-align: center;
+
+        color: #fff;
+
+        &:visited,
+        &:active {
+            color: #fff;
+        }
+    }
+}
+
+.wiki-entry {
+    &__logo {
+        width: 200px;
+    }
+}
+
+.contact {
+    &__column {
+        width: 50%;
+        float: left;
+    }
+
+    &__form {
+        margin: 20px 0;
+        width: 310px;
+    }
+
+    &__label,
+    &__input,
+    &__textarea,
+    &__submit {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    &__input,
+    &__textarea {
+        outline: none;
+        border: 2px solid;
+
+        &:focus {
+            border-color: #0d9fff;
+        }
+    }
+
+    &__label {
+        display: block;
+        width: 300px;
+    }
+
+    &__input {
+        width: 300px;
+    }
+
+    &__textarea {
+        width: 300px;
+    }
+
+    &__submit {
+        float: right;
+        color: #222;
+        background-color: #fff;
+
+        padding: 0 20px;
+
+        font-size: 20px;
+
+        border-width: 2px;
+        border-color: #222;
+        border-style: solid;
+
+        &:hover {
+            color: #fff;
+            background-color: #0d9fff;
+            border-color: #0d9fff;
+            transition: color .5s ease, background-color .5s ease, border-color .5s ease;
+        }
+    }
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 120px;
+    width: 100%;
+
+    margin-top: 2em;
+    padding: 2em;
+
+    background: #00e8b8;
+
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+
+    &__column {
+        margin: 20px 0;
+        padding: 0 20px;
+
+        text-align: center;
+
+        color: #fff;
+    }
+}

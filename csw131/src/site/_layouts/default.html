@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <title>{{title}} &middot; {{site_name}}</title>
+
+    <meta name="description" value="{{meta.description}}">
+    <meta name="keywords" value="{{meta.keywords}}">
+    <meta name="author" value="{{meta.author}}">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400">
+
+    <link rel="stylesheet" href="{{base_url}}/css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <a class="logo" href="{{base_url}}/">
+                {{site_name}}
+            </span>
+            <!-- Navbar -->
+            <nav class="menu menu__container">
+                {% if active_link == 'home' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/">Home</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/">Home</a>
+                {% endif %}
+                {% if active_link == 'wiki' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/wiki/">Wiki</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/wiki/">Wiki</a>
+                {% endif %}
+                {% if active_link == 'articles' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/articles/">Articles</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/articles/">Articles</a>
+                {% endif %}
+                {% if active_link == 'about' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/about/">About</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/about/">About</a>
+                {% endif %}
+                {% if active_link == 'contact' %}
+                    <a class="menu__item menu__item--active" href="{{base_url}}/contact/">Contact</a>
+                {% else %}
+                    <a class="menu__item" href="{{base_url}}/contact/">Contact</a>
+                {% endif %}
+            </nav>
+        </header>
+        <!-- Main Content -->
+        <section class="container">
+            {% block body %}{% endblock %}
+        </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <section class="footer__column">
+                <!-- Copyright Info -->
+                <p>
+                    Copyrighted &copy; 2016 Marshall Bowers. Created for academic/educational (website design)
+purposes. Use permissions on file.
+                </p>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>
